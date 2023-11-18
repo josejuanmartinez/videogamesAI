@@ -6,3 +6,5 @@ Pet project to participate in a challenge for a hiring process of Paradox. This 
 - MathUtils: Matrix transposition, Manhattan distance, and other calculations on matrices.
 - FindPath: Dijkstra algorithm for PathFinder, with edge cases and some optimizations.
 - MovementUtils: Helper that checks which tiles are available to move given a position on the board.
+
+![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/8994ade6-a077-48a5-8575-ad8b403ff733)
