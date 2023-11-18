@@ -13,6 +13,7 @@ This is a repo for collecting scripts and articles about AI in Video games.
 
 # Unity
 ## [Mistral 7B for CPU real-time content generation](https://github.com/josejuanmartinez/videogamesAI/tree/main/Mistral7BForUnity)
+Integration of Mistral 7B LLM into Unity, using LlamaSharp, to generate content (lore) for your games on-the-fly.
 ![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/8d12f4d9-a230-4386-a08e-c2fb8a67aaf7)
 
 ## Behaviour Trees and Blackboards (2D)
