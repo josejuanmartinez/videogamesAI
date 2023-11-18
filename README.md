@@ -8,8 +8,9 @@ This is a repo for collecting scripts and articles about AI in Video games.
 - [AI in video games: a historical evolution, from Search Trees to LLMs. Chapter 2: 2000–2023](https://medium.com/@jjmcarrascosa/ai-in-video-games-a-historical-evolution-from-search-trees-to-llms-chapter-3-2000-2023-ae286c975387)
 
 # Unity
-## Mistral 7B for CPU real-time content generation
-(Coming soon)
+## [Mistral 7B for CPU real-time content generation](https://github.com/josejuanmartinez/videogamesAI/tree/main/Mistral7BForUnity)
+![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/8d12f4d9-a230-4386-a08e-c2fb8a67aaf7)
+
 ## Behaviour Trees and Blackboards (2D)
 (Coming soon)
 
