@@ -36,6 +36,6 @@ It's an ambitious game in progress with lots of complex logic, including Behavio
 ### [Simple Shooter](https://github.com/josejuanmartinez/videogamesAI/tree/main/SimpleShooterUnreal)
 ![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/c317e7eb-6ab1-48e4-81c5-3664aa85b4f0)
 
-### [Toon Tanks](https://github.com/josejuanmartinez/videogamesAI/tree/main/ToonTanksUnreal)
+### [Simple Following AI: Toon Tanks](https://github.com/josejuanmartinez/videogamesAI/tree/main/ToonTanksUnreal)
 ![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/203aa937-ff6b-436e-9db4-35fd8a2a8f0c)
 
