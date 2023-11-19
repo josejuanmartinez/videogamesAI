@@ -22,7 +22,7 @@ Own implementation created during an interview process with Paradox
 ### [Mistral 7B for CPU real-time content generation](https://github.com/josejuanmartinez/videogamesAI/tree/main/Mistral7BUnity)
 Integration of Mistral 7B LLM into Unity, using LlamaSharp, to generate content (lore) for your games on-the-fly.
 ![mistralai](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/bb8fa67d-327f-462e-96dd-e35a43da8929)
-### Behaviour Trees and Blackboards (https://github.com/josejuanmartinez/videogamesAI/tree/main/BehaviourTreesUnity)
+### [Behaviour Trees and Blackboards](https://github.com/josejuanmartinez/videogamesAI/tree/main/BehaviourTreesUnity)
 Behaviour Trees with Blackboard singleton from scratch in C#, no plugins used.
 ![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/ba0b5369-662a-4bc5-9057-836a44553994)
 
