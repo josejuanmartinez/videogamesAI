@@ -1,0 +1,11 @@
+{
+	"files.exclude": {
+		"C:/GameDev/ToonTanksV2/.git": true,
+		"C:/GameDev/ToonTanksV2/.vscode": true,
+		"C:/GameDev/ToonTanksV2/38c915ac18ddb6b5": true,
+		"C:/GameDev/ToonTanksV2/Content": true,
+		"C:/GameDev/ToonTanksV2/DerivedDataCache": true,
+		"C:/GameDev/ToonTanksV2/Intermediate": true,
+		"C:/GameDev/ToonTanksV2/Saved": true
+	}
+}
