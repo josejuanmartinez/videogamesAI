@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e5c52cb10daf7db4a9a547ddbb74f4a8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 224082
+  packageName: Ultimate A* Pathfinding Solution
+  packageVersion: 1.02
+  assetPath: Assets/Aoiti/Example/Tilemap/MoveOnTilemap.cs
+  uploadId: 506193

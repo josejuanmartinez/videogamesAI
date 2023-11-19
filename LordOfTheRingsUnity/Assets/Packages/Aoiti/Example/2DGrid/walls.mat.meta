@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8b5520ee40c4ce644b325e451b447ccb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 224082
+  packageName: Ultimate A* Pathfinding Solution
+  packageVersion: 1.02
+  assetPath: Assets/Aoiti/Example/2DGrid/walls.mat
+  uploadId: 506193

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 766fba2d8350d9142b0c0ab961b85c44
+timeCreated: 1494427514
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 90332
+  packageName: Fantasy GUI
+  packageVersion: 1.0
+  assetPath: Assets/Fantasy_GUI/Fantasy_GUI.unity
+  uploadId: 179423

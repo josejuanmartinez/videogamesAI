@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e2d4b6b489f5e194aa1867ee946e8436
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 224082
+  packageName: Ultimate A* Pathfinding Solution
+  packageVersion: 1.02
+  assetPath: Assets/Aoiti/Example/Tilemap/Sprite-0001_0.asset
+  uploadId: 506193

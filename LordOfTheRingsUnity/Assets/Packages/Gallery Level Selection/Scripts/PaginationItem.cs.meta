@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3f3fe6cbe4e27244895d9da1a71b4ed4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173398
+  packageName: Gallery Level Selection - Pagination and Scroll-Snap Menu
+  packageVersion: 1.0.1
+  assetPath: Assets/Gallery Level Selection/Scripts/PaginationItem.cs
+  uploadId: 377706

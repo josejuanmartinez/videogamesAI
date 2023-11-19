@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 59b096d856aa50740939b6ac8f95dbc9
+timeCreated: 1582099295
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173398
+  packageName: Gallery Level Selection - Pagination and Scroll-Snap Menu
+  packageVersion: 1.0.1
+  assetPath: Assets/Gallery Level Selection/Demo/UI_AdjustPosition.cs
+  uploadId: 377706

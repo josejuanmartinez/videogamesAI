@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f3aa780a2d38b0c43b6530450e430d34
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 224082
+  packageName: Ultimate A* Pathfinding Solution
+  packageVersion: 1.02
+  assetPath: Assets/Aoiti/Example/2DGrid/exampleScene.unity
+  uploadId: 506193

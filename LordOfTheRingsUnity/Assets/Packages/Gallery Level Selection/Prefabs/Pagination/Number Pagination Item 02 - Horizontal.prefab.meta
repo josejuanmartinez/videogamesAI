@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1da42b82d4ca5e74da4e2b99b905e720
+timeCreated: 1581943339
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173398
+  packageName: Gallery Level Selection - Pagination and Scroll-Snap Menu
+  packageVersion: 1.0.1
+  assetPath: Assets/Gallery Level Selection/Prefabs/Pagination/Number Pagination
+    Item 02 - Horizontal.prefab
+  uploadId: 377706

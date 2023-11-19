@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 71ea1ad30bd3365458fb06c42c6980cf
+timeCreated: 1581942722
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173398
+  packageName: Gallery Level Selection - Pagination and Scroll-Snap Menu
+  packageVersion: 1.0.1
+  assetPath: Assets/Gallery Level Selection/Prefabs/Pagination/Toggle Pagination
+    Item 03 - Horizontal.prefab
+  uploadId: 377706

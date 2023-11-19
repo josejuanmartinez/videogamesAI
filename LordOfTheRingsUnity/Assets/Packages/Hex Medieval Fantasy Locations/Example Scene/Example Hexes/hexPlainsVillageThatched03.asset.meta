@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: acc6c0b9ca660f248a988fba1187adf3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 59271
+  packageName: Hex Medieval-Fantasy Locations
+  packageVersion: 1.3.0
+  assetPath: Assets/Hex Medieval Fantasy Locations/Example Scene/Example Hexes/hexPlainsVillageThatched03.asset
+  uploadId: 551262

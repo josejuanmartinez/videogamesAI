@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e25933f2bdba4bc4bb8f5ec91d172862
+labels:
+- d6
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 165
+  packageName: Dice Pack Light
+  packageVersion: 1.3
+  assetPath: Assets/Dice/Resources/Materials/d6/d6-red-dots.mat
+  uploadId: 53525

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4fb3680e168d5a54190059160a7d1d2a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 224082
+  packageName: Ultimate A* Pathfinding Solution
+  packageVersion: 1.02
+  assetPath: Assets/Aoiti/Example/Tilemap/myPalette.prefab
+  uploadId: 506193

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0a8104a336734e84caa178f77bdb3c97
+timeCreated: 1582120896
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173398
+  packageName: Gallery Level Selection - Pagination and Scroll-Snap Menu
+  packageVersion: 1.0.1
+  assetPath: Assets/Gallery Level Selection/Demo/Character Selection/Images/Copyright
+    Of Images.txt
+  uploadId: 377706

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4526da90133530144944d8cc3339dc52
+timeCreated: 1582122042
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 173398
+  packageName: Gallery Level Selection - Pagination and Scroll-Snap Menu
+  packageVersion: 1.0.1
+  assetPath: Assets/Gallery Level Selection/Demo/Character Selection/Character Selection.unity
+  uploadId: 377706
