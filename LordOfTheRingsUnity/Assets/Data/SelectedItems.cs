@@ -81,14 +81,14 @@ public class SelectedItems : MonoBehaviour
     public void SelectCityDetails(CityDetails city, NationsEnum owner)
     {
         selection.Select(city, owner);
-        deckManager.Dirty(DirtyReason.CHAR_SELECTED);
+        deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
         cameraController.LookToCity(city);
     }
 
     public void UnselectCityDetails()
     {
         selection = new SelectedCard();
-        deckManager.Dirty(DirtyReason.CHAR_SELECTED);
+        //deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
         placeDeckManager.RemoveCardToShow(placeDeckManager.GetCardToShow());
     }
 
@@ -102,7 +102,7 @@ public class SelectedItems : MonoBehaviour
             return;
 
         if(cardDetails.IsMovableClass())
-            deckManager.Dirty(DirtyReason.CHAR_SELECTED);
+            deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
         selection.Select(cardDetails, owner);
 
@@ -119,7 +119,7 @@ public class SelectedItems : MonoBehaviour
         bool refreshCharSelectedConditions = selection.IsMovableSelected();
         selection = null;
         if (refreshCharSelectedConditions)  
-            deckManager.Dirty(DirtyReason.CHAR_SELECTED);
+            deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
         placeDeckManager.RemoveCardToShow(placeDeckManager.GetCardToShow());
     }

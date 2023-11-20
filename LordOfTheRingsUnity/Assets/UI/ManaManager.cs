@@ -81,23 +81,38 @@ public class ManaManager : MonoBehaviour
             textWilderness.text = mana[turn.GetCurrentPlayer()][CardTypesEnum.WILDERNESS].ToString();
             textSea.text = mana[turn.GetCurrentPlayer()][CardTypesEnum.SEA].ToString();
 
-            deckManager.Dirty(DirtyReason.NEW_RESOURCES);
+            deckManager.Dirty(DirtyReasonEnum.NEW_MANA);
             dirty = false;
         }
     }
 
     public bool HasEnoughMana(NationsEnum nation, List<CardTypesEnum> cards)
     {
+        Dictionary<CardTypesEnum, int> missing = new();
+        foreach (CardTypesEnum card in cards)
+        {
+            int required = cards.FindAll(x => x.Equals(card)).Count;
+            if (required > 0)
+                if (mana[nation][card] < required)
+                    return false;
+        }
+        return true;
+    }
+    public Dictionary<CardTypesEnum, int> GetMissingMana(NationsEnum nation, List<CardTypesEnum> cards)
+    {
+        Dictionary<CardTypesEnum, int> missing = new();
         foreach (CardTypesEnum card in cards)
         {
             int required = cards.FindAll(x => x.Equals(card)).Count;
             if (required > 0)
             {
-                if (mana[nation][card] >= required)
-                    return true;
+                if (mana[nation][card] < required)
+                {
+                    missing[card] = required - mana[nation][card];
+                }
             }
         }
-        return false;
+        return missing;
     }
 
     public void AddMana(NationsEnum nation, List<CardTypesEnum> cardTypes)

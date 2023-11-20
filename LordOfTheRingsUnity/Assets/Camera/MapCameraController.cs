@@ -213,7 +213,12 @@ public class CameraController : MonoBehaviour
     public void LookTo(Vector3 position)
     {
         // Calculate the new position and rotation of the camera
-        lookToPosition = position; 
+        lookToPosition = position;
+    }
+    public void LookToImmediate(Vector3 newPosition)
+    {
+        // Calculate the new position and rotation of the camera
+        transform.position = newPosition;
     }
 
     public void IsMouseAtBorder()

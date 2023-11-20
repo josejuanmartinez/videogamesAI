@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +12,9 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
     private CardClass cardClass;
     private NationsEnum nation;
     private List<DeckCardUIRequirement> requirements;
+    private bool loaded;
     private bool awaken = false;
+    
 
     void Awake()
     {
@@ -20,9 +23,7 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         if(turn == null)
             turn = GameObject.Find("Turn").GetComponent<Turn>();
         handPos = 0;
-        initialized = false;
-        canBePlayed = false;
-        isDirty = DirtyReason.INITIALIZATION;
+        loaded = false;
         requirements = new List<DeckCardUIRequirement>();
         awaken = true;
     }
@@ -47,7 +48,7 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         if (owner == NationsEnum.ABANDONED)
             return false;
 
-        if (!InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner)))
+        if (!InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner), false))
             return false;
 
         if (!resourcesManager.isInitialized)
@@ -59,23 +60,25 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         if (game.GetHumanPlayer().GetNation() != owner)
             return true;
 
-        CalculateAllRequirements();
-        
-        initialized = true;
-        
+        button.enabled = true;
+        button.interactable = true;
+
+        loaded = true;
+
         return true;
     }
 
     protected override void Update()
     {
-        if (!initialized)
+        if (!loaded)
         {
             Initialize(nation, cardId, cardClass);
             return;
         }
-        if(game.GetHumanPlayer().GetNation() == owner)
+
+        if (game.GetHumanPlayer().GetNation() == owner)
         {
-            if (isDirty != DirtyReason.NONE)
+            if (dirtyMessages.Count() > 0 && this.cardDetails != null)
                 RefreshRequirements();
             AnimateName();
         }
@@ -83,152 +86,99 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
 
     public override void RefreshRequirements()
     {
+        if (dirtyMessages.Count() < 1)
+            return;
+
         if (owner == turn.GetCurrentPlayer())
         {
-            switch (isDirty)
+            foreach (DirtyReasonEnum isDirty in dirtyMessages)
             {
-                case DirtyReason.INITIALIZATION:
-                    CalculateAllRequirements();
+                Debug.Log(string.Format("{0} received signal: {1}", cardId, dirtyMessages.ToString()));
+                foreach (CardCondition cc in conditions)
+                {
+                    if (cc.GetDirtyCheck() == isDirty || isDirty == DirtyReasonEnum.INITIALIZATION)
+                    {
+                        RemoveOldSprites(cc.GetInvolvedSprites());
+                        Debug.Log(string.Format("{0} cleansed: {1}", cardId, cc.GetInvolvedSprites().ToLineSeparatedString()));
+                    }
+                }
+            }
+            
+            foreach (DirtyReasonEnum isDirty in dirtyMessages)
+            {
+                conditionsFailed = new();
+                Debug.Log(string.Format("{0} processes signal: {1}", cardId, isDirty.ToString()));
+
+                foreach (CardCondition cc in conditions)
+                {
+                    if (cc.GetDirtyCheck() == isDirty || isDirty == DirtyReasonEnum.INITIALIZATION)
+                    {
+                        Debug.Log(string.Format("{0} processes condition from signal: {1}", cardId, isDirty.ToString()));
+                        if (cc.RunCondition().Count() > 0)
+                            conditionsFailed.AddRange(cc.GetLastResult());
+                        RefreshIcons(cc);
+                    }
+                }
+            }
+        }
+        dirtyMessages = new ();
+    }
+
+    public void RefreshIcons(CardCondition cardCondition)
+    {
+        Dictionary<string, int> sprites = new();
+        
+        foreach(PlayableConditionResultEnum conditionResult in cardCondition.GetLastResult())
+        {
+            switch (conditionResult)
+            {
+                case PlayableConditionResultEnum.NO_INFLUENCE:
+                    sprites.Add("influence", 1);
                     break;
-                case DirtyReason.CHAR_SELECTED:
-                    CalculateIsCharacterAtCity();
+                case PlayableConditionResultEnum.NO_HOMETOWN:
+                    sprites.Add("hometown", 1);
                     break;
-                case DirtyReason.NEW_RESOURCES:
-                    CalculateMissingResources();
+                case PlayableConditionResultEnum.NO_MANA:
+                    foreach(CardTypesEnum c in Enum.GetValues(typeof(CardTypesEnum)))
+                        sprites.Add(c.ToString(), missingMana.ContainsKey(c) ? missingMana[c] : 0);
                     break;
-                case DirtyReason.NONE:
+                case PlayableConditionResultEnum.NO_RESOURCES:
+                    foreach (ResourceType c in Enum.GetValues(typeof(ResourceType)))
+                        sprites.Add(c.ToString(), missingResources.resources[c]);
+                    break;
+                case PlayableConditionResultEnum.NOT_AT_CITY:
+                    sprites.Add("city", 1);
+                    break;
+                case PlayableConditionResultEnum.SLOT_NOT_FOUND:
+                    sprites.Add("slot", 1);
+                    break;
+                case PlayableConditionResultEnum.IS_RING:
+                case PlayableConditionResultEnum.RING_TYPE_NOT_FOUND:
+                    sprites.Add("ring", 1);
+                    break;
+                case PlayableConditionResultEnum.SELECT_CHAR:
+                    sprites.Add("character", 1);
                     break;
             }
         }
-        
-        isDirty = DirtyReason.NONE;
+
+        RemoveOldSprites(sprites.Keys.ToList());
+        foreach (string sprite in sprites.Keys)
+            InstantiateResource(sprite, sprites[sprite]);
     }
 
-    public override void CalculateAllRequirements()
+    public void RemoveOldSprites(List<string> sprites)
     {
-        canBePlayed = CalculateMissingResources().Sum() < 1;
-        canBePlayed &= CalculateConditions().Contains(PlayableConditionResult.SUCCESS);
-    }
-
-    public override void CalculateIsCharacterAtCity()
-    {
-        HashSet<PlayableConditionResult> conditionResults = deck.IsSelectedCharacterAtCity(cardDetails);
-
-        isSelectedCharAtForeignCity = conditionResults.Count < 1;
-
-        if (cardDetails.cardClass == CardClass.Object)
-        {
-            HashSet<PlayableConditionResult> objectConditionResults = deck.IsObjectCardPlayable(cardDetails, owner);
-            isSelectedCharAtForeignCity &= objectConditionResults.Contains(PlayableConditionResult.SUCCESS);
-            if (objectConditionResults.Count > 0)
-                conditionResults.AddRange(objectConditionResults);            
-        }            
-        else if (cardDetails.cardClass == CardClass.GoldRing)
-        {
-            HashSet<PlayableConditionResult> objectConditionResults = deck.IsGoldRingCardPlayable(cardDetails, owner);
-            isSelectedCharAtForeignCity &= objectConditionResults.Contains(PlayableConditionResult.SUCCESS);
-            if (objectConditionResults.Count > 0)
-                conditionResults.AddRange(objectConditionResults);
-        }
-        
-        canBePlayed = missing.Sum() < 1 && isSelectedCharAtForeignCity;
-
         requirements = requirements.FindAll(x => x != null && x.gameObject != null);
-        requirements.FindAll(x => 
-                                    x.requirementName == "character" || 
-                                    x.requirementName == "city" ||
-                                    x.requirementName == "slot" ||
-                                    x.requirementName == "ring"
-                                    ).ForEach(x => DestroyImmediate(x.gameObject));
-
-        if (isSelectedCharAtForeignCity)
-            return;
-        
-        if (conditionResults.Contains(PlayableConditionResult.SELECT_CHAR))
-            InstantiateResource("character", 1);
-        if (conditionResults.Contains(PlayableConditionResult.NOT_AT_CITY))
-            InstantiateResource("city", 1);
-        if (conditionResults.Contains(PlayableConditionResult.RING_TYPE_NOT_FOUND))
-            InstantiateResource("ring", 1);
-        if (conditionResults.Contains(PlayableConditionResult.SLOT_NOT_FOUND))
-            InstantiateResource("slot", 1);
-    }
-
-
-    public override HashSet<PlayableConditionResult> CalculateConditions()
-    {
-        HashSet<PlayableConditionResult> conditionResults = base.CalculateConditions();
-        if (conditionResults.Contains(PlayableConditionResult.SUCCESS))
-            return conditionResults;
-
-        switch (cardDetails.cardClass)
-        {
-            case CardClass.HazardCreature:
-                HazardCreatureCardDetails hazardDetails = (HazardCreatureCardDetails)cardDetails;
-                if (conditionResults.Contains(PlayableConditionResult.NO_MANA))
-                {
-                    foreach (CardTypesEnum c in Enum.GetValues(typeof(CardTypesEnum)))
-                    {
-                        requirements = requirements.FindAll(x => x != null && x.gameObject != null);
-                        requirements.FindAll(x => x.requirementName == c.ToString()).ForEach(x => DestroyImmediate(x.gameObject));
-                    }
-
-                    Dictionary<CardTypesEnum, int> requiredCardTypes = new();
-                    foreach (CardTypesEnum c in hazardDetails.cardTypes)
-                    {
-                        if (!requiredCardTypes.ContainsKey(c))
-                            requiredCardTypes.Add(c, 1);
-                        else
-                            requiredCardTypes[c]++;
-                    }
-
-                    foreach (CardTypesEnum c in requiredCardTypes.Keys)
-                    {
-                        int required = requiredCardTypes[c];
-                        int available = manaManager.mana[nation][c];
-                        int missing = required - available;
-                        if (missing > 0)
-                            InstantiateResource(c.ToString(), missing);
-                    }
-                }
-                break;
-            default:
-                requirements = requirements.FindAll(x => x != null && x.gameObject != null);
-                requirements.FindAll(x => 
-                    x.requirementName == "hometown"  || 
-                    x.requirementName == "influence" ||
-                    x.requirementName == "inplay" ||
-                    x.requirementName == "city" ||
-                    x.requirementName == "city_tapped" ||
-                    x.requirementName == "slot" ||
-                    x.requirementName == "ring").ForEach(x => DestroyImmediate(x.gameObject));
-
-                if (conditionResults.Contains(PlayableConditionResult.NO_HOMETOWN))
-                    InstantiateResource("hometown", 1);
-                if (conditionResults.Contains(PlayableConditionResult.NO_INFLUENCE))
-                    InstantiateResource("influence", 1);
-                if (conditionResults.Contains(PlayableConditionResult.ALREADY_IN_PLAY))
-                    InstantiateResource("inplay", 1);
-                if (conditionResults.Contains(PlayableConditionResult.NOT_AT_CITY))
-                    InstantiateResource("city", 1);
-                if (conditionResults.Contains(PlayableConditionResult.CITY_TAPPED))
-                    InstantiateResource("city_tapped", 1);
-                if (conditionResults.Contains(PlayableConditionResult.SLOT_NOT_FOUND))
-                    InstantiateResource("slot", 1);
-                if (conditionResults.Contains(PlayableConditionResult.IS_RING) || 
-                    conditionResults.Contains(PlayableConditionResult.RING_TYPE_NOT_FOUND))
-                    InstantiateResource("ring", 1);
-                if (conditionResults.Contains(PlayableConditionResult.SELECT_CHAR))
-                    InstantiateResource("character", 1);
-                break;
-        }
-        return conditionResults;
+        requirements.FindAll(x => sprites.Contains(x.requirementName)).ForEach(x => DestroyImmediate(x.gameObject));
     }
 
     public override DeckCardUIRequirement InstantiateResource(string spriteId, int value)
     {
         if (value < 1)
             return null;
+        Debug.Log(string.Format("{0} requires missing {1}", cardId, spriteId));
+
         GameObject go = Instantiate(resourcePrefab, resources.transform);
         go.name = spriteId + "_resource";
         go.transform.SetParent(resources.transform);
@@ -239,21 +189,6 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         requirements.Add(deckCardUIrequirement);
         
         return deckCardUIrequirement;
-    }
-
-    public override Resources CalculateMissingResources()
-    {
-        base.CalculateMissingResources();
-        foreach(ResourceType res in Enum.GetValues(typeof(ResourceType)))
-        {
-            requirements = requirements.FindAll(x => x != null && x.gameObject != null);
-            requirements.FindAll(x => x.requirementName == res.ToString()).ForEach(x => DestroyImmediate(x.gameObject));
-            InstantiateResource(res.ToString(), missing.resources[res]);
-        }
-
-        canBePlayed = missing.Sum() < 1 && isSelectedCharAtForeignCity;
-
-        return missing;
     }
 
     public void IncreaseHandPosition()

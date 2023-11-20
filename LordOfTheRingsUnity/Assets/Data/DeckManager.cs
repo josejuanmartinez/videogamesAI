@@ -4,30 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public enum DirtyReason
-{
-    INITIALIZATION,
-    CHAR_SELECTED,
-    NEW_RESOURCES,
-    NONE
-}
-
-public enum PlayableConditionResult
-{
-    NULL,
-    SUCCESS,
-    NO_INFLUENCE,
-    NO_HOMETOWN,
-    NO_MANA,
-    NO_RESOURCES,
-    ALREADY_IN_PLAY,
-    NOT_AT_CITY,
-    CITY_TAPPED,
-    SLOT_NOT_FOUND,
-    IS_RING,
-    RING_TYPE_NOT_FOUND,
-    SELECT_CHAR
-}
 
 public class DeckManager : MonoBehaviour
 {
@@ -56,7 +32,7 @@ public class DeckManager : MonoBehaviour
     private SelectedItems selectedItems;
     private ManaManager manaManager;
 
-    private DirtyReason isDirty;
+    private DirtyReasonEnum isDirty;
     private string loadingPlayer;
 
     void Awake()
@@ -79,7 +55,7 @@ public class DeckManager : MonoBehaviour
 
         hands = new();
         
-        isDirty = DirtyReason.NONE;
+        isDirty = DirtyReasonEnum.NONE;
         hasCards.Add(NationsEnum.ABANDONED, false);
     }
 
@@ -163,12 +139,12 @@ public class DeckManager : MonoBehaviour
             Initialize();
             return;
         }
-        if(isDirty != DirtyReason.NONE)
+        if(isDirty != DirtyReasonEnum.NONE)
         {
             for (int i = 0; i< handSize; i++)
                 if (GetHandCard(turn.GetCurrentPlayer(), i) != null)
                     GetHandCard(turn.GetCurrentPlayer(), i).GetComponent<CardTemplateUI>().Dirty(isDirty);
-            isDirty = DirtyReason.NONE;
+            isDirty = DirtyReasonEnum.NONE;
         }
     }
 
@@ -315,271 +291,6 @@ public class DeckManager : MonoBehaviour
         placeDeckManager.RemoveCardToShow(new HoveredCard(nation, card.cardId, card.cardClass));
     }
 
-    public HashSet<PlayableConditionResult> IsHazardCreaturePlayable(CardDetails creatureCardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL};
-
-        if (creatureCardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-        
-        if (!creatureCardDetails.IsClassOf(CardClass.HazardCreature))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HazardCreatureCardDetails hazard = (HazardCreatureCardDetails)creatureCardDetails;
-        if (hazard == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HashSet<PlayableConditionResult> result = new();
-
-        if (!manaManager.HasEnoughMana(owner, hazard.cardTypes))
-            result.Add(PlayableConditionResult.NO_MANA);
-
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-
-
-    public HashSet<PlayableConditionResult> IsSelectedCharacterAtCity(CardDetails cardDetails)
-    {
-        HashSet<PlayableConditionResult> result = new();
-
-        CharAtCityRequiredEnum cityReq = cardDetails.IsCharAtCityRequired();
-        if (cityReq == CharAtCityRequiredEnum.NONE)
-            return result;
-    
-        CharacterCardUIBoard characterUI = selectedItems.GetSelectedMovableCardUI() as CharacterCardUIBoard;
-        if (characterUI == null)
-        {
-            result.Add(PlayableConditionResult.SELECT_CHAR);
-            result.Add(PlayableConditionResult.NOT_AT_CITY);
-        }
-        else if (characterUI.IsMoving())
-        {
-            result.Add(PlayableConditionResult.NOT_AT_CITY);
-            result.Add(PlayableConditionResult.SELECT_CHAR);
-        }
-        else
-        {
-            CityUI city = board.GetCityManager().GetCityAtHex(characterUI.GetHex());
-            if (city == null)
-                result.Add(PlayableConditionResult.NOT_AT_CITY);
-            else
-            {
-                switch (cityReq)
-                {
-                    case CharAtCityRequiredEnum.FOREIGNCITY:
-                        if (Nations.alignments[city.GetOwner()] == Nations.alignments[turn.GetCurrentPlayer()])
-                            result.Add(PlayableConditionResult.NOT_AT_CITY);
-                        break;
-                    case CharAtCityRequiredEnum.OWNCITY:
-                        if (Nations.alignments[city.GetOwner()] != Nations.alignments[turn.GetCurrentPlayer()])
-                            result.Add(PlayableConditionResult.NOT_AT_CITY);
-                        break;
-                    case CharAtCityRequiredEnum.SPECIFICCITY:
-                        string hometown = cardDetails.GetHomeTown();
-                        if (!string.IsNullOrEmpty(hometown) && hometown != city.GetCityId())
-                            result.Add(PlayableConditionResult.NOT_AT_CITY);
-                        break;
-                }
-            }
-                
-            //if (cityDetails.IsTapped(owner))
-            //    result.Add(PlayableConditionResult.CITY_TAPPED);
-        }
-
-        return result;
-    }
-
-
-    public HashSet<PlayableConditionResult> IsCharacterCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.Character))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        CharacterCardDetails character = cardDetails as CharacterCardDetails;
-        if (character == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HashSet<PlayableConditionResult> result = new();
-                
-        if (resourcesManager.GetFreeInfluence(turn.GetCurrentPlayer(), false) < character.GetMind())
-            result.Add(PlayableConditionResult.NO_INFLUENCE);
-
-        if (CanSpawnCharacterAtHome(cardDetails, owner) == null)
-            result.Add(PlayableConditionResult.NO_HOMETOWN);
-
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-    public HashSet<PlayableConditionResult> IsRingCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.Ring))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        RingCardDetails details = (RingCardDetails)cardDetails;
-        if(details == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        bool foundSlot = false;
-
-        HashSet<PlayableConditionResult> result = IsSelectedCharacterAtCity(cardDetails);
-        if(result.Count() < 1)
-        {
-            CharacterCardUIBoard characterUI = selectedItems.GetSelectedMovableCardUI() as CharacterCardUIBoard;
-            if (characterUI.GetGoldRings().Count < 1)
-                result.Add(PlayableConditionResult.RING_TYPE_NOT_FOUND);
-            else
-            {
-                foreach(CardDetails ringDetails in characterUI.GetGoldRings())
-                {
-                    GoldRingDetails goldRingDetails = ringDetails as GoldRingDetails;
-                    if (goldRingDetails == null)
-                        continue;
-                    if(goldRingDetails.GetRevealedSlot() == details.objectSlot)
-                    {
-                        foundSlot = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (!foundSlot)
-            result.Add(PlayableConditionResult.RING_TYPE_NOT_FOUND);
-
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-    public HashSet<PlayableConditionResult> IsGoldRingCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.GoldRing))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-       
-        HashSet<PlayableConditionResult> result = IsSelectedCharacterAtCity(cardDetails);
-        if (result.Count() < 1)
-        {
-            CharacterCardUIBoard characterUI = selectedItems.GetSelectedMovableCardUI() as CharacterCardUIBoard;
-            CityUI city = board.GetCityManager().GetCityAtHex(characterUI.GetHex());
-
-            if (city.GetPlayableRings(characterUI.GetOwner()).Count() < 1)
-                result.Add(PlayableConditionResult.RING_TYPE_NOT_FOUND);
-        }
-
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-    public HashSet<PlayableConditionResult> IsFactionCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.Faction))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HashSet<PlayableConditionResult> result = IsSelectedCharacterAtCity(cardDetails);
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-
-    public HashSet<PlayableConditionResult> IsObjectCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-        
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.Object))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        ObjectCardDetails details = cardDetails as ObjectCardDetails;
-        if (details == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HashSet<PlayableConditionResult> result = IsSelectedCharacterAtCity(cardDetails);
-        if (result.Count() < 1)
-        {
-            CharacterCardUIBoard characterUI = selectedItems.GetSelectedMovableCardUI() as CharacterCardUIBoard;
-            
-            CityUI city = board.GetCityManager().GetCityAtHex(characterUI.GetHex());
-            bool slotFound = false;
-            foreach (ObjectType obj in city.GetPlayableObjects(owner))
-            {
-                if (obj == details.objectSlot)
-                {
-                    slotFound = true;
-                    break;
-                }
-            }
-
-            if (!slotFound)
-                result.Add(PlayableConditionResult.SLOT_NOT_FOUND);
-        }
-
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-
-    public HashSet<PlayableConditionResult> IsEventCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.Event))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HashSet<PlayableConditionResult> result = IsSelectedCharacterAtCity(cardDetails);
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-
-    public HashSet<PlayableConditionResult> IsHazardEventCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.HazardEvent))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HashSet<PlayableConditionResult> result = IsSelectedCharacterAtCity(cardDetails);
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
-
-    public HashSet<PlayableConditionResult> IsAllyCardPlayable(CardDetails cardDetails, NationsEnum owner)
-    {
-        if (owner == NationsEnum.ABANDONED)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (cardDetails == null)
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        if (!cardDetails.IsClassOf(CardClass.Ally))
-            return new HashSet<PlayableConditionResult>() { PlayableConditionResult.NULL };
-
-        HashSet<PlayableConditionResult> result = IsSelectedCharacterAtCity(cardDetails);
-        return result.Count > 0 ? result : new HashSet<PlayableConditionResult>() { PlayableConditionResult.SUCCESS };
-    }
 
     public string CanSpawnCharacterAtHome(CardDetails cardDetails, NationsEnum owner)
     {
@@ -627,9 +338,9 @@ public class DeckManager : MonoBehaviour
         return hex;
     }
 
-    public void Dirty(DirtyReason dirtyReason)
+    public void Dirty(DirtyReasonEnum DirtyReasonEnum)
     {
-        isDirty = dirtyReason;
+        isDirty = DirtyReasonEnum;
     }
 
     public bool HasCardInDeck(NationsEnum nation, CardClass cardClass)

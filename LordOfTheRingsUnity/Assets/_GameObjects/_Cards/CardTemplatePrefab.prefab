@@ -1087,6 +1087,7 @@ MonoBehaviour:
   frame: {fileID: 1694742723630200630}
   frametop: {fileID: 9154924359375877426}
   framebottom: {fileID: 520287067118013837}
+  tooltip: {fileID: 6652685341186550375}
   resources: {fileID: 231692148943349226}
   resourcePrefab: {fileID: 1488239742548718105, guid: a89b9d71c654b884a97ecf97ccbdf5a0, type: 3}
   ellipsisSize: 13
@@ -1863,6 +1864,7 @@ GameObject:
   - component: {fileID: 4589979619859718238}
   - component: {fileID: 2038336262011999593}
   - component: {fileID: 2278284575135116668}
+  - component: {fileID: 6652685341186550375}
   m_Layer: 6
   m_Name: PlaceImage
   m_TagString: Untagged
@@ -1988,6 +1990,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6652685341186550375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7609535801779638514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99634edca86565b4a96a0b7b261787f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simpleTooltipStyle: {fileID: 11400000, guid: 1f0cc7a28e7642f4697d87459836c5a9, type: 2}
+  infoLeft: 
+  infoRight: 
 --- !u!1 &7705034314804587161
 GameObject:
   m_ObjectHideFlags: 0

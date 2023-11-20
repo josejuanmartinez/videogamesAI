@@ -400,7 +400,7 @@ public class MovementManager : MonoBehaviour
                 finalHex = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetHex();
 
             if (finalHex != NULL2 && board.GetTile(finalHex).HasCity())
-                    deckManager.Dirty(DirtyReason.CHAR_SELECTED);
+                    deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
             cameraController.RemovePreventDrag();
         }

@@ -4,5 +4,6 @@ public enum DirtyReasonEnum
     CHAR_SELECTED,
     NEW_RESOURCES,
     NEW_MANA,
+    NEW_INFLUENCE,
     NONE
 }
