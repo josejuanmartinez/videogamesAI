@@ -4,19 +4,17 @@ using UnityEngine.UI;
 
 public class CardDescriptionSlot : MonoBehaviour
 {
+    public Image imageIcon;
+    public SimpleTooltip tooltip;
+
     private SpritesRepo spritesRepo;
     private TooltipRepo tooltipRepo;
-    private Image imageIcon;
-    private SimpleTooltip tooltip;
+    
     private bool awaken = false;
     void Awake()
     {
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         tooltipRepo = GameObject.Find("TooltipRepo").GetComponent<TooltipRepo>();
-        if(GetComponent<Image>() == null)
-            imageIcon = gameObject.AddComponent<Image>();
-        if(GetComponent<SimpleTooltip>() == null)
-            tooltip = gameObject.AddComponent<SimpleTooltip>();
         awaken = true;
     }
     public bool Initialize(string title, string stringId, Sprite fallbackIcon = null)

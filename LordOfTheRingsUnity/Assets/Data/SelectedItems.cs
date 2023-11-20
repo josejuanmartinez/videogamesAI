@@ -48,6 +48,9 @@ public class SelectedItems : MonoBehaviour
 
     public void CheckIfShowLastChar()
     {
+        if (selection == null)
+            return;
+
         int show = 0;
         if (selection.IfPrimaryAndSecondarySelected())
             show = 1;
@@ -210,6 +213,8 @@ public class SelectedItems : MonoBehaviour
     }
     public CardDetails GetSelectedMovableCard()
     {
+        if (selection == null)
+            return null;
         return selection.GetMovableCardSelected();
     }
 
@@ -234,7 +239,8 @@ public class SelectedItems : MonoBehaviour
 
     public bool IsCardSelected()
     {
-        return selection.IsCardSelected();
+        
+        return selection != null && selection.IsCardSelected();
     }
 
     public void UnselectAll()
@@ -245,6 +251,8 @@ public class SelectedItems : MonoBehaviour
 
     public List<CardDetails> GetCompany()
     {
+        if(selection == null)
+            return new List<CardDetails>();
         return selection.GetCompany();
     }
 }

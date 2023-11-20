@@ -97,7 +97,7 @@ public class CharacterCardUI : CardUI
                     if(hurtIcon.enabled != value)
                     {
                         hurtIcon.enabled = value;
-                        ShowMessage(
+                        AddMessage(
                             GameObject.Find("Localization").GetComponent<Localization>().Localize(value? "hurt" : "healed"),
                             1f,
                             colorManager.GetColor(value? "failure" : "success"));
@@ -107,7 +107,7 @@ public class CharacterCardUI : CardUI
                     if (exhaustedIcon.enabled != value)
                     {
                         exhaustedIcon.enabled = value;
-                        ShowMessage(
+                        AddMessage(
                             GameObject.Find("Localization").GetComponent<Localization>().Localize(value? "exhausted": "rested"),
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
@@ -117,7 +117,7 @@ public class CharacterCardUI : CardUI
                     if (poisonedIcon.enabled != value)
                     {
                         poisonedIcon.enabled = value;
-                        ShowMessage(
+                        AddMessage(
                             GameObject.Find("Localization").GetComponent<Localization>().Localize(value? "poisoned": "Healed"),
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
@@ -127,7 +127,7 @@ public class CharacterCardUI : CardUI
                     if (morgulIcon.enabled != value)
                     {
                         morgulIcon.enabled = value;
-                        ShowMessage(
+                        AddMessage(
                             GameObject.Find("Localization").GetComponent<Localization>().Localize(value? "morgul": "healed"),
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
@@ -138,7 +138,7 @@ public class CharacterCardUI : CardUI
                     if (bleedingIcon.enabled != value)
                     {
                         bleedingIcon.enabled = value;
-                        ShowMessage(
+                        AddMessage(
                             GameObject.Find("Localization").GetComponent<Localization>().Localize(value? "bleeding" : "healed"),
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
@@ -148,7 +148,7 @@ public class CharacterCardUI : CardUI
                     if (immovableIcon.enabled != value)
                     {
                         immovableIcon.enabled = value;
-                        ShowMessage(
+                        AddMessage(
                             GameObject.Find("Localization").GetComponent<Localization>().Localize(value? "rooted" : "unrooted"),
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
@@ -437,40 +437,42 @@ public class CharacterCardUI : CardUI
         return Math.Max(MaxStats.minMovement, movement);
     }
 
-    public void Hurt()
+    public void Hurt(HazardCreatureCardDetails cardDetails)
     {
+        bool dies = hurt;
         hurt = true;
         hurtIcon.enabled = true;
-        ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("hurt"), 1, "hurt");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("hurt"), 1, "hurt");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             CharacterCardUI originalCharacter = (CharacterCardUI)originalCard;
             if(originalCharacter != null)
-                originalCharacter.Hurt();
+                originalCharacter.Hurt(cardDetails);
         }
+        Lose(cardDetails);
+        if (dies)
+            Dies();
     }
-    public void Exhausted()
+    public void Exhausted(HazardCreatureCardDetails cardDetails)
     {
         exhausted = true;
         exhaustedIcon.enabled = true;
-        ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("exhausted"), 1, "exhausted");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("exhausted"), 1, "exhausted");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             CharacterCardUI originalCharacter = (CharacterCardUI)originalCard;
             if(originalCharacter != null)
-            {
-                exhausted = true;
-                exhaustedIcon.enabled = true;
-            }
+                originalCharacter.Exhausted(cardDetails);
         }
+        Lose(cardDetails);
     }
     public void Poisons()
     {
         poisoned = true;
         poisonedIcon.enabled = true;
-        ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("poisoned"), 1, "poisons");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("poisoned"), 1, "poisons");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
@@ -486,7 +488,7 @@ public class CharacterCardUI : CardUI
     {
         bleeding = true;
         bleedingIcon.enabled = true;
-        ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("bleeding"), 1, "bleeding");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("bleeding"), 1, "bleeding");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
@@ -503,7 +505,7 @@ public class CharacterCardUI : CardUI
         morgul = true;
         morgulIcon.enabled = true;
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
-        ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("cursed"), 1, "curses");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("cursed"), 1, "curses");
         if (originalCard != null)
         {
             CharacterCardUI originalCharacter = (CharacterCardUI)originalCard;
@@ -531,23 +533,19 @@ public class CharacterCardUI : CardUI
                 exhausted = false;
                 hurtIcon.enabled = false;
                 exhaustedIcon.enabled = false;
-                ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("healed"), 1, "success");
+                AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("healed"), 1, "success");
             }
         }
     }
 
     public void Won(HazardCreatureCardDetails details)
     {
-        ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("won"), 1, "success");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("won"), 1, "success");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("VP+") + details.GetVictoryPoints(), 1, "success");
         deckManager.AddToWonPile(owner, details);
     }
     public void Lose(HazardCreatureCardDetails details)
     {
-        deckManager.AddToDiscardPile(owner, details);
-    }
-    public void Resisted(HazardCreatureCardDetails details)
-    {
-        ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("resisted"), 1, "resisted");
         deckManager.AddToDiscardPile(owner, details);
     }
 
@@ -614,8 +612,8 @@ public class CharacterCardUI : CardUI
         CardUI card = board.GetCardManager().GetCardUI(details);
         if(card != null)
         {
-            CharacterCardUIBoard original = (CharacterCardUIBoard)card;
-            if(original != null)
+            CharacterCardUIBoard original = card as CharacterCardUIBoard;
+            if (original != null)
             {
                 board.GetTile(original.GetHex()).RemoveCard(this);
                 inCompanyOf = "";
@@ -624,12 +622,12 @@ public class CharacterCardUI : CardUI
                     CardUI originalCard = board.GetCardManager().GetCardUI(companion);
                     if (originalCard != null)
                     {
-                        CharacterCardUIBoard originalCharacter = (CharacterCardUIBoard)originalCard;
+                        CharacterCardUIBoard originalCharacter = originalCard as CharacterCardUIBoard;
                         if (originalCharacter != null)
                             originalCharacter.inCompanyOf = "";
                     }
                 }
-                ShowMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("died"), 1, "failure");
+                AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("died"), 1, "failure");
                 resourcesManager.RecalculateInfluence(owner);
                 DestroyImmediate(gameObject);
             }

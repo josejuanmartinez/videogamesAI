@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minY = -10f; // The minimum Y position of the camera
     [SerializeField] private float maxY = 10f; // The maximum Y position of the camera
     [SerializeField] private float moveSpeed = 10f; // The maximum Y position of the camera
+    [SerializeField] private GameObject minimapFrame;
+    [SerializeField] Vector2 zoomDecay;
 
     private bool preventDrag = false;
     private bool isPopupOpen = false;
@@ -43,13 +45,18 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (diceManager.IsDicing() || isPopupOpen)
+        if (diceManager.IsDicing() || isPopupOpen || preventDrag)
             return;
 
         // Zoom in and out with the scroll wheel
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         zoomLevel -= scroll * zoomSpeed;
         zoomLevel = Mathf.Clamp(zoomLevel, minZoom, maxZoom);
+        minimapFrame.transform.localScale = new Vector3(
+            zoomLevel/ zoomDecay.x,
+            zoomLevel/ zoomDecay.y,
+            1);
+
 
         // Pan with the arrow keys or WASD
         float horizontal = Input.GetAxis("Horizontal");
@@ -110,6 +117,8 @@ public class CameraController : MonoBehaviour
 
         // Set the camera's orthographic size based on the zoom level
         cam.orthographicSize = zoomLevel;
+
+
 
         if (isDragging)
             lookToPosition = NONE;

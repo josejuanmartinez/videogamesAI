@@ -27,21 +27,17 @@ public class DeckManager : MonoBehaviour
     private Board board;
     private PlaceDeck placeDeckManager;
     private Turn turn;
-    private ResourcesManager resourcesManager;
     private CardDetailsRepo cardRepo;  
     private SelectedItems selectedItems;
-    private ManaManager manaManager;
 
-    private DirtyReasonEnum isDirty;
+    private List<DirtyReasonEnum> isDirty;
     private string loadingPlayer;
 
     void Awake()
     {
-        manaManager = GameObject.Find("ManaManager").GetComponent<ManaManager>();
         board = GameObject.Find("Board").GetComponent<Board>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
         turn = GameObject.Find("Turn").GetComponent<Turn>();
-        resourcesManager = GameObject.Find("ResourcesManager").GetComponent<ResourcesManager>();
         cardRepo = GameObject.Find("CardDetailsRepo").GetComponent<CardDetailsRepo>();
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
         
@@ -54,8 +50,8 @@ public class DeckManager : MonoBehaviour
         wonPile = new();
 
         hands = new();
-        
-        isDirty = DirtyReasonEnum.NONE;
+
+        isDirty = new();
         hasCards.Add(NationsEnum.ABANDONED, false);
     }
 
@@ -139,12 +135,12 @@ public class DeckManager : MonoBehaviour
             Initialize();
             return;
         }
-        if(isDirty != DirtyReasonEnum.NONE)
+        if(isDirty.Count() > 0)
         {
             for (int i = 0; i< handSize; i++)
                 if (GetHandCard(turn.GetCurrentPlayer(), i) != null)
                     GetHandCard(turn.GetCurrentPlayer(), i).GetComponent<CardTemplateUI>().Dirty(isDirty);
-            isDirty = DirtyReasonEnum.NONE;
+            isDirty = new();
         }
     }
 
@@ -245,7 +241,7 @@ public class DeckManager : MonoBehaviour
         instantiatedCardTemplate.name = cardDetails.name;
 
         DeckCardUI deckCard = instantiatedCardTemplate.GetComponent<DeckCardUI>();
-        deckCard.Initialize(nation, cardDetails.cardId, cardDetails.cardClass);
+        deckCard.Initialize(nation, cardDetails.cardId, cardDetails.cardClass, false);
     }
 
     public void DiscardAndDraw(NationsEnum nation, CardDetails card, bool discarded)
@@ -340,7 +336,7 @@ public class DeckManager : MonoBehaviour
 
     public void Dirty(DirtyReasonEnum DirtyReasonEnum)
     {
-        isDirty = DirtyReasonEnum;
+        isDirty.Add(DirtyReasonEnum);
     }
 
     public bool HasCardInDeck(NationsEnum nation, CardClass cardClass)

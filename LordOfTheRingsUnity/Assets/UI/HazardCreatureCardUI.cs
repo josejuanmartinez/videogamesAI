@@ -85,18 +85,22 @@ public class HazardCreatureCardUI : CardUI
         return defence;
     }
 
-    public void Hurt()
+    public void Hurt(HazardCreatureCardDetails cardDetails)
     {
+        bool die = hurt;
         hurt = true;
         hurtIcon.enabled = true;
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = ((HazardCreatureCardUI)originalCard);
-            originalCharacter.Hurt();
+            originalCharacter.Hurt(cardDetails);
         }
+        Lose(cardDetails);
+        if (die)
+            Dies();
     }
-    public void Exhausted()
+    public void Exhausted(HazardCreatureCardDetails cardDetails)
     {
         exhausted = true;
         exhaustedIcon.enabled = true;
@@ -105,8 +109,9 @@ public class HazardCreatureCardUI : CardUI
         {
             HazardCreatureCardUI originalCharacter = ((HazardCreatureCardUI)originalCard);
             if (originalCharacter != null)
-                originalCharacter.Exhausted();
+                originalCharacter.Exhausted(cardDetails);
         }
+        Lose(cardDetails);
     }
     public void Heal()
     {
@@ -124,6 +129,16 @@ public class HazardCreatureCardUI : CardUI
         }
     }
 
+    public void Won(HazardCreatureCardDetails details)
+    {
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("won"), 1, "success");
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("VP+")+ details.GetVictoryPoints(), 1, "success");
+        deckManager.AddToWonPile(owner, details);
+    }
+    public void Lose(HazardCreatureCardDetails details)
+    {
+        deckManager.AddToDiscardPile(owner, details);
+    }
     public bool IsHurt()
     {
         return hurt;
@@ -142,4 +157,18 @@ public class HazardCreatureCardUI : CardUI
         return exhaustedIcon;
     }
 
+    public void Dies()
+    {
+        CardUI card = board.GetCardManager().GetCardUI(details);
+        if (card != null)
+        {
+            HazardCreatureCardUIBoard original = card as HazardCreatureCardUIBoard;
+            if (original != null)
+            {
+                board.GetTile(original.GetHex()).RemoveCard(this);
+                AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("died"), 1, "failure");
+                DestroyImmediate(gameObject);
+            }
+        }
+    }
 }

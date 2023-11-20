@@ -1,10 +1,7 @@
-using UnityEngine;
-
 public enum BattleResult
 {
     WON,
     HURT,
-    RESISTED,
     EXHAUSTED,
 }
 
@@ -32,33 +29,23 @@ public readonly struct CombatResult
 public static class CombatCalculator
 {
     public static CombatResult Combat(
-        int attackerProwess, 
-        int attackerDefence,
-        int defenderProwess, 
-        int defenderDefence,
-        StatusEffect attackerStatusEffectAbility = StatusEffect.NONE,
-        float criticalFrom = 0.9f)
+        int enemyProwess, 
+        int enemyDefence,
+        int playerProwess, 
+        int playerDefence,
+        float critical,
+        StatusEffect enemyStatusEffect = StatusEffect.NONE)
     {
-        if(attackerProwess > defenderProwess)
+        if (enemyProwess > playerDefence)
         {
-            if(attackerStatusEffectAbility != StatusEffect.NONE)
-            {
-                if (Random.Range(0f, 1f) >= criticalFrom)
-                    return new CombatResult(BattleResult.HURT, attackerStatusEffectAbility);
-                else
-                    return new CombatResult(BattleResult.HURT, StatusEffect.NONE);
-            }            
-            else if (attackerProwess > defenderDefence)
-                return new CombatResult(BattleResult.HURT, StatusEffect.NONE);
+            if (enemyStatusEffect != StatusEffect.NONE && enemyProwess > playerProwess && UnityEngine.Random.Range(0f,1f) >= critical)
+                return new CombatResult(BattleResult.HURT, enemyStatusEffect);
             else
-                return new CombatResult(BattleResult.EXHAUSTED, StatusEffect.NONE);
+                return new CombatResult(BattleResult.HURT, StatusEffect.NONE);        
         }
+        else if (enemyDefence <= playerDefence)
+            return new CombatResult(BattleResult.WON, StatusEffect.NONE);
         else
-        {
-            if (defenderProwess > attackerDefence)
-                return new CombatResult(BattleResult.WON, StatusEffect.NONE);
-            else
-                return new CombatResult(BattleResult.RESISTED, StatusEffect.NONE);
-        }
+            return new CombatResult(BattleResult.EXHAUSTED, StatusEffect.NONE);
     }
 }

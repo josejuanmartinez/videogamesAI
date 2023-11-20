@@ -1139,6 +1139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2038336262011999593}
   descriptionLayout: {fileID: 7074007950755469372}
+  descriptionSlotPrefab: {fileID: 4952671096390213631, guid: b7f9a358851eb614f99a3ab304e4c8f6, type: 3}
   quote: {fileID: 5701158591803805575}
   hometown: {fileID: 7872544435654136826}
   title: {fileID: 8766298056413368287}
@@ -1161,6 +1162,7 @@ MonoBehaviour:
   frame: {fileID: 1694742723630200630}
   frametop: {fileID: 9154924359375877426}
   framebottom: {fileID: 520287067118013837}
+  tooltip: {fileID: 0}
   resources: {fileID: 2678741873443706539}
   resourcePrefab: {fileID: 1488239742548718105, guid: a89b9d71c654b884a97ecf97ccbdf5a0, type: 3}
   ellipsisSize: 13

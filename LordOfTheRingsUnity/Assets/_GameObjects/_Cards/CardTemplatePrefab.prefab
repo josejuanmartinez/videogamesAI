@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7394077464113158964}
   - component: {fileID: 498332470071418907}
   m_Layer: 6
-  m_Name: Requirements
+  m_Name: Resources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 4121814266227856909}
   - component: {fileID: 6702366453556939001}
   m_Layer: 6
-  m_Name: IconsLayout
+  m_Name: DescriptionLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1065,6 +1065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2038336262011999593}
   descriptionLayout: {fileID: 4591521055926802550}
+  descriptionSlotPrefab: {fileID: 4952671096390213631, guid: b7f9a358851eb614f99a3ab304e4c8f6, type: 3}
   quote: {fileID: 7600231149651932275}
   hometown: {fileID: 4832958370018351243}
   title: {fileID: 8766298056413368287}

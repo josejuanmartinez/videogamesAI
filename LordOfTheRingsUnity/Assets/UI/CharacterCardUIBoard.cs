@@ -19,7 +19,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     private Vector2Int hex;
 
     private BoardTile boardTile;
-    private bool isClicked;
+    private bool isSelected;
     private short moved;
     private bool isMoving;
     private bool isVisible;
@@ -41,7 +41,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
         isMoving = false;
         isVisible = true;
-        isClicked = false;
+        isSelected = false;
         
         hurtIcon.enabled = false;
         exhaustedIcon.enabled = false;
@@ -104,13 +104,13 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
             return;
 
         if (Input.GetKeyUp(KeyCode.Escape))
-            isClicked = false;
+            isSelected = false;
 
         if (isMoving)
-            isClicked = false;
+            isSelected = false;
 
-        if (isClicked && selectedItems.GetSelectedMovableCard() != null && selectedItems.GetSelectedMovableCard().cardId != details.cardId)
-            isClicked = false;
+        if (isSelected && selectedItems.GetSelectedMovableCard() != null && selectedItems.GetSelectedMovableCard().cardId != details.cardId)
+            isSelected = false;
 
         int totalUnitsAtHex = boardTile.GetTotalUnitsAtHex();
         if (totalUnitsAtHex > 1)
@@ -154,7 +154,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
             IsAvatar() &&
             boardTile.GetTotalUnitsAtHex() > 0 &&
             !inputPopupManager.IsShown() &&
-            isClicked &&
+            isSelected &&
             isVisible &&
             !IsInCompany();
     }
@@ -163,21 +163,25 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     {
         if (turn.GetCurrentPlayer() != owner)
         {
-            isClicked = false;
+            isSelected = false;
             return;
         }
 
-        isClicked = !isClicked;
-        if (isClicked)
-        {
-            board.SelectHex(hex);
-            selectedItems.SelectCardDetails(details, owner);
-        }
-        else if (selectedItems.GetSelectedMovableCard() != null && selectedItems.GetSelectedMovableCard() == details)
+        isSelected = true;
+        board.SelectHex(hex);
+        selectedItems.SelectCardDetails(details, owner);
+        
+        //isSelected = !isSelected;
+        //if (isSelected)
+        //{
+        //    board.SelectHex(hex);
+        //    selectedItems.SelectCardDetails(details, owner);
+        //}
+        /*else if (selectedItems.GetSelectedMovableCard() != null && selectedItems.GetSelectedMovableCard() == details)
         {
             selectedItems.UnselectCardDetails();
             board.SelectHex(Board.NULL);
-        }
+        }*/
     }
 
     public void Moving()

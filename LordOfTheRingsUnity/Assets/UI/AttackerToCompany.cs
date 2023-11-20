@@ -26,8 +26,8 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
     public void OnPointerExit(PointerEventData eventData)
     {
         target.UndrawTargetted();
-        if (hazardDetails != null)
-            placeDeck.RemoveCardToShow(new HoveredCard(attackerNation, hazardDetails.cardId, hazardDetails.cardClass));
+        if (attackerDetails != null)
+            placeDeck.RemoveCardToShow(new HoveredCard(attackerNation, attackerDetails.cardId, attackerDetails.cardClass));
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -35,8 +35,8 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
         if (!initialized || resolved)
             return;
         target.DrawTargetted();
-        if (hazardDetails != null)
-            placeDeck.SetCardToShow(new HoveredCard(attackerNation, hazardDetails.cardId, hazardDetails.cardClass));
+        if (attackerDetails != null)
+            placeDeck.SetCardToShow(new HoveredCard(attackerNation, attackerDetails.cardId, attackerDetails.cardClass));
     }
     public bool GatherDiceResults(int diceValue)
     {
@@ -45,34 +45,31 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
 
         short diceResults = (short)diceValue;
 
-        int prowess = target.GetTotalProwess() + diceResults;
+        int playerProwess = target.GetTotalProwess() + diceResults;
 
-        int defence = target.GetTotalDefence() + diceResults;
+        int playerDefence = target.GetTotalDefence() + diceResults;
 
-        if (defence < 1)
-            defence = 1;
+        if (playerDefence < 1)
+            playerDefence = 1;
 
         CombatResult combatResult = CombatCalculator.Combat(
-            hazardDetails.prowess,
-            hazardDetails.defence,
-            prowess,
-            defence,
-            hazardDetails.GetStatusEffect(),
-            game.GetCriticalByDifficulty());
+            attackerDetails.prowess,
+            attackerDetails.defence,
+            playerProwess,
+            playerDefence,
+            game.GetCriticalByDifficulty(),
+            attackerDetails.GetStatusEffect());
 
         switch (combatResult.GetBattleResult())
         {
             case BattleResult.EXHAUSTED:
-                //NOTHING HAPPENS
+                target.Exhausted(attackerDetails);
                 break;
             case BattleResult.HURT:
-                //DIES
+                target.Hurt(attackerDetails);
                 break;
             case BattleResult.WON:
-                //CITY LOSSES HEALTH
-                break;
-            case BattleResult.RESISTED:
-                //NOTHING HAPPENS
+                target.Won(attackerDetails);
                 break;
         }
 

@@ -15,11 +15,11 @@ public class HUDMessageManager : MonoBehaviour
 
     public void ShowMessage(CardUI card, string message, bool success)
     {
-        card.ShowMessage(message, delayToClose, success ? colorManager.GetColor("success"): colorManager.GetColor("failure"));
+        card.AddMessage(message, delayToClose, success ? colorManager.GetColor("success"): colorManager.GetColor("failure"));
     }
     public void ShowMessage(CardUI card, string message, Color color)
     {
-        card.ShowMessage(message, delayToClose, color);
+        card.AddMessage(message, delayToClose, color);
     }
 
 }

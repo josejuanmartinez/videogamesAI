@@ -19,7 +19,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
     protected Vector2Int hex;
 
     private BoardTile boardTile;
-    private bool isClicked;
+    private bool isSelected;
     private short moved;
     private bool isMoving;
     private bool isVisible;
@@ -40,7 +40,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
 
         isMoving = false;
         isVisible = true;
-        isClicked = false;
+        isSelected = false;
 
         hurtIcon.enabled = false;
         exhaustedIcon.enabled = false;
@@ -93,13 +93,13 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
             return;
 
         if (Input.GetKeyUp(KeyCode.Escape))
-            isClicked = false;
+            isSelected = false;
 
-        if (isClicked && selectedItems.GetSelectedCardDetails()!=null && selectedItems.GetSelectedCardDetails().cardId != details.cardId)
-            isClicked = false;
+        if (isSelected && selectedItems.GetSelectedCardDetails()!=null && selectedItems.GetSelectedCardDetails().cardId != details.cardId)
+            isSelected = false;
 
         if (isMoving)
-            isClicked = false;
+            isSelected = false;
 
         int totalUnitsAtHex = boardTile.GetTotalUnitsAtHex();
         if (totalUnitsAtHex > 1)
@@ -135,7 +135,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
             IsAvatar() &&
             boardTile.GetTotalUnitsAtHex() > 0 &&
             !inputPopupManager.IsShown() &&
-            isClicked &&
+            isSelected &&
             isVisible;
     }
     public CardUI GetMergeCandidate()
@@ -150,12 +150,15 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
     {
         if (turn.GetCurrentPlayer() != owner)
         {
-            isClicked = false;
+            isSelected = false;
             return;
         }
 
-        isClicked = !isClicked;
-        if (isClicked)
+        board.SelectHex(hex);
+        selectedItems.SelectCardDetails(details, owner);
+
+        /*isSelected = !isSelected;
+        if (isSelected)
         {
             board.SelectHex(hex);
             selectedItems.SelectCardDetails(details, owner);
@@ -164,7 +167,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
         {
             selectedItems.UnselectCardDetails();
             board.SelectHex(Board.NULL);
-        }
+        }*/
     }
 
     public void Moving()
@@ -194,11 +197,6 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
     public void SetHex(Vector2Int hex)
     {
         this.hex = hex;
-    }
-    public void Dies()
-    {
-        board.GetTile(hex).RemoveCard(this);
-        DestroyImmediate(gameObject);
     }
 
     public void Next()

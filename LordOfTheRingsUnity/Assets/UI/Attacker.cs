@@ -28,7 +28,7 @@ public class Attacker : MonoBehaviour
 
     protected Type targetType;
     protected Dictionary<string, CardUI> company;
-    protected HazardCreatureCardDetails hazardDetails;
+    protected HazardCreatureCardDetails attackerDetails;
 
 
     void Awake()
@@ -59,16 +59,16 @@ public class Attacker : MonoBehaviour
             return false;
         }
 
-        hazardDetails = details as HazardCreatureCardDetails;
-        if (hazardDetails == null)
+        attackerDetails = details as HazardCreatureCardDetails;
+        if (attackerDetails == null)
         {
             Debug.LogError(string.Format("{0} should be a hazard creature to spawn as attacker", cardId));
             return false;
         }
 
-        attacker.sprite = hazardDetails.cardSprite;
-        prowessText.text = hazardDetails.prowess.ToString();
-        defenceText.text = hazardDetails.defence.ToString();
+        attacker.sprite = attackerDetails.cardSprite;
+        prowessText.text = attackerDetails.prowess.ToString();
+        defenceText.text = attackerDetails.defence.ToString();
 
         initialized = true;
 

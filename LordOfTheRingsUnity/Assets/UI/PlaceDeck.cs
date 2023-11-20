@@ -45,9 +45,10 @@ public class PlaceDeck : MonoBehaviour
 
     void Update()
     {
-        // NOT HOVERING, ONLY SHOWING SELECTION
+        
         if (cardToShow == null)
         {
+            // SHOWING SELECTED
             HoveredCard selectedCard = null;
             if (selectedItems.IsCitySelected())
                 selectedCard = selectedItems.GetSelectedCityDetailsAsHover();
@@ -61,7 +62,8 @@ public class PlaceDeck : MonoBehaviour
                 cardTemplate.Initialize(
                     selectedCard.GetOwner(),
                     selectedCard.GetCardId(),
-                    selectedCard.GetCardClass());
+                    selectedCard.GetCardClass(),
+                    false);
             } 
             else
                 cardTemplate.Hide();
@@ -70,21 +72,21 @@ public class PlaceDeck : MonoBehaviour
         }
         else
         {
-            //SOMETHING IS BEING HOVERED - WHAT WAS IT?
+            // SHOWING HOVERED
             string shownCard = null;
             if (cardTemplate.GetCardDetails() != null)
                 shownCard = cardTemplate.GetCardDetails().cardId;
             else if (cardTemplate.GetCityDetails() != null)
                 shownCard = cardTemplate.GetCityDetails().cityId;
 
-            // SOMETHING ELSE WAS HOVERING - RE-CALCULATE
             if (shownCard == null || (shownCard != null && shownCard != cardToShow.GetCardId()))
             {
                 cardTemplate.Show();
                 cardTemplate.Initialize(
                     cardToShow.GetOwner(),
                     cardToShow.GetCardId(),
-                    cardToShow.GetCardClass());
+                    cardToShow.GetCardClass(),
+                    true);
             }
         }
     }

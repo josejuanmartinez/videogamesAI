@@ -28,13 +28,14 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         awaken = true;
     }
 
-    public override bool Initialize(NationsEnum owner, string cardId, CardClass cardClass)
+    public override bool Initialize(NationsEnum owner, string cardId, CardClass cardClass, bool isHover)
     {
         if (!awaken)
             Awake();
         this.cardId = cardId;
         this.cardClass = cardClass;
         this.nation = owner;
+        this.isHover = isHover;
 
         if (!turn.IsNewTurnLoaded())
             return false;
@@ -48,7 +49,7 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         if (owner == NationsEnum.ABANDONED)
             return false;
 
-        if (!InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner), false))
+        if (!InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner), false, isHover))
             return false;
 
         if (!resourcesManager.isInitialized)
@@ -72,7 +73,7 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
     {
         if (!loaded)
         {
-            Initialize(nation, cardId, cardClass);
+            Initialize(nation, cardId, cardClass, isHover);
             return;
         }
 
@@ -93,13 +94,13 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         {
             foreach (DirtyReasonEnum isDirty in dirtyMessages)
             {
-                Debug.Log(string.Format("{0} received signal: {1}", cardId, dirtyMessages.ToString()));
+                //Debug.Log(string.Format("{0} received signal: {1}", cardId, dirtyMessages.ToString()));
                 foreach (CardCondition cc in conditions)
                 {
                     if (cc.GetDirtyCheck() == isDirty || isDirty == DirtyReasonEnum.INITIALIZATION)
                     {
                         RemoveOldSprites(cc.GetInvolvedSprites());
-                        Debug.Log(string.Format("{0} cleansed: {1}", cardId, cc.GetInvolvedSprites().ToLineSeparatedString()));
+                        //Debug.Log(string.Format("{0} cleansed: {1}", cardId, cc.GetInvolvedSprites().ToLineSeparatedString()));
                     }
                 }
             }
@@ -107,13 +108,13 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
             foreach (DirtyReasonEnum isDirty in dirtyMessages)
             {
                 conditionsFailed = new();
-                Debug.Log(string.Format("{0} processes signal: {1}", cardId, isDirty.ToString()));
+                //Debug.Log(string.Format("{0} processes signal: {1}", cardId, isDirty.ToString()));
 
                 foreach (CardCondition cc in conditions)
                 {
                     if (cc.GetDirtyCheck() == isDirty || isDirty == DirtyReasonEnum.INITIALIZATION)
                     {
-                        Debug.Log(string.Format("{0} processes condition from signal: {1}", cardId, isDirty.ToString()));
+                        //Debug.Log(string.Format("{0} processes condition from signal: {1}", cardId, isDirty.ToString()));
                         if (cc.RunCondition().Count() > 0)
                             conditionsFailed.AddRange(cc.GetLastResult());
                         RefreshIcons(cc);
@@ -177,7 +178,7 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
     {
         if (value < 1)
             return null;
-        Debug.Log(string.Format("{0} requires missing {1}", cardId, spriteId));
+        //Debug.Log(string.Format("{0} requires missing {1}", cardId, spriteId));
 
         GameObject go = Instantiate(resourcePrefab, resources.transform);
         go.name = spriteId + "_resource";

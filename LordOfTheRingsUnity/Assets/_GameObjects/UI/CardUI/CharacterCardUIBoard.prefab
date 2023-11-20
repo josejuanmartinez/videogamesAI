@@ -6268,7 +6268,6 @@ MonoBehaviour:
   frame: {fileID: 5437092669743237526}
   canvasGroup: {fileID: 4982285335266908331}
   message: {fileID: 7735153819546640}
-  cardId: 
   owner: 0
   hurtIcon: {fileID: 1938980419841213465}
   exhaustedIcon: {fileID: 8902654027394500020}
@@ -6284,6 +6283,7 @@ MonoBehaviour:
   inCompanyOf: 
   objects: []
   goldRings: []
+  allies: []
   button: {fileID: 9127929393278098527}
   activationCondition: {fileID: 0}
   nextCanvasGroup: {fileID: 4000223843466834221}
@@ -6295,7 +6295,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6735845551989982089}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 536c5f5295c9dbc48a79bad9c2d8f727, type: 2}
   m_Animations:
@@ -6311,7 +6311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6735845551989982089}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64d4fa2f606be8449802c6946b2519ef, type: 3}
   m_Name: 

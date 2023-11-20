@@ -1,9 +1,23 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+
+public struct HUDMessage {
+    public string text;
+    public Color color;
+    public float delay;
+
+    public HUDMessage(string text, float delay, Color color)
+    {
+        this.text = text;
+        this.delay = delay;
+        this.color = color;
+    }
+}
 
 public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -37,9 +51,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected ColorManager colorManager;
     protected DeckManager deckManager;
     protected FOWManager fowManager;
-
-    protected bool initialized = false;
+        
     protected bool isAwaken = false;
+    protected bool initialized;
+    protected bool messageBeingShowing;
+    protected List<HUDMessage> hudMessages;
 
     void Awake()
     {
@@ -59,6 +75,9 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         deckManager = GameObject.Find("DeckManager").GetComponent<DeckManager>();
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
         isAwaken = true;
+        hudMessages = new();
+        initialized = false;
+        messageBeingShowing = false;
     }
 
     public virtual bool Initialize(string cardId, NationsEnum owner)
@@ -98,6 +117,16 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         alignmentIcon.sprite = spritesRepo.GetSprite(Nations.alignments[owner].ToString());
 
         return true;
+    }
+
+    void Update()
+    {
+        if (hudMessages.Count > 0 && !messageBeingShowing)
+        {
+            messageBeingShowing = true;
+            ShowMessage(hudMessages[0]);
+            hudMessages.RemoveAt(0);
+        }
     }
 
     public bool IsCharacterCardUIBoard()
@@ -201,27 +230,30 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         return details;
     }
-    public void ShowMessage(string text, float delay, string color)
+    public void AddMessage(string text, float delay, string color)
+    {
+        hudMessages.Add(new HUDMessage(text, delay, colorManager.GetColor(color)));
+    }
+    public void AddMessage(string text, float delay, Color color)
+    {
+        hudMessages.Add(new HUDMessage(text, delay, color));
+    }
+
+    public void ShowMessage(HUDMessage hudMessage)
     {
         message.SetActive(true);
-        message.GetComponentInChildren<TextMeshProUGUI>().text = text;
-        message.GetComponentInChildren<TextMeshProUGUI>().color = colorManager.GetColor(color);
+        message.GetComponentInChildren<TextMeshProUGUI>().text = hudMessage.text;
+        message.GetComponentInChildren<TextMeshProUGUI>().color = hudMessage.color;
         message.GetComponent<Animation>().Play();
-        StartCoroutine(HideMessage(delay));
+        StartCoroutine(HideMessage(hudMessage.delay));
     }
-    public void ShowMessage(string text, float delay, Color color)
-    {
-        message.SetActive(true);
-        message.GetComponentInChildren<TextMeshProUGUI>().text = text;
-        message.GetComponentInChildren<TextMeshProUGUI>().color = color;
-        message.GetComponent<Animation>().Play();
-        StartCoroutine(HideMessage(delay));
-    }
+
     IEnumerator HideMessage(float hideMessageSeconds)
     {
         yield return new WaitForSeconds(hideMessageSeconds);
         message.GetComponent<Animation>().Rewind();
         message.SetActive(false);
+        messageBeingShowing = false;
         yield return null;
     }
 }

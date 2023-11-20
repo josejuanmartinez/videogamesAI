@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
+using System.Net;
 
 public class MovementManager : MonoBehaviour
 {
@@ -204,32 +205,38 @@ public class MovementManager : MonoBehaviour
             Vector3Int currentCellPos = new(hexSelected.x, hexSelected.y, 0);
             Vector3Int target = cellHover.last;
 
+
             if (cardUI != lastSelected)
             {
                 lastSelected = cardUI;
                 companyManagerLayout.Initialize(cardUI.GetOwner());
             }
 
-            if (currentCellPos == target)
-            {
-                //Debug.Log("Same hex!");
-                Reset();
-                return;
-            }
-
             if (Input.GetMouseButton(1))
             {
-                cameraController.PreventDrag();
+                if (target != currentCellPos)
+                {
+                    cameraController.PreventDrag();
 
-                pathfinder.GenerateAstarPath(currentCellPos, target, out path);
-                path.Insert(0, currentCellPos);
-                if (showingPathDestination != path[^1])
+                    pathfinder.GenerateAstarPath(currentCellPos, target, out path);
+                    path.Insert(0, currentCellPos);
+                    if (showingPathDestination != path[^1])
+                    {
+                        Reset();
+                        StopAllCoroutines();
+                        StartCoroutine(RenderPath());
+                        showingPathDestination = path[^1];
+                    }
+                }
+                else
                 {
                     Reset();
                     StopAllCoroutines();
                     StartCoroutine(RenderPath());
                     showingPathDestination = path[^1];
+                    return;
                 }
+                    
             }
             else if (Input.GetMouseButtonUp(1))
             {   
@@ -392,15 +399,7 @@ public class MovementManager : MonoBehaviour
             if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
                 CheckEnemies(accumulatedMana, selectedCardUIForMovement);
 
-            // DIRTY IF CITIES
-            Vector2Int finalHex = NULL2;
-            if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
-                finalHex = (selectedCardUIForMovement as CharacterCardUIBoard).GetHex();
-            else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
-                finalHex = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetHex();
-
-            if (finalHex != NULL2 && board.GetTile(finalHex).HasCity())
-                    deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
+            deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
             cameraController.RemovePreventDrag();
         }

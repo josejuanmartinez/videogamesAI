@@ -14,6 +14,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [Header("References")]
     public Image image;
     public GameObject descriptionLayout;
+    public GameObject descriptionSlotPrefab;
     public TextMeshProUGUI quote;
     public TextMeshProUGUI hometown;
     public TextMeshProUGUI title;
@@ -79,7 +80,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     protected NationsEnum owner;
     protected List<DirtyReasonEnum> dirtyMessages;
 
-    private bool isInPlay;
+    protected bool isInPlay;
+    protected bool isHover;
 
     void Awake()
     {
@@ -109,7 +111,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         isInPlay = false;
     }
 
-    public virtual bool Initialize(NationsEnum owner, string cardId, CardClass cardClass)
+    public virtual bool Initialize(NationsEnum owner, string cardId, CardClass cardClass, bool isHover)
     {
         if (!isAwaken)
             Awake();
@@ -123,24 +125,25 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (cardClass == CardClass.Place)
         {
             if (board.GetCityManager().GetCityUI(cardId) != null)
-                return InitializeCity(owner, board.GetCityManager().GetCityUI(cardId).GetDetails());
+                return InitializeCity(owner, board.GetCityManager().GetCityUI(cardId).GetDetails(), isHover);
         }
         else
         {
             if (board.GetCardManager().GetCardUI(cardId) != null)
-                return InitializeCard(owner, board.GetCardManager().GetCardUI(cardId).GetDetails(), true);
+                return InitializeCard(owner, board.GetCardManager().GetCardUI(cardId).GetDetails(), true, isHover);
             else if (cardDetailsRepo.GetCardDetails(cardId, owner) != null)
-                return InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner), false);
+                return InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner), false, isHover);
         }
 
         return false;
     }
 
-    protected bool InitializeCard(NationsEnum owner, CardDetails cardDetails, bool isInPlay)
+    protected bool InitializeCard(NationsEnum owner, CardDetails cardDetails, bool isInPlay, bool isHover)
     {
         this.cardDetails = cardDetails;
         this.owner = owner;
         this.isInPlay = isInPlay;
+        this.isHover = isHover;
 
         if (!isAwaken)
             Awake();
@@ -306,17 +309,19 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         #endif
 
         ClearAllRequirements();
-        CreateConditions();
+        if(!isHover)
+            CreateConditions();
         dirtyMessages.Add(DirtyReasonEnum.INITIALIZATION);
         initialized = true;
 
         return true;
     }
 
-    private bool InitializeCity(NationsEnum owner, CityDetails cityDetails)
+    private bool InitializeCity(NationsEnum owner, CityDetails cityDetails, bool isHover)
     {
         cardDetails = null;
         isInPlay = true;
+        this.isHover = isHover;
         this.cityDetails = cityDetails;
 
         if (!isAwaken)
@@ -387,7 +392,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             AddDescriptionSlot("hoard", "has_hoard");
 
         ClearAllRequirements();
-        ShowProduction();
+        if(!isHover)
+            ShowProduction();
 
         #if UNITY_EDITOR
         if (contentGenerator != null &&
@@ -452,9 +458,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public CardDescriptionSlot AddDescriptionSlot(string title, string stringId, Sprite fallbackIcon = null)
     {
         CardDescriptionSlot res = null;
-        GameObject goImage = new();
-        goImage.transform.SetParent(descriptionLayout.transform, false);
-        CardDescriptionSlot desc = goImage.AddComponent<CardDescriptionSlot>();
+        GameObject goImage = Instantiate(descriptionSlotPrefab, descriptionLayout.transform);
+        CardDescriptionSlot desc = goImage.GetComponent<CardDescriptionSlot>();
         bool result = desc.Initialize(title, stringId, fallbackIcon);
         if (!result)
             DestroyImmediate(desc);
@@ -468,15 +473,9 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         List<CardDescriptionSlot> res = new();
         foreach(string stringId in  stringIds)
         {
-            GameObject goImage = new();
-            goImage.transform.SetParent(descriptionLayout.transform, false);
-            CardDescriptionSlot desc = goImage.AddComponent<CardDescriptionSlot>();
-         
-            bool result = desc.Initialize(title, stringId, fallbackIcon);
-            if (!result)
-                DestroyImmediate(desc);
-            else
-                res.Add(desc);
+            CardDescriptionSlot cd = AddDescriptionSlot(title, stringId, fallbackIcon);
+            if (cd != null)
+                res.Add(cd);
         }
         return res;
     }    
@@ -535,13 +534,13 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             if(cardDetails != null)
             {
                 Debug.Log("Initializing " + cardDetails.name);
-                Initialize(owner, cardDetails.cardId, cardDetails.cardClass);
+                Initialize(owner, cardDetails.cardId, cardDetails.cardClass, isHover);
                 cityDetails = null;
             }                
             else if(cityDetails != null)
             {
                 Debug.Log("Initializing " + cityDetails.name);
-                Initialize(owner, cityDetails.cityId, CardClass.Place);
+                Initialize(owner, cityDetails.cityId, CardClass.Place, isHover);
                 cardDetails = null;
             }
             return;
@@ -574,6 +573,12 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void Dirty(DirtyReasonEnum dirty)
     {
         dirtyMessages.Add(dirty);
+    }
+
+
+    public void Dirty(List<DirtyReasonEnum> dirty)
+    {
+        dirtyMessages.AddRange(dirty);
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
