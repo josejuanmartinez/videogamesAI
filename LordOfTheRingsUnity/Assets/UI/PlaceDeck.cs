@@ -225,7 +225,7 @@ public class PlaceDeck : MonoBehaviour
 
         if (diceResults >= diceRequired)
         {
-            characterCardUI.AddGoldRing(cardDetails);
+            characterCardUI.AddAlly(cardDetails);
             hudMessageManager.ShowMessage(
                 charUI,
                 GameObject.Find("Localization").GetComponent<Localization>().Localize(cardDetails.cardId),

@@ -11,6 +11,8 @@ public class EventCardUI : CardUI
         if (!base.Initialize(cardId, owner))
             return false;
 
+        initialized = false;
+
         EventCardDetails eventDetails = (EventCardDetails)details;
         if (eventDetails != null)
             eventTypeIcon.enabled = eventDetails.eventType == EventType.Immediate;
@@ -19,6 +21,7 @@ public class EventCardUI : CardUI
 
         eventTypeIcon.enabled = ((EventCardDetails)details).eventType == EventType.Immediate;
 
-        return true;
+        initialized = true;
+        return initialized;
     }
 }

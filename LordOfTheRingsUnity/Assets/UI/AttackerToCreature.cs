@@ -56,7 +56,7 @@ public class AttackerToCreature: Attacker, IPointerEnterHandler, IPointerExitHan
             playerProwess,
             playerDefence,
             game.GetCriticalByDifficulty(),
-            StatusEffect.NONE
+            attackerDetails.GetStatusEffect()
         );
 
         switch (combatResult.GetBattleResult())

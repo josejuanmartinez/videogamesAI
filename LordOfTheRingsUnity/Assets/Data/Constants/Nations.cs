@@ -31,27 +31,32 @@ public enum NationsEnum
 
 public enum NationRegionsEnum
 {
-    SEA_OF_RHUN,
+    RHUNEN,
     SOUTHERN_MIRKWOOD,
-    CHELKAR,
-    ANDUIN_VALES,
-    NORTHERN_RHOVANION,
-    WOODLAND_REALM,
-    HORSE_PLAINS,
+    ANDUIN_RIVER,
+    NORTHERN_MIRKWOOD,
+    NEAR_HARAD,
+    KHAND,
     GORGOROTH,
     GAP_OF_ISEN,
     ROHAN,
     IRON_HILLS,
     ANGMAR,
-    WESTERN_MIRKWOOD,
-    WOLD_AND_FOOTHILLS,
-    REDHORN_GATE,
+    RHUN,
+    LOTHLORIEN,
+    DORWINION,
     WITHERED_HEATH,
     RHUDAUR,
     UDUN,
     ITHILIEN,
     GONDOR,
-    UNGOL
+    UNGOL,
+    MORDOR,
+    MISTY_MOUNTAINS,
+    DUNLAND,
+    RHOVANION,
+    BROWN_LANDS,
+    DEAD_MARSHES
 }
 
 public enum AlignmentsEnum
@@ -95,32 +100,146 @@ public static class Nations
         { NationsEnum.REN, AlignmentsEnum.DARK_SERVANTS },
     };
 
-    public static Dictionary<NationsEnum, NationRegionsEnum> regions = new ()
+    public static Dictionary<NationsEnum, List<NationRegionsEnum>> regions = new ()
     {
-        { NationsEnum.UVATHA, NationRegionsEnum.SEA_OF_RHUN },
-        { NationsEnum.KHAMUL, NationRegionsEnum.SOUTHERN_MIRKWOOD },
-        { NationsEnum.ADUNAPHEL, NationRegionsEnum.CHELKAR },
-        { NationsEnum.BEORN , NationRegionsEnum.ANDUIN_VALES},
-        { NationsEnum.BARD , NationRegionsEnum.NORTHERN_RHOVANION },
-        { NationsEnum.THRANDUIL, NationRegionsEnum.WOODLAND_REALM },
-        { NationsEnum.HUZ, NationRegionsEnum.HORSE_PLAINS },
-        { NationsEnum.MOUTH, NationRegionsEnum.GORGOROTH },
-        { NationsEnum.SARUMAN, NationRegionsEnum.GAP_OF_ISEN },
-        { NationsEnum.THEODEN, NationRegionsEnum.ROHAN },
-        { NationsEnum.THRAIN, NationRegionsEnum.IRON_HILLS },
-        { NationsEnum.WITCH_KING, NationRegionsEnum.ANGMAR },
-        { NationsEnum.RADAGAST, NationRegionsEnum.WESTERN_MIRKWOOD },
-        { NationsEnum.GALADRIEL, NationRegionsEnum.WOLD_AND_FOOTHILLS },
-        { NationsEnum.BALROG, NationRegionsEnum.REDHORN_GATE },
-        { NationsEnum.SMAUG, NationRegionsEnum.WITHERED_HEATH },
-        { NationsEnum.ALATAR, NationRegionsEnum.SEA_OF_RHUN },
-        { NationsEnum.PALLANDO, NationRegionsEnum.CHELKAR },
-        { NationsEnum.BROCCACH, NationRegionsEnum.RHUDAUR },
-        { NationsEnum.ELROND, NationRegionsEnum.RHUDAUR },
-        { NationsEnum.HOARMURATH, NationRegionsEnum.ITHILIEN },
-        { NationsEnum.DENDRA_DWAR, NationRegionsEnum.UDUN },
-        { NationsEnum.DENETHOR, NationRegionsEnum.GONDOR },
-        { NationsEnum.REN, NationRegionsEnum.UNGOL },
+        { NationsEnum.UVATHA, new()
+            {
+            NationRegionsEnum.RHUNEN,
+            NationRegionsEnum.KHAND,
+            NationRegionsEnum.BROWN_LANDS,
+            }
+        },
+        { NationsEnum.KHAMUL, new()
+            {
+            NationRegionsEnum.SOUTHERN_MIRKWOOD,
+            NationRegionsEnum.BROWN_LANDS,
+            NationRegionsEnum.MISTY_MOUNTAINS,
+            NationRegionsEnum.NORTHERN_MIRKWOOD,
+            }
+        },
+        { NationsEnum.ADUNAPHEL, new()
+            {
+            NationRegionsEnum.NEAR_HARAD
+            }
+        },
+        { NationsEnum.BEORN , new()
+            {
+            NationRegionsEnum.ANDUIN_RIVER
+            }
+        },
+        { NationsEnum.BARD , new()
+            {
+            NationRegionsEnum.RHOVANION,
+            NationRegionsEnum.DORWINION,
+            NationRegionsEnum.RHUNEN
+            }
+        },
+        { NationsEnum.THRANDUIL, new()
+           {
+            NationRegionsEnum.NORTHERN_MIRKWOOD
+           }
+        },
+        { NationsEnum.HUZ, new()
+            {
+                NationRegionsEnum.RHUN,
+                NationRegionsEnum.RHUNEN,
+                NationRegionsEnum.DORWINION,
+            }
+        },
+        { NationsEnum.MOUTH, new()
+            {
+                NationRegionsEnum.GORGOROTH
+            }
+        },
+        { NationsEnum.SARUMAN, new()
+            {
+                NationRegionsEnum.GAP_OF_ISEN,
+                NationRegionsEnum.DUNLAND,
+                NationRegionsEnum.ROHAN
+            }
+        },
+        { NationsEnum.THEODEN, new()
+            {
+                NationRegionsEnum.ROHAN
+            }
+        },
+        { NationsEnum.THRAIN, new()
+            {
+                NationRegionsEnum.IRON_HILLS,
+                NationRegionsEnum.RHUNEN
+            }
+        },
+        { NationsEnum.WITCH_KING, new()
+            {
+                NationRegionsEnum.ANGMAR,
+                NationRegionsEnum.UNGOL
+            }
+        },
+        { NationsEnum.RADAGAST, new()
+            {
+                NationRegionsEnum.ANDUIN_RIVER
+            }
+        },
+        { NationsEnum.GALADRIEL, new()
+            {
+                NationRegionsEnum.LOTHLORIEN,
+                NationRegionsEnum.GONDOR
+            }
+        },
+        { NationsEnum.BALROG, new()
+            {
+                NationRegionsEnum.MISTY_MOUNTAINS
+            }
+        },
+        { NationsEnum.SMAUG, new()
+            {
+                NationRegionsEnum.RHOVANION
+            }
+        },
+        { NationsEnum.ALATAR, new()
+            {
+                NationRegionsEnum.DORWINION
+            }
+        },
+        { NationsEnum.PALLANDO, new()
+            {
+                NationRegionsEnum.KHAND
+            }
+        },
+        { NationsEnum.BROCCACH, new()
+            {
+                NationRegionsEnum.RHUDAUR
+            }
+        },
+        { NationsEnum.ELROND, new()
+            {
+                NationRegionsEnum.RHUDAUR
+            }
+        },
+        { NationsEnum.HOARMURATH, new()
+            {
+                NationRegionsEnum.ITHILIEN,
+                NationRegionsEnum.UDUN
+            }
+        },
+        { NationsEnum.DENDRA_DWAR, new()
+            {
+                NationRegionsEnum.UDUN,
+                NationRegionsEnum.DEAD_MARSHES
+            }
+        },
+        { NationsEnum.DENETHOR, new()
+            {
+                NationRegionsEnum.GONDOR,
+                NationRegionsEnum.ITHILIEN
+            }
+        },
+        { NationsEnum.REN, new()
+            {
+                NationRegionsEnum.UNGOL,
+                NationRegionsEnum.GORGOROTH
+            }
+        },
     };
 
     public static short INFLUENCE = 20;

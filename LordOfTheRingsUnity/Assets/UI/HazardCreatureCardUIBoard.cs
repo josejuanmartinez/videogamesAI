@@ -24,12 +24,6 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
     private bool isMoving;
     private bool isVisible;
     private Vector3 currentPosition;
-    private bool loaded;
-
-    private void Awake()
-    {
-        loaded = false;
-    }
 
     public bool Initialize(Vector2Int hex, string cardId, NationsEnum owner, short moved = 0)
     {
@@ -37,6 +31,8 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
 
         if (!base.Initialize(cardId, owner))
             return false;
+
+        initialized = false;
 
         isMoving = false;
         isVisible = true;
@@ -57,9 +53,8 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
 
         PlaceOnBoard();
 
-        loaded = true;
-
-        return true;
+        initialized = true;
+        return initialized;
     }
 
     public void PlaceOnBoard()
@@ -74,7 +69,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
 
     void Update()
     {
-        if (!loaded)
+        if (!initialized)
         {
             if (string.IsNullOrEmpty(cardId))
                 cardId = gameObject.name;

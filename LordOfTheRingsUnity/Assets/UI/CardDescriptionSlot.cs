@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardDescriptionSlot : MonoBehaviour
+public class CardDescriptionSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image imageIcon;
     public SimpleTooltip tooltip;
@@ -34,5 +35,16 @@ public class CardDescriptionSlot : MonoBehaviour
         
         return true;
     }
-    
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (tooltip != null)
+            tooltip.ShowTooltip();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (tooltip != null)
+            tooltip.HideTooltip();
+    }
 }

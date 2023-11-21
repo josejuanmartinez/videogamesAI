@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a7c8ca992f915438a96c2077353778, type: 3}
+  m_Name: New BrickAsset
+  m_EditorClassIdentifier: 
+  brickName: Assets/AI/New BrickAsset.asset
+  xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
+    version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
+    id=\"0\" guid=\"e4cd39f12355033428551e45fb74e3d3\" nextId=\"13\">\r\n      <root>\r\n       
+    <RepeatUntilFailed id=\"6\" />\r\n      </root>\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"valueA\" type=\"System.Boolean\" isBlackboard=\"False\"
+    value=\"False\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </BehaviorTree>\r\n    <RepeatUntilFailed
+    id=\"6\">\r\n      <child>\r\n        <SequenceNode id=\"8\" />\r\n      </child>\r\n     
+    <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </RepeatUntilFailed>\r\n   
+    <SequenceNode id=\"8\">\r\n      <children>\r\n        <elem>\r\n          <ActionNode
+    id=\"5\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"7\"
+    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"9\" />\r\n       
+    </elem>\r\n      </children>\r\n      <inputParams />\r\n      <outputParams
+    />\r\n      <localParams />\r\n    </SequenceNode>\r\n    <ActionNode id=\"5\"
+    action=\"Basic/ToggleBool\">\r\n      <inputParams />\r\n      <outputParams>\r\n       
+    <outputValues>\r\n          <entry name=\"var\" type=\"System.Boolean\" isBlackboard=\"True\"
+    blackboard=\"\" />\r\n        </outputValues>\r\n      </outputParams>\r\n     
+    <localParams />\r\n    </ActionNode>\r\n    <ActionNode id=\"7\" action=\"Basic/ToggleBool\">\r\n     
+    <inputParams />\r\n      <outputParams>\r\n        <outputValues>\r\n         
+    <entry name=\"var\" type=\"System.Boolean\" isBlackboard=\"True\" blackboard=\"\"
+    />\r\n        </outputValues>\r\n      </outputParams>\r\n      <localParams
+    />\r\n    </ActionNode>\r\n    <ActionNode id=\"9\" action=\"SuccessAction\">\r\n     
+    <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n 
+    </runtimeInfo>\r\n  <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"New BrickAsset\"
+    _description=\"\" _removeIfClosed=\"False\">\r\n      <_rootList>\r\n       
+    <elem>\r\n          <ActionNode id=\"5\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <RepeatUntilFailed id=\"6\" />\r\n        </elem>\r\n        <elem>\r\n         
+    <ActionNode id=\"7\" />\r\n        </elem>\r\n        <elem>\r\n          <SequenceNode
+    id=\"8\" />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"9\"
+    />\r\n        </elem>\r\n        <elem>\r\n          <ActionNode id=\"12\" />\r\n       
+    </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n         
+    <RepeatUntilFailed id=\"6\" />\r\n          <ActionNode id=\"5\" />\r\n         
+    <ActionNode id=\"7\" />\r\n          <SequenceNode id=\"8\" />\r\n          <ActionNode
+    id=\"9\" />\r\n          <ActionNode id=\"12\" />\r\n        </nodes>\r\n     
+    </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatUntilFailed id=\"6\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"234 63.66666\"
+    name=\"Repeat Until Failed\" description=\"Repeats the execution of its child
+    node until it fails\" cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <RepeatUntilFailed id=\"6\" />\r\n        </data>\r\n     
+    </_data>\r\n    </RepeatUntilFailed>\r\n    <SequenceNode id=\"8\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"282 183.6667\"
+    name=\"Sequence\" description=\"Executes all its children in sequence until all
+    of them are successful\" cardinality=\"-1\" hasParent=\"True\">\r\n         
+    <BehaviorTree id=\"0\" />\r\n          <SequenceNode id=\"8\" />\r\n         
+    <RepeatUntilFailed id=\"6\" />\r\n        </data>\r\n      </_data>\r\n    </SequenceNode>\r\n   
+    <ActionNode id=\"5\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"122 319.6667\" name=\"Basic/ToggleBool\" description=\"Toggle a boolean
+    variable\" cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\"
+    />\r\n          <ActionNode id=\"5\" />\r\n          <SequenceNode id=\"8\" />\r\n       
+    </data>\r\n      </_data>\r\n    </ActionNode>\r\n    <ActionNode id=\"7\">\r\n     
+    <_data>\r\n        <data breakpoint=\"0\" selected=\"False\" position=\"322 312.6667\"
+    name=\"Basic/ToggleBool\" description=\"Toggle a boolean variable\" cardinality=\"0\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
+    id=\"7\" />\r\n          <SequenceNode id=\"8\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ActionNode>\r\n    <ActionNode id=\"9\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"False\" position=\"554 312.6667\" name=\"SuccessAction\"
+    description=\"Action that always successes. It executes in one cycle.\" cardinality=\"0\"
+    hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n          <ActionNode
+    id=\"9\" />\r\n          <SequenceNode id=\"8\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ActionNode>\r\n  </editorInfo>\r\n  <runtimeInfo>\r\n    <ActionNode
+    id=\"12\" action=\"Basic/SetBool\">\r\n      <inputParams />\r\n      <outputParams
+    />\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n  <editorInfo>\r\n   
+    <ActionNode id=\"12\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"True\"
+    position=\"537 384.6667\" name=\"Basic/SetBool\" description=\"Sets a value to
+    a boolean variable\" cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <ActionNode id=\"12\" />\r\n        </data>\r\n     
+    </_data>\r\n    </ActionNode>\r\n  </editorInfo>\r\n</BehaviorBricks>"
+  zoom: 1
+  subslist: []
+  _guid: e4cd39f12355033428551e45fb74e3d3

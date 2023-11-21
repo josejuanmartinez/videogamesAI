@@ -9,13 +9,12 @@ public class DeckManager : MonoBehaviour
 {
     public GameObject handPrefab;
     public Transform deckTransform;
+    public CanvasGroup deckCanvasGroup;
     public GameObject deckCardUIPrefab;
     public short handSize = 5;
 
     public List<string> startWithId;
         
-    public bool isInitialized = false;
-
     private Dictionary<NationsEnum, GameObject> hands;
     private Dictionary<NationsEnum, List<GameObject>> cards;
     private Dictionary<NationsEnum, List<CardDetails>> drawnCards;
@@ -29,10 +28,11 @@ public class DeckManager : MonoBehaviour
     private Turn turn;
     private CardDetailsRepo cardRepo;  
     private SelectedItems selectedItems;
+    private CameraController cameraController;
 
     private List<DirtyReasonEnum> isDirty;
     private string loadingPlayer;
-
+    private bool isInitialized;
     void Awake()
     {
         board = GameObject.Find("Board").GetComponent<Board>();
@@ -40,7 +40,8 @@ public class DeckManager : MonoBehaviour
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         cardRepo = GameObject.Find("CardDetailsRepo").GetComponent<CardDetailsRepo>();
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
-        
+        cameraController = GameObject.Find("CameraController").GetComponent<CameraController>();
+
         lastCardDrawn = new();
         hasCards = new();
 
@@ -53,6 +54,8 @@ public class DeckManager : MonoBehaviour
 
         isDirty = new();
         hasCards.Add(NationsEnum.ABANDONED, false);
+
+        isInitialized = false;
     }
 
     void Initialize()
@@ -114,6 +117,11 @@ public class DeckManager : MonoBehaviour
         isInitialized = true;
     }
 
+    public bool IsInitialized()
+    {
+        return isInitialized;
+    }
+
     public string GetLoadingPlayer()
     {
         return loadingPlayer ?? "";
@@ -130,6 +138,9 @@ public class DeckManager : MonoBehaviour
 
     void Update()
     {
+        deckCanvasGroup.alpha = cameraController.IsPreventedDrag()? 0 : 1;
+        deckCanvasGroup.interactable = !cameraController.IsPreventedDrag();
+
         if (!isInitialized)
         {
             Initialize();

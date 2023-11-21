@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -116,7 +115,10 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
                     {
                         //Debug.Log(string.Format("{0} processes condition from signal: {1}", cardId, isDirty.ToString()));
                         if (cc.RunCondition().Count() > 0)
-                            conditionsFailed.AddRange(cc.GetLastResult());
+                        {
+                            foreach(PlayableConditionResultEnum result in cc.GetLastResult().ToList())
+                                conditionsFailed.Add(result);
+                        }
                         RefreshIcons(cc);
                     }
                 }

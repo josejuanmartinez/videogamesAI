@@ -10,6 +10,8 @@ public class FactionCardUI : CardUI
     {
         if (!base.Initialize(cardId, owner))
             return false;
+        
+        initialized = false;
 
         FactionCardDetails factionDetails = (FactionCardDetails)details;
         if (factionDetails != null)
@@ -17,6 +19,8 @@ public class FactionCardUI : CardUI
         else
             return false;
 
-        return true;
+        initialized = true;
+
+        return initialized;
     }
 }

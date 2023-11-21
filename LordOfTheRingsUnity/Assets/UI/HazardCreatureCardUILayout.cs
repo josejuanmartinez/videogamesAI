@@ -8,15 +8,13 @@ public class HazardCreatureCardUILayout : HazardCreatureCardUI
 
     public override bool Initialize(string cardId, NationsEnum owner)
     {
-        if (!base.Initialize(cardId, owner))
-            return false;
-
-        return true;
+        return base.Initialize(cardId, owner);
     }
 
     void Update()
     {
-        if (!initialized) return;
+        if (!initialized) 
+            return;
 
         ShowNext();
     }

@@ -1,17 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RegionSelectionBehaviour : MonoBehaviour
 {
+    public NationRegionsEnum region;
     public GameObject characterSelector;
     public bool isCharactersShown;
 
     private GalleryLevelSelectionManager galRegionSelector;
     private MenuCameraController caRegionsCamera;
+    private Button button;
 
-    private void Awake()
+    void Awake()
     {
         galRegionSelector = GameObject.Find("RegionSelection").GetComponent<GalleryLevelSelectionManager>();
         caRegionsCamera = Camera.main.GetComponent<MenuCameraController>();
+        button = GetComponent<Button>();
+        button.onClick.AddListener(Toggle);
     }
 
     void Update()
@@ -30,10 +35,9 @@ public class RegionSelectionBehaviour : MonoBehaviour
                 st.HideTooltip();
 
             caRegionsCamera.LookToRegions();
-        } else
-        {
+        } 
+        else
             caRegionsCamera.LookToCharacters();
-        }
 
         characterSelector.SetActive(isCharactersShown);
         galRegionSelector.enabled = !isCharactersShown;

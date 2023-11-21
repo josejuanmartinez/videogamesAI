@@ -162,7 +162,7 @@ public class Game : MonoBehaviour
         if (finishedLoading)
             return;
 
-        if(deckManager.isInitialized)
+        if(deckManager.IsInitialized())
         {
             finishedLoading = true;
             loadManager.SetActive(false);

@@ -118,7 +118,8 @@ public class CameraController : MonoBehaviour
         // Set the camera's orthographic size based on the zoom level
         cam.orthographicSize = zoomLevel;
 
-
+        if (!preventDrag && isDragging)
+            isDragging = false;
 
         if (isDragging)
             lookToPosition = NONE;
@@ -132,6 +133,11 @@ public class CameraController : MonoBehaviour
                 lookToPosition = NONE;
         }
         
+    }
+
+    public bool IsPreventedDrag()
+    {
+        return preventDrag;
     }
 
     public void PreventDrag()
@@ -166,11 +172,17 @@ public class CameraController : MonoBehaviour
     {
         if (card == null) 
             return;
-        
-        CharacterCardUIBoard character = (CharacterCardUIBoard)card;
-        if(character == null) return;
 
-        Vector3Int v3 = new (character.GetHex().x, character.GetHex().y, 0);
+        Vector2Int hex = new (int.MinValue, int.MinValue);
+        if ((card as CharacterCardUIBoard) != null)
+            hex = (card as CharacterCardUIBoard).GetHex();
+        else if ((card as HazardCreatureCardUIBoard) != null)
+            hex = (card as HazardCreatureCardUIBoard).GetHex();
+
+        if (hex.x == int.MinValue || hex.y == int.MinValue)
+            return;
+
+        Vector3Int v3 = new (hex.x, hex.y, 0);
         Vector3 v3World = tilemap.CellToWorld(v3);
         v3World = new Vector3(v3World.x, v3World.y, transform.position.z);
         LookTo(v3World);

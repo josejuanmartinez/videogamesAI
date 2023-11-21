@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -691,7 +690,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
                     {
                         if (cc.RunCondition().Count() > 0)
                         {
-                            conditionsFailed.AddRange(cc.GetLastResult());
+                            foreach (PlayableConditionResultEnum result in cc.GetLastResult().ToList())
+                                conditionsFailed.Add(result);
                         }
                             
                     }

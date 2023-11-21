@@ -116,7 +116,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         image.sprite = details.cardSprite;
         alignmentIcon.sprite = spritesRepo.GetSprite(Nations.alignments[owner].ToString());
 
-        return true;
+        initialized = true;
+        return initialized;
     }
 
     void Update()
@@ -151,8 +152,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public CharacterCardDetails GetCharacterDetails()
     {
-        if (!initialized)
-            Debug.LogError("Calling to `GetCharacterDetails` but CardUI still not initialized!");
         if (GetComponentInChildren<CharacterCardDetails>() != null)
             return GetComponentInChildren<CharacterCardDetails>();
         else
@@ -160,8 +159,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public AllyCardDetails GetAllyCardDetails()
     {
-        if (!initialized)
-            Debug.LogError("Calling to `GetAllyCardDetails` but CardUI still not initialized!");
         if (GetComponentInChildren<AllyCardDetails>() != null)
             return GetComponentInChildren<AllyCardDetails>();
         else
@@ -171,8 +168,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public HazardCreatureCardDetails GetHazardCreatureDetails()
     {
-        if (!initialized)
-            Debug.LogError("Calling to `GetHazardCharacterDetails` but CardUI still not initialized!");
         if (GetComponentInChildren<HazardCreatureCardDetails>() != null)
             return GetComponentInChildren<HazardCreatureCardDetails>();
         else
@@ -180,8 +175,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public GoldRingDetails GetGoldRingDetails()
     {
-        if (!initialized)
-            Debug.LogError("Calling to `GetGoldRingDetails` but CardUI still not initialized!");
         if (GetComponentInChildren<GoldRingDetails>() != null)
             return GetComponentInChildren<GoldRingDetails>();
         else

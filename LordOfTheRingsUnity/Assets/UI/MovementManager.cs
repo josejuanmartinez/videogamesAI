@@ -402,6 +402,7 @@ public class MovementManager : MonoBehaviour
             deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
             cameraController.RemovePreventDrag();
+            cameraController.LookToCard(selectedCardUIForMovement);
         }
         else
             Reset();

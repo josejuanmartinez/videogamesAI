@@ -60,7 +60,7 @@ public class Board: MonoBehaviour
         foreach (Transform t in cardsCanvas.transform)
         {
             CharacterCardUIBoard character = t.gameObject.GetComponent<CharacterCardUIBoard>();
-            if (!character.IsLoaded())
+            if (!character.IsInitialized())
                 return false;
         }
         foreach (Transform t in citiesCanvas.transform)

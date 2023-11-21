@@ -240,7 +240,7 @@ public class CombatPopupManager : Popup
             CardUI cardUI = selectedItems.GetSelectedMovableCardUI();
             if (cardUI != null)
             {
-                CharacterCardUIBoard original = (CharacterCardUIBoard)cardUI;
+                CharacterCardUIBoard original = cardUI as CharacterCardUIBoard;
                 if (original != null)
                     original.AddObject(item);
                 deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), item, false);
@@ -259,7 +259,7 @@ public class CombatPopupManager : Popup
 
         hudMessageManager.ShowMessage(
             leader,
-            noHurts ? GameObject.Find("Localization").GetComponent<Localization>().Localize("damaged") : GameObject.Find("Localization").GetComponent<Localization>().Localize("withdraw"),
+            noHurts ? GameObject.Find("Localization").GetComponent<Localization>().Localize("city_damaged") : GameObject.Find("Localization").GetComponent<Localization>().Localize("city_defended"),
             noHurts
         );
 

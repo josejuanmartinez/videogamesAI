@@ -8,10 +8,7 @@ public class CharacterCardUILayout : CharacterCardUI
 
     public override bool Initialize(string cardId, NationsEnum owner)
     {
-        if (!base.Initialize(cardId, owner))
-            return false;
-
-        return true;
+        return base.Initialize(cardId, owner);
     }
 
     void Update()

@@ -24,20 +24,15 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     private bool isMoving;
     private bool isVisible;
     private Vector3 currentPosition;
-    private bool loaded;
-
-    void Awake()
-    {
-        loaded = false;
-    }
 
     public bool Initialize(Vector2Int hex, string cardId, NationsEnum owner, short moved = 0)
     {
-        loaded = false;
         this.hex = hex;
 
         if (!base.Initialize(cardId, owner))
             return false;
+
+        initialized = false;
 
         isMoving = false;
         isVisible = true;
@@ -63,16 +58,15 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         PlaceOnBoard();
         CheckStatusEffects();
 
-        loaded = true;
+        initialized = true;
 
-        return loaded;
+        return initialized;
     }
-
-    public bool IsLoaded()
+    public bool IsInitialized()
     {
-        return loaded;
-    }
-
+        return initialized;
+    } 
+        
     public void PlaceOnBoard()
     {
         Vector3 cellWorldCenter = t.GetCellCenterWorld(new Vector3Int(hex.x, hex.y, 0));
@@ -85,7 +79,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
     void Update()
     {
-        if (!loaded)
+        if (!initialized)
         {
             if (string.IsNullOrEmpty(cardId))
                 cardId = gameObject.name;
@@ -170,18 +164,6 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         isSelected = true;
         board.SelectHex(hex);
         selectedItems.SelectCardDetails(details, owner);
-        
-        //isSelected = !isSelected;
-        //if (isSelected)
-        //{
-        //    board.SelectHex(hex);
-        //    selectedItems.SelectCardDetails(details, owner);
-        //}
-        /*else if (selectedItems.GetSelectedMovableCard() != null && selectedItems.GetSelectedMovableCard() == details)
-        {
-            selectedItems.UnselectCardDetails();
-            board.SelectHex(Board.NULL);
-        }*/
     }
 
     public void Moving()

@@ -13,6 +13,8 @@ public class HazardEventCardUI : CardUI
         if (!base.Initialize(cardId, owner))
             return false;
 
+        initialized = false;
+
         HazardEventCardDetails hazardEventDetails = (HazardEventCardDetails)details;
         if (hazardEventDetails != null)
             eventTypeIcon.enabled = hazardEventDetails.eventType == EventType.Immediate;
@@ -21,6 +23,7 @@ public class HazardEventCardUI : CardUI
 
         eventTypeIcon.enabled = ((EventCardDetails) details).eventType == EventType.Immediate;
 
-        return true;
+        initialized = true;
+        return initialized;
     }
 }

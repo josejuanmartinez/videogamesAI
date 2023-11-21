@@ -86,7 +86,6 @@ public class CompanyManager : MonoBehaviour
         else
             return;
 
-        cardUI.Initialize(companion.cardId, owner);
         combat.Add(companion.cardId, cardUI);
 
         foreach (CardDetails objectCardDetails in cardUI.GetObjects())
@@ -120,7 +119,6 @@ public class CompanyManager : MonoBehaviour
         else
             return;
 
-        cardUI.Initialize(companion.cardId, owner);
         combat.Add(companion.cardId, cardUI);
             
         return;

@@ -36,6 +36,8 @@ public class AllyCardUI : CardUI
         if (!base.Initialize(cardId, owner))
             return false;
 
+        initialized = false;
+
         hurtIcon.enabled = false;
         exhaustedIcon.enabled = false;
         poisonedIcon.enabled = false;
@@ -46,7 +48,7 @@ public class AllyCardUI : CardUI
 
         initialized = true;
 
-        return true;
+        return initialized;
     }
     public void CheckStatusEffects()
     {

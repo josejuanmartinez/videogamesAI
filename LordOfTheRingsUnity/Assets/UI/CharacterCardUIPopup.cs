@@ -9,10 +9,13 @@ public class CharacterCardUIPopup : CharacterCardUI
     public GridLayoutGroup targettedGrid;
     public TextMeshProUGUI prowessText;
     public TextMeshProUGUI defenceText;
+    public GameObject targetedPrefab;
     public override bool Initialize(string cardId, NationsEnum owner)
     {
         if (!base.Initialize(cardId, owner))
             return false;
+
+        initialized = false;
 
         prowessText.text = GetTotalProwess().ToString();
         prowessText.color = GetTotalProwessColor();
@@ -22,7 +25,7 @@ public class CharacterCardUIPopup : CharacterCardUI
 
         initialized = true;
 
-        return true;
+        return initialized;
     }
 
     public void UndrawTargetted()
@@ -33,10 +36,6 @@ public class CharacterCardUIPopup : CharacterCardUI
     }
     public void DrawTargetted()
     {
-        GameObject go = new("strike");
-        go.transform.SetParent(targettedGrid.transform);
-        Image img = go.AddComponent<Image>();
-        img.transform.localScale = Vector3.one;
-        img.sprite = spritesRepo.GetSprite("target");
+        Instantiate(targetedPrefab, targettedGrid.transform);
     }
 }
