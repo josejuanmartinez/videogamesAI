@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
 #endif
 using UnityEngine;
 using UnityEngine.UI;
@@ -121,7 +122,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
     public virtual void OnItemsClicked(int index, bool isCenter)
     {
-        Debug.Log("Item " + index + " clicked");
+        //Debug.Log("Item " + index + " clicked");
 
         if (!isCenter && navigateToClickedItems)
         {
@@ -134,7 +135,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
             animateScrollCoroutine = StartCoroutine(AnimateScroll(index));
         }
 
-        if(OnItemsClickedEvent != null) OnItemsClickedEvent(index, isCenter);
+        OnItemsClickedEvent?.Invoke(index, isCenter);
     }
     
     public virtual void ShowItem(int number, bool animate)
@@ -153,7 +154,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
         }
         else
         {
-            setHorizontalNormalizedPosition((number * scrollStep));
+            SetHorizontalNormalizedPosition((number * scrollStep));
             UpdateGalleryStateOnIndicator();
             SnapScrollIndex();
         }
@@ -201,7 +202,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
     public void OnSliderValueChanged()
     {
-        setHorizontalNormalizedPosition(slider.value);
+        SetHorizontalNormalizedPosition(slider.value);
 
         if(!isScrollAnimating)
             OnGalleryPositionChange();
@@ -209,7 +210,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
     public void OnScrollbarValueChanged()
     {
-        setHorizontalNormalizedPosition(scrollbar.value);
+        SetHorizontalNormalizedPosition(scrollbar.value);
 
         if (!isScrollAnimating)
             OnGalleryPositionChange();
@@ -228,7 +229,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
         for (int i = 0; i < autoGenerateItemsCount; i++)
         {
-            GameObject obj = new GameObject("item " + (items.Length + 1 + i));
+            GameObject obj = new ("item " + (items.Length + 1 + i));
             obj.transform.SetParent(itemsContainer.transform);
             obj.AddComponent<RectTransform>();
             GalleryLevelView levelViewItem = obj.AddComponent<GalleryLevelView>();
@@ -240,7 +241,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
             if (autoGenerateAddImageUI)
             {
-                GameObject img = new GameObject("image");
+                GameObject img = new ("image");
                 img.transform.SetParent(obj.transform);
                 Image image = img.AddComponent<Image>();
                 SetRectSize(img.GetComponent<RectTransform>(), itemsWidth, itemsHeight);
@@ -249,12 +250,12 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
             if (autoGenerateAddText)
             {
-                GameObject txt = new GameObject("txt");
+                GameObject txt = new ("txt");
                 txt.transform.SetParent(obj.transform);
-                Text textComp = txt.AddComponent<Text>();
+                TextMeshProUGUI textComp = txt.AddComponent<TextMeshProUGUI>();
                 textComp.text = (items.Length + 1 + i) + "";
                 textComp.fontSize = 24;
-                textComp.alignment = TextAnchor.MiddleCenter;
+                textComp.alignment = TextAlignmentOptions.Center;
                 textComp.color = Color.black;
                 txt.transform.localPosition = Vector3.zero;
                 levelViewItem.text = textComp;
@@ -301,7 +302,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
         if (infiniteLoop && items.Length < 4)
         {
             infiniteLoop = false;
-            Debug.LogError("Can't support loop with less than 4 items.");
+            //Debug.LogError("Can't support loop with less than 4 items.");
         }
 
         if (!hasScaleTransition) minScaleDownValue = 1;
@@ -340,7 +341,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
         itemsAlignmentPosition = 0;
 
-        Vector2 pivot = new Vector2(0.5f, 0.5f);
+        Vector2 pivot = new (0.5f, 0.5f);
         if (scrollAxis == ScrollAxis.Horizontal)
         {
             if (verticalAlignment == VerticalAlignment.Top) pivot.y = 1;
@@ -356,7 +357,6 @@ public class GalleryLevelSelectionManager : MonoBehaviour
             itemsAlignmentPosition = (pivot.x - 0.5f) * itemsWidth;
         }
 
-        float itemsCnt = (float)items.Length;
         itemsCollider = new Collider2D[items.Length];
         for (int i = 0; i < items.Length; i++)
         {
@@ -386,7 +386,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
     private float GetGalleryProgress()
     {
-        float scroll = horizontalNormalizedPosition;
+        float scroll = HorizontalNormalizedPosition;
         if (!infiniteLoop || (scroll >= 0 && scroll <= 1))
         {
             return Mathf.Clamp(scroll, 0, 1.0f);
@@ -436,7 +436,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
             if (h == galleryCollider)
             {
                 isTouchOnGallery = true;
-                scrollValueOnMouseDown = horizontalNormalizedPosition;
+                scrollValueOnMouseDown = HorizontalNormalizedPosition;
                 touchPosOnMouseDown = Input.mousePosition;
                 touchPosWorldOnMouseDown = touchPosWorld;
                 galleryChildPosOnMouseDown = galleryChild.transform.localPosition;
@@ -499,7 +499,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
                         xPos = Mathf.Clamp(xPos, -endOfItemsScrollPosition, mItemsWidth + spaceBetweenItems);
                 }
 
-                Vector2 pos = new Vector2(xPos, itemsAlignmentPosition);
+                Vector2 pos = new (xPos, itemsAlignmentPosition);
                 SwapIfVertical(ref pos);
                 galleryChild.transform.localPosition = pos;
                 OnGalleryPositionChange();
@@ -521,7 +521,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
         else if (isTouchOnGallery)
         {
             isTouchOnGallery = false;
-            float scroll = horizontalNormalizedPosition;
+            float scroll = HorizontalNormalizedPosition;
             if (scroll >= 0 && scroll <= 1 && scrollValueOnMouseDown != scroll)
             {
                 if (snapItems) SnapScrollIndex();
@@ -555,7 +555,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
         if (infiniteLoop)
         {
-            float scroll = horizontalNormalizedPosition;
+            float scroll = HorizontalNormalizedPosition;
             if (scroll < 0 && (Mathf.Abs(scroll) - (centerIndex * scrollStep) >= ((centerIndex + 1) * scrollStep) - Mathf.Abs(scroll)))
             {
                 centerIndex = -1;
@@ -567,35 +567,34 @@ public class GalleryLevelSelectionManager : MonoBehaviour
             StopCoroutine(animateScrollCoroutine);
             isScrollAnimating = false;
         }
-
-        animateScrollCoroutine = StartCoroutine(AnimateScroll(centerIndex));
+        if(gameObject.activeSelf)
+            animateScrollCoroutine = StartCoroutine(AnimateScroll(centerIndex));
     }
 
     private IEnumerator AnimateScroll(int index)
     {
         isScrollAnimating = true;
         float pos = index * scrollStep;
-        float dist = pos - horizontalNormalizedPosition;
+        float dist = pos - HorizontalNormalizedPosition;
         if (infiniteLoop) pos = GetInfiniteLoopIndex(index) * scrollStep;
 
         int frame = (int)normalAnimateSpeed;
-        float step = 0;
-        if(Mathf.Abs(dist) <= scrollStep / 2)
+        if (Mathf.Abs(dist) <= scrollStep / 2)
         {
             frame /= 2;
         }
 
-        step = dist / frame;
-        
+        float step = dist / frame;
+
         for (int i = 0; i < frame; i++)
         {
-            setHorizontalNormalizedPosition(horizontalNormalizedPosition + step);
+            SetHorizontalNormalizedPosition(HorizontalNormalizedPosition + step);
             UpdateGalleryStateOnIndicator();
             OnGalleryPositionChange();
             yield return null;
         }
 
-        setHorizontalNormalizedPosition(pos);
+        SetHorizontalNormalizedPosition(pos);
         OnGalleryPositionChange();
         UpdateGalleryStateOnIndicator();
         
@@ -606,13 +605,13 @@ public class GalleryLevelSelectionManager : MonoBehaviour
     {
         if (items.Length == 0) return;
 
-        float scroll = horizontalNormalizedPosition;
+        float scroll = HorizontalNormalizedPosition;
 
         if (infiniteLoop)
         {
             if ((int)(scroll / scrollStep) + 1 > items.Length)
             {
-                setHorizontalNormalizedPosition(0);
+                SetHorizontalNormalizedPosition(0);
                 itemsContainer.localPosition = new Vector2(0, 0);
                 galleryChildPosOnMouseDown = galleryChild.transform.localPosition;
                 touchPosOnMouseDown = Input.mousePosition;
@@ -620,14 +619,14 @@ public class GalleryLevelSelectionManager : MonoBehaviour
             }
             else if ((int)(scroll / scrollStep) < 0)
             {
-                setHorizontalNormalizedPosition(1);
+                SetHorizontalNormalizedPosition(1);
                 galleryChildPosOnMouseDown = galleryChild.transform.localPosition;
                 touchPosOnMouseDown = Input.mousePosition;
                 scroll = 1;
             }
         }
         else
-            scroll = Mathf.Clamp(horizontalNormalizedPosition, 0, 1);
+            scroll = Mathf.Clamp(HorizontalNormalizedPosition, 0, 1);
 
         int centerIndex = GetCenterItemIndex();
 
@@ -818,7 +817,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
             if (levelTitleFormat == LevelTitleFormat.Number)
                 txtLevelTitle.text = items.Length + "";
             if (levelTitleFormat == LevelTitleFormat.LevelName)
-                txtLevelTitle.text = items[items.Length - 1].levelName;
+                txtLevelTitle.text = items[^1].levelName;
         }
         else
         {
@@ -926,8 +925,8 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
     private int GetCenterItemIndex(bool getReal = false)
     {
-        float scroll = horizontalNormalizedPosition;
-        if (!infiniteLoop) scroll = Mathf.Clamp(horizontalNormalizedPosition, 0, 1);
+        float scroll = HorizontalNormalizedPosition;
+        if (!infiniteLoop) scroll = Mathf.Clamp(HorizontalNormalizedPosition, 0, 1);
 
         int index = (int)(scroll / scrollStep);
 
@@ -990,7 +989,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
             }
 
             if (colliderSize.y < mItemsHeight) colliderSize.y = mItemsHeight;
-            Vector2 colliderOffset = new Vector2(0, ((colliderSize.y - mItemsHeight) / 2) * Mathf.Sign(maxDisplacementPos));
+            Vector2 colliderOffset = new (0, ((colliderSize.y - mItemsHeight) / 2) * Mathf.Sign(maxDisplacementPos));
             SwapIfVertical(ref colliderSize);
             SwapIfVertical(ref colliderOffset);
             GetComponent<BoxCollider2D>().size = colliderSize;
@@ -1074,7 +1073,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
         return (Mathf.Abs(r1) < Mathf.Abs(r2))? r1 : r2;
     }
 
-    private float horizontalNormalizedPosition
+    private float HorizontalNormalizedPosition
     {
         get
         {
@@ -1089,10 +1088,10 @@ public class GalleryLevelSelectionManager : MonoBehaviour
         }
     }
 
-    private void setHorizontalNormalizedPosition(float value)
+    private void SetHorizontalNormalizedPosition(float value)
     {
         int order = reverseOrder ? -1 : 1;
-        Vector2 pos = new Vector2(-((mItemsWidth + spaceBetweenItems) * (items.Length - 1) * value) * order, itemsAlignmentPosition);
+        Vector2 pos = new (-((mItemsWidth + spaceBetweenItems) * (items.Length - 1) * value) * order, itemsAlignmentPosition);
         if (items.Length <= 1) pos.x = 0;
         SwapIfVertical(ref pos);
         galleryChild.transform.localPosition = pos;
@@ -1100,31 +1099,23 @@ public class GalleryLevelSelectionManager : MonoBehaviour
 
     private void SetRectSize(RectTransform rect, float newWidth, float newHeight)
     {
-        Vector2 newSize = new Vector2(newWidth, newHeight);
+        Vector2 newSize = new (newWidth, newHeight);
         Vector2 oldSize = rect.rect.size;
         Vector2 deltaSize = newSize - oldSize;
-        rect.offsetMin = rect.offsetMin - new Vector2(deltaSize.x * rect.pivot.x, deltaSize.y * rect.pivot.y);
-        rect.offsetMax = rect.offsetMax + new Vector2(deltaSize.x * (1f - rect.pivot.x), deltaSize.y * (1f - rect.pivot.y));
+        rect.offsetMin -= new Vector2(deltaSize.x * rect.pivot.x, deltaSize.y * rect.pivot.y);
+        rect.offsetMax += new Vector2(deltaSize.x * (1f - rect.pivot.x), deltaSize.y * (1f - rect.pivot.y));
     }
 
     private void SwapIfVertical<T>(ref T var1, ref T var2)
     {
         if(scrollAxis == ScrollAxis.Vertical)
-        {
-            T temp = var1;
-            var1 = var2;
-            var2 = temp;
-        }
+            (var2, var1) = (var1, var2);
     }
 
     private void SwapIfVertical(ref Vector2 var)
     {
         if (scrollAxis == ScrollAxis.Vertical)
-        {
-            float temp = var.x;
-            var.x = var.y;
-            var.y = temp;
-        }
+            (var.y, var.x) = (var.x, var.y);
     }
 
     private Canvas GetTopmostCanvas(GameObject component)
@@ -1132,7 +1123,7 @@ public class GalleryLevelSelectionManager : MonoBehaviour
         Canvas[] parentCanvases = component.GetComponentsInParent<Canvas>();
         if (parentCanvases != null && parentCanvases.Length > 0)
         {
-            return parentCanvases[parentCanvases.Length - 1];
+            return parentCanvases[^1];
         }
         return null;
     }

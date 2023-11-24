@@ -13,7 +13,10 @@ public class HazardCreatureCardDetails: CardDetails
 
     public List<CardTypesEnum> cardTypes;
     public List<HazardAbilitiesEnum> hazardAbilities;
-    void Awake()
+
+    private bool isLoaded = false;
+    
+    public bool Initialize()
     {
         Resources requirements = new(0, 0, 0, 0, 0, 0, 0, 0);
         requirements.resources[ResourceType.FOOD] += (prowess + defence) * 5;
@@ -109,16 +112,23 @@ public class HazardCreatureCardDetails: CardDetails
                 break;
         }
 
-        base.Initialize(CardClass.HazardCreature, requirements);
+        isLoaded = Initialize(CardClass.HazardCreature, requirements);
+        return isLoaded;
     }
+    public bool IsLoaded()
+    {
+        return isLoaded;
+    }
+
     public string GetRaceStrings()
     {
         return GameObject.Find("Localization").GetComponent<Localization>().Localize(Enum.GetName(typeof(RacesEnum), race));
     }
         
-    public void Initialize()
+    void Update()
     {
-        Awake();
+        if(!isLoaded)
+            Initialize();
     }
     public List<string> GetAbilitiesStrings()
     {

@@ -311,7 +311,7 @@ public class MovementManager : MonoBehaviour
                 Vector3 initialPosition = cardTilemap.CellToWorld(path[currentPointIndex]);
                 initialPosition = new Vector3(initialPosition.x, initialPosition.y, 0);
                 Vector3Int initialCell = cardTilemap.WorldToCell(initialPosition);
-                CardInfo initialCardInfo = terrainManager.GetCardInfo(initialCell);
+                CardInfo initialCardInfo = terrainManager.GetCardInfo(cardTilemap.GetTile(initialCell) as Tile);
                 if (initialCardInfo != null)
                     accumulatedMana.Add(initialCardInfo.cardType);
                 else
@@ -371,7 +371,7 @@ public class MovementManager : MonoBehaviour
 
                 fow.UpdateCardFOW(targetCell, startCell);
 
-                CardInfo ci = terrainManager.GetCardInfo(targetCell);
+                CardInfo ci = terrainManager.GetCardInfo(cardTilemap.GetTile(targetCell)     as Tile);
                 if (ci != null)
                     accumulatedMana.Add(ci.cardType);
                 else

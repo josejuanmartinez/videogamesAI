@@ -19,9 +19,16 @@ public class AllyCardDetails : CardDetails
     [SerializeField]
     private short defence;
 
+    private bool isLoaded;
+
     void Awake()
     {
-        Resources requirements= new (0, 0, 0, 0, 0, 0, 0, 0);
+        isLoaded = false;
+    }
+
+    public bool Initialize()
+    {
+        Resources requirements = new(0, 0, 0, 0, 0, 0, 0, 0);
         requirements.resources[ResourceType.FOOD] += prowess + defence;
         switch (allyClass)
         {
@@ -41,13 +48,21 @@ public class AllyCardDetails : CardDetails
                 requirements.resources[ResourceType.LEATHER] += prowess + defence;
                 break;
         }
-        base.Initialize(CardClass.Ally, requirements);
+        isLoaded = Initialize(CardClass.Ally, requirements);
+        return isLoaded;
     }
 
-    public void Initialize()
+    public bool IsLoaded()
     {
-        Awake();
+        return isLoaded;
     }
+
+    void Update()
+    {
+        if (!isLoaded)
+            Initialize();
+    }
+
     public short GetProwess() {
         return prowess;
     }

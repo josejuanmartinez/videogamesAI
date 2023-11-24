@@ -12,14 +12,30 @@ public class EventCardDetails : CardDetails
     [SerializeField]
     private string playableAtCity;
 
+    private bool isLoaded;
+
     void Awake()
     {
-        base.Initialize(CardClass.Event, new Resources(0,0,0,0,0,0,0,0));
+        isLoaded = false;    
     }
-    public void Initialize()
+
+    public bool Initialize()
     {
-        Awake();
+        isLoaded = Initialize(CardClass.Event, new Resources(0,0,0,0,0,0,0,0));
+        return isLoaded;
     }
+
+    public bool IsLoaded()
+    {
+        return isLoaded;
+    }
+
+    void Update()
+    {
+        if (!isLoaded)
+            Initialize();
+    }
+
     public List<string> GetEffectsStrings()
     {
         return abilities.Select(x => x.ToString()).ToList();

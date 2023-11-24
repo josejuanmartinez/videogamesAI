@@ -6,14 +6,28 @@ public class FactionCardDetails : CardDetails
     public FactionsEnum faction;
     public FactionAbilities factionAbility;
 
+    private bool isLoaded;
+
     void Awake()
     {
-        base.Initialize(CardClass.Faction, new Resources(0, 0, 0, 0, 0, 0, 0, 0));
+        isLoaded = false;
     }
 
-    public void Initialize()
+    public bool Initialize()
     {
-        Awake();
+        isLoaded = Initialize(CardClass.Faction, new Resources(0, 0, 0, 0, 0, 0, 0, 0));
+        return isLoaded;
+    }
+    public bool IsLoaded()
+    {
+        return isLoaded;
+    }
+
+
+    void Update()
+    {
+        if(!isLoaded)
+            Initialize();
     }
 
     public FactionAbilities GetFactionAbility()

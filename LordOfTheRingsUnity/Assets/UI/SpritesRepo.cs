@@ -8,14 +8,17 @@ public class SpritesRepo : MonoBehaviour
     public List<Sprite> sprites;
     public List<string> spriteStrings;
 
-    public TMP_SpriteAsset spriteAsset;
+    public List<NationRegionsEnum> nationRegions;
+    public List<Sprite> nationRegionsSprites;
 
-    private Board board;
+    public List<NationsEnum> avatars;
+    public List<Sprite> avatarsSprites;
+
+    public TMP_SpriteAsset spriteAsset;
 
     void Awake()
     {
-        Assert.AreEqual(sprites.Count, spriteStrings.Count);
-        board = GameObject.Find("Board").GetComponent<Board>();
+        Assert.AreEqual(sprites.Count, spriteStrings.Count);        
     }
 
     public Sprite GetSprite(string id)
@@ -52,9 +55,9 @@ public class SpritesRepo : MonoBehaviour
     {
         Sprite def = GetSprite("default");
 
-        CardUI avatar = board.GetCharacterManager().GetAvatar(nation);
-        if (avatar != null)
-            return avatar.GetCharacterDetails().cardSprite;
+        int index = avatars.IndexOf(nation);
+        if (index != -1)
+            def = avatarsSprites[index];
 
         return def;
     }

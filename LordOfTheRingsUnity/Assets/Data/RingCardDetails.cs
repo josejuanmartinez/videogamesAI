@@ -16,7 +16,14 @@ public class RingCardDetails : CardDetails
     public short mind;
     public short influence;
 
+    private bool isLoaded;
+
     void Awake()
+    {
+        isLoaded = false;    
+    }
+
+    public bool Initialize()
     {
         Resources requirements = new (0, 0, 0, 0, 0, 0, 0, 0);
         int units = prowess + defence + Math.Abs(mind) + influence;
@@ -40,11 +47,18 @@ public class RingCardDetails : CardDetails
             case RingType.Unknown:
                 break;
         }
-        base.Initialize(CardClass.Ring, requirements);
+        isLoaded = Initialize(CardClass.Ring, requirements);
+        return isLoaded;
     }
-    public void Initialize()
+    public bool IsLoaded()
     {
-        Awake();
+        return isLoaded;
+    }
+
+    void Update()
+    {
+        if (!isLoaded)
+            Initialize();
     }
     public string GetSlotString()
     {

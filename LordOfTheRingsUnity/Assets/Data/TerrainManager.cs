@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.U2D;
 
 
 [System.Serializable]
@@ -19,8 +21,11 @@ public class TerrainManager : MonoBehaviour
     public Tilemap cardTilemap;
     public Tilemap movementTilemap;
 
+    public Sprite[] tileTypeSprites;
+    public GameObject[] tileTypeGameObjects;
+
     public Sprite[] tileSprites;
-    public GameObject[] tileGameobjects;
+    public GameObject[] tileGameObjects;
 
     private TileAndMovementCost[] tiles;
     public void Awake()
@@ -43,23 +48,29 @@ public class TerrainManager : MonoBehaviour
                 {
 
                     Vector3Int tilePosition = new(x, y, 0);
-                    Tile tile = (Tile)allTiles[i][(y - bounds.yMin) * bounds.size.x + (x - bounds.xMin)];
+                    Tile tile = allTiles[i][(y - bounds.yMin) * bounds.size.x + (x - bounds.xMin)] as Tile;
                     if (tile != null)
                     {
-                        if (tile.gameObject.TryGetComponent<TerrainInfo>(out var terrainInfo))
+                        TerrainInfo terrainInfo = GetTerrainInfo(tile);
+                        if(terrainInfo == null)
                         {
-                            CardInfo cardInfo = GetCardInfo(tilePosition);
-                            if(cardInfo != null)
-                            {
-                                short movement = Terrains.movementCost[terrainInfo.terrainType];
-                                TileAndMovementCost structValue = new() { cellPosition = tilePosition, terrain = terrainInfo, cardInfo = cardInfo, movable = true, movementCost = movement };
-
-                                int pos = HexTranslator.GetNormalizedCellPosInt(new Vector3Int(x, y, 0));
-                                tiles[pos] = structValue;
-                                found = true;
-                                break;
-                            }                            
+                            Debug.LogError(string.Format("{0} does not have a TerrainInfo associated to it.", tile.sprite));
+                            continue;
                         }
+                        Tile cardTile = cardTilemap.GetTile(tilePosition) as Tile;
+                        CardInfo cardInfo = GetCardInfo(cardTile);
+                        if (cardInfo == null)
+                        {
+                            Debug.LogError(string.Format("{0} does not have a CardInfo associated to it.", cardTile.sprite));
+                            continue;
+                        }
+                        short movement = Terrains.movementCost[terrainInfo.terrainType];
+                        TileAndMovementCost structValue = new() { cellPosition = tilePosition, terrain = terrainInfo, cardInfo = cardInfo, movable = true, movementCost = movement };
+
+                        int pos = HexTranslator.GetNormalizedCellPosInt(new Vector3Int(x, y, 0));
+                        tiles[pos] = structValue;
+                        found = true;
+                        break;
                     }
                 }
 
@@ -103,7 +114,7 @@ public class TerrainManager : MonoBehaviour
         if (cardTile == null)
             return null;
 
-        CardInfo cardTileInfo = GetCardInfo(cardTilePos);
+        CardInfo cardTileInfo = GetCardInfo(cardTile);
         if (cardTileInfo == null)
             return null;
 
@@ -115,29 +126,35 @@ public class TerrainManager : MonoBehaviour
         // Right Canvas Trail
         return cardTileSprite;
     }
-
-    public CardInfo GetCardInfo(Vector3Int targetCell)
+    public TerrainInfo GetTerrainInfo(Tile tile)
     {
-        Tile tile = ((Tile)cardTilemap.GetTile(targetCell));
         if (tile == null)
         {
-            Debug.Log("Unable to get cell tile at " + targetCell);
+            Debug.Log("Unable to get cell tile at " + tile);
             return null;
         }
-        int index = System.Array.FindIndex(tileSprites, x => x == tile.sprite);
+        int index = Array.FindIndex(tileSprites, x => x == tile.sprite);
         if (index == -1)
         {
-            Debug.Log("No GameObject defined for tile sprite " + tile.sprite + " at hex " + targetCell);
+            Debug.Log("No GameObject defined for tile sprite " + tile.sprite);
             return null;
         }
-        try
+        return tileGameObjects[index].GetComponent<TerrainInfo>();
+    }
+
+    public CardInfo GetCardInfo(Tile tile)
+    {
+        if (tile == null)
         {
-            return tileGameobjects[index].GetComponent<CardInfo>();            
-        }
-        catch
-        {
-            Debug.Log("Unable to get CardInfo from GameObject associated with tile sprite " + tile.sprite.name);
+            Debug.Log("Unable to get cell tile at " + tile);
             return null;
         }
+        int index = Array.FindIndex(tileTypeSprites, x => x == tile.sprite);
+        if (index == -1)
+        {
+            Debug.Log("No GameObject defined for tile sprite " + tile.sprite);
+            return null;
+        }
+        return tileTypeGameObjects[index].GetComponent<CardInfo>();            
     }
 }

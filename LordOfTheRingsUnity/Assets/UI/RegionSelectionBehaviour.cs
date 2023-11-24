@@ -3,30 +3,42 @@ using UnityEngine.UI;
 
 public class RegionSelectionBehaviour : MonoBehaviour
 {
-    public NationRegionsEnum region;
-    public GameObject characterSelector;
-    public bool isCharactersShown;
-
-    private GalleryLevelSelectionManager galRegionSelector;
+    private bool isCharactersShown;
+    private GalleryLevelSelectionManager regionSelector;
+    private GalleryLevelSelectionManager characterSelector;
     private MenuCameraController caRegionsCamera;
     private Button button;
+    private bool isInitialized;
 
     void Awake()
     {
-        galRegionSelector = GameObject.Find("RegionSelection").GetComponent<GalleryLevelSelectionManager>();
+        regionSelector = GameObject.Find("RegionSelection").GetComponent<GalleryLevelSelectionManager>();
         caRegionsCamera = Camera.main.GetComponent<MenuCameraController>();
         button = GetComponent<Button>();
         button.onClick.AddListener(Toggle);
+        isInitialized = false;
+        isCharactersShown = false;
     }
 
     void Update()
     {
+        if (!isInitialized)
+            return;
         if (isCharactersShown && Input.GetKeyUp(KeyCode.Escape))
             Toggle();
     }
 
+    public void Initialize(GalleryLevelSelectionManager gallery)
+    {
+        characterSelector = gallery;
+        isInitialized = true;
+    }
+
     public void Toggle() {
+        if (!isInitialized)
+            return;
         isCharactersShown = !isCharactersShown;
+        characterSelector.gameObject.SetActive(isCharactersShown);
 
         if (!isCharactersShown)
         {
@@ -39,8 +51,10 @@ public class RegionSelectionBehaviour : MonoBehaviour
         else
             caRegionsCamera.LookToCharacters();
 
-        characterSelector.SetActive(isCharactersShown);
-        galRegionSelector.enabled = !isCharactersShown;
+        characterSelector.gameObject.SetActive(isCharactersShown);
+        characterSelector.Start();
+
+        regionSelector.enabled = !isCharactersShown;
     }
 
 }

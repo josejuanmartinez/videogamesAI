@@ -1,4 +1,4 @@
-public enum Difficulties
+public enum DifficultiesEnum
 {
     Easy,
     Medium,

@@ -38,7 +38,6 @@ public enum NationRegionsEnum
     NEAR_HARAD,
     KHAND,
     GORGOROTH,
-    GAP_OF_ISEN,
     ROHAN,
     IRON_HILLS,
     ANGMAR,
@@ -55,8 +54,7 @@ public enum NationRegionsEnum
     MISTY_MOUNTAINS,
     DUNLAND,
     RHOVANION,
-    BROWN_LANDS,
-    DEAD_MARSHES
+    BROWN_LANDS
 }
 
 public enum AlignmentsEnum
@@ -100,13 +98,14 @@ public static class Nations
         { NationsEnum.REN, AlignmentsEnum.DARK_SERVANTS },
     };
 
-    public static Dictionary<NationsEnum, List<NationRegionsEnum>> regions = new ()
+    public static Dictionary<NationsEnum, List<NationRegionsEnum>> regions = new()
     {
         { NationsEnum.UVATHA, new()
             {
             NationRegionsEnum.RHUNEN,
             NationRegionsEnum.KHAND,
             NationRegionsEnum.BROWN_LANDS,
+            NationRegionsEnum.DORWINION,
             }
         },
         { NationsEnum.KHAMUL, new()
@@ -115,28 +114,37 @@ public static class Nations
             NationRegionsEnum.BROWN_LANDS,
             NationRegionsEnum.MISTY_MOUNTAINS,
             NationRegionsEnum.NORTHERN_MIRKWOOD,
+            NationRegionsEnum.LOTHLORIEN,
             }
         },
         { NationsEnum.ADUNAPHEL, new()
             {
-            NationRegionsEnum.NEAR_HARAD
+            NationRegionsEnum.NEAR_HARAD,
+            NationRegionsEnum.KHAND,
+            NationRegionsEnum.MORDOR
             }
         },
         { NationsEnum.BEORN , new()
             {
-            NationRegionsEnum.ANDUIN_RIVER
+            NationRegionsEnum.ANDUIN_RIVER,
+            NationRegionsEnum.MISTY_MOUNTAINS,
+            NationRegionsEnum.NORTHERN_MIRKWOOD,
+            NationRegionsEnum.SOUTHERN_MIRKWOOD
             }
         },
         { NationsEnum.BARD , new()
             {
             NationRegionsEnum.RHOVANION,
             NationRegionsEnum.DORWINION,
-            NationRegionsEnum.RHUNEN
+            NationRegionsEnum.RHUNEN,
             }
         },
         { NationsEnum.THRANDUIL, new()
            {
-            NationRegionsEnum.NORTHERN_MIRKWOOD
+            NationRegionsEnum.NORTHERN_MIRKWOOD,
+            NationRegionsEnum.SOUTHERN_MIRKWOOD,
+            NationRegionsEnum.ANDUIN_RIVER,
+            NationRegionsEnum.RHUNEN,
            }
         },
         { NationsEnum.HUZ, new()
@@ -144,100 +152,138 @@ public static class Nations
                 NationRegionsEnum.RHUN,
                 NationRegionsEnum.RHUNEN,
                 NationRegionsEnum.DORWINION,
+                NationRegionsEnum.BROWN_LANDS,
+                NationRegionsEnum.UDUN,
+                NationRegionsEnum.RHOVANION,
             }
         },
         { NationsEnum.MOUTH, new()
             {
-                NationRegionsEnum.GORGOROTH
+                NationRegionsEnum.GORGOROTH,
+                NationRegionsEnum.MORDOR,
+                NationRegionsEnum.UNGOL,
+                NationRegionsEnum.UDUN,
             }
         },
         { NationsEnum.SARUMAN, new()
             {
-                NationRegionsEnum.GAP_OF_ISEN,
                 NationRegionsEnum.DUNLAND,
                 NationRegionsEnum.ROHAN
             }
         },
         { NationsEnum.THEODEN, new()
             {
-                NationRegionsEnum.ROHAN
+                NationRegionsEnum.ROHAN,
+                NationRegionsEnum.DUNLAND,
+                NationRegionsEnum.GONDOR,
+                NationRegionsEnum.BROWN_LANDS,
             }
         },
         { NationsEnum.THRAIN, new()
             {
                 NationRegionsEnum.IRON_HILLS,
-                NationRegionsEnum.RHUNEN
+                NationRegionsEnum.RHUN,
+                NationRegionsEnum.RHOVANION,
             }
         },
         { NationsEnum.WITCH_KING, new()
             {
                 NationRegionsEnum.ANGMAR,
-                NationRegionsEnum.UNGOL
+                NationRegionsEnum.UNGOL,
+                NationRegionsEnum.MORDOR,
+                NationRegionsEnum.RHUDAUR
             }
         },
         { NationsEnum.RADAGAST, new()
             {
-                NationRegionsEnum.ANDUIN_RIVER
+                NationRegionsEnum.ANDUIN_RIVER,
+                NationRegionsEnum.NORTHERN_MIRKWOOD,
+                NationRegionsEnum.SOUTHERN_MIRKWOOD,
+                NationRegionsEnum.LOTHLORIEN,
             }
         },
         { NationsEnum.GALADRIEL, new()
             {
                 NationRegionsEnum.LOTHLORIEN,
-                NationRegionsEnum.GONDOR
+                NationRegionsEnum.SOUTHERN_MIRKWOOD,
+                NationRegionsEnum.GONDOR,
+                NationRegionsEnum.ANDUIN_RIVER,
             }
         },
         { NationsEnum.BALROG, new()
             {
-                NationRegionsEnum.MISTY_MOUNTAINS
+                NationRegionsEnum.MISTY_MOUNTAINS,
+                NationRegionsEnum.LOTHLORIEN,
             }
         },
         { NationsEnum.SMAUG, new()
             {
-                NationRegionsEnum.RHOVANION
+                NationRegionsEnum.RHOVANION,
+                NationRegionsEnum.WITHERED_HEATH,
+                NationRegionsEnum.NORTHERN_MIRKWOOD,
             }
         },
         { NationsEnum.ALATAR, new()
             {
-                NationRegionsEnum.DORWINION
+                NationRegionsEnum.DORWINION,
+                NationRegionsEnum.RHUNEN,
+                NationRegionsEnum.RHUN
             }
         },
         { NationsEnum.PALLANDO, new()
             {
-                NationRegionsEnum.KHAND
+                NationRegionsEnum.KHAND,
+                NationRegionsEnum.NEAR_HARAD,
             }
         },
         { NationsEnum.BROCCACH, new()
             {
-                NationRegionsEnum.RHUDAUR
+                NationRegionsEnum.RHUDAUR,
+                NationRegionsEnum.ANGMAR,
+                NationRegionsEnum.MISTY_MOUNTAINS,
             }
         },
         { NationsEnum.ELROND, new()
             {
-                NationRegionsEnum.RHUDAUR
+                NationRegionsEnum.RHUDAUR,
+                NationRegionsEnum.ANGMAR,
+                NationRegionsEnum.MISTY_MOUNTAINS,
             }
         },
         { NationsEnum.HOARMURATH, new()
             {
                 NationRegionsEnum.ITHILIEN,
-                NationRegionsEnum.UDUN
+                NationRegionsEnum.UDUN,
+                NationRegionsEnum.GONDOR,
+                NationRegionsEnum.GORGOROTH,
+                NationRegionsEnum.MORDOR,
+                NationRegionsEnum.UNGOL,
             }
         },
         { NationsEnum.DENDRA_DWAR, new()
             {
                 NationRegionsEnum.UDUN,
-                NationRegionsEnum.DEAD_MARSHES
+                NationRegionsEnum.BROWN_LANDS,
+                NationRegionsEnum.RHUN,
+                NationRegionsEnum.ITHILIEN,
+                NationRegionsEnum.MORDOR,
             }
         },
         { NationsEnum.DENETHOR, new()
             {
                 NationRegionsEnum.GONDOR,
-                NationRegionsEnum.ITHILIEN
+                NationRegionsEnum.ITHILIEN,
+                NationRegionsEnum.NEAR_HARAD,
+                NationRegionsEnum.UDUN,
+                NationRegionsEnum.UNGOL,
             }
         },
         { NationsEnum.REN, new()
             {
                 NationRegionsEnum.UNGOL,
-                NationRegionsEnum.GORGOROTH
+                NationRegionsEnum.GORGOROTH,
+                NationRegionsEnum.GONDOR,
+                NationRegionsEnum.MORDOR,
             }
         },
     };

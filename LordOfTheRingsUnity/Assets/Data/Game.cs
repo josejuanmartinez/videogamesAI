@@ -10,13 +10,8 @@ public class Game : MonoBehaviour
     public GameObject loadManager;
     public TextMeshProUGUI loadingText;
 
-    public List<Difficulties> difficulties;
-    public Difficulties currentDifficulty;
-
     public List<GameObject> toActivate;
     public List<TilemapRenderer> gridsToEnable;
-
-    public NationsEnum humanPlayer;
 
     public List<CardClass> difficultyClasses;
     public List<int> baseDifficulty;
@@ -24,29 +19,33 @@ public class Game : MonoBehaviour
     private List<Player> players;
 
     private DeckManager deckManager;
+    private Settings settings;
 
-    private bool isInitialized = false;
-    private bool finishedLoading = false;
+    private bool isInitialized;
+    private bool finishedLoading;
     void Awake()
     {
         players = new();
         deckManager = GameObject.Find("DeckManager").GetComponent<DeckManager>();
-        foreach(GameObject go in toActivate)
-        {
+        settings = GameObject.Find("Settings").GetComponent<Settings>();
+        isInitialized = false;
+        finishedLoading = false;
+    }
+
+    public void Initialize()
+    {
+        foreach (GameObject go in toActivate)
             if (!go.activeSelf)
                 go.SetActive(true);
-        }
 
-        foreach(TilemapRenderer tilemap in gridsToEnable)
-        {
+        foreach (TilemapRenderer tilemap in gridsToEnable)
             tilemap.enabled = true;
-        }
-        
-        for(int i=0; i<Enum.GetValues(typeof(NationsEnum)).Length; i++)
+
+        for (int i = 0; i < Enum.GetValues(typeof(NationsEnum)).Length; i++)
         {
             if ((NationsEnum)i == NationsEnum.ABANDONED)
                 continue;
-            players.Add(new Player((NationsEnum)i, ((NationsEnum)i==humanPlayer)));
+            players.Add(new Player((NationsEnum)i, ((NationsEnum)i == settings.GetHumanPlayer())));
         }
         isInitialized = true;
         Debug.Log("Game initialized");
@@ -63,12 +62,12 @@ public class Game : MonoBehaviour
     public short RequiredDice(CardClass cardClass)
     {
         short res = (short)baseDifficulty[(int)cardClass];
-        switch (currentDifficulty)
+        switch (settings.GetDifficulty())
         {
-            case Difficulties.Medium:
+            case DifficultiesEnum.Medium:
                 res += 1;
                 break;
-            case Difficulties.Hard:
+            case DifficultiesEnum.Hard:
                 res += 2;
                 break;
         }
@@ -77,21 +76,21 @@ public class Game : MonoBehaviour
 
     public float GetMultiplierByDifficulty()
     {
-        return currentDifficulty switch
+        return settings.GetDifficulty() switch
         {
-            Difficulties.Easy => 1f,
-            Difficulties.Medium => 1.5f,
-            Difficulties.Hard => 2f,
+            DifficultiesEnum.Easy => 1f,
+            DifficultiesEnum.Medium => 1.5f,
+            DifficultiesEnum.Hard => 2f,
             _ => 1f,
         };
     }
     public float GetCriticalByDifficulty()
     {
-        return currentDifficulty switch
+        return settings.GetDifficulty() switch
         {
-            Difficulties.Easy => 0.9f,
-            Difficulties.Medium => 0.85f,
-            Difficulties.Hard => 0.8f,
+            DifficultiesEnum.Easy => 0.9f,
+            DifficultiesEnum.Medium => 0.85f,
+            DifficultiesEnum.Hard => 0.8f,
             _ => 0.9f,
         };
     }
@@ -134,12 +133,12 @@ public class Game : MonoBehaviour
                 break;
         }
 
-        switch (currentDifficulty)
+        switch (settings.GetDifficulty())
         {
-            case Difficulties.Medium:
+            case DifficultiesEnum.Medium:
                 goldCost += 10;
                 break;
-            case Difficulties.Hard:
+            case DifficultiesEnum.Hard:
                 goldCost += 25;
                 break;
         }
@@ -149,16 +148,26 @@ public class Game : MonoBehaviour
 
     public int GetCorruptionBaseByDifficulty()
     {
-        return currentDifficulty switch
+        if (!IsInitialized())
+            throw new Exception("Trying to get Corruption of card but it's not initialized!");
+
+        return settings.GetDifficulty() switch
         {
-            Difficulties.Medium => 1,
-            Difficulties.Hard => 2,
+            DifficultiesEnum.Medium => 1,
+            DifficultiesEnum.Hard => 2,
             _ => 0,
         };
     }
 
     private void Update()
     {
+        if (!isInitialized)
+        {
+            Initialize();
+            return;
+        }
+            
+
         if (finishedLoading)
             return;
 

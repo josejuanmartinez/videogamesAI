@@ -24,12 +24,15 @@ public class CardDetails : MonoBehaviour
     {
         game = GameObject.Find("Game").GetComponent<Game>();
         isAwaken = true;
+        isInitialized = false;
     }
 
-    protected void Initialize(CardClass cardClass, Resources resourcesRequired)
+    protected bool Initialize(CardClass cardClass, Resources resourcesRequired)
     {
-        if (!isAwaken)
-            Awake();
+        Awake();
+
+        if (!game.IsInitialized())
+            return false;
 
         this.resourcesRequired = resourcesRequired;
         this.cardClass = cardClass;
@@ -70,6 +73,9 @@ public class CardDetails : MonoBehaviour
         }
         CalculateCorruption();
         CalculateVictoryPoints();
+        isInitialized = true;
+
+        return isInitialized;
     }
 
     public Resources GetResourcesRequired()
@@ -77,7 +83,7 @@ public class CardDetails : MonoBehaviour
         return resourcesRequired;
     }
 
-    public bool IsInitialized()
+    protected bool IsInitialized()
     {
         return isInitialized;
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +6,7 @@ public class GalleryLevelView : MonoBehaviour
 {
     public GalleryLevelSelectionManager manager;
     public Image image;
-    public Text text;
+    public TextMeshProUGUI text;
     public string levelName;
     public bool colorEffectOnText = false;
 

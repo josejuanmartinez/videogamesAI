@@ -10,7 +10,7 @@ public class AutoLocalize : MonoBehaviour
     // Start is called before the first frame update
     void Initialize()
     {
-        localization = GameObject.Find("Localization").GetComponent<Localization>();
+        localization = GameObject.Find("Localization").GetComponent<Localization>();    
         initialized = localization.IsInitialized();
         localize = !string.IsNullOrEmpty(GetComponent<TextMeshProUGUI>().text);
         if(initialized && localize)

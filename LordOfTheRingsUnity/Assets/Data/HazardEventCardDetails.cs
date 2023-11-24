@@ -8,13 +8,27 @@ public class HazardEventCardDetails : CardDetails
     public List<HazardEventAbilities> abilities;
     public EventType eventType;
 
+    private bool isLoaded;
+
     void Awake()
     {
-        base.Initialize(CardClass.HazardEvent, new Resources(0, 0, 0, 0, 0, 0, 0, 0));
+        isLoaded = false;    
     }
-    public void Initialize()
+
+    public bool Initialize()
     {
-        Awake();
+        isLoaded = Initialize(CardClass.HazardEvent, new Resources(0, 0, 0, 0, 0, 0, 0, 0));
+        return isLoaded;
+    }
+    public bool IsLoaded()
+    {
+        return isLoaded;
+    }
+
+    void Update()
+    {
+        if(!IsLoaded())
+            Initialize();
     }
     public List<string> GetEffectsStrings()
     {

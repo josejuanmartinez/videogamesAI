@@ -17,7 +17,14 @@ public class ObjectCardDetails : CardDetails
     public short influence;
     public short movement;
 
+    private bool isLoaded;
+
     void Awake()
+    {
+        isLoaded = false;   
+    }
+
+    public bool Initialize()
     {
         Resources requirements = new(0, 0, 0, 0, 0, 0, 0, 0);
 
@@ -55,11 +62,18 @@ public class ObjectCardDetails : CardDetails
             }
         }
         
-        base.Initialize(CardClass.Object, requirements);
+        isLoaded = Initialize(CardClass.Object, requirements);
+        return isLoaded;
     }
-    public void Initialize()
+    public bool IsLoaded()
     {
-        Awake();
+        return isLoaded;
+    }
+
+    void Update()
+    {
+        if (!isLoaded)
+            Initialize();
     }
     public bool IsBattleItem()
     {

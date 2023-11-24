@@ -19,11 +19,17 @@ public class CharacterCardDetails : CardDetails
     public short influence;
 
     public FactionsEnum faction;
+    private bool isLoaded;
     void Awake()
+    {
+        isLoaded = false;
+    }
+
+    public bool Initialize()
     {
         Resources requirements = new(0, 0, 0, 0, 0, 0, 0, 0);
         requirements.resources[ResourceType.FOOD] += prowess + defence;
-        foreach(CharacterClassEnum c in classes)
+        foreach (CharacterClassEnum c in classes)
         {
             switch (c)
             {
@@ -44,15 +50,21 @@ public class CharacterCardDetails : CardDetails
                     break;
             }
         }
-        
-        base.Initialize(CardClass.Character, requirements);
+
+        isLoaded = base.Initialize(CardClass.Character, requirements);
+        return isLoaded;
     }
 
-    public void Initialize()
+    public bool IsLoaded()
     {
-        Awake();
+        return isLoaded;
     }
 
+    void Update()
+    {
+        if (!isLoaded)
+            Initialize();
+    }
     public List<string> GetClassesStrings()
     {
         return classes.Select(x => x.ToString()).ToList();

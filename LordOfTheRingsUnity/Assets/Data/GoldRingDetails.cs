@@ -17,13 +17,27 @@ public class GoldRingDetails : CardDetails
 
     private RingType revealedSlot;
 
+    private bool isLoaded;
+
     private void Awake()
     {
-        base.Initialize(CardClass.GoldRing, new Resources(0, 0, 0, 0, 0, 0, 0, 0));
+        isLoaded = false;
     }
-    public void Initialize()
+
+    public bool Initialize()
     {
-        Awake();
+        isLoaded = Initialize(CardClass.GoldRing, new Resources(0, 0, 0, 0, 0, 0, 0, 0));
+        return isLoaded;
+    }
+    public bool IsLoaded()
+    {
+        return isLoaded;
+    }
+
+    void Update()
+    {
+        if(!isLoaded)
+            Initialize();
     }
 
     public string OneRing()

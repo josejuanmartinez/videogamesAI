@@ -189,8 +189,10 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         if (cardDetails.IsClassOf(CardClass.Character))
         {
-            CharacterCardDetails charDetails = (CharacterCardDetails)cardDetails;
+            CharacterCardDetails charDetails = cardDetails as CharacterCardDetails;
             if (charDetails == null)
+                return false;
+            if (!charDetails.IsLoaded())
                 return false;
 
             if (IsDeckCard())
@@ -209,8 +211,12 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             mindGroup.SetActive(false);
             influenceGroup.SetActive(false);
-            
-            HazardCreatureCardDetails hazardCreatureDetails = (HazardCreatureCardDetails)cardDetails;
+
+            HazardCreatureCardDetails hazardCreatureDetails = cardDetails as HazardCreatureCardDetails;
+            if (hazardCreatureDetails == null)
+                return false;
+            if (!hazardCreatureDetails.IsLoaded())
+                return false;
             SetProwess(hazardCreatureDetails.prowess);
             SetDefence(hazardCreatureDetails.defence);
             AddDescriptionSlot("races", hazardCreatureDetails.GetRaceStrings());
@@ -218,34 +224,52 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else if (cardDetails.IsClassOf(CardClass.Event))
         {
-            EventCardDetails eventDetails = (EventCardDetails)cardDetails;
+            EventCardDetails eventDetails = cardDetails as EventCardDetails;
+            if (eventDetails == null)
+                return false;
+            if (!eventDetails.IsLoaded())
+                return false;
             AddDescriptionSlot("duration", eventDetails.eventType.ToString(), spritesRepo.GetSprite("duration"));
-            AddDescriptionSlot("corruption", eventDetails.CalculateCorruption().ToString(), spritesRepo.GetSprite("corruption"));
             AddDescriptionSlot("effects", eventDetails.GetEffectsStrings(), spritesRepo.GetSprite("unknown_ability"));
         }
         else if (cardDetails.IsClassOf(CardClass.HazardEvent))
         {
-            HazardEventCardDetails eventDetails = (HazardEventCardDetails)cardDetails;
+            HazardEventCardDetails eventDetails = cardDetails as HazardEventCardDetails;
+            if (eventDetails == null)
+                return false;
+            if (!eventDetails.IsLoaded())
+                return false;
             AddDescriptionSlot("duration", eventDetails.eventType.ToString(), spritesRepo.GetSprite("duration"));
-            AddDescriptionSlot("corruption", eventDetails.CalculateCorruption().ToString(), spritesRepo.GetSprite("corruption"));
             AddDescriptionSlot("effects", eventDetails.GetEffectsStrings(), spritesRepo.GetSprite("unknown_ability"));
 
         }
         else if (cardDetails.IsClassOf(CardClass.Object))
         {
-            ObjectCardDetails objectDetails = (ObjectCardDetails) cardDetails;
+            ObjectCardDetails objectDetails = cardDetails as ObjectCardDetails;
+
+            if (objectDetails == null)
+                return false;
+            if (!objectDetails.IsLoaded())
+                return false;
+
             SetProwess(objectDetails.prowess);
             SetDefence(objectDetails.defence);
             SetMind(objectDetails.mind);
             SetInfluence(objectDetails.influence);
             AddDescriptionSlot("object_slot", objectDetails.objectSlot.ToString(), spritesRepo.GetSprite("object_slot"));
             AddDescriptionSlot("allowed_classes", objectDetails.requiredClass.Count > 0 ? objectDetails.GetClassesStrings() : new List<string>() { "all_classes" }, spritesRepo.GetSprite("unknown_class"));
-            AddDescriptionSlot("abilities", objectDetails.GetAbilitiesString(), spritesRepo.GetSprite("unknown_ability"));
+            AddDescriptionSlot("abilities", objectDetails.GetAbilitiesString(), spritesRepo.GetSprite("unknown_ability"));            
 
         }
         else if (cardDetails.IsClassOf(CardClass.Ally))
         {
-            AllyCardDetails allyDetails = (AllyCardDetails)cardDetails;
+            AllyCardDetails allyDetails = cardDetails as AllyCardDetails;
+
+            if (allyDetails == null)
+                return false;
+            if (!allyDetails.IsLoaded())
+                return false;
+
             hometown.enabled = true;
             hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(allyDetails.GetHomeTown());
 
@@ -258,7 +282,13 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else if (cardDetails.IsClassOf(CardClass.Faction))
         {
-            FactionCardDetails factionDetails = (FactionCardDetails)cardDetails;
+            FactionCardDetails factionDetails = cardDetails as FactionCardDetails;
+
+            if (factionDetails == null)
+                return false;
+            if (!factionDetails.IsLoaded())
+                return false;
+
             hometown.enabled = true;
             hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(factionDetails.GetHomeTown());
             AddDescriptionSlot("abilities", factionDetails.GetFactionAbility().ToString(), spritesRepo.GetSprite("unknown_ability"));
@@ -266,7 +296,13 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else if (cardDetails.IsClassOf(CardClass.Ring))
         {
-            RingCardDetails objectDetails = (RingCardDetails) cardDetails;
+            RingCardDetails objectDetails = cardDetails as RingCardDetails;
+
+            if (objectDetails == null)
+                return false;
+            if (!objectDetails.IsLoaded())
+                return false;
+
             SetProwess(objectDetails.prowess);
             SetDefence(objectDetails.defence);
             SetMind(objectDetails.mind);
@@ -277,12 +313,20 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else if (cardDetails.IsClassOf(CardClass.GoldRing))
         {
-            GoldRingDetails objectDetails = (GoldRingDetails) cardDetails;
+            GoldRingDetails objectDetails = cardDetails as GoldRingDetails;
+
+            if (objectDetails == null)
+                return false;
+            if (!objectDetails.IsLoaded())
+                return false;
+
             AddDescriptionSlot("the_one_ring", objectDetails.OneRing(), spritesRepo.GetSprite("the_one_ring"));
             AddDescriptionSlot("dwarvenring", objectDetails.DwarvenRing(), spritesRepo.GetSprite("dwarvenring"));
             AddDescriptionSlot("magicring", objectDetails.MagicRing(), spritesRepo.GetSprite("magicring"));
             AddDescriptionSlot("mindring", objectDetails.MindRing(), spritesRepo.GetSprite("mindring"));
         }
+
+        AddDescriptionSlot("corruption", cardDetails.GetCorruption().ToString(), spritesRepo.GetSprite("corruption"));
 
         quote.text = GameObject.Find("Localization").GetComponent<Localization>().LocalizeQuote(cardDetails.cardId);
 
