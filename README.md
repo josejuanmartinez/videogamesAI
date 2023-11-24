@@ -8,7 +8,8 @@ This is a portfolio repository collecting scripts, articles and implementations 
 - [AI in video games: a historical evolution, from Search Trees to LLMs. Chapter 2: 1950–1980](https://medium.com/@jjmcarrascosa/ai-in-video-games-a-historical-evolution-from-search-trees-to-llms-chapter-1-1950-1980-f3b04d6e9dc8)
 - [AI in video games: a historical evolution, from Search Trees to LLMs. Chapter 2: 1980–2000](https://medium.com/@jjmcarrascosa/ai-in-video-games-a-historical-evolution-from-search-trees-to-llms-chapter-2-1980-2000-341bc31860d9)
 - [AI in video games: a historical evolution, from Search Trees to LLMs. Chapter 3: 2000–2023](https://medium.com/@jjmcarrascosa/ai-in-video-games-a-historical-evolution-from-search-trees-to-llms-chapter-3-2000-2023-ae286c975387)
-
+## AI content generation for video games
+- [Unity Muse](https://medium.com/@jjmcarrascosa/unity-muse-testing-the-pre-release-chapter-1-sprites-texture-chat-023a89a13029)
 
 # Own implementations
 ## [Heuristic-guided Dijkstra implementation in C++](https://github.com/josejuanmartinez/videogamesAI/tree/main/DijkstraPathFindingC%2B%2B)
