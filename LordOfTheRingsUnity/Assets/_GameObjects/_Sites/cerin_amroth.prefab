@@ -60,12 +60,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 2959a992858fa5a438c9c426ecfc641a, type: 3}
   descForAIGeneration: 
   size: 3
-  isHidden: 1
+  isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: cerin_amroth
-  regionId: wold_foothills
+  isUnderground: 0
+  regionId: 11
   isHaven: 0
   playableObjects: 
   playableRings: 

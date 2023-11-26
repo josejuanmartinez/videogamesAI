@@ -38,7 +38,7 @@ public class CharacterManager
             return new List<string>();
         List<CardUI> character = GetCharactersOfPlayer(owner);
         List<CharacterCardUIBoard> characterUiBoard = character.FindAll(x => (x as CharacterCardUIBoard) != null).Select(x => (x as CharacterCardUIBoard)).ToList();
-        return characterUiBoard.Select(x => x.GetHex()).Where(x => board.GetTile(x).HasCity()).Select(x => board.GetTile(x).GetCity().GetDetails().cityId).ToList();
+        return characterUiBoard.Select(x => x.GetHex()).Where(x => board.GetTile(x).HasCity()).Select(x => board.GetTile(x).GetCity().GetDetails().GetCityID()).ToList();
     }
     public CardUI GetAvatar(NationsEnum owner)
     {

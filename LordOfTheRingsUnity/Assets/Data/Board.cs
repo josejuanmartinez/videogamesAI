@@ -216,7 +216,7 @@ public class Board: MonoBehaviour
                 CharacterCardDetails character = (CharacterCardDetails)cardDetails;
                 success = false;
                 // THIS WILL ALREADY TAKE INTO ACCOUNT "ANY" hometowns
-                city = cityManager.GetCityOfPlayer(turn.GetCurrentPlayer(), character.homeTown);
+                city = cityManager.GetCityOfPlayer(turn.GetCurrentPlayer(), character.GetHomeTown());
                 if (city != null)
                 {
                     hex = city.GetHex();

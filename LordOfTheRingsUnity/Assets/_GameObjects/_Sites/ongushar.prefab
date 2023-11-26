@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 6961ee93ad6347945a63536acf7a922e, type: 3}
+  sprite: {fileID: 21300000, guid: f72a3aaa739099742b5e08891df75745, type: 3}
   descForAIGeneration: 
-  size: 4
+  size: 3
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: ongushar
-  regionId: brown_lands
+  isUnderground: 0
+  regionId: 23
   isHaven: 0
   playableObjects: 
   playableRings: 

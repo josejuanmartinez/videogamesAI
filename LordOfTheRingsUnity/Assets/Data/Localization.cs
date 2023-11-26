@@ -141,7 +141,7 @@ public class Localization: MonoBehaviour
                         charDetails.subRace != SubRacesEnum.None ? Localize(charDetails.race.ToString()) + " " + Localize(charDetails.subRace.ToString()) : Localize(charDetails.race.ToString()),
                         classes,
                         Localize("character_from", lan),
-                        Localize(charDetails.homeTown, lan),
+                        Localize(charDetails.GetHomeTown(), lan),
                         Localize("called", lan),
                         Localize(details.cardId, lan));
                     break;
@@ -219,9 +219,9 @@ public class Localization: MonoBehaviour
         if (locales.ContainsKey(lan))
         {
             text += string.Format("{0} {1} \"{2}\"",
-                Localize(details.regionId, lan),
+                Localize(details.regionId.ToString(), lan),
                 Localize("called", lan),
-                Localize(details.cityId, lan));
+                Localize(details.GetCityID(), lan));
 
             if(!string.IsNullOrEmpty(details.descForAIGeneration))
                 text += string.Format(": {0}", details.descForAIGeneration);

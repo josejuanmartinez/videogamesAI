@@ -62,10 +62,9 @@ MonoBehaviour:
   size: 1
   isHidden: 1
   hasPort: 1
-  hasHoard: 1
-  isUnderground: 1
-  cityId: caras_galadhon
-  regionId: wold_foothills
+  hasHoard: 0
+  isUnderground: 0
+  regionId: 11
   isHaven: 1
   playableObjects: 
   playableRings: 

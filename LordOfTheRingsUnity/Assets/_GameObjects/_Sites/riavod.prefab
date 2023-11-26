@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 47af13784dca2104caf876cf4d95a4f9, type: 3}
+  sprite: {fileID: 21300000, guid: 62bc5952aca9c5742bbaa3b8231f62dd, type: 3}
   descForAIGeneration: 
   size: 1
   isHidden: 0
   hasPort: 1
-  hasHoard: 0
-  isUnderground: 1
-  cityId: riavod
-  regionId: dorwinion
+  isUnderground: 0
+  regionId: 0
   isHaven: 1
   playableObjects: 
   playableRings: 

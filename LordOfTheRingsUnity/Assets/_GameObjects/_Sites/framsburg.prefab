@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 2
   isHidden: 0
   hasPort: 1
-  hasHoard: 0
-  isUnderground: 1
-  cityId: framsburg
-  regionId: anduin_vales
+  isUnderground: 0
+  regionId: 2
   isHaven: 0
   playableObjects: 
   playableRings: 

@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 19d91fc38f2d92649b3f7fdbab5cc9b2, type: 3}
+  sprite: {fileID: 21300000, guid: 72d68194faabf4546a774799a3949d8e, type: 3}
   descForAIGeneration: 
   size: 2
   isHidden: 0
   hasPort: 1
-  hasHoard: 0
-  isUnderground: 1
-  cityId: mathlaburg
-  regionId: anduin_vales
+  isUnderground: 0
+  regionId: 2
   isHaven: 0
   playableObjects: 
   playableRings: 

@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 1280fb997979a1541b6bb8935911a5b6, type: 3}
+  sprite: {fileID: 21300000, guid: 450ec82130420734590b95343a2dae99, type: 3}
   descForAIGeneration: 
   size: 1
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: durthang
-  regionId: udun
+  isUnderground: 0
+  regionId: 15
   isHaven: 1
   playableObjects: 
   playableRings: 

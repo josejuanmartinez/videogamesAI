@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 4
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: mountains_of_mirkwood
-  regionId: heart_of_mirkwood
+  isUnderground: 0
+  regionId: 3
   isHaven: 0
   playableObjects: 
   playableRings: 

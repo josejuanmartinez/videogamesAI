@@ -209,7 +209,7 @@ public class CameraController : MonoBehaviour
         if (cityDetails == null)
             return;
 
-        CityUI card = board.GetCityManager().GetCityUI(cityDetails.cityId);
+        CityUI card = board.GetCityManager().GetCityUI(cityDetails.GetCityID());
         if (card == null)
             return;
 

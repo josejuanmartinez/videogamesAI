@@ -225,7 +225,7 @@ public class SelectedItems : MonoBehaviour
         CityDetails cityDetails = GetSelectedCityDetails();
         if (cityDetails == null)
             return new HoveredCard();
-        return new HoveredCard(selection.GetOwner(), cityDetails.cityId, CardClass.Place);
+        return new HoveredCard(selection.GetOwner(), cityDetails.GetCityID(), CardClass.Place);
     }
     public HoveredCard GetSelectedCardDetailsAsHover()
     {

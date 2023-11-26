@@ -62,10 +62,9 @@ MonoBehaviour:
   size: 2
   isHidden: 0
   hasPort: 0
-  hasHoard: 1
-  isUnderground: 1
-  cityId: cameth_brin
-  regionId: rhudaur
+  hasHoard: 0
+  isUnderground: 0
+  regionId: 14
   isHaven: 1
   playableObjects: 
   playableRings: 

@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: e6d3f10a33b5daf48b44ea813534b8c1, type: 3}
+  sprite: {fileID: 21300000, guid: 5fba676a68ace714c920df4833d230ef, type: 3}
   descForAIGeneration: 
   size: 4
   isHidden: 1
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: wellinghall
-  regionId: fangorn
+  isUnderground: 0
+  regionId: 7
   isHaven: 0
   playableObjects: 
   playableRings: 

@@ -130,7 +130,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         alignment.sprite = spritesRepo.GetSprite(Nations.alignments[owner].ToString());
         alignment.enabled = IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
         haven.enabled = details.isHaven && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        cityName.text = IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()) ? GameObject.Find("Localization").GetComponent<Localization>().Localize(details.cityId) : StringConstants.hidden;
+        cityName.text = IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()) ? GameObject.Find("Localization").GetComponent<Localization>().Localize(details.GetCityID()) : StringConstants.hidden;
 
         goHealth.SetActive(IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()));
         initialized = true;
@@ -171,7 +171,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (Input.GetKeyUp(KeyCode.Escape))
             isClicked = false;
 
-        if (isClicked && selectedItems.GetSelectedCityDetails() != null && selectedItems.GetSelectedCityDetails().cityId != details.cityId)
+        if (isClicked && selectedItems.GetSelectedCityDetails() != null && selectedItems.GetSelectedCityDetails().GetCityID() != details.GetCityID())
             isClicked = false;
 
         displacement.transform.localPosition = new Vector3(0, DisplacementPixels.down, 0);
@@ -199,7 +199,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             board.SelectHex(hex);
             selectedItems.SelectCityUI(this);
         }            
-        else if (selectedItems.GetSelectedCityDetails()!= null && selectedItems.GetSelectedCityDetails().cityId != details.cityId)
+        else if (selectedItems.GetSelectedCityDetails()!= null && selectedItems.GetSelectedCityDetails().GetCityID() != details.GetCityID())
         {
             board.SelectHex(Board.NULL);
             selectedItems.UnselectCityDetails();
@@ -239,12 +239,12 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             mouse.ChangeCursor("clickable");
         else
             mouse.ChangeCursor("unclickable");
-        placeDeckManager.SetCardToShow(new HoveredCard(owner, details.cityId, CardClass.Place));
+        placeDeckManager.SetCardToShow(new HoveredCard(owner, details.GetCityID(), CardClass.Place));
     }
     public void RemoveHoverCity()
     {
         mouse.RemoveCursor();
-        placeDeckManager.RemoveCardToShow(new HoveredCard(owner, details.cityId, CardClass.Place));
+        placeDeckManager.RemoveCardToShow(new HoveredCard(owner, details.GetCityID(), CardClass.Place));
     }
     public float GetDistanceTo(Vector2Int hex)
     {

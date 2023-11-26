@@ -57,15 +57,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 71b6174c6b75ce84eb3b5af4db7c6c81, type: 3}
+  sprite: {fileID: 21300000, guid: 3dec147ea752f1f45b2aaa4c9d58849e, type: 3}
   descForAIGeneration: 
   size: 4
   isHidden: 0
   hasPort: 0
   hasHoard: 0
-  isUnderground: 1
-  cityId: amon_lhaw
-  regionId: dagorlad
+  isUnderground: 0
+  regionId: 23
   isHaven: 0
   playableObjects: 
   playableRings: 

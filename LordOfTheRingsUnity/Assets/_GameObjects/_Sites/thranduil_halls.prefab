@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: bb1539a485a8ffc43a6c0dd665278d80, type: 3}
+  sprite: {fileID: 21300000, guid: 2604b8714816bc84389f9a01fef1d3d1, type: 3}
   descForAIGeneration: 
   size: 1
-  isHidden: 1
+  isHidden: 0
   hasPort: 0
-  hasHoard: 1
-  isUnderground: 1
-  cityId: thranduil_halls
-  regionId: woodland_realm
+  isUnderground: 0
+  regionId: 3
   isHaven: 1
   playableObjects: 
   playableRings: 

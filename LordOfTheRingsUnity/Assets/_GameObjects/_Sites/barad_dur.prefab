@@ -59,13 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 57113d754ebea2947aa86097a3567b4a, type: 3}
   descForAIGeneration: 
-  size: 2
+  size: 0
   isHidden: 0
   hasPort: 0
   hasHoard: 0
-  isUnderground: 1
-  cityId: barad_dur
-  regionId: gorgoroth
+  isUnderground: 0
+  regionId: 6
   isHaven: 0
   playableObjects: 
   playableRings: 

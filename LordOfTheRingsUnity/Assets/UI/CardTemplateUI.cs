@@ -384,7 +384,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         missingResources = new Resources(0, 0, 0, 0, 0, 0, 0, 0);
         conditionsFailed = new();
 
-        CityUI cityUI = board.GetCityManager().GetCityUI(cityDetails.cityId);
+        CityUI cityUI = board.GetCityManager().GetCityUI(cityDetails.GetCityID());
         if (cityUI == null)
             return false;
 
@@ -396,7 +396,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         for (int i = 0; i < children; i++)
             DestroyImmediate(descriptionLayout.transform.GetChild(0).gameObject);
 
-        quote.text = GameObject.Find("Localization").GetComponent<Localization>().LocalizeQuote(cityDetails.cityId);
+        quote.text = GameObject.Find("Localization").GetComponent<Localization>().LocalizeQuote(cityDetails.GetCityID());
 
         HideProbability();
         button.enabled = false;
@@ -406,14 +406,14 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         defenceGroup.SetActive(false);
         influenceGroup.SetActive(false);
 
-        cardName = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.cityId);
+        cardName = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.GetCityID());
         image.sprite = cityDetails.GetSprite();
         animate = cardName.Length > ellipsisSize;
         if (!animate)
             title.text = cardName;
 
         hometown.enabled = true;
-        hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.regionId);
+        hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.regionId.ToString());
 
 
         if (!cityUI.IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()))
@@ -431,8 +431,6 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             AddDescriptionSlot("city_visibility", "hidden");
         if(cityDetails.hasPort)
             AddDescriptionSlot("port", "has_port");
-        if(cityDetails.hasHoard)
-            AddDescriptionSlot("hoard", "has_hoard");
 
         ClearAllRequirements();
         if(!isHover)
@@ -443,17 +441,17 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             string.IsNullOrEmpty(quote.text) &&
             !contentGenerator.IsSleeping() &&
             !contentGenerator.Generating() &&
-            contentGenerator.StillNotGenerated(cityDetails.cityId) &&
-            !contentGenerator.Ignored(cityDetails.cityId))
+            contentGenerator.StillNotGenerated(cityDetails.GetCityID()) &&
+            !contentGenerator.Ignored(cityDetails.GetCityID()))
         {
-            if (UnityEditor.EditorUtility.DisplayDialog("Generate with AI?", cityDetails.cityId, "OK", "Ignore"))
-                contentGenerator.Generate(cityDetails.cityId, GameObject.Find("Localization").GetComponent<Localization>().CreateDescriptionForGeneration(cityDetails));
+            if (UnityEditor.EditorUtility.DisplayDialog("Generate with AI?", cityDetails.GetCityID(), "OK", "Ignore"))
+                contentGenerator.Generate(cityDetails.GetCityID(), GameObject.Find("Localization").GetComponent<Localization>().CreateDescriptionForGeneration(cityDetails));
             else
             {
-                if (UnityEditor.EditorUtility.DisplayDialog("Sleep?", cityDetails.cityId, "OK", "No"))
-                    contentGenerator.AddIgnore(cityDetails.cityId, true);
+                if (UnityEditor.EditorUtility.DisplayDialog("Sleep?", cityDetails.GetCityID(), "OK", "No"))
+                    contentGenerator.AddIgnore(cityDetails.GetCityID(), true);
                 else
-                    contentGenerator.AddIgnore(cityDetails.cityId, false);
+                    contentGenerator.AddIgnore(cityDetails.GetCityID(), false);
             }
 
         }
@@ -562,7 +560,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     void SetAdditionalCharacterInformation(CharacterCardDetails charDetails)
     {
         hometown.enabled = true;
-        hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(charDetails.homeTown);
+        hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(charDetails.GetHomeTown());
 
         AddDescriptionSlot("race", charDetails.GetRaceSubRaceStrings());
         List<string> classes = charDetails.GetClassesStrings();
@@ -583,7 +581,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             else if(cityDetails != null)
             {
                 Debug.Log("Initializing " + cityDetails.name);
-                Initialize(owner, cityDetails.cityId, CardClass.Place, isHover);
+                Initialize(owner, cityDetails.GetCityID(), CardClass.Place, isHover);
                 cardDetails = null;
             }
             return;

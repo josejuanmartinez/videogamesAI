@@ -18,12 +18,10 @@ public class CardDetails : MonoBehaviour
 
     private Game game;
     private bool isInitialized;
-    private bool isAwaken = false;
 
     void Awake()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
-        isAwaken = true;
         isInitialized = false;
     }
 

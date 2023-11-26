@@ -64,8 +64,7 @@ MonoBehaviour:
   hasPort: 0
   hasHoard: 0
   isUnderground: 1
-  cityId: barak_shathur
-  regionId: iron_hills
+  regionId: 8
   isHaven: 0
   playableObjects: 
   playableRings: 

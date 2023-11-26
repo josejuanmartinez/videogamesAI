@@ -63,9 +63,8 @@ MonoBehaviour:
   isHidden: 0
   hasPort: 0
   hasHoard: 0
-  isUnderground: 1
-  cityId: buth_ovaisa
-  regionId: dagorlad
+  isUnderground: 0
+  regionId: 23
   isHaven: 0
   playableObjects: 
   playableRings: 

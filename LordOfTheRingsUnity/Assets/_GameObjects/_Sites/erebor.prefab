@@ -62,11 +62,9 @@ MonoBehaviour:
   size: 2
   isHidden: 0
   hasPort: 0
-  hasHoard: 1
   isUnderground: 1
-  cityId: erebor
-  regionId: northern_rhovanion
-  isHaven: 1
+  regionId: 22
+  isHaven: 0
   playableObjects: 
   playableRings: 
   terrain: 0

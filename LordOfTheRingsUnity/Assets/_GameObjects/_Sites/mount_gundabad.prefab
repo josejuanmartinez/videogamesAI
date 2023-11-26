@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 1
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
   isUnderground: 1
-  cityId: mount_gundabad
-  regionId: gundabad
+  regionId: 2
   isHaven: 0
   playableObjects: 
   playableRings: 

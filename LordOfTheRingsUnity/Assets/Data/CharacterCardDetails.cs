@@ -12,7 +12,6 @@ public class CharacterCardDetails : CardDetails
     public List<CharacterClassEnum> classes;
     public List<CharacterAbilitiesEnum> abilities;
     public bool isImmovable;
-    public string homeTown;
 
     public short prowess;
     public short defence;

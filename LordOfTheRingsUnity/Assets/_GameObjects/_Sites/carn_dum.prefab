@@ -59,14 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: a8c1f07c0de09b54f9f089c06eb0c812, type: 3}
   descForAIGeneration: 
-  size: 2
+  size: 1
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: carn_dum
-  regionId: angmar
-  isHaven: 0
+  isUnderground: 0
+  regionId: 9
+  isHaven: 1
   playableObjects: 
   playableRings: 
   terrain: 0

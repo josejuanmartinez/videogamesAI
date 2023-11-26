@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 263e426178e6f3e42b08eb52d1c4bb2b, type: 3}
+  sprite: {fileID: 21300000, guid: d321ccca8baeac34e8884ecc0a73f6db, type: 3}
   descForAIGeneration: 
   size: 1
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
   isUnderground: 1
-  cityId: minas_morgul
-  regionId: ungol
+  regionId: 18
   isHaven: 1
   playableObjects: 
   playableRings: 

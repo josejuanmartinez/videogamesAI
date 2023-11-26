@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 1
   isHidden: 0
   hasPort: 0
-  hasHoard: 1
   isUnderground: 1
-  cityId: goblin_gate
-  regionId: high_pass
+  regionId: 20
   isHaven: 0
   playableObjects: 
   playableRings: 

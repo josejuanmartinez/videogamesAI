@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 1
   isHidden: 0
   hasPort: 0
-  hasHoard: 1
   isUnderground: 1
-  cityId: iron_hills
-  regionId: iron_hills
+  regionId: 8
   isHaven: 1
   playableObjects: 
   playableRings: 

@@ -14,15 +14,14 @@ public class CityDetails: MonoBehaviour
 
     public bool isHidden = false;
     public bool hasPort = false;
-    public bool hasHoard = false;
     public bool isUnderground = false;
 
-    public string cityId;
-    public string regionId;
+    
+    public NationRegionsEnum regionId;
     public bool isHaven;
 
     /** AUTOMATICALLY GENERATED */
-    [Header("Automatically Generated")]
+    [Header("Automatically Generated")]    
     [SerializeField]
     private List<ObjectType> playableObjects;
     [SerializeField]
@@ -31,15 +30,24 @@ public class CityDetails: MonoBehaviour
     private TerrainsEnum terrain;
     [SerializeField]
     private CardTypesEnum cardType;
+
+    private string cityId;
     private Resources production;
 
+    
     public void Initialize(TerrainsEnum terrain, CardTypesEnum cardType)
     {
         this.terrain = terrain;
         this.cardType = cardType;
+        cityId = gameObject.name;
         GenerateProduction();
         GeneratePlayableObjects();
         GeneratePlayableRings();
+    }
+
+    public string GetCityID()
+    {
+        return cityId;
     }
 
     public Resources GetCityProduction()

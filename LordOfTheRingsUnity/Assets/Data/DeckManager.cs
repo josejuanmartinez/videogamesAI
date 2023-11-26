@@ -314,8 +314,8 @@ public class DeckManager : MonoBehaviour
         if (character  == null) 
             return null;
 
-        if (board.GetCityManager().GetCityOfPlayer(owner, character.homeTown) != null)
-            return character.homeTown;
+        if (board.GetCityManager().GetCityOfPlayer(owner, character.GetHomeTown()) != null)
+            return character.GetHomeTown();
 
         return null;
     }

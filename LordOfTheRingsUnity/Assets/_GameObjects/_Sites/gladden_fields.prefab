@@ -59,13 +59,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8909de695972a8d4f901ff01c7f61e30, type: 3}
   descForAIGeneration: 
-  size: 0
+  size: 4
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: gladden_fields
-  regionId: anduin_values
+  isUnderground: 0
+  regionId: 2
   isHaven: 0
   playableObjects: 
   playableRings: 

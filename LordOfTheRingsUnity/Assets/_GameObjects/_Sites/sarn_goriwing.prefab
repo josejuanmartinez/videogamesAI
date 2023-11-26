@@ -60,12 +60,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: ce1f71bee7d96854481504a5911a24c1, type: 3}
   descForAIGeneration: 
   size: 2
-  isHidden: 1
+  isHidden: 0
   hasPort: 0
-  hasHoard: 0
   isUnderground: 1
-  cityId: sarn_goriwing
-  regionId: heart_of_mirkwood
+  regionId: 3
   isHaven: 0
   playableObjects: 
   playableRings: 

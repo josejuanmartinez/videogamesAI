@@ -62,11 +62,9 @@ MonoBehaviour:
   size: 4
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: tower_of_ecthelion
-  regionId: gondor
-  isHaven: 0
+  isUnderground: 0
+  regionId: 16
+  isHaven: 1
   playableObjects: 
   playableRings: 
   terrain: 0

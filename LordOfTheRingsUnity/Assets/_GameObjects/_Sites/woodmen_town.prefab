@@ -59,14 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 89e7f816db7e642478ff7ba664fa9d94, type: 3}
   descForAIGeneration: 
-  size: 3
+  size: 2
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: woodmen_town
-  regionId: western_mirkwood
-  isHaven: 0
+  isUnderground: 0
+  regionId: 1
+  isHaven: 1
   playableObjects: 
   playableRings: 
   terrain: 0

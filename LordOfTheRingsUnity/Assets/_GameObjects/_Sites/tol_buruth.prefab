@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 4f35359f7fea90a449d0cb8fd434a3e8, type: 3}
+  sprite: {fileID: 21300000, guid: 61a4eb17e8d235e4a9da88608722dc03, type: 3}
   descForAIGeneration: 
   size: 3
   isHidden: 1
   hasPort: 1
-  hasHoard: 1
-  isUnderground: 1
-  cityId: tol_buruth
-  regionId: rhun
+  isUnderground: 0
+  regionId: 0
   isHaven: 1
   playableObjects: 
   playableRings: 

@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 4
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: dead_marshes
-  regionId: dagorlad
+  isUnderground: 0
+  regionId: 15
   isHaven: 0
   playableObjects: 
   playableRings: 

@@ -63,9 +63,8 @@ MonoBehaviour:
   isHidden: 0
   hasPort: 0
   hasHoard: 0
-  isUnderground: 1
-  cityId: caradhras
-  regionId: redhorn_pass
+  isUnderground: 0
+  regionId: 28
   isHaven: 0
   playableObjects: 
   playableRings: 

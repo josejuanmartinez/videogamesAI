@@ -71,7 +71,7 @@ public class CombatPopupManager : Popup
 
         if (cityDetails == null)
             return false;
-        city = board.GetCityManager().GetCityUI(cityDetails.cityId);
+        city = board.GetCityManager().GetCityUI(cityDetails.GetCityID());
         if (!leaderCardDetails.IsClassOf(CardClass.Character) && !leaderCardDetails.IsClassOf(CardClass.HazardCreature))
             return false;
 
@@ -85,16 +85,16 @@ public class CombatPopupManager : Popup
         if (company == null || company.Count < 1)
             return false;
 
-        title.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.cityId);
+        title.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.GetCityID());
         citySprite.sprite = cityDetails.sprite;
 
-        List<string> attacks = board.GetCityManager().GetCityUI(cityDetails.cityId).GetAutomaticAttacks(leader.GetOwner());
+        List<string> attacks = board.GetCityManager().GetCityUI(cityDetails.GetCityID()).GetAutomaticAttacks(leader.GetOwner());
         if(attacks.Count < 1)
             return false;
 
         attackersNum = attacks.Count;
 
-        NationsEnum ownerOfCity = board.GetCityManager().GetCityOwner(cityDetails.cityId);
+        NationsEnum ownerOfCity = board.GetCityManager().GetCityOwner(cityDetails.GetCityID());
 
         short counter = 0;
         foreach (string attack in attacks)

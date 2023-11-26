@@ -62,11 +62,9 @@ MonoBehaviour:
   size: 1
   isHidden: 0
   hasPort: 1
-  hasHoard: 0
-  isUnderground: 1
-  cityId: shrel_kain
-  regionId: dorwinion
-  isHaven: 0
+  isUnderground: 0
+  regionId: 0
+  isHaven: 1
   playableObjects: 
   playableRings: 
   terrain: 0

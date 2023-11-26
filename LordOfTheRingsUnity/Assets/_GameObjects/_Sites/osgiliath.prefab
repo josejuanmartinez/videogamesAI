@@ -57,15 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 39c343595b81d954da79453b86da6ef7, type: 3}
+  sprite: {fileID: 21300000, guid: f26e51f1a96a08d4aa218db6ceb4026d, type: 3}
   descForAIGeneration: 
   size: 1
   isHidden: 0
-  hasPort: 0
-  hasHoard: 0
-  isUnderground: 1
-  cityId: osgiliath
-  regionId: ithilien
+  hasPort: 1
+  isUnderground: 0
+  regionId: 16
   isHaven: 0
   playableObjects: 
   playableRings: 

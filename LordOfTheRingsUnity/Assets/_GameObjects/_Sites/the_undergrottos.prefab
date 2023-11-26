@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 4
   isHidden: 1
   hasPort: 0
-  hasHoard: 0
   isUnderground: 1
-  cityId: the_undergrottos
-  regionId: under_deeps
+  regionId: 20
   isHaven: 0
   playableObjects: 
   playableRings: 

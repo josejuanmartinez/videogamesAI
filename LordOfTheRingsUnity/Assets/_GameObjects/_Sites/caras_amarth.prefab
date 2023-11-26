@@ -63,9 +63,8 @@ MonoBehaviour:
   isHidden: 0
   hasPort: 0
   hasHoard: 0
-  isUnderground: 1
-  cityId: caras_amarth
-  regionId: western_mirkwood
+  isUnderground: 0
+  regionId: 3
   isHaven: 0
   playableObjects: 
   playableRings: 

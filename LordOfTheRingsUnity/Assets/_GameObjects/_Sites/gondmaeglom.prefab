@@ -62,10 +62,8 @@ MonoBehaviour:
   size: 4
   isHidden: 0
   hasPort: 0
-  hasHoard: 1
   isUnderground: 1
-  cityId: gondmaeglom
-  regionId: grey_mopuntain_narrows
+  regionId: 13
   isHaven: 0
   playableObjects: 
   playableRings: 

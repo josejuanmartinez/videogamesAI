@@ -77,7 +77,7 @@ public class PlaceDeck : MonoBehaviour
             if (cardTemplate.GetCardDetails() != null)
                 shownCard = cardTemplate.GetCardDetails().cardId;
             else if (cardTemplate.GetCityDetails() != null)
-                shownCard = cardTemplate.GetCityDetails().cityId;
+                shownCard = cardTemplate.GetCityDetails().GetCityID();
 
             if (shownCard == null || (shownCard != null && shownCard != cardToShow.GetCardId()))
             {
@@ -548,7 +548,7 @@ public class PlaceDeck : MonoBehaviour
         };
         List<OkOption> options = new() { option1 };
 
-        inputPopupManager.Initialize(GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.cityId), GameObject.Find("Localization").GetComponent<Localization>().Localize("do_you_want_to_enter_this_place"), cityDetails.sprite, options, Cancel);
+        inputPopupManager.Initialize(GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.GetCityID()), GameObject.Find("Localization").GetComponent<Localization>().Localize("do_you_want_to_enter_this_place"), cityDetails.sprite, options, Cancel);
         cardTemplate.button.enabled = false;
     }
 
