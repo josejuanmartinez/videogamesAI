@@ -10,5 +10,6 @@ public enum HazardAbilitiesEnum
     Ranged,
     Bleeding,
     RevealsCard,
-    Sieges
+    Sieges,
+    Fire
 }

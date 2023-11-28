@@ -38,5 +38,6 @@ public enum SubRacesEnum
     BlackNumenorean,
     Haradrim,
     WoodElf,
-    Woodmen
+    Woodmen,
+    UrukHai
 }

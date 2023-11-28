@@ -63,16 +63,14 @@ MonoBehaviour:
     attacking Ithilien
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: 
   isAvatar: 1
   race: 5
   subRace: 0
   classes: 0000000002000000
   abilities: 080000000d000000
-  isImmovable: 1
-  homeTown: durthang
+  isImmovable: 0
   prowess: 9
   defence: 12
   influence: 3
-  faction: 50
+  faction: 74

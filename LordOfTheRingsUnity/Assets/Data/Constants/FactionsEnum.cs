@@ -61,7 +61,7 @@ public enum FactionsEnum
     RidersOfRohan,
     RoyalNavy,
     SlavesOfNurn,
-    Southrons,
+    OrcsOfNurn,
     ThievesOfTharbad,
     TowerGuardOfMinasTirith,
     WildHorses,
@@ -74,5 +74,7 @@ public enum FactionsEnum
     ElvesOfRivendel,
     MorgulOrcs,
     OrcsOfUngol,
-    BlackNumenorean
+    BlackNumenorean,
+    OrcsOfIthilien,
+    Trolls
 }

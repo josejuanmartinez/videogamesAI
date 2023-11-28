@@ -57,13 +57,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6711c7d85a71564d872ec7fc842c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: e31fdcfe5686dfd44a7eeabb29d04dd1, type: 3}
+  cardSprite: {fileID: 21300000, guid: 1de18edfa53b73d498182faaa50068c0, type: 3}
   cardId: cancel
   descForAIGeneration: Attempt to cancel and attack of a foe
   cardClass: 5
   isUnique: 0
-  victoryPoints: 0
-  corruption: 0
+  hometown: 
   abilities: 03000000
   eventType: 0
-  playableAtCity: []

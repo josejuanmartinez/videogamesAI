@@ -57,13 +57,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6711c7d85a71564d872ec7fc842c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: aa96645bcbbda524ebe90ac626ce6097, type: 3}
+  cardSprite: {fileID: 21300000, guid: e4951bce733b80544b9c612cf3873d1d, type: 3}
   cardId: steal_resources
   descForAIGeneration: Attempt to steal resources from a settlement
   cardClass: 5
   isUnique: 0
-  victoryPoints: 0
-  corruption: 0
+  hometown: 
   abilities: 02000000
   eventType: 0
-  playableAtCity: []

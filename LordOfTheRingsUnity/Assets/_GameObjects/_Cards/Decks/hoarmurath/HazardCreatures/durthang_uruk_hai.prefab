@@ -63,8 +63,9 @@ MonoBehaviour:
     to attack Ithilien forests
   cardClass: 6
   isUnique: 0
+  hometown: 
   race: 6
   prowess: 13
   defence: 0
   cardTypes: 0200000002000000020000000400000004000000040000000200000002000000
-  hazardAbilities: 
+  hazardAbilities: 00000000

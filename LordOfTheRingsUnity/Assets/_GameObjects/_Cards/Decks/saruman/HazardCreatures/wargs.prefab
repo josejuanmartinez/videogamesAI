@@ -57,11 +57,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 87cf65320d1e0e142b4e3fc8c460fe06, type: 3}
+  cardSprite: {fileID: 21300000, guid: 3cc00042426c2134cbc71448ce6cf99c, type: 3}
   cardId: wargs
   descForAIGeneration: Giant wolves called "wargs"
   cardClass: 6
   isUnique: 0
+  hometown: 
   race: 11
   prowess: 10
   defence: 0

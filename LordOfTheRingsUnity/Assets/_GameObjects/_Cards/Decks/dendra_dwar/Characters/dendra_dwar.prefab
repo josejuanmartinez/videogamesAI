@@ -62,16 +62,14 @@ MonoBehaviour:
   descForAIGeneration: The Dog Lord Commanding Nazgul from The Black Gate
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: 
   isAvatar: 1
   race: 5
   subRace: 0
   classes: 00000000
   abilities: 0800000000000000
   isImmovable: 1
-  homeTown: morannon
   prowess: 9
   defence: 12
   influence: 3
-  faction: 54
+  faction: 22

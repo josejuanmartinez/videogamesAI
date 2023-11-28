@@ -57,13 +57,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6711c7d85a71564d872ec7fc842c23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: c5c6a2032f2a5d64293facfd25d00163, type: 3}
+  cardSprite: {fileID: 21300000, guid: 18cd3f3129e0fcb448e089114d55bfa5, type: 3}
   cardId: sabotage
   descForAIGeneration: Attempt to sabotage the production of a settlement
   cardClass: 5
   isUnique: 0
-  victoryPoints: 0
-  corruption: 0
+  hometown: 
   abilities: 00000000
   eventType: 0
-  playableAtCity: []

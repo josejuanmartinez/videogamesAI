@@ -62,8 +62,9 @@ MonoBehaviour:
   descForAIGeneration: 
   cardClass: 6
   isUnique: 0
+  hometown: 
   race: 12
   prowess: 12
   defence: 0
-  cardTypes: 000000000000000000000000000000000000000000000000
+  cardTypes: 020000000200000002000000020000000200000002000000
   hazardAbilities: 0a000000
