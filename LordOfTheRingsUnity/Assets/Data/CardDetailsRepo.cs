@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class CardDetailsRepo : MonoBehaviour
 {
-    [Header("Deck Cards by Player")]
-    public List<InitialDeck> nationsInitialDecks;
-    
     [Header("Initial Cities")]
     public List<GameObject> cityDetailsPrefabs;
 
+    private List<InitialDeck> nationsInitialDecks;
     private List<CardDetails> allCardDetails;
     private Dictionary<NationsEnum, List<string>> cardNationDictionary;
     private Dictionary<NationsEnum, List<CardDetails>> cardNationDetailsDictionary;
@@ -26,10 +24,14 @@ public class CardDetailsRepo : MonoBehaviour
         cardNationDetailsDictionary = new();
         isInitialized = false;
         cardsPendingInitialization = new();
+        nationsInitialDecks = new();
     }
 
     public void Initialize()
     {
+        for(int i=0; i<transform.childCount; i++)
+            nationsInitialDecks.Add(transform.GetChild(i).GetComponent<InitialDeck>());
+        
         foreach (NationsEnum nation in Enum.GetValues(typeof(NationsEnum)))
         {
             InitialDeck initial = nationsInitialDecks.Find(x => x.owner == nation);
