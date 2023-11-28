@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: Smaug the golden, the Dragon in the Lonely Mountain
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: erebor
   isAvatar: 1
   race: 18
   subRace: 4
   classes: 0000000003000000
   abilities: 0600000004000000
   isImmovable: 1
-  homeTown: the_lonely_mountain
   prowess: 11
   defence: 8
   influence: 5

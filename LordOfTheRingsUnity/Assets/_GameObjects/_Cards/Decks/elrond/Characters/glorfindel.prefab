@@ -55,15 +55,13 @@ MonoBehaviour:
     the House of the Golden Flower in Gondolin
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: rivendell
   isAvatar: 0
   race: 2
   subRace: 3
   classes: 0000000002000000
   abilities: 0000000008000000
   isImmovable: 0
-  homeTown: rivendell
   prowess: 7
   defence: 9
   influence: 2

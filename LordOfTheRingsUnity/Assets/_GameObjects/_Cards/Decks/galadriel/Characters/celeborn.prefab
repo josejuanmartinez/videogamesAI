@@ -55,15 +55,13 @@ MonoBehaviour:
     Golden Wood"
   cardClass: 1
   isUnique: 1
-  victoryPoints: 1
-  corruption: 0
+  hometown: caras_galadhon
   isAvatar: 0
   race: 2
   subRace: 2
   classes: 0000000003000000
   abilities: 00000000
   isImmovable: 0
-  homeTown: lorien
   prowess: 6
   defence: 9
   influence: 2

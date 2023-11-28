@@ -57,13 +57,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 66e5bae2b542a1243ac5d89b049fb78d, type: 3}
+  cardSprite: {fileID: 21300000, guid: 4467cb38e58b50741a7e0503522120f3, type: 3}
   cardId: easterling_cataphracts
   descForAIGeneration: Easterling Cataphracts, heavy pike cavalry from Rhun
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
+  hometown: 
   race: 0
   prowess: 12
   defence: 0

@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: The Balrog of Moria, Durin's Bane
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: khazad_dum
   isAvatar: 1
   race: 10
   subRace: 0
   classes: 00000000
   abilities: 0600000000000000
   isImmovable: 1
-  homeTown: moria
   prowess: 8
   defence: 11
   influence: 6

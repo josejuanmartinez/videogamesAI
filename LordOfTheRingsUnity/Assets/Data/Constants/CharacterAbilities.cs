@@ -16,5 +16,7 @@ public enum CharacterAbilitiesEnum
     CanUseElementalMagic,
     CanUseNatureMagic,
     CanUseSorcery,
-    Shipwright
+    Shipwright,
+    Hides,
+    BonusToNazgul
 }

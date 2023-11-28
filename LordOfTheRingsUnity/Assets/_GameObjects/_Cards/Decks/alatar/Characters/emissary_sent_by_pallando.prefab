@@ -62,12 +62,10 @@ MonoBehaviour:
   descForAIGeneration: An emissary from Khand managing relationships with easterlings
   cardClass: 1
   isUnique: 0
-  victoryPoints: 1
-  corruption: 1
+  hometown: an_karagmir
   allyClass: 3
   race: 0
   subRace: 8
   abilities: 08000000
-  homeTown: ovatharac
   prowess: 2
   defence: 7

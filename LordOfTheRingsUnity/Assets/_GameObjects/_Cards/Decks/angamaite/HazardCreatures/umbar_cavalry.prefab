@@ -57,14 +57,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 16aa55590b8868b4f82d979a051b0f30, type: 3}
+  cardSprite: {fileID: 21300000, guid: 3b0724ea4b628e242a50f1fe8ce07470, type: 3}
   cardId: umbar_cavalry
-  descForAIGeneration: Dark numenorean elite cavalry from Umbar
+  descForAIGeneration: Dark numenorean horsemen from Umbar
   cardClass: 6
   isUnique: 0
   hometown: 
   race: 0
-  prowess: 12
+  prowess: 13
   defence: 0
-  cardTypes: 0100000001000000010000000100000001000000040000000400000004000000
+  cardTypes: 0100000001000000010000000100000001000000010000000400000004000000040000000400000004000000
   hazardAbilities: 00000000

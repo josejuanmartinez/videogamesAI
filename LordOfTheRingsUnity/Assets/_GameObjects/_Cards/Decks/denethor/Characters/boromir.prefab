@@ -57,21 +57,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd38934e901bb94193f5bb3d5e44ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 14422d34b8e2e2a48ad7abb98b300a79, type: 3}
+  cardSprite: {fileID: 21300000, guid: 13c9f679f907c524ab2b89c88fe4d7f8, type: 3}
   cardId: boromir
   descForAIGeneration: Boromir, commander of Gondorian armies, son of the Ruling
     Steward of Gondor Denethor
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: minas_tirith
   isAvatar: 0
   race: 0
   subRace: 0
   classes: 00000000
   abilities: 00000000
   isImmovable: 0
-  homeTown: minas_tirith
   prowess: 6
   defence: 9
   influence: 3

@@ -62,12 +62,10 @@ MonoBehaviour:
   descForAIGeneration: An scout exploring East of Middle Earth
   cardClass: 1
   isUnique: 0
-  victoryPoints: 1
-  corruption: 1
+  hometown: mistrand
   allyClass: 1
   race: 0
   subRace: 8
   abilities: 
-  homeTown: riavod
   prowess: 3
   defence: 7

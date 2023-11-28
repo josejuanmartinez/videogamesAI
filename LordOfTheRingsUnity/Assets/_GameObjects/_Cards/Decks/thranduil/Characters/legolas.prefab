@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: Legolas the archer of Mirkwood, son of Thranduil
   cardClass: 1
   isUnique: 1
-  victoryPoints: 1
-  corruption: 0
+  hometown: thranduil_halls
   isAvatar: 0
   race: 2
   subRace: 11
   classes: 0000000001000000
   abilities: 00000000
   isImmovable: 0
-  homeTown: thranduil_halls
   prowess: 5
   defence: 8
   influence: 2

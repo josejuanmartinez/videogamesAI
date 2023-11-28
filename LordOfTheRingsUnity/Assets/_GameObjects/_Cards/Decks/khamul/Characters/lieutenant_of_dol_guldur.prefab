@@ -51,29 +51,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 4c1d0e4cf17dba9419c8a29a796b97fe, type: 3}
   cardId: lieutenant_of_dol_guldur
-  initialOwner: 2
+  descForAIGeneration: 
   cardClass: 1
   isUnique: 0
-  victoryPoints: 3
-  corruption: 0
-  requiredFood: 0
-  requiredProd: 0
-  requiredGold: 40
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
+  hometown: dol_guldur
   isAvatar: 0
   race: 7
   subRace: 7
   classes: 00000000
   abilities: 01000000
   isImmovable: 0
-  homeTown: dol_guldur
   prowess: 7
   defence: 9
-  mind: 9
   influence: 3
   faction: 0
 --- !u!222 &4721810464861604577

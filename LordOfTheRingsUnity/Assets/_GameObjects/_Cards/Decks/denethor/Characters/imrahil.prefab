@@ -62,15 +62,13 @@ MonoBehaviour:
   descForAIGeneration: Imrahil, prince and commander of the Knights of Dol Amroth
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: dol_amroth
   isAvatar: 0
   race: 0
   subRace: 0
   classes: 0000000003000000
   abilities: 0000000008000000
   isImmovable: 0
-  homeTown: dol_amroth
   prowess: 5
   defence: 8
   influence: 3

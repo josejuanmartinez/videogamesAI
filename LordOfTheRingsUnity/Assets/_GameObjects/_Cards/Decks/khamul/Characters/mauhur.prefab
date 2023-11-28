@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: An Orc Captain serving the nazgul Khamul in Dol Guldur
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: sarn_goriwing
   isAvatar: 0
   race: 6
   subRace: 0
   classes: 0000000001000000
   abilities: 
   isImmovable: 0
-  homeTown: sarn_goriwing
   prowess: 6
   defence: 9
   influence: 0

@@ -63,7 +63,7 @@ MonoBehaviour:
     Pass to Mordor
   cardClass: 1
   isUnique: 1
-  hometown: 
+  hometown: cirith_ungol
   isAvatar: 1
   race: 5
   subRace: 0

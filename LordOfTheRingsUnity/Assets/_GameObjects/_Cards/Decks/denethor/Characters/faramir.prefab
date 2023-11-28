@@ -63,15 +63,13 @@ MonoBehaviour:
     Ithilien with Mordor
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: bar_en_tinnen
   isAvatar: 0
   race: 0
   subRace: 0
   classes: 0000000001000000
   abilities: 00000000
   isImmovable: 0
-  homeTown: bar_en_tinnen
   prowess: 5
   defence: 9
   influence: 3

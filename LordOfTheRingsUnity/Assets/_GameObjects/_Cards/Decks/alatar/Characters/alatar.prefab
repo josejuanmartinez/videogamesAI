@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: Alatar, one of the Blue Wizards sent to Middle Earth
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: mithlond
   isAvatar: 1
   race: 9
   subRace: 0
   classes: 0200000003000000
   abilities: 0b0000000c0000000e000000
   isImmovable: 0
-  homeTown: grey_havens
   prowess: 6
   defence: 9
   influence: 12

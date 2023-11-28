@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: master shipwright of the haven of Edhellond.
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: edhellond
   isAvatar: 0
   race: 2
   subRace: 2
   classes: 01000000
   abilities: 10000000
   isImmovable: 0
-  homeTown: edhellond
   prowess: 3
   defence: 7
   influence: 1

@@ -63,7 +63,7 @@ MonoBehaviour:
     Uruk, Captain of the Tower of Cirith Ungol.
   cardClass: 1
   isUnique: 1
-  hometown: 
+  hometown: cirith_ungol
   isAvatar: 1
   race: 6
   subRace: 13

@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: Elrond Half-Elven, Lord of Rivendell.
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: rivendell
   isAvatar: 1
   race: 2
   subRace: 3
   classes: 000000000300000002000000
   abilities: 0100000000000000
-  isImmovable: 0
-  homeTown: rivendell
+  isImmovable: 1
   prowess: 6
   defence: 8
   influence: 5

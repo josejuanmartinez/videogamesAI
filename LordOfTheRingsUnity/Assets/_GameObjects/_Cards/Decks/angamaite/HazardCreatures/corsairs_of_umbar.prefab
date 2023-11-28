@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 2e5fe1761e438744a90645bdaed2ff5a, type: 3}
+  cardSprite: {fileID: 21300000, guid: f0bfb1541dcdb7746b8d21783084b6e6, type: 3}
   cardId: corsairs_of_umbar
   descForAIGeneration: Corsair (Raider Pirate) from Umbar
   cardClass: 6

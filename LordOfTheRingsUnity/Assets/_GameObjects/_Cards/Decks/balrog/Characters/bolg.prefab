@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: Orc leader of the Misty Mountains, son of Azog.
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: khazad_dum
   isAvatar: 0
   race: 6
   subRace: 0
   classes: 0400000001000000
   abilities: 
   isImmovable: 0
-  homeTown: moria
   prowess: 4
   defence: 8
   influence: 0

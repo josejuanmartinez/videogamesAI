@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: A renegade Wood Elf sorcerer serving Khamul the Nazgul
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: sarn_goriwing
   isAvatar: 0
   race: 2
   subRace: 11
   classes: 0200000001000000
   abilities: 0f000000
   isImmovable: 0
-  homeTown: sarn_goriwing
   prowess: 4
   defence: 8
   influence: 1

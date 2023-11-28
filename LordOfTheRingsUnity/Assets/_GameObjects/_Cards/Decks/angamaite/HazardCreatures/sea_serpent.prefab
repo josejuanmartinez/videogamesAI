@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: b17472adca5f1fe4585a8914c11f249d, type: 3}
+  cardSprite: {fileID: 21300000, guid: 15c5ad52a6fd6504796cea42c28c5b24, type: 3}
   cardId: sea_serpent
   descForAIGeneration: 
   cardClass: 6

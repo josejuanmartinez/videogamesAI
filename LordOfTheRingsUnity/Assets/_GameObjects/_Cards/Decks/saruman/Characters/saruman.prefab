@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: Saruman The Maia from Isengard
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: isengard
   isAvatar: 1
   race: 9
   subRace: 0
   classes: 0200000003000000
   abilities: 0b0000000f0000000a000000
   isImmovable: 1
-  homeTown: isengard
   prowess: 6
   defence: 9
   influence: 12

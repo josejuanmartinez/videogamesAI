@@ -62,15 +62,13 @@ MonoBehaviour:
   descForAIGeneration: Commander of the Black Garrison of the Black Gate (Morannon)
   cardClass: 1
   isUnique: 1
-  victoryPoints: 1
-  corruption: 0
+  hometown: thuringwatost
   isAvatar: 0
   race: 0
   subRace: 0
   classes: 0000000004000000
   abilities: 00000000
   isImmovable: 0
-  homeTown: morannon
   prowess: 6
   defence: 9
   influence: 3

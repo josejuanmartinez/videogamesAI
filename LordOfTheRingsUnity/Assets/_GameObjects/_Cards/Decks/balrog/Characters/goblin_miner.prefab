@@ -51,29 +51,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: a21fc9229f0a83a4a89594b9d558ba63, type: 3}
   cardId: goblin_miner
-  initialOwner: 15
+  descForAIGeneration: 
   cardClass: 1
   isUnique: 0
-  victoryPoints: 0
-  corruption: 0
-  requiredFood: 0
-  requiredProd: 0
-  requiredGold: 15
-  requiredMetal: 5
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 5
+  hometown: khazad_dum
   isAvatar: 0
   race: 6
   subRace: 0
   classes: 0000000001000000
   abilities: 
   isImmovable: 0
-  homeTown: moria
   prowess: 2
   defence: 7
-  mind: 2
   influence: 0
   faction: 3
 --- !u!222 &4721810464861604577

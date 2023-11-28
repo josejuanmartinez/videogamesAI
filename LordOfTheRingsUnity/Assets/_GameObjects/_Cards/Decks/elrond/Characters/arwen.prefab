@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: The half elf daughter of Elrond
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: rivendell
   isAvatar: 0
   race: 2
   subRace: 3
   classes: 0100000002000000
   abilities: 0e000000
   isImmovable: 0
-  homeTown: rivendell
   prowess: 3
   defence: 8
   influence: 1

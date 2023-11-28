@@ -54,13 +54,13 @@ MonoBehaviour:
   descForAIGeneration: The Witch King, a nazgul from Angmar and Minas Morgul
   cardClass: 1
   isUnique: 1
+  hometown: carn_dum
   isAvatar: 1
   race: 5
   subRace: 0
   classes: 000000000200000003000000
   abilities: 
   isImmovable: 0
-  homeTown: carn_dum
   prowess: 9
   defence: 9
   influence: 5

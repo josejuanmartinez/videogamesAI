@@ -57,14 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6233d7059898bfe4883b019b6e114130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: f6f313a3b60eb584abd9e2d289b20631, type: 3}
+  cardSprite: {fileID: 21300000, guid: 2397647007e43e849849e7792b576c26, type: 3}
   cardId: palantir_of_minas_anor
   descForAIGeneration: One of the Seeing Stones, now in Minas Tirith under the possession
     of Denethor
   cardClass: 2
   isUnique: 0
-  victoryPoints: 4
-  corruption: 4
+  hometown: 
   objectSlot: 5
   materials: 0600000006000000
   requiredClass: 

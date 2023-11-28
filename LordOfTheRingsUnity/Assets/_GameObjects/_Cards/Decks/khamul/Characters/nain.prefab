@@ -55,15 +55,13 @@ MonoBehaviour:
     in Dol Guldur
   cardClass: 1
   isUnique: 1
-  victoryPoints: 1
-  corruption: 0
+  hometown: dol_guldur
   isAvatar: 0
   race: 1
   subRace: 0
   classes: 04000000
   abilities: 
   isImmovable: 0
-  homeTown: dol_guldur
   prowess: 3
   defence: 7
   influence: 1

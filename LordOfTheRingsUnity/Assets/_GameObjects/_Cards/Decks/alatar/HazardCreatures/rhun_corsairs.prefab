@@ -57,13 +57,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 3f99e48452b95fc43adfdc33daed8d99, type: 3}
+  cardSprite: {fileID: 21300000, guid: b60d13122709cc64683004602e6d9717, type: 3}
   cardId: rhun_corsairs
   descForAIGeneration: Pirate Easterlings from the Sea of Rhun
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
+  hometown: 
   race: 0
   prowess: 10
   defence: 0

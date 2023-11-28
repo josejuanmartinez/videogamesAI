@@ -51,29 +51,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: c6900da689ed9ef48a568c25d50282b6, type: 3}
   cardId: pallando
-  initialOwner: 18
+  descForAIGeneration: 
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
-  requiredFood: 0
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
+  hometown: mithlond
   isAvatar: 1
   race: 9
   subRace: 0
   classes: 0200000003000000
   abilities: 0b0000000c0000000e000000
   isImmovable: 0
-  homeTown: grey_havens
   prowess: 6
   defence: 9
-  mind: 9
   influence: 12
   faction: 48
 --- !u!222 &9002241949614178889

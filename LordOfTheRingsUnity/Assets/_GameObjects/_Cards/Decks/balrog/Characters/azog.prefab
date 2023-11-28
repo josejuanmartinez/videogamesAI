@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: Orc-lord who commanded the tribes of Moria and killed Thror
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: khazad_dum
   isAvatar: 0
   race: 6
   subRace: 0
   classes: 00000000
   abilities: 00000000
   isImmovable: 0
-  homeTown: moria
   prowess: 5
   defence: 9
   influence: 4

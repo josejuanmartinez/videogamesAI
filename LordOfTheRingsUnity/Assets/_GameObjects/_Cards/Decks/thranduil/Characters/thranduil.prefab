@@ -55,15 +55,13 @@ MonoBehaviour:
     against the forces of Sauron.
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: thranduil_halls
   isAvatar: 1
   race: 2
   subRace: 2
   classes: 000000000300000002000000
   abilities: 0100000000000000
   isImmovable: 0
-  homeTown: thranduil_halls
   prowess: 7
   defence: 9
   influence: 5

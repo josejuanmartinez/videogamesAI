@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: The captain of the sorcerers of Dol Guldur
   cardClass: 1
   isUnique: 1
-  victoryPoints: 3
-  corruption: 0
+  hometown: dol_guldur
   isAvatar: 0
   race: 0
   subRace: 0
   classes: 0000000002000000
   abilities: 0e0000000f000000
   isImmovable: 0
-  homeTown: dol_guldur
   prowess: 7
   defence: 9
   influence: 2

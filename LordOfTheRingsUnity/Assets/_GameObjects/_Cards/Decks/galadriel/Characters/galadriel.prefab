@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: The Elven Queen of Middle-earth
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: caras_galadhon
   isAvatar: 1
   race: 2
   subRace: 3
   classes: 0300000002000000
   abilities: 01000000070000000e0000000c000000
   isImmovable: 1
-  homeTown: lorien
   prowess: 5
   defence: 10
   influence: 6

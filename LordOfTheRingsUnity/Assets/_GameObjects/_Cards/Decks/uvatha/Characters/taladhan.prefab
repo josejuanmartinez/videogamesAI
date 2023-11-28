@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: A renegade wood elf from Rhubar, sea of Rhun
   cardClass: 1
   isUnique: 1
-  victoryPoints: 2
-  corruption: 0
+  hometown: rhubar
   isAvatar: 0
   race: 2
   subRace: 11
   classes: 0100000000000000
   abilities: 
   isImmovable: 0
-  homeTown: tol_buruth
   prowess: 4
   defence: 9
   influence: 1

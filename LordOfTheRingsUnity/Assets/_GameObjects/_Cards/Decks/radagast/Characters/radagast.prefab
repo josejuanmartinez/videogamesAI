@@ -54,15 +54,13 @@ MonoBehaviour:
   descForAIGeneration: The Maia Wizard Radagast of Rhosgobel
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: rhosgobel
   isAvatar: 1
   race: 9
   subRace: 0
   classes: 0100000002000000
   abilities: 0b0000000a0000000e000000
   isImmovable: 1
-  homeTown: rhosgobel
   prowess: 6
   defence: 9
   influence: 5

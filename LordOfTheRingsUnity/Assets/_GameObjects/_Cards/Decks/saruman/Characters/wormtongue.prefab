@@ -55,15 +55,13 @@ MonoBehaviour:
     Th\xE9oden of Rohan"
   cardClass: 1
   isUnique: 1
-  victoryPoints: 0
-  corruption: 0
+  hometown: edoras
   isAvatar: 0
   race: 0
   subRace: 0
   classes: 0300000004000000
   abilities: 
   isImmovable: 1
-  homeTown: edoras
   prowess: 3
   defence: 6
   influence: 4
