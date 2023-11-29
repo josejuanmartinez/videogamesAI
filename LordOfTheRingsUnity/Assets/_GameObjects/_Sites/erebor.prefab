@@ -63,8 +63,8 @@ MonoBehaviour:
   isHidden: 0
   hasPort: 0
   isUnderground: 1
-  regionId: 22
-  isHaven: 0
+  regionId: 21
+  isHaven: 1
   playableObjects: 
   playableRings: 
   terrain: 0

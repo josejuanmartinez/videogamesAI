@@ -61,9 +61,9 @@ MonoBehaviour:
   descForAIGeneration: 
   size: 2
   isHidden: 0
-  hasPort: 1
+  hasPort: 0
   isUnderground: 0
-  regionId: 17
+  regionId: 16
   isHaven: 0
   playableObjects: 
   playableRings: 

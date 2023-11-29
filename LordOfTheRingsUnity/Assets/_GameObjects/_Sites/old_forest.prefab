@@ -60,10 +60,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 8541234c0fa0cb6498fa5f2399272a39, type: 3}
   descForAIGeneration: 
   size: 4
-  isHidden: 1
+  isHidden: 0
   hasPort: 0
   isUnderground: 0
-  regionId: 28
+  regionId: 23
   isHaven: 0
   playableObjects: 
   playableRings: 

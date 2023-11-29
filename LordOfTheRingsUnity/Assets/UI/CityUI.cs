@@ -96,7 +96,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             return false;
         }
         GameObject cityObject = Instantiate(prefab);
-        cityObject.name = cityId + "_details";
+        cityObject.name = cityId;
         cityObject.transform.SetParent(transform);
 
         details = cityObject.GetComponent<CityDetails>();

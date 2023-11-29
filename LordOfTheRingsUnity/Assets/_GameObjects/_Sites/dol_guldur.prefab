@@ -62,7 +62,7 @@ MonoBehaviour:
   size: 0
   isHidden: 0
   hasPort: 0
-  isUnderground: 0
+  isUnderground: 1
   regionId: 1
   isHaven: 1
   playableObjects: 

@@ -90,8 +90,8 @@ public class CardDetailsRepo : MonoBehaviour
         {
             if (!InitializeCardDetails(cardDetails))
                 pending.Add(cardDetails);
-            else
-                Debug.Log(string.Format("{0} initialized itself!", cardDetails.cardId));
+            //else
+            //    Debug.Log(string.Format("{0} initialized itself!", cardDetails.cardId));
         }
             
         cardsPendingInitialization = pending;

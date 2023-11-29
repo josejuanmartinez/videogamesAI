@@ -57,13 +57,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa21c6b21750b4489b91de42fd8eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 36da40d4376d3b147ba4057eff631761, type: 3}
+  sprite: {fileID: 21300000, guid: bb7050ab88fd4cb4082ee1eabf1d1beb, type: 3}
   descForAIGeneration: 
   size: 1
   isHidden: 0
   hasPort: 1
   isUnderground: 0
-  regionId: 27
+  regionId: 26
   isHaven: 0
   playableObjects: 
   playableRings: 

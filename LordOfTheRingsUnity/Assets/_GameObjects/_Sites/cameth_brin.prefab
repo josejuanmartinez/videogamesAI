@@ -62,9 +62,8 @@ MonoBehaviour:
   size: 2
   isHidden: 0
   hasPort: 0
-  hasHoard: 0
   isUnderground: 0
-  regionId: 14
+  regionId: 13
   isHaven: 1
   playableObjects: 
   playableRings: 

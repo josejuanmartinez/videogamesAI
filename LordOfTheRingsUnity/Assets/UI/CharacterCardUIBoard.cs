@@ -49,7 +49,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         if (charDetails != null)
             resourcesManager.SubtractInfluence(owner, charDetails.GetMind());
         
-        Debug.Log(GameObject.Find("Localization").GetComponent<Localization>().Localize(details.cardId) + " registered itself in Board at " + HexTranslator.GetDebugTileInfo(hex) + " " + HexTranslator.GetNormalizedCellPosString(hex));
+       // Debug.Log(GameObject.Find("Localization").GetComponent<Localization>().Localize(details.cardId) + " registered itself in Board at " + HexTranslator.GetDebugTileInfo(hex) + " " + HexTranslator.GetNormalizedCellPosString(hex));
 
         activationCondition.Initialize(() => selectedItems != null && selectedItems.GetSelectedMovableCard() == details);
 
