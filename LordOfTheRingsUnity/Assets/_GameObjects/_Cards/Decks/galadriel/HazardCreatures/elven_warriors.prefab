@@ -57,23 +57,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 71f739060149da14abe10f582ab18113, type: 3}
+  cardSprite: {fileID: 21300000, guid: e15a5a57e99014a4189a50bda3b36459, type: 3}
   cardId: elven_warriors
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
-  requiredFood: 20
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 10
-  requiredGems: 0
-  requiredWood: 10
-  requiredHorses: 0
-  requiredLeather: 10
+  hometown: 
   race: 2
+  subrace: 2
   prowess: 11
   defence: 0
-  cardTypes: 04000000040000000400000004000000
   hazardAbilities: 

@@ -61,13 +61,12 @@ MonoBehaviour:
   cardId: gollum
   descForAIGeneration: 
   cardClass: 7
-  isUnique: 0
-  victoryPoints: 1
-  corruption: 1
+  isUnique: 1
+  hometown: the_undergrottos
   allyClass: 1
   race: 3
   subRace: 0
   abilities: 
-  homeTown: the_undergrottos
-  prowess: 2
-  defence: 6
+  prowess: 3
+  defence: 7
+  isImmovable: 0

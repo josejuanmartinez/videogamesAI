@@ -860,7 +860,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (details == null)
             return new HashSet<PlayableConditionResultEnum>() { PlayableConditionResultEnum.NO_MANA };
 
-        missingMana = manaManager.GetMissingMana(owner, details.cardTypes);
+        missingMana = manaManager.GetMissingMana(owner, details.GetCardTypes());
 
         if(missingMana.Count() > 0)
             result.Add(PlayableConditionResultEnum.NO_MANA);

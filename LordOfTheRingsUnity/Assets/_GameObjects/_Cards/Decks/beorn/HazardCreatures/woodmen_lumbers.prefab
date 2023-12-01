@@ -62,10 +62,9 @@ MonoBehaviour:
   descForAIGeneration: Lumbers of the Mirkwood Forest with long axes
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
+  hometown: 
   race: 0
+  subrace: 12
   prowess: 11
   defence: 0
-  cardTypes: 0400000004000000040000000000000000000000
   hazardAbilities: 

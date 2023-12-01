@@ -107,7 +107,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         GenerateAutomaticAttacks();
 
         board.AddCity(hex, this);
-        Debug.Log(string.Format("{0} has registered itself at {1}", cityId, hex));
+        // Debug.Log(string.Format("{0} has registered itself at {1}", cityId, hex));
         initialized = true;
 
         resourcesManager.Add(owner, details.GetCityProduction());

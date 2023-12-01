@@ -59,22 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: c18dde6eb18d09e448a7ed85fe7bdd98, type: 3}
   cardId: cave_goblins
-  initialOwner: 2
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
-  requiredFood: 15
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 10
+  hometown: 
   race: 6
-  strikes: 3
+  subrace: 20
   prowess: 8
   defence: 0
-  cardTypes: 04000000040000000300000003000000
   hazardAbilities: 01000000

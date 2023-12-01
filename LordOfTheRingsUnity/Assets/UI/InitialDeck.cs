@@ -15,4 +15,9 @@ public class InitialDeck : MonoBehaviour
     {
         return cards.Find(x => x.GetComponent<CardDetails>() != null && x.GetComponent<CardDetails>().cardId == cardId);
     }
+
+    public void AddCard(GameObject card)
+    {
+        cards.Add(card);
+    }
 }

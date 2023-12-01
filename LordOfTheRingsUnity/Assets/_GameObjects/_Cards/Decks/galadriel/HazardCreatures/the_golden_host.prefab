@@ -62,8 +62,9 @@ MonoBehaviour:
   descForAIGeneration: A group of elite elven warriors
   cardClass: 6
   isUnique: 0
+  hometown: 
   race: 2
+  subrace: 2
   prowess: 13
   defence: 0
-  cardTypes: 040000000400000000000000000000000000000000000000
   hazardAbilities: 0700000005000000

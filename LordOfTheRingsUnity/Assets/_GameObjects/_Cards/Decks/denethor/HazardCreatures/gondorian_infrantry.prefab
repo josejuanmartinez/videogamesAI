@@ -59,12 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 54b6f7f9e67d0394a80aabf9d4ff21f1, type: 3}
   cardId: gondorian_infrantry
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 0
-  corruption: 0
-  race: 0
+  hometown: 
+  race: 4
+  subrace: 0
   prowess: 11
   defence: 0
-  cardTypes: 0000000000000000000000000000000000000000
   hazardAbilities: 

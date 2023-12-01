@@ -59,12 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: f0d2e90dcb8c53f45b941768351f0dc6, type: 3}
   cardId: knights_of_dol_amroth
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 1
+  hometown: 
   race: 4
+  subrace: 0
   prowess: 14
   defence: 0
-  cardTypes: 00000000000000000000000000000000000000000400000004000000
   hazardAbilities: 0000000008000000

@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: a1dcda3da3bdfc6468ca78be591528ef, type: 3}
+  cardSprite: {fileID: 21300000, guid: cc139bf1fee493a44911e1e7d48ffb63, type: 3}
   cardId: dunadan_rangers
   descForAIGeneration: 
   cardClass: 6

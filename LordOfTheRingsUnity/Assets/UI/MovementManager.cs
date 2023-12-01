@@ -520,10 +520,10 @@ public class MovementManager : MonoBehaviour
                 HazardCreatureCardDetails hazardCard = cardDetails as HazardCreatureCardDetails;
                 if (hazardCard == null)
                     continue;
-                if (manaManager.HasEnoughMana(owner, hazardCard.cardTypes))
+                if (manaManager.HasEnoughMana(owner, hazardCard.GetCardTypes()))
                 {
                     toCombat.Add(new Tuple<string, NationsEnum>(cardDetails.cardId, owner));
-                    manaManager.RemoveMana(owner, hazardCard.cardTypes);
+                    manaManager.RemoveMana(owner, hazardCard.GetCardTypes());
                 }
             }
         }

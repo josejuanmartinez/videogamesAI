@@ -62,10 +62,9 @@ MonoBehaviour:
   descForAIGeneration: Personal guards of the Elven King Thranduil
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
+  hometown: 
   race: 2
+  subrace: 11
   prowess: 12
   defence: 0
-  cardTypes: 040000000400000000000000000000000000000000000000
   hazardAbilities: 

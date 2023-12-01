@@ -59,21 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: f1b94b6a893e7284b85a08e305b5caf6, type: 3}
   cardId: woodelf_warriors
-  initialOwner: 6
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
-  requiredFood: 20
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 20
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
+  hometown: 
   race: 2
+  subrace: 11
   prowess: 11
   defence: 0
-  cardTypes: 04000000040000000400000004000000
   hazardAbilities: 

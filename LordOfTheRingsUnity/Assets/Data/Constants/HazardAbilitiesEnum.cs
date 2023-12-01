@@ -11,5 +11,9 @@ public enum HazardAbilitiesEnum
     Bleeding,
     RevealsCard,
     Sieges,
-    Fire
+    Burns,
+    CountersMounted,
+    Blinds,
+    Freezes,
+    Boarded
 }

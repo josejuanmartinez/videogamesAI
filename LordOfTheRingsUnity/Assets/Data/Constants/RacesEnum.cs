@@ -12,8 +12,8 @@ public enum RacesEnum
     FallenWizard,
     Balrog,
     Wolf,
-    Animal,
-    Trap,
+    OtherAnimals,
+    Machinery,
     Undead,
     Spider,
     Plant,
@@ -22,6 +22,7 @@ public enum RacesEnum
     Maia,
     Weather,
     Beorning,
+    Giant
 }
 
 public enum SubRacesEnum
@@ -39,5 +40,14 @@ public enum SubRacesEnum
     Haradrim,
     WoodElf,
     Woodmen,
-    UrukHai
+    UrukHai,
+    Dunlending,
+    Hillmen,
+    StoneTroll,
+    WoodTroll,
+    LairSpider,
+    WoodSpider,
+    CaveGoblin,
+    CaveTroll,
+    Marineers
 }

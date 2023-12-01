@@ -325,7 +325,7 @@ public class PlaceDeck : MonoBehaviour
                 if (cardDetails.IsClassOf(CardClass.HazardCreature))
                 {
                     HazardCreatureCardDetails hazard = (HazardCreatureCardDetails) cardDetails;
-                    foreach (CardTypesEnum cardType in hazard.cardTypes)
+                    foreach (CardTypesEnum cardType in hazard.GetCardTypes())
                     {
                         int newRes = manaManager.mana[turn.GetCurrentPlayer()][cardType] > 0 ? manaManager.mana[turn.GetCurrentPlayer()][cardType] - 1 : 0;
                         manaManager.mana[turn.GetCurrentPlayer()][cardType] = (short)newRes;

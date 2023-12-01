@@ -59,22 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d7a4874e9e54cbf4282692571582c087, type: 3}
   cardId: wood_trolls
-  initialOwner: 2
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
-  requiredFood: 30
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 5
+  hometown: 
   race: 7
-  strikes: 2
+  subrace: 17
   prowess: 12
   defence: 0
-  cardTypes: 04000000040000000400000004000000040000000400000004000000040000000400000004000000
   hazardAbilities: 

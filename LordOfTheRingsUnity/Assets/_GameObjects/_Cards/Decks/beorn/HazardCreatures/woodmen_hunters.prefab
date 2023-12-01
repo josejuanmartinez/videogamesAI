@@ -62,8 +62,9 @@ MonoBehaviour:
   descForAIGeneration: Hunters of the Mirkwood Forest with bows
   cardClass: 6
   isUnique: 0
+  hometown: 
   race: 0
+  subrace: 12
   prowess: 11
   defence: 0
-  cardTypes: 0400000004000000040000000400000004000000
   hazardAbilities: 07000000

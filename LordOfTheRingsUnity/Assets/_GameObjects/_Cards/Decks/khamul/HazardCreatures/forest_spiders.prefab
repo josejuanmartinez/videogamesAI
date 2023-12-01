@@ -59,13 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: ede0dd9c8e96247418937414b64f9f36, type: 3}
   cardId: forest_spiders
-  initialOwner: 2
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
+  hometown: 
   race: 15
+  subrace: 19
   prowess: 10
   defence: 0
-  cardTypes: 0400000004000000040000000400000003000000
   hazardAbilities: 0000000005000000

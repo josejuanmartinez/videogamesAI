@@ -57,23 +57,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 595dd503d68a6834cbf1d4271eb4abcf, type: 3}
+  cardSprite: {fileID: 21300000, guid: db0dc76d3799559449343ff0974d34f8, type: 3}
   cardId: elven_archers
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
-  requiredFood: 20
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 20
-  requiredLeather: 10
+  hometown: 
   race: 2
+  subrace: 3
   prowess: 11
   defence: 0
-  cardTypes: 04000000040000000400000004000000
   hazardAbilities: 07000000

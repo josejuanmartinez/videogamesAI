@@ -59,21 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 79e7e1ad63c52e94dbccc95e11bd9952, type: 3}
   cardId: elven_scouts
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
-  requiredFood: 20
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 15
-  requiredHorses: 0
-  requiredLeather: 5
+  hometown: 
   race: 2
+  subrace: 2
   prowess: 10
   defence: 0
-  cardTypes: 04000000040000000400000004000000
   hazardAbilities: 09000000

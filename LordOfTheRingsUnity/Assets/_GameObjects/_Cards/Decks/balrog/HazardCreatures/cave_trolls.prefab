@@ -59,12 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 8e53883a5d56c714fa36fa799fa67173, type: 3}
   cardId: cave_trolls
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 2
-  corruption: 2
+  hometown: 
   race: 7
+  subrace: 21
   prowess: 14
   defence: 0
-  cardTypes: 0300000003000000030000000300000004000000040000000400000004000000
   hazardAbilities: 

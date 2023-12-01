@@ -59,21 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: ebba6a0de6adeac439de8045ea1b0d8c, type: 3}
   cardId: woodelf_archers
-  initialOwner: 6
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
-  requiredFood: 20
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 15
-  requiredHorses: 0
-  requiredLeather: 5
+  hometown: 
   race: 2
+  subrace: 11
   prowess: 10
   defence: 0
-  cardTypes: 0400000004000000040000000400000000000000
   hazardAbilities: 07000000

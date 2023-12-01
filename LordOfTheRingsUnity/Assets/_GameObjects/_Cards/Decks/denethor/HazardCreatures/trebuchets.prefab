@@ -59,12 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 723accf1ffb64de409f8150acc29994e, type: 3}
   cardId: trebuchets
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 0
-  corruption: 0
-  race: 12
+  hometown: 
+  race: 13
+  subrace: 0
   prowess: 12
   defence: 0
-  cardTypes: 000000000000000000000000000000000000000000000000
   hazardAbilities: 0a000000

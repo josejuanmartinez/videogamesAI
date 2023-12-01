@@ -19,6 +19,9 @@ public class AllyCardDetails : CardDetails
     [SerializeField]
     private short defence;
 
+    [SerializeField]
+    private bool isImmovable;
+
     private bool isLoaded;
 
     void Awake()
@@ -55,6 +58,10 @@ public class AllyCardDetails : CardDetails
     public bool IsLoaded()
     {
         return isLoaded;
+    }
+    public bool IsImmovable()
+    {
+        return isImmovable;
     }
 
     void Update()

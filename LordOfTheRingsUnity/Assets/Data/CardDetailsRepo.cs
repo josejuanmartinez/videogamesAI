@@ -27,8 +27,14 @@ public class CardDetailsRepo : MonoBehaviour
         nationsInitialDecks = new();
     }
 
-    public void Initialize()
+    public bool Initialize()
     {
+        bool ready = true;
+#if UNITY_EDITOR
+        ready = GetComponent<PrefabLoader>().IsInitialized();
+#endif
+        if (!ready)
+            return ready;
         for(int i=0; i<transform.childCount; i++)
             nationsInitialDecks.Add(transform.GetChild(i).GetComponent<InitialDeck>());
         
@@ -75,6 +81,7 @@ public class CardDetailsRepo : MonoBehaviour
 
         isInitialized = true;
         Debug.Log("CardDetailsRepo initialized");
+        return isInitialized;
     }
 
     void Update()

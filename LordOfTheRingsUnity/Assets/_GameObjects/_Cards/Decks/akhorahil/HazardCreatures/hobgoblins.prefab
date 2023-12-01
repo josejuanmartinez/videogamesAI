@@ -59,12 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 77247ea5a525a1247a5461dbfe44c8e9, type: 3}
   cardId: hobgoblins
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
-  victoryPoints: 1
-  corruption: 0
+  hometown: 
   race: 6
+  subrace: 1
   prowess: 9
   defence: 0
-  cardTypes: 04000000040000000400000002000000
   hazardAbilities: 01000000

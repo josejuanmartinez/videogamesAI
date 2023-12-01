@@ -64,7 +64,7 @@ MonoBehaviour:
   isUnique: 0
   hometown: 
   race: 0
+  subrace: 9
   prowess: 11
   defence: 0
-  cardTypes: 01000000010000000100000001000000040000000400000004000000
   hazardAbilities: 00000000

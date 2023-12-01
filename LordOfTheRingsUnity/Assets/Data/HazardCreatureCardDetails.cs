@@ -7,15 +7,16 @@ public class HazardCreatureCardDetails: CardDetails
 {
     [Header("HazardCreatureCardDetails")]
     public RacesEnum race;
+    public SubRacesEnum subrace;
 
     public short prowess;
     public short defence;
-
-    public List<CardTypesEnum> cardTypes;
+        
     public List<HazardAbilitiesEnum> hazardAbilities;
 
     private bool isLoaded = false;
-    
+    private List<CardTypesEnum> cardTypes;
+
     public bool Initialize()
     {
         Resources requirements = new(0, 0, 0, 0, 0, 0, 0, 0);
@@ -70,11 +71,11 @@ public class HazardCreatureCardDetails: CardDetails
                 requirements.resources[ResourceType.FOOD] += prowess + defence;
                 requirements.resources[ResourceType.MOUNTS] += prowess + defence;
                 break;
-            case RacesEnum.Animal:
+            case RacesEnum.OtherAnimals:
                 requirements.resources[ResourceType.FOOD] += prowess + defence;
                 requirements.resources[ResourceType.MOUNTS] += prowess + defence;
                 break;
-            case RacesEnum.Trap:
+            case RacesEnum.Machinery:
                 requirements.resources[ResourceType.WOOD] += prowess + defence;
                 requirements.resources[ResourceType.METAL] += prowess + defence;
                 break;
@@ -112,8 +113,165 @@ public class HazardCreatureCardDetails: CardDetails
                 break;
         }
 
+        HashSet<CardTypesEnum> requiredCards = new();
+        switch (race)
+        {
+            case RacesEnum.Man:
+                switch (subrace)
+                {
+                    case SubRacesEnum.None:
+                        requiredCards.Add(CardTypesEnum.FREE_BASTION);
+                        break;
+                    case SubRacesEnum.Easterling:
+                    case SubRacesEnum.Dunlending:
+                    case SubRacesEnum.Hillmen:
+                    case SubRacesEnum.Haradrim:
+                        requiredCards.Add(CardTypesEnum.NEUTRAL_BASTION);
+                        break;
+                    case SubRacesEnum.Marineers:
+                        requiredCards.Add(CardTypesEnum.SEA);
+                        break;
+                    case SubRacesEnum.BlackNumenorean:
+                        requiredCards.Add(CardTypesEnum.NEUTRAL_BASTION);
+                        requiredCards.Add(CardTypesEnum.SEA);
+                        break;
+                    case SubRacesEnum.Woodmen:
+                        requiredCards.Add(CardTypesEnum.FREE_BASTION);
+                        break;
+                    default:
+                        requiredCards.Add(CardTypesEnum.FREE_BASTION);
+                        break;
+                }
+                break;
+            case RacesEnum.Beorning:
+            case RacesEnum.Elf:
+                requiredCards.Add(CardTypesEnum.FREE_BASTION);
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                switch(subrace)
+                {
+                    case SubRacesEnum.Marineers:
+                        requiredCards.Add(CardTypesEnum.SEA);
+                        break;
+                }
+                break;
+            case RacesEnum.Dwarf:
+            case RacesEnum.Dunadan:
+            case RacesEnum.Hobbit:
+                requiredCards.Add(CardTypesEnum.FREE_BASTION);
+                break;
+            case RacesEnum.Ringwraith:
+                requiredCards.Add(CardTypesEnum.DARK_BASTION);
+                break;
+            case RacesEnum.Orc:
+                switch(subrace)
+                {
+                    case SubRacesEnum.None:
+                        requiredCards.Add(CardTypesEnum.DARK_BASTION);
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                    case SubRacesEnum.UrukHai:
+                        requiredCards.Add(CardTypesEnum.DARK_BASTION);
+                        break;
+                    case SubRacesEnum.HalfOrc:
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                    case SubRacesEnum.CaveGoblin:
+                        requiredCards.Add(CardTypesEnum.LAIR);
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                    default:
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                }
+                break;
+            case RacesEnum.Troll:
+
+                switch (subrace)
+                {
+                    case SubRacesEnum.OlogHai:
+                        requiredCards.Add(CardTypesEnum.DARK_BASTION);
+                        break;
+                    case SubRacesEnum.WoodTroll:
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                    case SubRacesEnum.CaveTroll:
+                    case SubRacesEnum.StoneTroll:
+                        requiredCards.Add(CardTypesEnum.LAIR);
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                    default:
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                }
+                break;
+            case RacesEnum.Wizard:
+                requiredCards.Add(CardTypesEnum.FREE_BASTION);
+                break;
+            case RacesEnum.FallenWizard:
+                requiredCards.Add(CardTypesEnum.NEUTRAL_BASTION);
+                break;
+            case RacesEnum.Balrog:
+                requiredCards.Add(CardTypesEnum.DARK_BASTION);
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                requiredCards.Add(CardTypesEnum.LAIR);
+                break;
+            case RacesEnum.Wolf:
+            case RacesEnum.OtherAnimals:
+            case RacesEnum.Machinery:
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                break;
+            case RacesEnum.Undead:
+                requiredCards.Add(CardTypesEnum.LAIR);
+                break;
+            case RacesEnum.Spider:
+
+                switch (subrace)
+                {
+                    case SubRacesEnum.LairSpider:
+                        requiredCards.Add(CardTypesEnum.LAIR);
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                    case SubRacesEnum.WoodSpider:
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                    default:
+                        requiredCards.Add(CardTypesEnum.WILDERNESS);
+                        break;
+                }
+                break;
+            case RacesEnum.Plant:
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                break;
+            case RacesEnum.Bear:
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                break;
+            case RacesEnum.Dragon:
+                requiredCards.Add(CardTypesEnum.LAIR);
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                break;
+            case RacesEnum.Maia:
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                break;
+            case RacesEnum.Weather:
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                break;
+            case RacesEnum.Giant:
+                requiredCards.Add(CardTypesEnum.WILDERNESS);
+                requiredCards.Add(CardTypesEnum.LAIR);
+                break;
+        }
+
+        int totalCards = (int) Math.Ceiling((prowess + defence + hazardAbilities.Count() * 3) / 3f);
+        for(int i=0;i<totalCards;i++)
+            cardTypes.Add(requiredCards.ToList()[UnityEngine.Random.Range(0, requiredCards.Count())]);
+
         isLoaded = Initialize(CardClass.HazardCreature, requirements);
         return isLoaded;
+    }
+
+    public List<CardTypesEnum> GetCardTypes()
+    {
+        return cardTypes;
     }
     public bool IsLoaded()
     {
