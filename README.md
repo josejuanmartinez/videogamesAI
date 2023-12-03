@@ -2,6 +2,8 @@
 This is a portfolio repository collecting scripts, articles and implementations about AI in Video games.
 ![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/ad2ddf2f-d759-4bd0-a789-8a824f9da5ec)
 
+# Check my Reinforcement Learning and NLP models in HF
+https://huggingface.co/jjmcarrascosa
 
 # Medium Articles written by me
 ## Historical evolution of AI techniques
