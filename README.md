@@ -11,11 +11,16 @@ This is a portfolio repository collecting scripts, articles and implementations 
 ## AI content generation for video games
 - [Unity Muse](https://medium.com/@jjmcarrascosa/unity-muse-testing-the-pre-release-chapter-1-sprites-texture-chat-023a89a13029)
 
-# Own implementations
+# Own algorithmic implementations
 ## [Heuristic-guided Dijkstra implementation in C++](https://github.com/josejuanmartinez/videogamesAI/tree/main/DijkstraPathFindingC%2B%2B)
 Own implementation created during an interview process with Paradox
 
 ![dijkstra](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/a636aa62-934e-48a3-b931-b74abfd54e4b)
+
+# Own libraries
+## [mindcraft: an LLM-eempowered-by-RAG engine for NPC](https://github.com/josejuanmartinez/mindcraft)
+Use Zephyr 7B with a RAG-system containing lore and memories and past interactions of characters to model, using personalities+moods+motivations, tailored conversations with NPCs.
+![image](https://github.com/josejuanmartinez/videogamesAI/assets/36634572/9b28787b-e3d9-494f-8e56-46631d4557c5)
 
 
 # Projects in Unity
