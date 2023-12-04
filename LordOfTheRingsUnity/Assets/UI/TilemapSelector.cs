@@ -22,6 +22,7 @@ public class TilemapSelector : MonoBehaviour
     private EventSystem eventSystem;
     private DiceManager diceManager;
     private SelectedItems selectedItems;
+    private Game game;
 
     private float tileSelectedAt;
 
@@ -34,12 +35,15 @@ public class TilemapSelector : MonoBehaviour
         cameraController = Camera.main.GetComponent<CameraController>();
         diceManager = GameObject.Find("DiceManager").GetComponent<DiceManager>();
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
+        game = GameObject.Find("Game").GetComponent<Game>();
         tileSelectedAt = float.MaxValue;
     }
 
     void Update()
     {
-        if(IsOverUI())
+        if (!game.FinishedLoading())
+            return;
+        if (IsOverUI())
         {
             Reset();
             return;

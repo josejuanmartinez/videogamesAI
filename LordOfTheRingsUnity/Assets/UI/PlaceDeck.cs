@@ -45,7 +45,9 @@ public class PlaceDeck : MonoBehaviour
 
     void Update()
     {
-        
+
+        if (!game.FinishedLoading())
+            return;
         if (cardToShow == null)
         {
             // SHOWING SELECTED

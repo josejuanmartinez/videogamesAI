@@ -1,0 +1,1926 @@
+OIG - 2023-10-24T122813.246-barrow_wights
+OIG - 2023-10-24T122644.198-forest_spiders
+OIG.wp9HbM4KW-spiders
+OIG - 2023-10-24T122928.839-undead
+OIG - 2023-10-22T235540.927-wolves
+OIG (33)-wood_trolls
+dark_elf_commander-taladhan
+Uvatha-uvatha
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-11-01T131257.134-chariot_riders
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG.dKu_IvvS3pZwtn-easterling_cataphracts
+OIG.csWvfmCdw-khand_easterlings
+OIG - 2023-11-17T162505.431-mounted_uruk_hai
+OIG - 2023-11-14T233135.574-rhun_corsairs
+OIG - 2023-10-27T104606.684-rhun_easterlings
+OIG - 2023-11-28T093439.072-sea_storm
+OIG - 2023-11-27T132138.811-uruk_hai
+OIG - 2023-11-11T232211.131-wargs
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+weapon10-black_scimitar
+banner2-blazon_of_the_eye
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+helmet5-dark_leather_hood
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG - 2023-11-14T222431.239-easterling_helm
+OIG.BGV-ebony_coat
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+helmet4-northern_helm
+OIG - 2023-10-24T150924.406-orc_wine
+armor5-rider_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+cloack11-shadow_cloak
+gem4-the_arkenstone
+OIG.JSD-gollum
+OIG.JSD-slyardach
+OIG (46)-calendal
+OIG.-goblin_king
+OIG - 2023-10-24T121941.846-goblin_miner
+Khamul-khamul
+OIG (3)-leardinoth
+orccommander-lieutenant_of_dol_guldur
+OIG.cYL35-mauhur
+OIG.zJARTk2oGBcf.UymMi-nain
+dark_elf_mage-the_grimburgoth
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-10-27T104601.312-balchoth
+OIG - 2023-10-23T000031.145-orcs_of_dol_guldur
+OIG129-orcs_of_mirkwood
+OIG - 2023-10-27T104603.888-rhun_easterlings
+OIG - 2023-10-24T122644.198-spiders_of_mirkwood
+OIG - 2023-11-07T194241.086-wood_elves
+OIG - 2023-10-27T104713.250-woodmen
+OIG - 2023-11-28T211627.702-ashes
+OIG (14)-cave_goblins
+OIG - 2023-11-17T163410.374-fire_throwers
+OIG.oVLA6.M_G3uq1Pipp-forest_orcs
+OIG - 2023-10-24T122644.198-forest_spiders
+OIG - 2023-11-17T163056.202-goblin_sappers
+OIG - 2023-10-22T235923.624-hobgoblins
+OIG.57IiSBD0gP-huorns
+OIG.90eqbtL-orc_catapults
+OIG - 2023-10-27T104606.684-rhun_easterlings
+OIG - 2023-10-24T122650.753-ruins_spiders
+OIG - 2023-10-24T122928.839-undead
+OIG.8Lwm6FPQ-wargs
+OIG - 2023-10-22T235540.927-wolves
+OIG129-wood_trolls
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+weapon10-black_scimitar
+banner2-blazon_of_the_eye
+OIG.BGV-dark_armour
+OIG124-dark_horse
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG - 2023-11-14T222431.239-easterling_helm
+OIG - 2023-11-14T221915.770-evil_mace
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+weapon24-jagged_spear
+OIG - 2023-10-24T150916.054-orc_draughts
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+cloack11-shadow_cloak
+gem4-the_arkenstone
+Adunaphel-adunaphel
+OIG.i9o7lb5AQOa-herumor
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-11-07T194745.231-black_numenoreans
+OIG.hYdkfOfmm-corsairs_of_umbar
+OIG (43)-haradrim_cavalry
+OIG (20)-haradrim_infantry
+OIG.csWvfmCdw-khand_easterlings
+OIG - 2023-11-27T120532.351-mumakils
+OIG - 2023-10-24T122650.753-ruins_spiders
+OIG - 2023-11-14T211326.233-warg_riders
+OIG - 2023-11-11T232211.131-wargs
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+weapon10-black_scimitar
+banner2-blazon_of_the_eye
+OIG.BGV-dark_armour
+OIG124-dark_horse
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG - 2023-11-14T222431.239-easterling_helm
+OIG - 2023-11-14T221915.770-evil_mace
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+weapon24-jagged_spear
+OIG - 2023-11-14T221639.054-morningstar
+OIG - 2023-10-24T150916.054-orc_draughts
+armor5-rider_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+cloack11-shadow_cloak
+OIG - 2023-11-14T222126.328-whip
+OIG (21)-beoraborn
+beorn-beorn
+OIG - 2023-10-22T235030.276-bork
+OIG - 2023-10-22T235424.213-braega
+OIG - 2023-11-16T212751.767-fram_wyrmslayer
+OIG (22)-grimbeorn
+OIG.4BKypypc2b-waulfa
+OIG.a-goblin_basher
+OIG (19)-guard_of_the_carrock
+OIG (18)-riverside_host
+OIG.WxJF26o.UX4Boz-scare
+OIG - 2023-11-11T222130.713-beast_of_the_woods
+OIG - 2023-10-27T104851.428-beornings
+OIG - 2023-11-11T222551.127-horses
+OIG.KUptA-rivermen
+OIG - 2023-11-07T194241.086-wood_elves
+OIG - 2023-10-27T104713.250-woodmen
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-16T215117.767-bears
+OIG - 2023-11-15T231431.056-bees
+OIG - 2023-10-27T104851.428-beorning_warriors
+OIG - 2023-11-11T224638.161-birds
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG.KUptA-rivermen_warriors
+spearmen-spearmen
+OIG - 2023-11-07T194811.401-woodmen_hunters
+OIG - 2023-10-27T104713.250-woodmen_lumbers
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T132306.008-boots
+cloack3-brown_cloak
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-11-11T203246.153-horned_helmet
+hetlmet9-leather_hood
+OIG - 2023-10-30T101249.772-long_wooden_shield
+OIG - 2023-11-11T203324.229-lumber_axe
+OIG - 2023-11-13T104832.385-lumber_long_axe
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-13T104832.385-throwing_axes
+OIG - 2023-11-13T112628.552-war_horn
+OIG - 2023-10-30T101413.943-wooden_shield
+Bard-bard
+OIG - 2023-11-28T001630.353-dain
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-29T222324.881-black_arrow_men
+OIG - 2023-11-15T001234.035-dorwinion_bowmen
+OIG - 2023-11-28T092844.416-dorwinion_cataphracts
+OIG - 2023-11-28T001242.649-dorwinion_infantry
+OIG - 2023-11-28T001314.026-dorwinion_riders
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-14T233135.574-rhunaers
+spearmen-spearmen
+OIG.IcFDKclAKjZU313rM-swordmen
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG.JSD-gollum
+OIG (40)-legolas
+OIG.VVWMrEexeRl1F-ohtar
+OIG.eX-tauriel
+thranduil-thranduil
+OIG - 2023-10-29T212420.328-elvenking
+OIG - 2023-10-31T215236.089-lord_of_the_woodland_realm
+OIG - 2023-10-31T170920.762-serpent_slayer
+banner_bearers-bannerlords
+OIG - 2023-11-07T194306.961-elven_archers
+OIG - 2023-11-10T234334.020-elven_elk_riders
+OIG.C7ZCjyB5PDJ9C9cJ1_-elven_fleet
+OIG - 2023-11-07T194622.372-elven_scouts
+OIG.0sAPb1.FFm-elven_warriors
+OIG - 2023-11-10T234218.117-elvenking_guards
+OIG - 2023-11-16T211454.310-northern_border_patrol
+OIG - 2023-11-07T194310.424-woodelf_archers
+OIG - 2023-11-07T194148.354-woodelf_warriors
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+OIG.5bES9Co-gems_of_lasgalen
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+Huz-huz
+OIG.F7z3yHs-tros_hesnef
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-01T131257.134-chariot_riders
+OIG.dKu_IvvS3pZwtn-easterling_cataphracts
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-14T233135.574-rhun_corsairs
+OIG - 2023-10-27T104606.684-rhun_easterlings
+OIG - 2023-10-27T104603.888-rhun_pikemen
+spearmen-spearmen
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+shelob3-shelob
+OIG - 2023-11-27T132052.164-gothmog
+mouth-mouth
+OIGG-heralded_lord
+OIG - 2023-11-28T211627.702-ashes
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG - 2023-11-27T211606.177-fire
+OIG - 2023-11-17T163410.374-fire_throwers
+OIG - 2023-11-27T130046.681-gorgoroth_orcs
+OIG - 2023-11-27T124644.508-head_catapults
+OIG - 2023-11-28T123843.694-wolves
+OIG - 2023-11-17T163415.822-olog_hai
+OIG.t2R-trebuchets
+OIG - 2023-11-27T130051.113-ungol_orcs
+OIG - 2023-11-27T132138.811-uruk_hai
+OIG - 2023-11-27T125026.557-war_trolls
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+OIG - 2023-10-30T002335.982-gwyllion
+treebeard-treebeard
+saruman-saruman
+OIG - 2023-11-15T001459.979-wormtongue
+OIG - 2023-10-27T103931.582-saruman_of_many_colours
+OIG (13)-saruman_the_white
+OIG - 2023-10-27T103426.734-warden_of_orthanc
+CCCCxxx-white_messenger
+OIG - 2023-11-15T001239.208-archers
+OIG.AQqPT-crebain
+OIG - 2023-11-07T194818.383-dunlending_archers
+OIG - 2023-11-07T194738.735-dunlending_warriors
+OIG - 2023-11-27T211611.240-fire
+OIG - 2023-11-28T123843.694-wolves
+OIG - 2023-11-27T132912.307-ladders
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+miners-miners
+OIG - 2023-11-27T133602.712-ladders
+spearmen-spearmen
+OIG - 2023-11-17T163410.374-torch_bearers
+OIG - 2023-11-27T132138.811-uruk_hai
+OIG - 2023-11-14T211326.233-warg_riders
+OIG.8Lwm6FPQ-wargs
+OIG - 2023-10-27T224155.076-cancel
+OIG - 2023-10-26T113513.506-cruel_caradhras
+OIG.N5zSh4o3-sabotage
+OIG - 2023-10-27T224726.245-steal_gold
+OIG - 2023-10-27T223829.685-steal_resources
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG.._chc_ZIltZTl-medium_hides
+OIG - 2023-10-27T104343.355-palantir_of_orthanc
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-10-26T140658.479-white_hand_banner
+OIG - 2023-11-30T105632.901-eomer
+OIG - 2023-10-22T234800.9951-eowyn
+Theoden-theoden
+OIG - 2023-11-28T092835.177-march_of_the_rohirrim
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-28T092712.042-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-10T234221.481-meduseld_guards
+stone_throwers4-rallied_men
+OIG - 2023-11-28T092839.202-riders_of_rohan
+spearmen-spearmen
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T132306.008-boots
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-11-11T203246.153-horned_helmet
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T132916.606-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-13T112628.552-war_horn
+OIG (66)-gimli
+OIG (64)-thorin
+Thrain-thrain
+OIG - 2023-11-28T092552.320-dwarven_archers
+OIG - 2023-11-28T092227.256-dwarven_axemen
+OIG.dM.764gYTnCOGs-dwarven_explorers
+dwarven_miners3-dwarven_miners
+OIG - 2023-11-28T092321.916-dwarven_pikeshields
+goat_riders-goat_riders
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-11-11T203246.153-horned_helmet
+OIG - 2023-10-30T101249.772-long_wooden_shield
+OIG - 2023-11-11T203324.229-lumber_axe
+OIG - 2023-11-13T104832.385-lumber_long_axe
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104832.385-throwing_axes
+OIG - 2023-11-13T112628.552-war_horn
+OIG - 2023-10-30T101413.943-wooden_shield
+shelob3-shelob
+OIG.e0LfYcep3HIS4Ir-angulion
+TheWitchKing-witch_king
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-11-07T194816.195-angmarin
+OIG - 2023-10-24T122813.246-barrow_wights
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG - 2023-11-17T163410.374-fire_throwers
+OIG - 2023-11-07T194706.557-hillmen
+OIG - 2023-11-28T123843.694-wolves
+OIG - 2023-11-17T162459.131-morgul_pass_guards
+OIG.t2R-trebuchets
+OIG - 2023-10-24T122928.839-undead
+OIG - 2023-11-27T130051.113-ungol_orcs
+OIG - 2023-11-27T132138.811-uruk_hai
+OIG - 2023-11-27T125026.557-war_trolls
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+weapon10-black_scimitar
+banner2-blazon_of_the_eye
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+helmet5-dark_leather_hood
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG.BGV-ebony_coat
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-28T115102.475-palantir_of_amon_sul
+OIG - 2023-11-28T115108.495-palantir_of_annuminas
+OIG - 2023-11-28T115217.983-palantir_of_minas_ithil
+OIG - 2023-11-28T114410.615-palantir_of_osgiliath
+armor5-rider_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+cloack11-shadow_cloak
+treebeard-treebeard
+radagast-radagast
+Radagast-brown_wizard
+OIG - 2023-10-26T114946.964-lonely_wanderer
+OIG - 2023-10-26T114931.331-protector_of_the_woods
+OIG - 2023-11-11T222130.713-beast_of_the_woods
+OIG - 2023-10-27T104851.428-beornings
+OIG - 2023-11-11T222551.127-horses
+OIG - 2023-11-11T225601.619-rhosgobel_rabbits
+OIG.KUptA-rivermen
+OIG - 2023-11-07T194241.086-wood_elves
+OIG - 2023-10-27T104713.250-woodmen
+OIG - 2023-11-11T222123.821-beasts
+OIG - 2023-11-15T231431.056-bees
+OIG - 2023-10-27T104851.428-beorning_warriors
+OIG - 2023-11-11T224638.161-birds
+OIG..2l-roots
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-10-27T224155.076-cancel
+OIG.N5zSh4o3-sabotage
+OIG - 2023-10-27T224726.245-steal_gold
+OIG - 2023-10-27T223829.685-steal_resources
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+hetlmet9-leather_hood
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+OIG (46)-celeborn
+OIG (39)-faemir
+Galadriel-galadriel
+OIG - 2023-11-11T202133.169-haldir
+OIG (44)-tharrudan
+OIG - 2023-10-29T212310.677-bearer_of_nenya
+OIG.IfMPGP95_U4QotM-commander_of_the_galadhrim
+OIG (41)-lady_of_the_woods
+OIG - 2023-11-13T150255.675-the_mirror_of_galadriel
+banner_bearers-bannerlords
+OIG - 2023-11-07T194306.961-elven_archers
+OIG.C7ZCjyB5PDJ9C9cJ1_-elven_fleet
+OIG - 2023-11-07T194622.372-elven_scouts
+OIG.0sAPb1.FFm-elven_warriors
+elves_going_west-elves_going_west
+OIG - 2023-11-13T145818.079-galadhrim_archers
+OIG.0sAPb1.FFm-galadhrim_infantry
+OIG - 2023-11-16T211236.273-swan_fleet
+OIG - 2023-11-16T215937.140-the_golden_host
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG._.oqXs0m0S0p.yuN-athelas
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+OIG - 2023-11-13T104739.867-dagger
+OIG - 2023-11-11T202222.816-elven_armour
+OIG - 2023-11-13T133349.870-elven_belt
+OIG - 2023-11-13T132306.008-elven_boots
+OIG.vzZdr-elven_brooch
+OIG - 2023-11-13T105035.436-elven_dagger
+OIG - 2023-11-13T132916.606-elven_ropes
+OIG - 2023-10-30T101300.924-elven_shield
+cloack1-elven_sinda_cloak
+OIG - 2023-11-13T105037.668-elven_sword
+OIG - 2023-11-13T111129.627-galadhrim_bow
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202446.008-lembas
+OIG.._chc_ZIltZTl-medium_hides
+OIGxx-phial_of_galadriel
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-10-27T104115.513-the_stone_of_earendil
+OIG - 2023-10-22T235920.476-azog
+Balrog-balrog
+OIG (25)-bolg
+OIG - 2023-10-24T121941.846-goblin_miner
+OIG.ZoG9_ptN7QT9Dgs3r-deeps_dweller
+OIG116-durin_bane
+OIG115-flame_of_udun
+OIG - 2023-11-28T211627.702-ashes
+OIG (14)-cave_goblins
+OIG (58)-cave_trolls
+OIG - 2023-11-07T195213.339-creatures_of_the_deeps
+OIG - 2023-11-27T211606.177-fire
+OIG - 2023-11-17T163410.374-fire_throwers
+OIG - 2023-11-16T210524.538-giants
+OIG - 2023-11-17T163056.202-goblin_sappers
+OIG.ltufvzcvvewtDrmWN-goblins_of_moria
+OIG - 2023-10-22T235923.624-hobgoblins
+OIG - 2023-11-28T123843.694-wolves
+OIG - 2023-11-11T232208.994-wargs
+weapon10-black_scimitar
+OIG.BGV-dark_armour
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG - 2023-11-14T221915.770-evil_mace
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+weapon24-jagged_spear
+OIG - 2023-10-24T150916.054-orc_draughts
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+OIG - 2023-11-14T222126.328-whip
+Smaug-smaug
+OIG105-smaug_ahunt
+OIG102-smaug_at_home
+OIG111-smaug_rouse
+OIG - 2023-11-11T224638.161-birds
+OIG.AQqPT-crebain
+OIG - 2023-11-27T211600.798-fire
+OIG - 2023-11-28T123843.694-wolves
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+OIG.FyQzYkdOjnx_P-apprentice_of_alatar
+Alatar-alatar
+OIG (80)-emissary_sent_by_pallando
+OIG - 2023-10-22T235333.721-scout_from_the_east
+OIG.B3u.fbF6Fwhq-emissary_of_the_east
+OIG - 2023-10-27T223615.671-influence
+OIG.XWQH7JCHybo6-influence_neutrals
+OIG.d1pWF0ZD-misguide
+OIG - 2023-10-27T104601.312-balchoth
+OIG - 2023-11-11T222130.713-beast_of_the_woods
+OIG - 2023-11-11T222551.127-horses
+OIG - 2023-10-27T104603.888-rhun_easterlings
+OIG - 2023-11-01T131257.134-wain_easterlings
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-11T222123.821-beasts
+OIG - 2023-11-15T231431.056-bees
+OIG - 2023-11-11T224638.161-birds
+OIG - 2023-11-01T131257.134-chariot_riders
+OIG - 2023-11-15T001234.035-dorwinion_bowmen
+OIG - 2023-11-28T001314.026-dorwinion_riders
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-14T233135.574-rhun_corsairs
+OIG - 2023-10-27T104606.684-rhun_easterlings
+OIG..2l-roots
+OIG - 2023-11-28T093439.072-sea_storm
+spearmen-spearmen
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-10-27T224155.076-cancel
+OIG.N5zSh4o3-sabotage
+OIG - 2023-10-27T224726.245-steal_gold
+OIG - 2023-10-27T223829.685-steal_resources
+OIG - 2023-10-27T224932.396-blue_cloak
+OIG - 2023-10-27T225809.567-blue_hat
+OIG - 2023-10-27T225816.345-book_of_magic
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-10-27T225813.051-mage_staff
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-10-27T223622.672-aprentice_of_pallando
+OIG - 2023-10-22T235333.721-emissary_sent_by_alatar
+Pallando-pallando
+OIG (80)-scout_from_the_south
+OIG.B3u.fbF6Fwhq-emissary_of_the_east
+OIG - 2023-10-27T223615.671-influence
+OIG.XWQH7JCHybo6-influence_neutrals
+OIG.d1pWF0ZD-misguide
+OIG - 2023-11-11T222551.127-horses
+OIG - 2023-10-27T104603.888-rhun_easterlings
+OIG - 2023-11-01T131257.134-wain_easterlings
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-15T231431.056-bees
+OIG - 2023-11-11T224638.161-birds
+OIG - 2023-11-07T194745.231-black_numenoreans
+OIG - 2023-11-01T131257.134-chariot_riders
+OIG.dKu_IvvS3pZwtn-easterling_cataphracts
+OIG (43)-haradrim_cavalry
+OIG (20)-haradrim_infantry
+OIG.csWvfmCdw-khand_easterlings
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+spearmen-spearmen
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-10-27T224155.076-cancel
+OIG.N5zSh4o3-sabotage
+OIG - 2023-10-27T224726.245-steal_gold
+OIG - 2023-10-27T223829.685-steal_resources
+OIG - 2023-10-27T224932.396-blue_cloak
+OIG - 2023-10-27T225809.567-blue_hat
+OIG - 2023-10-27T225816.345-book_of_magic
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-10-27T225813.051-mage_staff
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-16T212757.904-arfanhil
+broccach-broccach
+OIG - 2023-11-07T194816.195-angmarin
+OIG - 2023-10-24T122644.198-forest_spiders
+OIG - 2023-11-07T194706.557-hillmen
+OIG.57IiSBD0gP-huorns
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+miners-miners
+OIG - 2023-11-07T194711.358-mounted_hillmen
+OIG - 2023-10-24T122650.753-ruins_spiders
+spearmen-spearmen
+OIG - 2023-11-28T205511.294-stone_trolls
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-10-22T235540.927-wolves
+OIG129-wood_trolls
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T132306.008-boots
+cloack3-brown_cloak
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-11-11T203246.153-horned_helmet
+OIG - 2023-11-11T203324.229-lumber_axe
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-13T104832.385-throwing_axes
+OIG - 2023-11-13T112628.552-war_horn
+OIG - 2023-10-30T101413.943-wooden_shield
+OIG (56)-arwen
+elrond-elrond
+OIG.h1sXU4KHYF-gildor_inglorion
+OIG - 2023-11-13T154410.769-glorfindel
+OIG.ZY-bearer_of_vilya
+OIG - 2023-11-13T110040.354-ford_of_bruinen
+OIG - 2023-10-30T203411.968-herald_of_gil_galad
+OIG - 2023-10-30T201552.515-soldier_of_gil_galad
+OIG - 2023-11-13T154115.937-the_gift_of_foreseeing
+banner_bearers-bannerlords
+OIG - 2023-11-07T194306.961-elven_archers
+OIG - 2023-11-07T194622.372-elven_scouts
+OIG.0sAPb1.FFm-elven_warriors
+elves_going_west-elves_going_west
+OIG.VNKWJfR-half_elves
+OIG - 2023-11-28T123843.694-wolves
+OIG.JnFMiA2r-mounted_rangers_of_the_north
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T105028.924-anduril_sword
+OIG._.oqXs0m0S0p.yuN-athelas
+OIG.f-banner_of_elendil
+OIG - 2023-11-13T105625.496-banner_of_pelenor_fields
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+OIG - 2023-11-13T104739.867-dagger
+OIG - 2023-11-11T202222.816-elven_armour
+OIG - 2023-11-13T133349.870-elven_belt
+OIG - 2023-11-13T132306.008-elven_boots
+OIG - 2023-11-13T111129.627-elven_bow
+OIG - 2023-11-13T105035.436-elven_dagger
+cloak2-elven_noldo_cloak
+OIG - 2023-10-30T101300.924-elven_shield
+OIG - 2023-11-13T105037.668-elven_sword
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202446.008-lembas
+OIG.._chc_ZIltZTl-medium_hides
+cloack8-mithril_coat
+hetlmet5-plate_helm
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-13T104929.916-the_evenstar_necklace
+OIG - 2023-11-27T130048.861-gorthog
+hoarmurath-hoarmurath
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG - 2023-11-17T161911.973-durthang_orcs
+OIG - 2023-11-17T161904.027-durthang_sorcerers
+OIG - 2023-11-17T162505.431-durthang_uruk_hai
+OIG.oVLA6.M_G3uq1Pipp-forest_orcs
+OIG - 2023-11-27T130046.681-gorgoroth_orcs
+OIG - 2023-11-28T123843.694-wolves
+OIG.t2R-trebuchets
+OIG - 2023-11-27T125026.557-war_trolls
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+OIG - 2023-11-14T211323.778-beastmaster
+DendraDwar-dendra_dwar
+OIG.e0LfYcep3HIS4Ir-krusnak
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG.VZonlqXYz-bog_swarm
+dead_marshes-candle_corpses
+OIG (14)-cave_goblins
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG - 2023-10-27T104606.684-rhun_easterlings
+OIG - 2023-10-24T122928.839-undead
+OIG - 2023-11-27T132138.811-uruk_hai
+OIG - 2023-11-14T211326.233-warg_riders
+OIG - 2023-11-11T232211.131-wargs
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+weapon10-black_scimitar
+banner2-blazon_of_the_eye
+OIG.BGV-dark_armour
+OIG124-dark_horse
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG - 2023-11-14T222431.239-easterling_helm
+OIG - 2023-11-14T221915.770-evil_mace
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+weapon24-jagged_spear
+OIG - 2023-11-14T221639.054-morningstar
+OIG - 2023-10-24T150916.054-orc_draughts
+armor5-rider_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+cloack11-shadow_cloak
+OIG - 2023-11-14T222126.328-whip
+OIG - 2023-11-11T202955.273-boromir
+denethor-denethor
+OIG.j-faramir
+OIG.F7z3yHs-imrahil
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-15T001241.988-gondorian_archers
+OIG - 2023-11-14T231930.124-gondorian_infrantry
+OIG - 2023-11-14T231932.469-knights_of_dol_amroth
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-14T233129.882-pelargir_fleet
+OIG - 2023-11-07T194814.107-rangers_of_ithilien
+spearmen-spearmen
+OIG - 2023-11-14T231927.510-tower_guards
+OIG.bX8ReDec-trebuchets
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T132306.008-boots
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-11-11T203246.153-horned_helmet
+OIG - 2023-11-28T115226.207-palantir_of_minas_anor
+OIG - 2023-11-28T114410.615-palantir_of_osgiliath
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T132916.606-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-13T112628.552-war_horn
+shelob3-shelob
+Ren-ren
+OIGxxxx-shagrat
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG - 2023-11-27T211606.177-fire
+OIG - 2023-11-17T163410.374-fire_throwers
+OIG - 2023-11-27T130046.681-gorgoroth_orcs
+OIG - 2023-11-27T125641.740-grond
+OIG - 2023-11-27T124644.508-head_catapults
+OIG - 2023-11-17T163415.822-olog_hai
+OIG.t2R-trebuchets
+OIG - 2023-11-27T130051.113-ungol_orcs
+OIG - 2023-11-27T132138.811-uruk_hai
+OIG - 2023-11-27T125026.557-war_trolls
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+OIG - 2023-10-22T234834.999-elladan
+OIG - 2023-10-22T234841.190-elrohir
+OIG - 2023-11-28T001625.875-halbarad
+OIG - 2023-11-28T001716.744-strider
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-28T092042.339-dunadan_rangers
+OIG - 2023-11-07T194706.557-hillmen
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-30T110423.165-men_of_bree
+OIG - 2023-11-28T001507.546-mounted_dunadan_rangers
+spearmen-spearmen
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-11-28T001719.928-wardens_of_annuminas
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T132306.008-boots
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-11-11T203246.153-horned_helmet
+OIG - 2023-11-28T115102.475-palantir_of_amon_sul
+OIG - 2023-11-28T115108.495-palantir_of_annuminas
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T132916.606-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-13T112628.552-war_horn
+OIG - 2023-10-30T002335.982-gwyllion
+OIG.tM9Zt-aonghas
+OIG.4BKypypc2b-enion
+OIG.AQqPT-crebain
+OIG - 2023-11-07T194818.383-dunlending_archers
+OIG - 2023-11-07T194738.735-dunlending_warriors
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+miners-miners
+spearmen-spearmen
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T132306.008-boots
+cloack3-brown_cloak
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG - 2023-11-11T203246.153-horned_helmet
+OIG - 2023-11-11T203324.229-lumber_axe
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG - 2023-11-13T104832.385-throwing_axes
+OIG - 2023-11-13T112628.552-war_horn
+OIG - 2023-10-30T101413.943-wooden_shield
+cirdan-cirdan
+OIG.2abiNDlMpMmBX7G-shipwright
+OIG - 2023-11-28T093436.880-rage_of_ulmo
+OIG - 2023-11-16T211233.122-the_shipwright
+banner_bearers-bannerlords
+OIG - 2023-11-07T194306.961-elven_archers
+OIG.C7ZCjyB5PDJ9C9cJ1_-elven_fleet
+OIG - 2023-11-07T194622.372-elven_scouts
+OIG.0sAPb1.FFm-elven_warriors
+elves_going_west-elves_going_west
+OIG - 2023-11-28T093439.072-sea_storm
+OIG - 2023-11-16T211236.273-swan_fleet
+elves4-white_tower_wardens
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG._.oqXs0m0S0p.yuN-athelas
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+OIG - 2023-11-13T104739.867-dagger
+OIG - 2023-11-11T202222.816-elven_armour
+OIG - 2023-11-13T133349.870-elven_belt
+OIG - 2023-11-13T132306.008-elven_boots
+OIG - 2023-11-13T111129.627-elven_bow
+OIG - 2023-11-13T105035.436-elven_dagger
+cloak2-elven_noldo_cloak
+OIG - 2023-10-30T101300.924-elven_shield
+OIG - 2023-11-13T105037.668-elven_sword
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202446.008-lembas
+OIG.._chc_ZIltZTl-medium_hides
+cloack8-mithril_coat
+OIG - 2023-11-28T115102.475-palantir_of_amon_sul
+OIG - 2023-11-28T115108.495-palantir_of_annuminas
+OIG - 2023-11-28T115220.631-palantir_of_elostirion
+hetlmet5-plate_helm
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG (78)-kav_makow
+ovatha_ii-ovatha_ii
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-28T001143.928-camel_riders
+OIG.nqDZIuDoHA-desert_serpent
+OIG.dKu_IvvS3pZwtn-easterling_cataphracts
+OIG - 2023-11-28T093347.354-giant_scorpion
+OIG.csWvfmCdw-khand_easterlings
+OIG - 2023-10-27T104603.888-khand_easterlings
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+spearmen-spearmen
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+haruth_rammam-haruth_ramam
+OIG (82)-ossim_rallah
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-07T194745.231-black_numenoreans
+OIG (43)-haradrim_cavalry
+OIG (20)-haradrim_infantry
+OIG.5RB6kOjSa-kraken
+OIG - 2023-11-01T131238.189-light_cavalry
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-27T120532.351-mumakils
+OIG - 2023-11-28T094938.207-pirates
+OIG - 2023-11-28T093439.072-sea_storm
+spearmen-spearmen
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG (73)-adumir
+angamaite-angamaite
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-07T194745.231-black_numenoreans
+OIG - 2023-11-28T094802.072-corsairs_of_umbar
+OIG (20)-haradrim_infantry
+OIG - 2023-11-14T232323.624-mangonels
+OIG - 2023-11-28T094938.207-pirates
+OIG - 2023-11-28T094335.040-sea_serpent
+OIG - 2023-11-28T093439.072-sea_storm
+spearmen-spearmen
+OIG.IcFDKclAKjZU313rM-swordmen
+OIG - 2023-11-28T092844.416-umbar_cavalry
+OIG.c.Gq5Nr-umbar_riders
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG.._chc_ZIltZTl-medium_hides
+OIG - 2023-11-28T114410.615-palantir_of_osgiliath
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG.JSD-gollum
+maggot1-maggot
+treebeard-treebeard
+OIG - 2023-11-28T000702.302-bilbo
+OIG - 2023-11-28T100128.008-frodo
+OIG - 2023-11-28T100400.456-merry
+OIG - 2023-11-28T100030.072-paladin
+OIG.O.Nr_fufy_L1QXVM-pippin
+OIG - 2023-11-28T100033.122-sam
+OIG - 2023-11-28T001006.837-there_and_back_again
+OIG - 2023-11-15T231431.056-bees
+OIG - 2023-11-28T000755.723-bounders
+OIG - 2023-11-28T092552.320-hobbit_archers
+OIG - 2023-11-28T092549.387-hobbit_slingers
+OIG.9UCxL-hounds
+OIG.57IiSBD0gP-huorns
+OIG..2l-roots
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-11T201312.952-cancel
+OIG - 2023-11-11T201131.484-sabotage
+OIG.Ch6-steal_gold
+OIG - 2023-11-11T201020.097-steal_resources
+OIG - 2023-11-13T104739.867-dagger
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+OIG - 2023-11-11T202522.287-herbs
+OIG.._chc_ZIltZTl-medium_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+shield3-shield
+OIG - 2023-11-13T111456.521-short_bow
+OIG - 2023-11-13T104315.245-sword
+OIG (81)-araudagul
+JiIndur-ji_indur
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG - 2023-11-17T163056.202-goblin_sappers
+OIG (43)-haradrim_cavalry
+OIG (20)-haradrim_infantry
+OIG - 2023-10-22T235923.624-hobgoblins
+OIG - 2023-11-27T133602.712-ladders
+OIG - 2023-10-23T000031.145-ungol_orcs
+OIG - 2023-11-01T131238.189-southrons
+OIG.90eqbtL-orc_catapults
+OIG - 2023-11-17T162502.965-southern_assassins
+OIG - 2023-11-17T163410.374-torch_bearers
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+weapon10-black_scimitar
+banner2-blazon_of_the_eye
+OIG.BGV-dark_armour
+OIG124-dark_horse
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG - 2023-11-14T222431.239-easterling_helm
+OIG - 2023-11-14T221915.770-evil_mace
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+weapon24-jagged_spear
+OIG - 2023-11-14T221639.054-morningstar
+OIG - 2023-10-24T150916.054-orc_draughts
+armor5-rider_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+cloack11-shadow_cloak
+OIG - 2023-11-14T222126.328-whip
+Akhorahil-akhorahil
+OIG (54)-ethacali
+OIG (1)-black_rider
+OIG - 2023-10-26T114735.372-fell_rider
+OIGG-heralded_lord
+OIG.knliSqPvuJCID9A-unleashed
+OIG - 2023-11-16T210303.233-crossbow_orcs
+OIG - 2023-11-27T211606.177-fire
+OIG - 2023-11-17T163056.202-goblin_sappers
+OIG - 2023-10-22T235923.624-hobgoblins
+OIG - 2023-11-28T123843.694-wolves
+OIG.csWvfmCdw-khand_easterlings
+OIGxxxx-durthang_sorcerers
+OIG - 2023-11-27T133602.712-ladders
+OIG - 2023-10-23T000031.145-ungol_orcs
+OIG - 2023-11-28T001320.561-southrons
+OIG.90eqbtL-orc_catapults
+OIG - 2023-11-28T093439.072-sea_storm
+OIG - 2023-11-17T163410.374-torch_bearers
+OIG - 2023-10-22T235540.927-wolves
+OIG - 2023-11-05T162704.900-cancel
+OIG - 2023-11-05T125006.939-sabotage
+OIG.KEamBg-steal_gold
+OIG - 2023-11-05T162306.447-steal_resources
+weapon10-black_scimitar
+banner2-blazon_of_the_eye
+OIG.BGV-dark_armour
+OIG124-dark_horse
+OIG - 2023-10-30T101337.297-dark_long_shield
+OIG.mCY83sWQv6FlYd-dark_round_shield
+OIG - 2023-11-14T222431.239-easterling_helm
+OIG - 2023-11-14T221915.770-evil_mace
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+weapon24-jagged_spear
+OIG - 2023-11-14T221639.054-morningstar
+OIG - 2023-10-24T150916.054-orc_draughts
+armor5-rider_hides
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+cloack11-shadow_cloak
+OIG - 2023-11-14T222126.328-whip
+goldberry-goldberry
+tom_bombadil1-tom_bombadil
+treebeard-treebeard
+Gandalf-gandalf
+OIG.UG65uAFwHuju-stormcrow
+OIG - 2023-10-27T103936.999-you_shall_not_pass
+OIG - 2023-11-15T001239.208-archers
+OIG - 2023-11-11T222123.821-beasts
+OIG - 2023-11-11T224638.161-birds
+OIG - 2023-11-28T000755.723-bounders
+OIG - 2023-11-28T001428.037-dunadan_rangers
+OIG.dM.764gYTnCOGs-dwarven_explorers
+OIG - 2023-11-07T194622.372-elven_scouts
+firework3-firework
+OIG - 2023-11-01T131238.189-light_cavalry
+old_willow-traps
+OIG..2l-roots
+spearmen-spearmen
+OIG - 2023-11-14T163449.417-traps
+OIG - 2023-10-27T224155.076-cancel
+OIG.N5zSh4o3-sabotage
+OIG - 2023-10-27T224726.245-steal_gold
+OIG - 2023-10-27T223829.685-steal_resources
+OIG - 2023-11-14T224241.007-cloak_of_invisibility
+goldring4-a_little_gold_ring
+goldring1-bright_gold_ring
+goldring2-gleaming_gold_ring
+goldring8-ornamental_gold_ring
+goldring7-perfect_gold_ring
+goldring6-precious_gold_ring_dark
+goldring5-the_least_of_gold_rings
+hetlmet9-leather_hood
+ring1-abhorred_ring
+ring10-binding_ring
+ring13-dwarven_ring_from_angmar
+ring2-dwarven_ring_of_durin_tribe
+ring15-dwarven_ring_of_khazad_dum
+ring14-dwarven_ring_of_the_blue_mountains
+OIG.eHHpJhm-dwarven_ring_of_the_iron_hills
+OIG - 2023-11-13T225455.945-insignificant_ring
+ring3-magic_ring_of_enigma
+ring4-magic_ring_of_fury
+ring5-magic_ring_of_guile
+ring7-magic_ring_of_intuition
+ring6-magic_ring_of_lies
+ring8-minor_ring
+ring9-paltry_ring
+ring12-petty_ring
+ring11-troth_ring
+OIG - 2023-11-15T001459.979-wormtongue
+TheWitchKing-witch_king
+Uvatha-uvatha
+Thrain-thrain
+OIG.F7z3yHs-tros_hesnef
+thranduil-thranduil
+OIG (64)-thorin
+dark_elf_commander-taladhan
+OIG - 2023-11-28T001716.744-strider
+Smaug-smaug
+OIG.2abiNDlMpMmBX7G-shipwright
+OIGxxxx-shagrat
+saruman-saruman
+Ren-ren
+radagast-radagast
+Pallando-pallando
+OIG - 2023-11-28T100030.072-paladin
+ovatha_ii-ovatha_ii
+OIG (82)-ossim_rallah
+mouth-mouth
+OIG (40)-legolas
+OIG.e0LfYcep3HIS4Ir-krusnak
+Khamul-khamul
+OIG (78)-kav_makow
+JiIndur-ji_indur
+Huz-huz
+haruth_rammam-haruth_ramam
+hoarmurath-hoarmurath
+OIG.i9o7lb5AQOa-herumor
+OIG - 2023-11-27T132052.164-gothmog
+OIG - 2023-11-27T130048.861-gorthog
+OIG.-goblin_king
+OIG - 2023-11-13T154410.769-glorfindel
+OIG (66)-gimli
+Gandalf-gandalf
+Galadriel-galadriel
+OIG - 2023-11-16T212751.767-fram_wyrmslayer
+OIG.j-faramir
+OIG (54)-ethacali
+OIG - 2023-10-22T234841.190-elrohir
+OIG.4BKypypc2b-enion
+elrond-elrond
+OIG - 2023-10-22T234834.999-elladan
+denethor-denethor
+DendraDwar-dendra_dwar
+OIG - 2023-11-28T001630.353-dain
+cirdan-cirdan
+OIG (46)-celeborn
+broccach-broccach
+OIG - 2023-11-11T202955.273-boromir
+OIG - 2023-11-28T000702.302-bilbo
+beorn-beorn
+Bard-bard
+Balrog-balrog
+OIG - 2023-11-16T212757.904-arfanhil
+OIG (81)-araudagul
+OIG.tM9Zt-aonghas
+OIG.e0LfYcep3HIS4Ir-angulion
+angamaite-angamaite
+Alatar-alatar
+Akhorahil-akhorahil
+Adunaphel-adunaphel
+OIG (73)-adumir
+Theoden-theoden
+OIG - 2023-11-30T105632.901-eomer

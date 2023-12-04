@@ -17,13 +17,14 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
 
     void Awake()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
         cardDetailsRepo = GameObject.Find("CardDetailsRepo").GetComponent<CardDetailsRepo>();
         if(turn == null)
             turn = GameObject.Find("Turn").GetComponent<Turn>();
         handPos = 0;
         loaded = false;
-        requirements = new List<DeckCardUIRequirement>();
+        requirements = new();
         awaken = true;
     }
 
@@ -36,6 +37,9 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         this.nation = owner;
         this.isHover = isHover;
 
+        if (game.GetHumanPlayer().GetNation() != owner)
+            return true;
+
         if (!turn.IsNewTurnLoaded())
             return false;
 
@@ -43,9 +47,6 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
             return false;
 
         if (cardId == null)
-            return false;
-
-        if (owner == NationsEnum.ABANDONED)
             return false;
 
         if (!InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner), false, isHover))
@@ -57,14 +58,12 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         if (cardDetails == null)
             return false;
 
-        if (game.GetHumanPlayer().GetNation() != owner)
-            return true;
-
         button.enabled = true;
         button.interactable = true;
 
         loaded = true;
 
+        //Debug.Log("Initializing DeckCardUI at " + Time.realtimeSinceStartup);
         return true;
     }
 

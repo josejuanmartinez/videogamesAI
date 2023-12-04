@@ -28,8 +28,8 @@ public class FOWManager : MonoBehaviour
     public void Initialize()
     {
         isInitialized = board.IsInitialized() && game.IsInitialized() && turn.IsInitialized();
-        if (isInitialized)
-            Debug.Log("FOWManager initialized");
+        //if (isInitialized)
+        //    Debug.Log("FOWManager initialized at " + Time.realtimeSinceStartup);
     }
     void Update()
     {

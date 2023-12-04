@@ -18,6 +18,7 @@ public class SelectedItems : MonoBehaviour
     private CameraController cameraController;
     private Turn turn;
     private PlaceDeck placeDeckManager;
+    private Game game;
 
     private void Awake()
     {
@@ -27,10 +28,13 @@ public class SelectedItems : MonoBehaviour
         cameraController = Camera.main.GetComponent<CameraController>();
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
+        game = GameObject.Find("Game").GetComponent<Game>();
     }
 
     private void Update()
     {
+        if (!game.FinishedLoading())
+            return;
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             UnselectAll();

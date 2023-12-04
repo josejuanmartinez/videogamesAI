@@ -2,27 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
-
 
 public class DeckManager : MonoBehaviour
 {
-    public GameObject handPrefab;
     public Transform deckTransform;
     public CanvasGroup deckCanvasGroup;
     public GameObject deckCardUIPrefab;
-    public short handSize = 5;
 
     public List<string> startWithId;
-        
-    private Dictionary<NationsEnum, GameObject> hands;
-    private Dictionary<NationsEnum, List<GameObject>> cards;
-    private Dictionary<NationsEnum, List<CardDetails>> drawnCards;
-    public  Dictionary<NationsEnum, List<CardDetails>> discardPile;
-    public Dictionary<NationsEnum, List<CardDetails>> wonPile;
-    public Dictionary<NationsEnum, int> lastCardDrawn;
-    public Dictionary<NationsEnum, bool> hasCards;
-    
+
+    private Game game;
     private Board board;
     private PlaceDeck placeDeckManager;
     private Turn turn;
@@ -30,11 +19,16 @@ public class DeckManager : MonoBehaviour
     private SelectedItems selectedItems;
     private CameraController cameraController;
 
+    private List<CardsOfPlayer> cardsOfPlayer;
+
     private List<DirtyReasonEnum> isDirty;
     private string loadingPlayer;
     private bool isInitialized;
+
+    
     void Awake()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
         board = GameObject.Find("Board").GetComponent<Board>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
         turn = GameObject.Find("Turn").GetComponent<Turn>();
@@ -42,18 +36,9 @@ public class DeckManager : MonoBehaviour
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
         cameraController = GameObject.Find("CameraController").GetComponent<CameraController>();
 
-        lastCardDrawn = new();
-        hasCards = new();
-
-        drawnCards = new();        
-        cards = new();
-        discardPile = new();
-        wonPile = new();
-
-        hands = new();
+        cardsOfPlayer = new();
 
         isDirty = new();
-        hasCards.Add(NationsEnum.ABANDONED, false);
 
         isInitialized = false;
     }
@@ -68,52 +53,21 @@ public class DeckManager : MonoBehaviour
             return;
         if (isInitialized)
             return;
-        foreach(NationsEnum nation in Enum.GetValues(typeof(NationsEnum))) 
+        foreach (NationsEnum nation in Enum.GetValues(typeof(NationsEnum)))
         {
-            loadingPlayer = nation.ToString();
             if (nation == NationsEnum.ABANDONED)
                 continue;
-            if (hands.ContainsKey(nation))
-                continue;
-            hands[nation] = Instantiate(handPrefab, deckTransform);
-            hands[nation].name = nation.ToString();
-            
-            lastCardDrawn[nation] = -1;
+            loadingPlayer = nation.ToString();
 
-            drawnCards[nation] = new();
-            cards[nation] = new();
-            discardPile[nation] = new();
-            wonPile[nation] = new();
-
-            List<string> cardNames = cardRepo.GetCardsOfNation(nation);
-            if (cardNames.Count < handSize)
-            {
-                hasCards.Add(nation, false);
-                HideHandOf(nation);
-                continue;
-            } 
-            else
-                hasCards.Add(nation, true);
-                
-            cards[nation] = cardNames.Select(x => cardRepo.GetCardGameObject(x, nation)).ToList();
-            for(int i=0; i < cards[nation].Count; i++)
-            {
-                if (cards[nation][i] == null)
-                {
-                    Debug.LogWarning(string.Format("Something is wrong with {0}'s card {1}",
-                        nation.ToString(),
-                        cardNames[i]));
-                    cards[nation].RemoveAt(i);
-                }
-            }
-            Shuffle(nation);
-            DrawHand(nation);
-            //Debug.Log("Loaded " + cards[nation].Count + " cards for " + nation.ToString());
-
-            if (turn.GetCurrentPlayer() != nation)
-                HideHandOf(nation);
+            GameObject go = new("deck_" + nation.ToString());
+            go.transform.parent = transform;
+            CardsOfPlayer cardsOfThisPlayer = go.AddComponent<CardsOfPlayer>();
+            cardsOfThisPlayer.Initialize(nation,
+                    game.GetHumanPlayer().GetNation() == nation ? deckTransform : null,
+                    deckCardUIPrefab);
+            cardsOfPlayer.Add(cardsOfThisPlayer);
         }
-        
+        //Debug.Log(string.Format("DeckManager loaded at {0}", Time.realtimeSinceStartup));
         isInitialized = true;
     }
 
@@ -129,11 +83,11 @@ public class DeckManager : MonoBehaviour
 
     public void AddToWonPile(NationsEnum owner, CardDetails details)
     {
-        wonPile[owner].Add(details);
+        cardsOfPlayer.Find(x => x.GetNation() == owner).AddToWonPile(details);
     }
     public void AddToDiscardPile(NationsEnum owner, CardDetails details)
     {
-        discardPile[owner].Add(details);
+        cardsOfPlayer.Find(x => x.GetNation() == owner).AddToDiscardPile(details);
     }    
 
     void Update()
@@ -148,156 +102,32 @@ public class DeckManager : MonoBehaviour
         }
         if(isDirty.Count() > 0)
         {
+            short handSize = cardsOfPlayer.Find(x => x.GetNation() == turn.GetCurrentPlayer()).GetHandSize();
             for (int i = 0; i< handSize; i++)
-                if (GetHandCard(turn.GetCurrentPlayer(), i) != null)
-                    GetHandCard(turn.GetCurrentPlayer(), i).GetComponent<CardTemplateUI>().Dirty(isDirty);
+                if (GetHandCardGameObject(turn.GetCurrentPlayer(), i) != null)
+                    GetHandCardGameObject(turn.GetCurrentPlayer(), i).GetComponent<CardTemplateUI>().Dirty(isDirty);
             isDirty = new();
         }
     }
 
-    private void HideHandOf(NationsEnum owner)
+    private GameObject GetHandCardGameObject(NationsEnum nation, int cardShown)
     {
-        hands[owner].SetActive(false);
-    }
-
-    public void ShowHandOf(NationsEnum owner)
-    {
-        foreach (NationsEnum nation in Enum.GetValues(typeof(NationsEnum)))
+        if(game.GetHumanPlayer().GetNation() != nation)
         {
-            hands[owner].SetActive(nation == owner);
-        }   
-    }
-    private GameObject GetHandCard(NationsEnum nation, int cardShown)
-    {
-        if (!hasCards[nation])
+            Debug.LogError(string.Format("Trying to access to the instantiated deck of {0} but it is not human!", nation));
             return null;
-        if (hands[nation].transform.childCount <= cardShown || cardShown < 0)
+        }
+        CardsOfPlayer humanCards = cardsOfPlayer.Find(x => x.GetNation() == nation);
+        if(!humanCards.HasCards())
             return null;
-
-        return hands[nation].transform.GetChild(hands[nation].transform.childCount - 1 - cardShown).gameObject;
-    }
-
-    private void Shuffle(NationsEnum nation)
-    {
-        if (!hasCards[nation])
-            return;
-
-        for (int i = 0; i < cards[nation].Count; i++)
-        {
-            int rnd = UnityEngine.Random.Range(0, cards[nation].Count);
-            ListExtensions.Swap(cards[nation], i, rnd);
-        }
-
-        int startsWithIter = 0;
-        foreach (string cardId in startWithId)
-        {
-            try
-            {
-                GameObject go = cards[nation].Find(x => x.GetComponent<CardDetails>() != null && x.GetComponent<CardDetails>().cardId == cardId);
-                if (go != null)
-                {
-                    int pos = cards[nation].IndexOf(go);
-                    if (pos != -1)
-                        ListExtensions.Swap(cards[nation], pos, startsWithIter);
-                }
-            }
-            catch (Exception)
-            {
-                Debug.LogWarning(string.Format("Unable to Initialize the Deck with {0}", cardId));
-            }
-            startsWithIter++;
-        }
-    }
-
-    public void DrawHand(NationsEnum nation)
-    {
-        if (!hasCards[nation])
-            return;
-
-        for (int i= 0; i < handSize; i++)
-            Draw(nation);
-    }
-
-    public void Draw(NationsEnum nation)
-    {
-        if (!hasCards[nation])
-            return;
-
-        // This is the counter of cards drawn from the Deck (all cards)
-        lastCardDrawn[nation] = (lastCardDrawn[nation] + 1) % cards[nation].Count;
-
-        drawnCards[nation].Add(cards[nation][lastCardDrawn[nation]].GetComponent<CardDetails>());
-
-        CreateCard(nation, cards[nation][lastCardDrawn[nation]], hands[nation].transform);
-
-        for (int i = handSize - 1; i > 0; i--)
-        {
-            if (GetHandCard(nation, i - 1) != null)
-            {
-                if (GetHandCard(nation, i - 1).TryGetComponent<DeckCardUI>(out var deckCard))
-                    deckCard.IncreaseHandPosition();
-            }
-        }
-    }
-
-    public void CreateCard(NationsEnum nation, GameObject definitionCard, Transform parentTransform)
-    {
-        Assert.IsTrue(definitionCard.GetComponent<CardDetails>() != null);
-        CardDetails cardDetails = definitionCard.GetComponent<CardDetails>();
-
-        // I instantiate the Frame
-        GameObject instantiatedCardTemplate = Instantiate(deckCardUIPrefab, parentTransform);
-        instantiatedCardTemplate.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        instantiatedCardTemplate.GetComponent<RectTransform>().localScale = Vector3.one;
-        instantiatedCardTemplate.name = cardDetails.name;
-
-        DeckCardUI deckCard = instantiatedCardTemplate.GetComponent<DeckCardUI>();
-        deckCard.Initialize(nation, cardDetails.cardId, cardDetails.cardClass, false);
+        return humanCards.GetHandCardGameObject(cardShown);
     }
 
     public void DiscardAndDraw(NationsEnum nation, CardDetails card, bool discarded)
     {
-        if (!hasCards[nation])
-            return;
-
-        int index = -1;
-        short handPos = -1;
-        for(int i = 0; i < handSize; i++)
-        {
-            if (GetHandCard(nation,i) == null)
-                continue;
-            string cardId = GetHandCard(nation, i).GetComponent<CardTemplateUI>().GetCardDetails().cardId;
-            if (cardId == card.cardId)
-            {
-                index = i;
-                handPos = GetHandCard(nation, i).GetComponent<DeckCardUI>().GetHandPos();
-                break;
-            }                    
-        }
-        if(index == -1 || handPos == -1)
-        {
-            Debug.LogError("Unable to discard card " + card.cardId);
-            placeDeckManager.RemoveCardToShow(new HoveredCard(nation, card.cardId, card.cardClass));
-            return;
-        }
-        
-        // Destroy the card from hand
-        Destroy(GetHandCard(nation, index));
-
-        if (discarded)
-            AddToDiscardPile(nation, card);
-
-        //For all the cards before, I increase the counter
-        for (int i = handPos - 1; i >= 0; i--)
-            GetHandCard(nation, i).GetComponent<DeckCardUI>().IncreaseHandPosition();
-
-        // This is the counter of cards drawn from the Deck (all cards)
-        lastCardDrawn[nation] = (lastCardDrawn[nation] + 1) % cards[nation].Count;
-
-        CreateCard(nation,cards[nation][lastCardDrawn[nation]], hands[nation].transform);
+        cardsOfPlayer.Find(x => x.GetNation() == nation).DiscardAndDraw(card, discarded);
         placeDeckManager.RemoveCardToShow(new HoveredCard(nation, card.cardId, card.cardClass));
     }
-
 
     public string CanSpawnCharacterAtHome(CardDetails cardDetails, NationsEnum owner)
     {
@@ -307,8 +137,6 @@ public class DeckManager : MonoBehaviour
         if (!cardDetails.IsClassOf(CardClass.Character))
             return null;
         
-        if (!hasCards.ContainsKey(owner)) return null;
-
         CharacterCardDetails character = cardDetails as CharacterCardDetails;
 
         if (character  == null) 
@@ -352,16 +180,17 @@ public class DeckManager : MonoBehaviour
 
     public bool HasCardInDeck(NationsEnum nation, CardClass cardClass)
     {
-        if (!hasCards[nation]) return false;
+        CardsOfPlayer cards = cardsOfPlayer.Find(x => x.GetNation() == nation);
+        if (!cards.HasCards()) return false;
 
-        for (int i = 0; i < handSize; i++)
+        for (int i = 0; i < cards.GetHandSize(); i++)
         {
-            if (GetHandCard(nation, i) == null)
+            if (GetHandCardGameObject(nation, i) == null)
                 continue;
             
-            if (GetHandCard(nation, i).GetComponentInChildren<DeckCardUI>() == null)
+            if (GetHandCardGameObject(nation, i).GetComponentInChildren<DeckCardUI>() == null)
                 continue;
-            DeckCardUI deckCard = GetHandCard(nation, i).GetComponentInChildren<DeckCardUI>();
+            DeckCardUI deckCard = GetHandCardGameObject(nation, i).GetComponentInChildren<DeckCardUI>();
             if (deckCard.GetCardDetails() == null)
                 continue;
             if (deckCard.GetCardDetails().cardClass != cardClass)
@@ -373,31 +202,33 @@ public class DeckManager : MonoBehaviour
 
     public bool HasObjectSlotInDeck(NationsEnum nation, ObjectType objSlot)
     {
-        if (!hasCards[nation]) return false;
+        CardsOfPlayer cards = cardsOfPlayer.Find(x => x.GetNation() == nation);
+        if (!cards.HasCards()) return false;
 
         if (!HasCardInDeck(nation, CardClass.Object)) return false; 
 
-        for (int i = 0; i < handSize; i++)
+        for (int i = 0; i < cards.GetHandSize(); i++)
         {
-            if (GetHandCard(nation, i) == null)
+            if (GetHandCardGameObject(nation, i) == null)
                 continue;
 
-            if(GetHandCard(nation, i).TryGetComponent<ObjectCardDetails>(out var details))
+            if(GetHandCardGameObject(nation, i).TryGetComponent<ObjectCardDetails>(out var details))
                 if (details.objectSlot == objSlot) return true;
         }
         return false;
     }
     public bool HasRingSlotInDeck(NationsEnum nation, RingType objSlot)
     {
-        if (!hasCards[nation]) return false;
+        CardsOfPlayer cards = cardsOfPlayer.Find(x => x.GetNation() == nation);
+        if (!cards.HasCards()) return false;
 
         if (!HasCardInDeck(nation, CardClass.Ring)) return false;
 
-        for (int i = 0; i < handSize; i++)
+        for (int i = 0; i < cards.GetHandSize(); i++)
         {
-            if (GetHandCard(nation,i) == null)
+            if (GetHandCardGameObject(nation,i) == null)
                 continue;
-            if (GetHandCard(nation,i).TryGetComponent<RingCardDetails>(out var details))
+            if (GetHandCardGameObject(nation,i).TryGetComponent<RingCardDetails>(out var details))
                 if (details.objectSlot == objSlot) return true;
         }
         return false;
@@ -405,6 +236,7 @@ public class DeckManager : MonoBehaviour
 
     public List<CardDetails> GetCardsInHandOfType(CardClass cardClass, NationsEnum owner)
     {
-        return drawnCards[owner].FindAll(x => x.cardClass == cardClass);
+        CardsOfPlayer cards = cardsOfPlayer.Find(x => x.GetNation() == owner);
+        return cards.GetCardsInHandOfType(cardClass);
     }
 }

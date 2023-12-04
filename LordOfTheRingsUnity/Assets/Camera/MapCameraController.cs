@@ -26,6 +26,7 @@ public class CameraController : MonoBehaviour
     private Tilemap tilemap;
     private DiceManager diceManager;
     private Board board;
+    private Game game;
 
     private float zoomLevel = 5f; // The current zoom level
     private Vector3 dragOrigin; // The starting point of a drag gesture
@@ -41,10 +42,14 @@ public class CameraController : MonoBehaviour
         diceManager = GameObject.Find("DiceManager").GetComponent<DiceManager>();
         tilemap = GameObject.Find("CardTypeTilemap").GetComponent<Tilemap>();
         board = GameObject.Find("Board").GetComponent<Board>();
+        game = GameObject.Find("Game").GetComponent<Game>();
     }
 
     private void Update()
     {
+        if (!game.FinishedLoading())
+            return;
+
         if (diceManager.IsDicing() || isPopupOpen || preventDrag)
             return;
 

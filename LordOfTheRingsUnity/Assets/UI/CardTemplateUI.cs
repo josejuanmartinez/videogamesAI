@@ -356,7 +356,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             CreateConditions();
         dirtyMessages.Add(DirtyReasonEnum.INITIALIZATION);
         initialized = true;
-
+        
         return true;
     }
 
@@ -574,13 +574,13 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             if(cardDetails != null)
             {
-                Debug.Log("Initializing " + cardDetails.name);
+                //Debug.Log("Initializing " + cardDetails.name);
                 Initialize(owner, cardDetails.cardId, cardDetails.cardClass, isHover);
                 cityDetails = null;
             }                
             else if(cityDetails != null)
             {
-                Debug.Log("Initializing " + cityDetails.name);
+                //Debug.Log("Initializing " + cityDetails.name);
                 Initialize(owner, cityDetails.GetCityID(), CardClass.Place, isHover);
                 cardDetails = null;
             }

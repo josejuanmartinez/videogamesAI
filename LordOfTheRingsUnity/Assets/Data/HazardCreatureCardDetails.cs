@@ -14,11 +14,21 @@ public class HazardCreatureCardDetails: CardDetails
         
     public List<HazardAbilitiesEnum> hazardAbilities;
 
-    private bool isLoaded = false;
+    private bool isAwaken = false;
+    private bool isLoaded;
     private List<CardTypesEnum> cardTypes;
+
+    void Awake()
+    {
+        cardTypes = new();
+        isLoaded = false;
+        isAwaken = true;
+    }
 
     public bool Initialize()
     {
+        if (!isAwaken)
+            Awake();
         Resources requirements = new(0, 0, 0, 0, 0, 0, 0, 0);
         requirements.resources[ResourceType.FOOD] += (prowess + defence) * 5;
         switch (race)

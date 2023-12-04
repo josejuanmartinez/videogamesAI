@@ -80,7 +80,7 @@ public class CardDetailsRepo : MonoBehaviour
         }*/
 
         isInitialized = true;
-        Debug.Log("CardDetailsRepo initialized");
+        //Debug.Log("CardDetailsRepo initialized at " + Time.realtimeSinceStartup);
         return isInitialized;
     }
 

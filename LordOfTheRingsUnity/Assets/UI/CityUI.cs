@@ -133,6 +133,9 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         cityName.text = IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()) ? GameObject.Find("Localization").GetComponent<Localization>().Localize(details.GetCityID()) : StringConstants.hidden;
 
         goHealth.SetActive(IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()));
+
+        //Debug.Log(string.Format("{0} finished loading at {1}", cityObject.name, Time.realtimeSinceStartup));
+
         initialized = true;
         return true;
     }

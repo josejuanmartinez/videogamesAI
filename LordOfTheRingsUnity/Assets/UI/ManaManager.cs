@@ -37,9 +37,11 @@ public class ManaManager : MonoBehaviour
     private DeckManager deckManager;
     private ColorManager colorManager;
     private Turn turn;
+    private Game game;
 
     void Awake()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
         deckManager = GameObject.Find("DeckManager").GetComponent<DeckManager>();
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
@@ -72,6 +74,10 @@ public class ManaManager : MonoBehaviour
     }
     void Update()
     {
+
+        if (!game.FinishedLoading())
+            return;
+
         if (dirty)
         {
             textFreeBastion.text = mana[turn.GetCurrentPlayer()][CardTypesEnum.FREE_BASTION].ToString();

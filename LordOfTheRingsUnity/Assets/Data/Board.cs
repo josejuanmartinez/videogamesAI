@@ -48,8 +48,8 @@ public class Board: MonoBehaviour
     void Initialize()
     {
         initialized = GameObject.Find("Localization").GetComponent<Localization>().IsInitialized();
-        if (initialized)
-            Debug.Log("Board Initialized");
+        //if (initialized)
+        //    Debug.Log("Board Initialized at " + Time.realtimeSinceStartup);
     }
 
     public bool CalculateAllLoaded()
@@ -63,12 +63,16 @@ public class Board: MonoBehaviour
             if (!character.IsInitialized())
                 return false;
         }
+        float charTime = Time.realtimeSinceStartup;
+        
         foreach (Transform t in citiesCanvas.transform)
         {
             CityUI city = t.gameObject.GetComponent<CityUI>();
             if (!city.IsInitialized())
                 return false;
         }
+        //Debug.Log("Board finishes loading char UI cards at " + charTime);
+        //Debug.Log("Board finishes loading cities UI cards at " + Time.realtimeSinceStartup);
         allLoaded = true;
         return allLoaded;
     }

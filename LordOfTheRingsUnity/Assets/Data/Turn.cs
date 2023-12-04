@@ -40,7 +40,7 @@ public class Turn : MonoBehaviour
         {
             currentTurnPlayer = game.GetHumanPlayer().GetNation();
             isInitialized = true;
-            Debug.Log("Turn initialized");
+            //Debug.Log("Turn initialized at " + Time.realtimeSinceStartup);
         }
     }
 
@@ -99,7 +99,7 @@ public class Turn : MonoBehaviour
             cameraController.LookToCard(avatar);
         
         newTurnLoaded = true;
-        Debug.Log(string.Format("New turn: {0}", turnNumber));
+        //Debug.Log(string.Format("New turn: {0} at {1}", turnNumber, Time.realtimeSinceStartup));
     }
 
     public bool IsNewTurnLoaded()

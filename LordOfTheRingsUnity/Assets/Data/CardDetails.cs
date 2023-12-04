@@ -1,3 +1,5 @@
+using System.IO;
+using System;
 using UnityEngine;
 
 public class CardDetails : MonoBehaviour
@@ -72,7 +74,13 @@ public class CardDetails : MonoBehaviour
         CalculateCorruption();
         CalculateVictoryPoints();
         isInitialized = true;
+        //Debug.Log(string.Format("{0} initialized at {1}", cardId, Time.realtimeSinceStartup));
+        // Set a variable to the Documents path.
+        string filePath = "images_used.txt";
 
+        // Write the string array to a new file named "WriteLines.txt".
+        using (StreamWriter outputFile = File.AppendText(filePath))
+            outputFile.WriteLine(string.Format("{0}-{1}", cardSprite.name, cardId));
         return isInitialized;
     }
 

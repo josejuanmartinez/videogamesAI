@@ -116,6 +116,8 @@ public class MovementManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!game.FinishedLoading())
+            return;
         if (cameraController.IsPopupOpen()   || 
             tilemapSelector.IsOverUI()     || 
             Input.GetKeyUp(KeyCode.Escape) ||

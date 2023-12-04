@@ -43,6 +43,7 @@ public class CityDetails: MonoBehaviour
         GenerateProduction();
         GeneratePlayableObjects();
         GeneratePlayableRings();
+        //Debug.Log(cityId + " city details initialized at " + Time.realtimeSinceStartup);
     }
 
     public string GetCityID()

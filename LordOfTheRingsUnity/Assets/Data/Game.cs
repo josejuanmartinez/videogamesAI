@@ -23,6 +23,7 @@ public class Game : MonoBehaviour
 
     private bool isInitialized;
     private bool finishedLoading;
+    private bool shownLoadingMessage;
     void Awake()
     {
         players = new();
@@ -30,6 +31,7 @@ public class Game : MonoBehaviour
         settings = GameObject.Find("Settings").GetComponent<Settings>();
         isInitialized = false;
         finishedLoading = false;
+        shownLoadingMessage = false;
     }
 
     public void Initialize()
@@ -48,7 +50,7 @@ public class Game : MonoBehaviour
             players.Add(new Player((NationsEnum)i, ((NationsEnum)i == settings.GetHumanPlayer())));
         }
         isInitialized = true;
-        Debug.Log("Game initialized");
+        //Debug.Log("Game initialized at " + Time.realtimeSinceStartup);
     }
     public Player GetHumanPlayer()
     {
@@ -173,15 +175,22 @@ public class Game : MonoBehaviour
 
         if(deckManager.IsInitialized())
         {
+            Debug.Log(string.Format("Loading finished at {0}", Time.realtimeSinceStartup));
             finishedLoading = true;
             loadManager.SetActive(false);
         }            
-        else
+        else if (!shownLoadingMessage)
         {
             loadingText.text = string.Format(
                 "{0}...",
                 GameObject.Find("Localization").GetComponent<Localization>().Localize("loading")
                 );
+            shownLoadingMessage = true;
         }
+    }
+
+    public bool FinishedLoading()
+    {
+        return finishedLoading;
     }
 }

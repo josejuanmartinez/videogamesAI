@@ -78,6 +78,7 @@ public class TerrainManager : MonoBehaviour
                     Debug.Log("Tile " + x.ToString() + "," + y.ToString() + " does not have any sprite in any layer");
             }
         }
+        //Debug.Log("Terrain manager finished loading at " + Time.realtimeSinceStartup);
     }
     public TileAndMovementCost GetTileAndMovementCost(int tileNum)
     {
