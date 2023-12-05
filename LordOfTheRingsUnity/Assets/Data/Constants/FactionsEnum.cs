@@ -76,5 +76,6 @@ public enum FactionsEnum
     OrcsOfUngol,
     BlackNumenorean,
     OrcsOfIthilien,
-    Trolls
+    Trolls,
+    MenOfBree
 }

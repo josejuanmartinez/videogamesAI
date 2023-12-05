@@ -27,7 +27,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image alignment;
     public Image haven;
     public GameObject nextGameObject;
-    public CanvasGroup tapped;
+    public CanvasGroup canvasGroup;
 
     [Header("Initialization")]
     [SerializeField]
@@ -60,6 +60,8 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private bool initialized = false;
     private int health;
 
+    private bool addedToBoard;
+
     private void Awake()
     {
         board = GameObject.Find("Board").GetComponent<Board>();
@@ -79,6 +81,8 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
         initialized = false;
         health = 100;
+
+        addedToBoard = false;
     }
     public bool Initialize()
     {
@@ -95,6 +99,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             Debug.LogError(string.Format("Unable to find {0} in Initial Decks", cityId));
             return false;
         }
+        Show();
         GameObject cityObject = Instantiate(prefab);
         cityObject.name = cityId;
         cityObject.transform.SetParent(transform);
@@ -164,10 +169,20 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Update()
     {
-        if (!initialized)
+        if (!initialized && !addedToBoard)
         {
             cityId ??= gameObject.name;
-            Initialize();
+            
+            if (game != null)
+            {
+                if (game.GetHumanNation() == owner)
+                    Initialize();
+                else if (board != null && !addedToBoard)
+                {
+                    board.AddOnDemandLoadCity(this);
+                    addedToBoard = true;
+                }
+            }
             return;
         }
 
@@ -209,9 +224,17 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }            
     }
 
+    public void Show()
+    {
+        canvasGroup.alpha = 1f;
+    }
     public void Tap()
     {
-        tapped.alpha = 0.5f;
+        canvasGroup.alpha = 0.5f;
+    }
+    public void Hide()
+    {
+        canvasGroup.alpha = 0f;
     }
 
     public void Next()

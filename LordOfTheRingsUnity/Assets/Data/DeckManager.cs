@@ -63,7 +63,7 @@ public class DeckManager : MonoBehaviour
             go.transform.parent = transform;
             CardsOfPlayer cardsOfThisPlayer = go.AddComponent<CardsOfPlayer>();
             cardsOfThisPlayer.Initialize(nation,
-                    game.GetHumanPlayer().GetNation() == nation ? deckTransform : null,
+                    game.GetHumanNation() == nation ? deckTransform : null,
                     deckCardUIPrefab);
             cardsOfPlayer.Add(cardsOfThisPlayer);
         }
@@ -112,7 +112,7 @@ public class DeckManager : MonoBehaviour
 
     private GameObject GetHandCardGameObject(NationsEnum nation, int cardShown)
     {
-        if(game.GetHumanPlayer().GetNation() != nation)
+        if(game.GetHumanNation() != nation)
         {
             Debug.LogError(string.Format("Trying to access to the instantiated deck of {0} but it is not human!", nation));
             return null;

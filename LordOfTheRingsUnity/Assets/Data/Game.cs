@@ -57,6 +57,11 @@ public class Game : MonoBehaviour
         return players.First(x => x.isHuman);
     }
 
+    public NationsEnum GetHumanNation()
+    {
+        return settings.GetHumanPlayer();
+    }
+
     public bool IsInitialized() {
         return isInitialized;
     }

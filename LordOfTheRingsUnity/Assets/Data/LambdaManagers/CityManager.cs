@@ -127,11 +127,16 @@ public class CityManager
 
     public NationsEnum GetCityOwner(string cityId)
     {
-        return GetCityUI(cityId).GetOwner();
+        CityUI city = GetCityUI(cityId);
+        if (city != null)
+            return city.GetOwner();
+        else
+            return NationsEnum.ABANDONED;
     }
 
     public CityUI GetCityUI(string cityId)
     {
-        return board.GetTiles().Values.Where(x => x.HasCity()).Select(x => x.GetCity()).Where(x => x.GetCityId() == cityId).First();
+        IEnumerable<CityUI> cities = board.GetTiles().Values.Where(x => x.HasCity()).Select(x => x.GetCity()).Where(x => x.GetCityId() == cityId);
+        return cities.Count() > 0 ? cities.First() : null;
     }
 }

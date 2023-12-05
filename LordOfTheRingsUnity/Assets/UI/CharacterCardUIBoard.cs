@@ -25,6 +25,13 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     private bool isVisible;
     private Vector3 currentPosition;
 
+    private bool addedToBoard = false;
+
+    public bool Initialize()
+    {
+        return Initialize(hex, cardId, owner, 0);
+    }
+
     public bool Initialize(Vector2Int hex, string cardId, NationsEnum owner, short moved = 0)
     {
         this.hex = hex;
@@ -35,6 +42,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         initialized = false;
 
         isMoving = false;
+        Show();
         isVisible = true;
         isSelected = false;
         
@@ -77,15 +85,21 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
     void Update()
     {
-        if (!initialized)
+        if (!initialized && !addedToBoard)
         {
             if (string.IsNullOrEmpty(cardId))
                 cardId = gameObject.name;
 
-            if (hex.x != int.MinValue && hex.y != int.MinValue && owner != NationsEnum.ABANDONED)
-                Initialize(hex, cardId, owner, 0);
-            else
-                Debug.LogError("Trying to initialize a board card with unset hex or nation");
+            if (game != null)
+            {
+                if (game.GetHumanNation() == owner)
+                    Initialize();
+                else if (board != null && !addedToBoard)
+                {
+                    board.AddOnDemandLoadCharacter(this);
+                    addedToBoard = true;
+                }
+            }
             
             return;
         }
@@ -113,6 +127,11 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         RecalculateIsVisible();
 
         PlaceOnBoard();
+    }
+
+    public void Show()
+    {
+        canvasGroup.alpha = 1;
     }
 
     public void RecalculateIsVisible()

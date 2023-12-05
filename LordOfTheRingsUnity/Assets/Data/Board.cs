@@ -1,4 +1,8 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -24,10 +28,19 @@ public class Board: MonoBehaviour
     private Tilemap t;
     private FOWManager fowManager;
     private MovementManager movementManager;
+    private Game game;
 
     private Transform cardsCanvasTransform;
-    bool initialized;
-    bool allLoaded;
+    private bool initialized;
+    private bool allLoaded;
+
+    private bool loadingCitiesOnDemand;
+    private bool loadingCharactersOnDemand;
+    private List<CityUI> ondemandLoadCityUI;
+    private List<CharacterCardUIBoard> ondemandLoadCharacterUI;
+    private List<HazardCreatureCardUIBoard> ondemandLoadHazardCreatureUI;
+
+    private CharacterCardUIBoard humanAvatar;
 
     void Awake()
     {
@@ -42,6 +55,15 @@ public class Board: MonoBehaviour
         t = GameObject.Find("CardTypeTilemap").GetComponent<Tilemap>();
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
         movementManager = GameObject.Find("MovementManager").GetComponent<MovementManager>();
+        game = GameObject.Find("Game").GetComponent<Game>();
+        
+        ondemandLoadCityUI = new();
+        ondemandLoadCharacterUI = new();
+        ondemandLoadHazardCreatureUI = new();
+
+        loadingCitiesOnDemand = false;
+        loadingCharactersOnDemand = false;
+
         initialized = false;
         allLoaded = false;
     }
@@ -52,23 +74,50 @@ public class Board: MonoBehaviour
         //    Debug.Log("Board Initialized at " + Time.realtimeSinceStartup);
     }
 
+    double EuclideanDistance(Vector2Int p1, Vector2Int p2)
+    {
+        return Math.Sqrt(Math.Pow(p1.x - p2.x, 2) + Math.Pow(p1.y - p2.y, 2));
+    }
+
+    public void AddOnDemandLoadCity(CityUI cityUI)
+    {
+        ondemandLoadCityUI.Add(cityUI);
+    }
+
+    public void AddOnDemandLoadCharacter(CharacterCardUIBoard characterUI)
+    {
+        ondemandLoadCharacterUI.Add(characterUI);
+    }
+    public void AddOnDemandLoadCreature(HazardCreatureCardUIBoard hazardUI)
+    {
+        //if (humanAvatar == null)
+        //    humanAvatar = characterManager.GetAvatar(game.GetHumanNation()) as CharacterCardUIBoard;
+
+        ondemandLoadHazardCreatureUI.Add(hazardUI);
+        
+        //if (humanAvatar != null)
+        //    ondemandLoadHazardCreatureUI = ondemandLoadHazardCreatureUI.OrderBy(p => EuclideanDistance(humanAvatar.GetHex(), p.GetHex())).ToList();
+
+
+    }
+
     public bool CalculateAllLoaded()
     {
         if (initialized == false)
             return false;
-
+        
         foreach (Transform t in cardsCanvas.transform)
         {
             CharacterCardUIBoard character = t.gameObject.GetComponent<CharacterCardUIBoard>();
-            if (!character.IsInitialized())
+            if (character.GetOwner() == game.GetHumanNation() && !character.IsInitialized())
                 return false;
         }
-        float charTime = Time.realtimeSinceStartup;
+        //float charTime = Time.realtimeSinceStartup;
         
         foreach (Transform t in citiesCanvas.transform)
         {
             CityUI city = t.gameObject.GetComponent<CityUI>();
-            if (!city.IsInitialized())
+            if(city.GetOwner() == game.GetHumanNation() && !city.IsInitialized())
                 return false;
         }
         //Debug.Log("Board finishes loading char UI cards at " + charTime);
@@ -84,7 +133,64 @@ public class Board: MonoBehaviour
             Initialize();
             return;
         }
+        if(allLoaded)
+        {
+            if (ondemandLoadCityUI.Count > 0 && !loadingCitiesOnDemand)
+                StartCoroutine(LoadOnDemandCityUI());
+            if (ondemandLoadCharacterUI.Count > 0 && !loadingCharactersOnDemand)
+                StartCoroutine(LoadOnDemandCharacterUI());
+        }
+        
     }
+
+    IEnumerator LoadOnDemandCityUI() 
+    {
+        //Debug.Log("Loading cities UI on demand...");
+        loadingCitiesOnDemand = true;
+        if(humanAvatar == null)
+            humanAvatar = characterManager.GetAvatar(game.GetHumanNation()) as CharacterCardUIBoard;
+        if (humanAvatar != null)
+            ondemandLoadCityUI = ondemandLoadCityUI.OrderBy(p => EuclideanDistance(humanAvatar.GetHex(), p.GetHex())).ToList();
+
+        while (ondemandLoadCityUI.Count > 0)
+        {
+            CityUI city = ondemandLoadCityUI[0];
+            if (!city.IsInitialized())
+            {
+                city.Initialize();
+                yield return new WaitUntil(city.IsInitialized);
+                //Debug.Log(string.Format("{0} is initialized", city.GetCityId()));
+                yield return new WaitForSecondsRealtime(3f);
+            }
+            ondemandLoadCityUI.Remove(city);
+        }
+        loadingCitiesOnDemand = false;
+    }
+
+    IEnumerator LoadOnDemandCharacterUI()
+    {
+        //Debug.Log("Loading characters UI on demand...");
+        loadingCharactersOnDemand = true;
+        if (humanAvatar == null)
+            humanAvatar = characterManager.GetAvatar(game.GetHumanNation()) as CharacterCardUIBoard;
+        if (humanAvatar != null)
+            ondemandLoadCharacterUI = ondemandLoadCharacterUI.OrderBy(p => EuclideanDistance(humanAvatar.GetHex(), p.GetHex())).ToList();
+
+        while (ondemandLoadCharacterUI.Count > 0)
+        {
+            CharacterCardUIBoard character = ondemandLoadCharacterUI[0];
+            if (!character.IsInitialized())
+            {
+                character.Initialize();
+                yield return new WaitUntil(character.IsInitialized);
+                //Debug.Log(string.Format("{0} is initialized", character.GetCardId()));
+                yield return new WaitForSecondsRealtime(3f);
+            }
+            ondemandLoadCharacterUI.Remove(character);
+        }
+        loadingCharactersOnDemand = false;
+    }
+
 
     public bool IsInitialized()
     {
@@ -342,7 +448,7 @@ public class Board: MonoBehaviour
         else
         {
             List<CardUI> cards = cardManager.GetCardsInPlayOfOwner(card.GetOwner());
-            int pos = cards.FindIndex(x => x.GetCardID() == card.GetCardID());
+            int pos = cards.FindIndex(x => x.GetCardId() == card.GetCardId());
             if (pos == -1)
                 return null;
             if (cards.Count < 2)

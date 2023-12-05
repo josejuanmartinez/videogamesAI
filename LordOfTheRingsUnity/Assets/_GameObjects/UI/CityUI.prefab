@@ -419,7 +419,10 @@ MonoBehaviour:
   alignment: {fileID: 557046173581132471}
   haven: {fileID: 2031856313546142161}
   nextGameObject: {fileID: 424069705086183460}
-  tapped: {fileID: 3085216187568331562}
+  canvasGroup: {fileID: 3085216187568331562}
+  hex: {x: 0, y: 0}
+  owner: 0
+  automaticAttacks: []
 --- !u!1 &2751877865459634382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1137,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6223909730990782993}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

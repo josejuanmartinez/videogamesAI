@@ -37,7 +37,7 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         this.nation = owner;
         this.isHover = isHover;
 
-        if (game.GetHumanPlayer().GetNation() != owner)
+        if (game.GetHumanNation() != owner)
             return true;
 
         if (!turn.IsNewTurnLoaded())
@@ -75,7 +75,7 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
             return;
         }
 
-        if (game.GetHumanPlayer().GetNation() == owner)
+        if (game.GetHumanNation() == owner)
         {
             if (dirtyMessages.Count() > 0 && this.cardDetails != null)
                 RefreshRequirements();

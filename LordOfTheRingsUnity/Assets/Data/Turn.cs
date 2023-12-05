@@ -38,7 +38,7 @@ public class Turn : MonoBehaviour
     {
         if(board.IsInitialized() && game.IsInitialized())
         {
-            currentTurnPlayer = game.GetHumanPlayer().GetNation();
+            currentTurnPlayer = game.GetHumanNation();
             isInitialized = true;
             //Debug.Log("Turn initialized at " + Time.realtimeSinceStartup);
         }
@@ -128,7 +128,7 @@ public class Turn : MonoBehaviour
     public void NextPlayer()
     {
         currentTurnPlayer = (NationsEnum)(((int)currentTurnPlayer + 1) % Enum.GetValues(typeof(NationsEnum)).Length);
-        if (currentTurnPlayer == NationsEnum.ABANDONED || currentTurnPlayer == game.GetHumanPlayer().GetNation())
+        if (currentTurnPlayer == NationsEnum.ABANDONED || currentTurnPlayer == game.GetHumanNation())
             NewTurn();
         else
             PlayIATurn();

@@ -203,11 +203,15 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (details == null)
+            return;
         placeDeckManager.RemoveCardToShow(new HoveredCard(owner, details.cardId, details.cardClass));
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (details == null)
+            return;
         placeDeckManager.SetCardToShow(new HoveredCard(owner, details.cardId, details.cardClass));
     }
 
@@ -216,7 +220,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return owner;
     }
 
-    public string GetCardID()
+    public string GetCardId()
     {
         return cardId;
     }

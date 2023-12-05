@@ -586,7 +586,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             }
             return;
         }
-        if (game.GetHumanPlayer().GetNation() == owner)
+        if (game.GetHumanNation() == owner)
         {
             if (dirtyMessages.Count() > 0 && this.cardDetails != null)
                 RefreshRequirements();

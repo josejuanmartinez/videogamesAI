@@ -113,7 +113,7 @@ public class BoardTile
         if(allAtHex.Count == 1)
             return allAtHex[0];
 
-        int pos = allAtHex.FindIndex(x => x.GetCardID() == card.GetCardID());
+        int pos = allAtHex.FindIndex(x => x.GetCardId() == card.GetCardId());
         if (pos == -1)
             return null;
 

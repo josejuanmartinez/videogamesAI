@@ -74,9 +74,9 @@ public class SelectedItems : MonoBehaviour
                     if(cardUI.GetCardClass() == CardClass.Character)
                     {
                         GameObject go = Instantiate(CharacterCardUIPopupPrefab, lastSelectedMovableLayout.transform);
-                        go.name = cardUI.GetCardID();
+                        go.name = cardUI.GetCardId();
                         CharacterCardUIPopup character = go.GetComponent<CharacterCardUIPopup>();
-                        character.Initialize(cardUI.GetCardID(), turn.GetCurrentPlayer());
+                        character.Initialize(cardUI.GetCardId(), turn.GetCurrentPlayer());
                     }
                     else
                         lastSelectedMovableCanvasGroup.alpha = 0;

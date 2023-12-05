@@ -89,6 +89,6 @@ public class CharacterManager
 
     public CardUI GetCharacterOfPlayer(NationsEnum nation, string cardId)
     {
-        return GetCharactersOfPlayer(nation).Find(x => x.GetCardID() == cardId);
+        return GetCharactersOfPlayer(nation).Find(x => x.GetCardId() == cardId);
     }
 }
