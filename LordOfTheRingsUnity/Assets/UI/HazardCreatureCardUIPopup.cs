@@ -9,9 +9,9 @@ public class HazardCreatureCardUIPopup : HazardCreatureCardUI
     public TextMeshProUGUI prowessText;
     public TextMeshProUGUI defenceText;
     public GameObject targetedPrefab;
-    public override bool Initialize(string cardId, NationsEnum owner)
+    public override bool Initialize(string cardId, NationsEnum owner, bool refresh = false  )
     {
-        if (!base.Initialize(cardId, owner))
+        if (!base.Initialize(cardId, owner, refresh))
             return false;
 
         initialized = false;

@@ -62,7 +62,7 @@ MonoBehaviour:
   descForAIGeneration: 'Tom Bombadil is a plump, merry figure with a long brown beard,
     bright blue eyes, and a penchant for colorful attire '
   cardClass: 7
-  isUnique: 0
+  isUnique: 1
   hometown: old_forest
   allyClass: 0
   race: 19

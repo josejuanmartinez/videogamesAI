@@ -62,7 +62,7 @@ MonoBehaviour:
   descForAIGeneration: Shelob the spider queen spawn of Ungoliath from the Lord of
     the Rings, in her cave in Mordor
   cardClass: 7
-  isUnique: 0
+  isUnique: 1
   hometown: cirith_ungol
   allyClass: 0
   race: 15

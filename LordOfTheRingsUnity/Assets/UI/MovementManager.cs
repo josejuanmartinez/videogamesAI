@@ -342,7 +342,7 @@ public class MovementManager : MonoBehaviour
                   )
                 {
                     CityUI city = board.GetTile(new Vector2Int(targetCell.x, targetCell.y)).GetCity();
-                    combatPopupManager.Initialize(selectedCardUIForMovement, city.GetDetails());
+                    combatPopupManager.Initialize(selectedCardUIForMovement, city);
 
                     Reset();
                     break;

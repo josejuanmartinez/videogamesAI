@@ -37,7 +37,6 @@ public class Player
     }
     public void SetCardSeesTile(Vector2Int tile)
     {
-        //Visible as long as a card is in it
         cardSeesTiles.Add(tile);
     }
 

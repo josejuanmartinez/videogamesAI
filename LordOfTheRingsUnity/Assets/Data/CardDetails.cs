@@ -14,8 +14,11 @@ public class CardDetails : MonoBehaviour
     public string hometown;
 
     /* AUTOMATICALLY GENERATED */
+    [SerializeField]
     private short victoryPoints;
+    [SerializeField]
     private short corruption;
+    [SerializeField]
     private Resources resourcesRequired;
 
     private Game game;

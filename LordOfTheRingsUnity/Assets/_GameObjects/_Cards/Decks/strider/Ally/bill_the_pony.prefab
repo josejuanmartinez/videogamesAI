@@ -61,12 +61,12 @@ MonoBehaviour:
   cardId: bill_the_pony
   descForAIGeneration: The pony following the Felloship of the Ring
   cardClass: 7
-  isUnique: 0
+  isUnique: 1
   hometown: bree
   allyClass: 1
   race: 12
   subRace: 0
-  abilities: 
+  abilities: 08000000
   prowess: 4
   defence: 7
   isImmovable: 0

@@ -80,7 +80,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         messageBeingShowing = false;
     }
 
-    public virtual bool Initialize(string cardId, NationsEnum owner)
+    public virtual bool Initialize(string cardId, NationsEnum owner, bool refresh = false)
     {
         if(!isAwaken)
             Awake();
@@ -100,17 +100,21 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (!fowManager.IsInitialized())
             return false;
 
-        GameObject prefab = cardDetailsRepo.GetCardGameObject(cardId, owner);
-        if(prefab == null)
+        details ??= GetComponentInChildren<CharacterCardDetails>();
+        if (details == null || refresh)
         {
-            Debug.LogError(string.Format("Unable to find in initial decks prefab {0}", cardId));
-            return false;
-        }
+            GameObject prefab = cardDetailsRepo.GetCardGameObject(cardId, owner);
+            if (prefab == null)
+            {
+                Debug.LogError(string.Format("Unable to find in initial decks prefab {0}", cardId));
+                return false;
+            }
 
-        GameObject cardObject = Instantiate(prefab);
-        cardObject.name = cardId + "_details";
-        cardObject.transform.SetParent(transform);
-        details = cardObject.GetComponent<CardDetails>();
+            GameObject cardObject = Instantiate(prefab);
+            cardObject.name = cardId + "_details";
+            cardObject.transform.SetParent(transform);
+            details = cardObject.GetComponent<CardDetails>();
+        }        
 
         cardName.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(details.cardId);
         image.sprite = details.cardSprite;

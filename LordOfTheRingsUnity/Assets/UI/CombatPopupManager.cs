@@ -57,7 +57,7 @@ public class CombatPopupManager : Popup
         noHurts = true;
         isAwaken = true;
 }
-    public bool Initialize(CardUI leader, CityDetails cityDetails)
+    public bool Initialize(CardUI leader, CityUI city)
     {
         if (!isAwaken)
             Awake();
@@ -69,9 +69,9 @@ public class CombatPopupManager : Popup
         leaderCardDetails = leader.GetDetails();
         combatPopupType = leaderCardDetails.IsClassOf(CardClass.Character) ? CombatPopupType.AutomaticAttack : CombatPopupType.CreatureAttack;
 
-        if (cityDetails == null)
+        if (city == null)
             return false;
-        city = board.GetCityManager().GetCityUI(cityDetails.GetCityID());
+        city = board.GetCityManager().GetCityUI(city.GetCityId());
         if (!leaderCardDetails.IsClassOf(CardClass.Character) && !leaderCardDetails.IsClassOf(CardClass.HazardCreature))
             return false;
 
@@ -85,16 +85,16 @@ public class CombatPopupManager : Popup
         if (company == null || company.Count < 1)
             return false;
 
-        title.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.GetCityID());
-        citySprite.sprite = cityDetails.sprite;
+        title.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(city.GetCityId());
+        citySprite.sprite = city.GetSprite();
 
-        List<string> attacks = board.GetCityManager().GetCityUI(cityDetails.GetCityID()).GetAutomaticAttacks(leader.GetOwner());
+        List<string> attacks = board.GetCityManager().GetCityUI(city.GetCityId()).GetAutomaticAttacks(leader.GetOwner());
         if(attacks.Count < 1)
             return false;
 
         attackersNum = attacks.Count;
 
-        NationsEnum ownerOfCity = board.GetCityManager().GetCityOwner(cityDetails.GetCityID());
+        NationsEnum ownerOfCity = board.GetCityManager().GetCityOwner(city.GetCityId());
 
         short counter = 0;
         foreach (string attack in attacks)

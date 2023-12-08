@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SelectedCard
 {
-    private CityDetails cityDetails;
+    private CityUI city;
     private CardDetails movableCardSelected;
     private CardDetails secondaryCardSelected;
     private CardUI movableCardUI;
@@ -13,7 +13,7 @@ public class SelectedCard
 
     public SelectedCard()
     {
-        cityDetails = null;
+        city = null;
         movableCardSelected = null;
         secondaryCardSelected = null;
         movableCardUI = null;
@@ -25,7 +25,7 @@ public class SelectedCard
         if (details == null)
             return;
         this.owner = owner;
-        cityDetails = null;
+        city = null;
         if (details.IsMovableClass())
         {
             movableCardUI = GameObject.Find("Board").GetComponent<Board>().GetCardManager().GetCardUI(details);
@@ -44,12 +44,12 @@ public class SelectedCard
             secondaryCardSelected = details;
     }
 
-    public void Select(CityDetails details, NationsEnum owner)
+    public void Select(CityUI city)
     {
-        if (details == null)
+        if (city == null)
             return;
-        this.owner = owner;
-        cityDetails = details;
+        owner = city.GetOwner();
+        this.city = city;
         movableCardSelected = null;
         movableCardUI = null;
         secondaryCardSelected = null;
@@ -76,14 +76,14 @@ public class SelectedCard
 
     public bool IsCitySelected()
     {
-        return cityDetails != null;
+        return city != null;
     }
 
-    public CardDetails GetMovableCardSelected()
+    public CardDetails GetSelectedMovableCard()
     {
         return movableCardSelected;
     }
-    public CardDetails GetCardSelected()
+    public CardDetails GetSelectedCard()
     {
         if (secondaryCardSelected != null)
             return secondaryCardSelected;
@@ -97,35 +97,35 @@ public class SelectedCard
         return movableCardSelected != null || secondaryCardSelected != null;
     }
 
-    public string GetMovableCardSelectedId()
+    public string GetSelectedMovableCardId()
     {
         return movableCardSelected != null ? movableCardSelected.cardId : null;
     }
 
-    public CardUI GetMovableCardSelectedUI()
+    public CardUI GetSelectedMovableCardUI()
     {
         return movableCardUI;
     }
 
     public bool IsHazardCreatureSelected()
     {
-        if (GetCardSelected() == null)
+        if (GetSelectedCard() == null)
             return false;
-        return GetCardSelected().cardClass == CardClass.HazardCreature;
+        return GetSelectedCard().cardClass == CardClass.HazardCreature;
     }
 
     public HazardCreatureCardDetails GetHazardCreatureCardDetails()
     {
-        if (GetCardSelected() == null)
+        if (GetSelectedCard() == null)
             return null;
         if (!IsHazardCreatureSelected())
             return null;
-        return GetCardSelected() as HazardCreatureCardDetails;
+        return GetSelectedCard() as HazardCreatureCardDetails;
     }
 
-    public CityDetails GetCitySelected()
+    public CityUI GetSelectedCity()
     {
-        return cityDetails;
+        return city;
     }
     
     public bool IsCardAlreadyInPlay()

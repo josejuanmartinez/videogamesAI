@@ -17,6 +17,8 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     [Header("Initialization")]
     [SerializeField]
     private Vector2Int hex;
+    [SerializeField]
+    private bool refresh;
 
     private BoardTile boardTile;
     private bool isSelected;
@@ -25,7 +27,6 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     private bool isVisible;
     private Vector3 currentPosition;
 
-    private bool addedToBoard = false;
 
     public bool Initialize()
     {
@@ -35,8 +36,10 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     public bool Initialize(Vector2Int hex, string cardId, NationsEnum owner, short moved = 0)
     {
         this.hex = hex;
-
-        if (!base.Initialize(cardId, owner))
+        if (string.IsNullOrEmpty(cardId))
+            cardId = gameObject.name;
+        
+        if (!base.Initialize(cardId, owner, refresh))
             return false;
 
         initialized = false;
@@ -53,7 +56,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
         boardTile = board.AddCard(hex, this);
 
-        CharacterCardDetails charDetails = (CharacterCardDetails)details;
+        CharacterCardDetails charDetails = details as CharacterCardDetails;
         if (charDetails != null)
             resourcesManager.SubtractInfluence(owner, charDetails.GetMind());
         
@@ -85,24 +88,16 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
     void Update()
     {
-        if (!initialized && !addedToBoard)
+        if (!initialized)
         {
-            if (string.IsNullOrEmpty(cardId))
-                cardId = gameObject.name;
-
-            if (game != null)
-            {
-                if (game.GetHumanNation() == owner)
-                    Initialize();
-                else if (board != null && !addedToBoard)
-                {
-                    board.AddOnDemandLoadCharacter(this);
-                    addedToBoard = true;
-                }
-            }
+            Initialize();
+            if (initialized)
+                refresh = false;
             
             return;
         }
+        if (!board.IsAllLoaded())
+            return;
 
         boardTile = board.GetTile(hex);
 
@@ -136,10 +131,14 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
     public void RecalculateIsVisible()
     {
+        if (game.GetHumanPlayer() == null)
+            return;
+
         bool visibleBefore = isVisible;
         BoardTile t = board.GetTile(hex);
         if (t == null)
             isVisible = false;
+
 
         isVisible = game.GetHumanPlayer().SeesTile(hex);
         isVisible &= string.IsNullOrEmpty(inCompanyOf);

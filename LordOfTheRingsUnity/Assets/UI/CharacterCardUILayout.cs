@@ -6,9 +6,9 @@ public class CharacterCardUILayout : CharacterCardUI
     [SerializeField]
     private CanvasGroup nextCanvasGroup;
 
-    public override bool Initialize(string cardId, NationsEnum owner)
+    public override bool Initialize(string cardId, NationsEnum owner, bool refresh = false)
     {
-        return base.Initialize(cardId, owner);
+        return base.Initialize(cardId, owner, refresh);
     }
 
     void Update()

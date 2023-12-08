@@ -78,8 +78,8 @@ public class PlaceDeck : MonoBehaviour
             string shownCard = null;
             if (cardTemplate.GetCardDetails() != null)
                 shownCard = cardTemplate.GetCardDetails().cardId;
-            else if (cardTemplate.GetCityDetails() != null)
-                shownCard = cardTemplate.GetCityDetails().GetCityID();
+            else if (cardTemplate.GetCity() != null)
+                shownCard = cardTemplate.GetCity().GetCityId();
 
             if (shownCard == null || (shownCard != null && shownCard != cardToShow.GetCardId()))
             {
@@ -319,7 +319,7 @@ public class PlaceDeck : MonoBehaviour
                 if (cardDetails.IsClassOf(CardClass.Character))
                 {
                     resourcesManager.RecalculateInfluence(turn.GetCurrentPlayer());
-                    resourcesManager.RefreshInfluence();
+                    resourcesManager.RefreshInfluence(turn.GetCurrentPlayer());
 
                     selectedItems.SelectCardDetails(cardDetails, cardUI.GetOwner());
                 }
@@ -437,12 +437,8 @@ public class PlaceDeck : MonoBehaviour
                     if(original != null)
                     {
                         CityUI city = board.GetCityManager().GetCityAtHex(original.GetHex());
-                        if (city != null && city.GetDetails() != null)
-                        {
-                            CityDetails cityDetails = city.GetDetails();
-                            if (!combatPopupManager.Initialize(character, cityDetails))
+                        if (city != null && !combatPopupManager.Initialize(character, city))
                                 combatPopupManager.HidePopup();
-                        }
                     }                    
                 }                
             }            
@@ -535,12 +531,8 @@ public class PlaceDeck : MonoBehaviour
         if (original == null)
             return;
 
-        CityUI cityInPlay = board.GetCityManager().GetCityAtHex(original.GetHex());
-        if (cityInPlay == null)
-            return;
-        
-        CityDetails cityDetails = cityInPlay.GetDetails();
-        if (cityDetails == null)
+        CityUI city = board.GetCityManager().GetCityAtHex(original.GetHex());
+        if (city == null)
             return;
         
         OkOption option1 = new()
@@ -550,7 +542,7 @@ public class PlaceDeck : MonoBehaviour
         };
         List<OkOption> options = new() { option1 };
 
-        inputPopupManager.Initialize(GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.GetCityID()), GameObject.Find("Localization").GetComponent<Localization>().Localize("do_you_want_to_enter_this_place"), cityDetails.sprite, options, Cancel);
+        inputPopupManager.Initialize(GameObject.Find("Localization").GetComponent<Localization>().Localize(city.GetCityId()), GameObject.Find("Localization").GetComponent<Localization>().Localize("do_you_want_to_enter_this_place"), city.GetSprite(), options, Cancel);
         cardTemplate.button.enabled = false;
     }
 

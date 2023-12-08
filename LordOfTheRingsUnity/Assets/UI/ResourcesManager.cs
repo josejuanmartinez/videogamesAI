@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,6 +16,7 @@ public class ResourcesManager : MonoBehaviour
 
     private Board board;
     private Turn turn;
+    private Game game;
     private DeckManager deckManager;
     private SelectedItems selectedItems;
 
@@ -24,34 +24,36 @@ public class ResourcesManager : MonoBehaviour
     private readonly Dictionary<NationsEnum, Resources> productions = new ();
     private readonly Dictionary<NationsEnum, int> influences = new ();
 
-    public bool isInitialized = false;
-
     void Awake()
     {
         board = GameObject.Find("Board").GetComponent<Board>();
         turn = GameObject.Find("Turn").GetComponent<Turn>();
+        game = GameObject.Find("Game").GetComponent<Game>();
         deckManager = GameObject.Find("DeckManager").GetComponent<DeckManager>();
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
     }
 
-    public void Add(NationsEnum nation, Resources cityProduction)
+    public void Add(CityUI city, bool recalculate = true)
     {
+        NationsEnum nation = city.GetOwner();
         if (nation == NationsEnum.ABANDONED)
             return;
 
-        AddToStores(nation, cityProduction);
+        AddToStores(nation, city.GetCityProduction(), recalculate);
 
         // Prod is not stored
         Resources cityProd = stores[nation];
         stores[nation] = cityProd;
 
-        RecalculateCityProduction(nation);
-        RecalculateInfluences();
-
-        isInitialized = true;
+        if(recalculate)
+        {
+            RecalculatePlayerCitiesProduction(nation);
+            RecalculateInfluences(nation);
+        }
+        
     }
 
-    public void AddToStores(NationsEnum nation, Resources cityProduction)
+    public void AddToStores(NationsEnum nation, Resources cityProduction, bool recalculate = true)
     {
         if (nation == NationsEnum.ABANDONED)
             return;
@@ -59,16 +61,19 @@ public class ResourcesManager : MonoBehaviour
         if (!stores.ContainsKey(nation))
             stores.Add(nation, cityProduction);
         else
-            stores[nation] += cityProduction;
+            stores[nation] += cityProduction;       
 
-        RefreshCityProductionStats(nation);
-        deckManager.Dirty(DirtyReasonEnum.NEW_RESOURCES);
-        selectedItems.UnselectAll();
+        if(recalculate)
+        {
+            RefreshCityProductionStats(nation);
+            deckManager.Dirty(DirtyReasonEnum.NEW_RESOURCES);
+            selectedItems.UnselectAll();
+        }        
     }
 
-    public void RecalculateCityProduction(NationsEnum nation)
+    public void RecalculatePlayerCitiesProduction(NationsEnum nation)
     {
-        if (nation == NationsEnum.ABANDONED)
+        if (nation != game.GetHumanNation())
             return;
 
         List<CityUI> cities = board.GetCityManager().GetCitiesOfPlayer(nation);
@@ -83,17 +88,17 @@ public class ResourcesManager : MonoBehaviour
         int gemsProd = 0;
         int leatherProd = 0;
 
-        foreach (CityUI cityInPlay in cities)
+        foreach (CityUI city in cities)
         {
-            CityDetails details = cityInPlay.GetDetails();
-            foodProd += details.GetCityProduction().resources[ResourceType.FOOD];
-            clothesProd += details.GetCityProduction().resources[ResourceType.CLOTHES];
-            goldProd += details.GetCityProduction().resources[ResourceType.GOLD];
-            metalProd += details.GetCityProduction().resources[ResourceType.METAL];
-            woodProd += details.GetCityProduction().resources[ResourceType.WOOD];
-            horsesProd += details.GetCityProduction().resources[ResourceType.MOUNTS];
-            gemsProd += details.GetCityProduction().resources[ResourceType.GEMS];
-            leatherProd += details.GetCityProduction().resources[ResourceType.LEATHER];
+            Resources cityProduction = city.GetCityProduction();
+            foodProd += cityProduction.resources[ResourceType.FOOD];
+            clothesProd += cityProduction.resources[ResourceType.CLOTHES];
+            goldProd += cityProduction.resources[ResourceType.GOLD];
+            metalProd += cityProduction.resources[ResourceType.METAL];
+            woodProd += cityProduction.resources[ResourceType.WOOD];
+            horsesProd += cityProduction.resources[ResourceType.MOUNTS];
+            gemsProd += cityProduction.resources[ResourceType.GEMS];
+            leatherProd += cityProduction.resources[ResourceType.LEATHER];
         }
         productions[nation] = new Resources(foodProd, goldProd, clothesProd, woodProd, metalProd, horsesProd, gemsProd, leatherProd);
 
@@ -101,11 +106,11 @@ public class ResourcesManager : MonoBehaviour
     }
     public void RefreshCityProductionStats(NationsEnum nation)
     {
-        if (nation == NationsEnum.ABANDONED)
+        if (nation != game.GetHumanNation())
             return;
 
-        if(!productions.ContainsKey(nation))
-            RecalculateCityProduction(nation);
+        if (!productions.ContainsKey(nation))
+            RecalculatePlayerCitiesProduction(nation);
 
         int foodBonus = productions[nation].resources[ResourceType.FOOD];
         int clothesBonus = productions[nation].resources[ResourceType.CLOTHES];
@@ -125,15 +130,10 @@ public class ResourcesManager : MonoBehaviour
         leather.text = (leatherBonus > 0 ? "+" : "<color=\"red\">") + leatherBonus.ToString() + (leatherBonus > 0 ? "" : "</color=\"red\">") + "/" + stores[nation].resources[ResourceType.LEATHER].ToString();
     }
 
-    public void RecalculateInfluences()
+    public void RecalculateInfluences(NationsEnum nation)
     {
-        for(int i = 0; i<Enum.GetValues(typeof(NationsEnum)).Length; i++)
-        {
-            if ((NationsEnum)i == NationsEnum.ABANDONED)
-                continue;
-            influences[(NationsEnum)i] = GetFreeInfluence((NationsEnum)i, true);
-        }
-        RefreshInfluence();
+        influences[nation] = GetFreeInfluence(nation, true);
+        RefreshInfluence(nation);
     }
 
     public void RecalculateInfluence(NationsEnum nation)
@@ -163,9 +163,13 @@ public class ResourcesManager : MonoBehaviour
         influences[nation] -= influence;
     }
 
-    public void RefreshInfluence()
+    public void RefreshInfluence(NationsEnum nation)
     {
-        influence.text = influences[turn.GetCurrentPlayer()].ToString();
+        if (nation != game.GetHumanNation())
+            return;
+        if (!influences.ContainsKey(nation))
+            influences[nation] = Nations.INFLUENCE;
+        influence.text = influences[nation].ToString();
     }
 
     public int GetFreeInfluence(NationsEnum nation, bool dirty)
@@ -177,24 +181,18 @@ public class ResourcesManager : MonoBehaviour
     
     public int GetFoodStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.FOOD];
     }
     public int GetGoldStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.GOLD];
     }
     public int GetClothesStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.CLOTHES];
@@ -202,40 +200,30 @@ public class ResourcesManager : MonoBehaviour
 
     public int GetHorsesStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.MOUNTS];
     }
     public int GetWoodStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.WOOD];
     }
     public int GetMetalStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.METAL];
     }
     public int GetGemsStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.GEMS];
     }
     public int GetLeatherStores()
     {
-        if (!isInitialized)
-            return 0;
         if (!stores.ContainsKey(turn.GetCurrentPlayer()))
             return 0;
         return stores[turn.GetCurrentPlayer()].resources[ResourceType.LEATHER];

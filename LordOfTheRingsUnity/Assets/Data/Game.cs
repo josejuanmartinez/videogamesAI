@@ -54,6 +54,8 @@ public class Game : MonoBehaviour
     }
     public Player GetHumanPlayer()
     {
+        if (players == null || players.Count < 1)
+            return null;
         return players.First(x => x.isHuman);
     }
 

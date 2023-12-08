@@ -209,22 +209,6 @@ public class CameraController : MonoBehaviour
         LookTo(v3World);
     }
 
-    public void LookToCity(CityDetails cityDetails)
-    {
-        if (cityDetails == null)
-            return;
-
-        CityUI card = board.GetCityManager().GetCityUI(cityDetails.GetCityID());
-        if (card == null)
-            return;
-
-        Vector2Int hex = card.GetHex();
-        Vector3Int v3 = new(hex.x, hex.y, 0);
-        Vector3 v3World = tilemap.CellToWorld(v3);
-        v3World = new Vector3(v3World.x, v3World.y, transform.position.z);
-        LookTo(v3World);
-    }
-
     public void LookToCity(CityUI city)
     {
         if (city == null)

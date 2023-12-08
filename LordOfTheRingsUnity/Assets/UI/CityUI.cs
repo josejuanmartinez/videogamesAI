@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,8 +10,53 @@ using UnityEngine.UI;
 
 public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [Header("City  UI")]
-    [Header("References")]
+    [Header("City Details")]
+    [SerializeField, PreviewSprite]
+    private Sprite sprite;
+    [SerializeField] 
+    private string descForAIGeneration;
+    [SerializeField] 
+    private CitySizesEnum size;
+    [SerializeField] 
+    private bool isHidden = false;
+    [SerializeField]
+    private bool hasPort = false;
+    [SerializeField]
+    private bool isUnderground = false;
+    [SerializeField]
+    private NationRegionsEnum regionId;
+    [SerializeField]
+    private bool isHaven;
+
+    [Header("Automatically Generated")]
+    [SerializeField] 
+    private List<ObjectType> playableObjects;
+    [SerializeField]
+    private List<RingType> playableRings;
+    [SerializeField]
+    private TerrainsEnum terrain;
+    [SerializeField]
+    private CardTypesEnum cardType;
+    [SerializeField]
+    private string cityId;
+    [SerializeField]
+    private int food;
+    [SerializeField]
+    private int gold;
+    [SerializeField]
+    private int cloth;
+    [SerializeField]
+    private int wood;
+    [SerializeField]
+    private int metal;
+    [SerializeField]
+    private int horses;
+    [SerializeField]
+    private int gems;
+    [SerializeField]
+    private int leather;
+     
+    [Header("UI")]
     public GameObject displacement;
     public Image detailsGold;
     public Image detailsClothes;
@@ -31,36 +77,33 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     [Header("Initialization")]
     [SerializeField]
+    private bool refresh;
+    [SerializeField]
     private Vector2Int hex;
     [SerializeField]
     private NationsEnum owner;
+    [SerializeField]
+    private int health;
 
     [Header("Generated based on owner")]
     [SerializeField]
     private List<string> automaticAttacks;
 
-    private string cityId;
-    private bool isClicked = false;
-    
+    private bool isClicked = false;    
     private Board board;
-    private CityDetails details;
     private SelectedItems selectedItems;
     private Tilemap t;
     private Game game;
-    private Turn turn;
     private SpritesRepo spritesRepo;
     private CameraController cameraManager;
     private TerrainManager terrainManager;
     private CardDetailsRepo cardDetailsRepo;
-    private ResourcesManager resourcesManager;
     private Mouse mouse;
     private PlaceDeck placeDeckManager;
     private FOWManager fowManager;
 
     private bool initialized = false;
-    private int health;
-
-    private bool addedToBoard;
+    
 
     private void Awake()
     {
@@ -68,24 +111,23 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
         t = GameObject.Find("CardTypeTilemap").GetComponent<Tilemap>();
         game = GameObject.Find("Game").GetComponent<Game>();
-        turn = GameObject.Find("Turn").GetComponent<Turn>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         cameraManager = GameObject.Find("CameraController").GetComponent<CameraController>();
         mouse = GameObject.Find("Mouse").GetComponent<Mouse>();
 
         cardDetailsRepo = GameObject.Find("CardDetailsRepo").GetComponent<CardDetailsRepo>();
         board = GameObject.Find("Board").GetComponent<Board>();
-        resourcesManager = GameObject.Find("ResourcesManager").GetComponent<ResourcesManager>();
         terrainManager = GameObject.Find("TerrainManager").GetComponent<TerrainManager>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
         initialized = false;
         health = 100;
-
-        addedToBoard = false;
     }
-    public bool Initialize()
+    public bool Initialize(bool forceRefresh = false)
     {
+        if (string.IsNullOrEmpty(cityId))
+            cityId = gameObject.name;
+
         if (!board.IsInitialized() ||
             !cardDetailsRepo.IsInitialized() ||
             !game.IsInitialized() ||
@@ -93,56 +135,50 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             string.IsNullOrEmpty(cityId)
             )
             return false;
-        GameObject prefab = cardDetailsRepo.GetCityGameObject(cityId);
-        if(prefab == null)
+
+        if(forceRefresh)
         {
-            Debug.LogError(string.Format("Unable to find {0} in Initial Decks", cityId));
-            return false;
+            TileAndMovementCost tile = terrainManager.GetTileAndMovementCost(hex);
+            terrain = tile.terrain.terrainType;
+            cardType = tile.cardInfo.cardType;
+            GenerateProduction();
+            GeneratePlayableObjects();
+            GeneratePlayableRings();
+            GenerateAutomaticAttacks();
         }
-        Show();
-        GameObject cityObject = Instantiate(prefab);
-        cityObject.name = cityId;
-        cityObject.transform.SetParent(transform);
-
-        details = cityObject.GetComponent<CityDetails>();
-
-        TileAndMovementCost tile = terrainManager.GetTileAndMovementCost(hex);
-        details.Initialize(tile.terrain.terrainType, tile.cardInfo.cardType);
-        
-        GenerateAutomaticAttacks();
-
-        board.AddCity(hex, this);
-        // Debug.Log(string.Format("{0} has registered itself at {1}", cityId, hex));
-        initialized = true;
-
-        resourcesManager.Add(owner, details.GetCityProduction());
-
-        nextGameObject.SetActive(turn.GetCurrentPlayer() == owner);
 
         Vector3 cellWorldCenter = t.GetCellCenterWorld(new Vector3Int(hex.x, hex.y, 0));
-
         gameObject.transform.position = cellWorldCenter;
 
-        detailsGold.enabled = details.GetCityProduction().resources[ResourceType.GOLD] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        detailsClothes.enabled = details.GetCityProduction().resources[ResourceType.CLOTHES] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        detailsFood.enabled = details.GetCityProduction().resources[ResourceType.FOOD] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        detailsWood.enabled = details.GetCityProduction().resources[ResourceType.WOOD] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        detailsMetal.enabled = details.GetCityProduction().resources[ResourceType.METAL] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        detailsHorses.enabled = details.GetCityProduction().resources[ResourceType.MOUNTS] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        detailsGems.enabled = details.GetCityProduction().resources[ResourceType.GEMS] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        detailsLeather.enabled = details.GetCityProduction().resources[ResourceType.LEATHER] > 0 && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
+        board.AddCity(hex, this, false);
 
-        alignment.sprite = spritesRepo.GetSprite(Nations.alignments[owner].ToString());
-        alignment.enabled = IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        haven.enabled = details.isHaven && IsRevealedOrHiddenVisible(turn.GetCurrentPlayer());
-        cityName.text = IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()) ? GameObject.Find("Localization").GetComponent<Localization>().Localize(details.GetCityID()) : StringConstants.hidden;
-
-        goHealth.SetActive(IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()));
-
-        //Debug.Log(string.Format("{0} finished loading at {1}", cityObject.name, Time.realtimeSinceStartup));
+        RefreshCityUICanvas();
 
         initialized = true;
         return true;
+    }
+
+    public void RefreshCityUICanvas()
+    {
+        displacement.GetComponent<CanvasGroup>().alpha = IsVisibleToHumanPlayer()? 1 : 0;
+        if (displacement.GetComponent<CanvasGroup>().alpha == 0)
+            return;
+        Resources cityProduction = GetCityProduction();
+        detailsGold.enabled = cityProduction.resources[ResourceType.GOLD] > 0;
+        detailsClothes.enabled = cityProduction.resources[ResourceType.CLOTHES] > 0;
+        detailsFood.enabled = cityProduction.resources[ResourceType.FOOD] > 0;
+        detailsWood.enabled = cityProduction.resources[ResourceType.WOOD] > 0;
+        detailsMetal.enabled = cityProduction.resources[ResourceType.METAL] > 0;
+        detailsHorses.enabled = cityProduction.resources[ResourceType.MOUNTS] > 0;
+        detailsGems.enabled = cityProduction.resources[ResourceType.GEMS] > 0;
+        detailsLeather.enabled = cityProduction.resources[ResourceType.LEATHER] > 0;
+
+        alignment.sprite = spritesRepo.GetSprite(Nations.alignments[owner].ToString());
+        alignment.enabled = true;
+        haven.enabled = isHaven;
+        cityName.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityId);
+        goHealth.SetActive(true);
+        nextGameObject.SetActive(game.GetHumanNation() == owner);
     }
 
     public void GenerateAutomaticAttacks()
@@ -152,44 +188,38 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (res.Count < 1)
             return;
         res.Shuffle();
-        res = res.GetRange(0, Math.Min(res.Count, CitySizes.automaticAttacks[details.size]));
+        res = res.GetRange(0, Math.Min(res.Count, CitySizes.automaticAttacks[size]));
         automaticAttacks = res.Select(x => x.cardId).ToList();
     }
 
-    public bool IsRevealedOrHiddenVisible(NationsEnum watcher)
+    public bool IsVisibleToHumanPlayer()
     {
-        if (!details.isHidden)
-            return true;
+        if (!game.GetHumanPlayer().SeesTile(hex))
+            return false;
 
-        if (Nations.alignments[watcher] == Nations.alignments[owner])
+        if (Nations.alignments[game.GetHumanNation()] == Nations.alignments[owner])
             return true;
-
-        return false;
+        else
+            return isHidden;
     }
 
     void Update()
     {
-        if (!initialized && !addedToBoard)
+        if (!initialized || refresh)
         {
-            cityId ??= gameObject.name;
-            
-            if (game != null)
-            {
-                if (game.GetHumanNation() == owner)
-                    Initialize();
-                else if (board != null && !addedToBoard)
-                {
-                    board.AddOnDemandLoadCity(this);
-                    addedToBoard = true;
-                }
-            }
+            Initialize(refresh);
+            if (initialized == true)
+                refresh = false;
             return;
         }
+
+        if (!board.IsAllLoaded())
+            return;
 
         if (Input.GetKeyUp(KeyCode.Escape))
             isClicked = false;
 
-        if (isClicked && selectedItems.GetSelectedCityDetails() != null && selectedItems.GetSelectedCityDetails().GetCityID() != details.GetCityID())
+        if (isClicked && selectedItems.GetSelectedCity() != null && selectedItems.GetSelectedCity().GetCityId() != cityId)
             isClicked = false;
 
         displacement.transform.localPosition = new Vector3(0, DisplacementPixels.down, 0);
@@ -200,15 +230,16 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return initialized;
     }
 
-    public CityDetails GetDetails()
-    {
-        return details;
-    }
-
     public string GetCityId()
     {
         return cityId;
     }
+
+    public NationRegionsEnum GetRegion()
+    {
+        return regionId;
+    }
+
     public void Toggle()
     {
         isClicked = !isClicked;
@@ -217,7 +248,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             board.SelectHex(hex);
             selectedItems.SelectCityUI(this);
         }            
-        else if (selectedItems.GetSelectedCityDetails()!= null && selectedItems.GetSelectedCityDetails().GetCityID() != details.GetCityID())
+        else if (selectedItems.GetSelectedCity()!= null && selectedItems.GetSelectedCity().GetCityId() != cityId)
         {
             board.SelectHex(Board.NULL);
             selectedItems.UnselectCityDetails();
@@ -265,12 +296,12 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             mouse.ChangeCursor("clickable");
         else
             mouse.ChangeCursor("unclickable");
-        placeDeckManager.SetCardToShow(new HoveredCard(owner, details.GetCityID(), CardClass.Place));
+        placeDeckManager.SetCardToShow(new HoveredCard(owner, cityId, CardClass.Place));
     }
     public void RemoveHoverCity()
     {
         mouse.RemoveCursor();
-        placeDeckManager.RemoveCardToShow(new HoveredCard(owner, details.GetCityID(), CardClass.Place));
+        placeDeckManager.RemoveCardToShow(new HoveredCard(owner, cityId, CardClass.Place));
     }
     public float GetDistanceTo(Vector2Int hex)
     {
@@ -297,7 +328,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         AlignmentsEnum visitor = Nations.alignments[nation];
         AlignmentsEnum city = Nations.alignments[owner];
         if (visitor != city)
-            objectSlots = details.GetPlayableObjects();
+            objectSlots = GetPlayableObjects();
 
         return objectSlots;
     }
@@ -308,7 +339,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         AlignmentsEnum visitor = Nations.alignments[nation];
         AlignmentsEnum city = Nations.alignments[owner];
         if (visitor != city)
-            objectSlots = details.GetPlayableRings();
+            objectSlots = GetPlayableRings();
 
         return objectSlots;
     }
@@ -319,7 +350,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         AlignmentsEnum visitor = Nations.alignments[nation];
         AlignmentsEnum city = Nations.alignments[owner];
         if (visitor != city)
-            objectSlots = details.GetPlayableRings();
+            objectSlots = GetPlayableRings();
 
         return objectSlots.Select(x => x.ToString()).ToList();
     }
@@ -331,7 +362,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         AlignmentsEnum visitor = Nations.alignments[nation];
         AlignmentsEnum city = Nations.alignments[owner];
         if (visitor != city)
-            objectSlots = details.GetPlayableObjects();
+            objectSlots = GetPlayableObjects();
 
         return objectSlots.Select(x => x.ToString()).ToList();
     }
@@ -346,5 +377,190 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         mouse.RemoveCursor();
         placeDeckManager.RemoveCardToShow(new HoveredCard(owner, cityId, CardClass.Place));
+    }
+
+    public Resources GetCityProduction()
+    {
+        return new Resources(food, gold, cloth, wood, metal, horses, gems, leather);
+    }
+
+    public bool IsHaven()
+    {
+        return isHaven;
+    }
+
+    public Sprite GetSprite()
+    {
+        return sprite;
+    }
+
+    public void GenerateProduction()
+    {
+        System.Random rd = new();
+        food = rd.Next(TerrainBonuses.minBonuses[Terrains.foodBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.foodBonuses[terrain]]);
+        gold = rd.Next(TerrainBonuses.minBonuses[Terrains.goldBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.goldBonuses[terrain]]);
+        cloth = rd.Next(TerrainBonuses.minBonuses[Terrains.clothesBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.clothesBonuses[terrain]]);
+        wood = rd.Next(TerrainBonuses.minBonuses[Terrains.woodBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.woodBonuses[terrain]]);
+        metal = rd.Next(TerrainBonuses.minBonuses[Terrains.metalBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.metalBonuses[terrain]]);
+        gems = rd.Next(TerrainBonuses.minBonuses[Terrains.gemsBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.gemsBonuses[terrain]]);
+        horses = rd.Next(TerrainBonuses.minBonuses[Terrains.horsesBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.horsesBonuses[terrain]]);
+        leather = rd.Next(TerrainBonuses.minBonuses[Terrains.leatherBonuses[terrain]], TerrainBonuses.maxBonuses[Terrains.leatherBonuses[terrain]]);
+
+        switch (size)
+        {
+            case CitySizesEnum.VERY_BIG:
+                gold += (food + cloth + wood + metal + gems + horses + leather);
+                break;
+            case CitySizesEnum.BIG:
+                metal += (int)Math.Round((decimal)(food + cloth + wood + gems + horses + leather) / 2);
+                gems += (int)Math.Round((decimal)(food + cloth + wood + metal + horses + leather) / 2);
+                break;
+            case CitySizesEnum.MEDIUM:
+                leather += (int)Math.Round((decimal)(food + cloth + wood + gems + horses + metal) / 2);
+                cloth += (int)Math.Round((decimal)(food + metal + wood + gems + horses + leather) / 2);
+                break;
+            case CitySizesEnum.SMALL:
+                wood += (int)Math.Round((decimal)(food + metal + cloth + gems + horses + leather) / 2);
+                horses += (int)Math.Round((decimal)(food + metal + wood + gems + cloth + leather) / 2);
+                break;
+            case CitySizesEnum.VERY_SMALL:
+                food += (metal + cloth + wood + gems + horses + leather);
+                break;
+        }
+    }
+
+    public void GeneratePlayableRings()
+    {
+        playableRings = new();
+        foreach (RingType ringType in Enum.GetValues(typeof(RingType)))
+        {
+            switch (ringType)
+            {
+                case RingType.MindRing:
+                    if (cardType == CardTypesEnum.LAIR || cardType == CardTypesEnum.DARK_BASTION)
+                        if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                            playableRings.Add(ringType);
+                    break;
+                case RingType.DwarvenRing:
+                    if (terrain == TerrainsEnum.MOUNTAIN || terrain == TerrainsEnum.OTHER_HILLS_MOUNTAIN || terrain == TerrainsEnum.SNOWHILLS)
+                        if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                            playableRings.Add(ringType);
+                    break;
+                case RingType.MagicRing:
+                    if (cardType == CardTypesEnum.WILDERNESS || cardType == CardTypesEnum.FREE_BASTION)
+                        if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                            playableRings.Add(ringType);
+                    break;
+                case RingType.LesserRing:
+                    if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                        playableRings.Add(ringType);
+                    break;
+                case RingType.TheOneRing:
+                    if (cardType == CardTypesEnum.LAIR || terrain == TerrainsEnum.SWAMP)
+                    {
+                        if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                            playableRings.Add(ringType);
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void GeneratePlayableObjects()
+    {
+        playableObjects = new();
+
+        if (terrain == TerrainsEnum.SWAMP ||
+            terrain == TerrainsEnum.MOUNTAIN ||
+            terrain == TerrainsEnum.OTHER_HILLS_MOUNTAIN ||
+            terrain == TerrainsEnum.SNOWHILLS ||
+            terrain == TerrainsEnum.ICE ||
+            terrain == TerrainsEnum.COAST ||
+            terrain == TerrainsEnum.SEA
+           )
+        {
+
+            if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                playableObjects.Add(ObjectType.Palantir);
+
+            if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                playableObjects.Add(ObjectType.Jewelry);
+        }
+
+        switch (size)
+        {
+            case CitySizesEnum.VERY_BIG:
+                if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                    playableObjects.Add(ObjectType.Jewelry);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.OtherHand);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.MainHand);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.Armor);
+                break;
+            case CitySizesEnum.BIG:
+                if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                    playableObjects.Add(ObjectType.Armor);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.MainHand);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.OtherHand);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.Head);
+                break;
+            case CitySizesEnum.MEDIUM:
+                if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                    playableObjects.Add(ObjectType.Head);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.Gloves);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.Boots);
+                break;
+            case CitySizesEnum.SMALL:
+                if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                    playableObjects.Add(ObjectType.Gloves);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                    playableObjects.Add(ObjectType.Boots);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.Cloak);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.5f)
+                    playableObjects.Add(ObjectType.Belt);
+                break;
+            case CitySizesEnum.VERY_SMALL:
+                if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                    playableObjects.Add(ObjectType.Cloak);
+                if (UnityEngine.Random.Range(0f, 1f) > 0.75f)
+                    playableObjects.Add(ObjectType.Belt);
+                playableObjects.Add(ObjectType.Consumable);
+                playableObjects.Add(ObjectType.Mount);
+                break;
+        }
+    }
+
+    public List<ObjectType> GetPlayableObjects()
+    {
+        return playableObjects;
+    }
+
+    public List<RingType> GetPlayableRings()
+    {
+        return playableRings;
+    }
+
+    public string GetDescForAI()
+    {
+        return descForAIGeneration;
+    }
+
+
+    public bool IsHidden()
+    {
+        return isHidden;
+    }
+
+    public bool HasPort()
+    {
+        return hasPort;
     }
 }

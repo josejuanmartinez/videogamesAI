@@ -122,9 +122,12 @@ public class FOWManager : MonoBehaviour
         }
         foreach (Vector3Int surrounding in hexesToClean)
         {
+            Vector2Int v2hex = new(surrounding.x, surrounding.y);
             fow.SetTile(surrounding, null);
             fow.RefreshTile(surrounding);
-            game.GetHumanPlayer().SetCardSeesTile(new Vector2Int(surrounding.x, surrounding.y));
+            game.GetHumanPlayer().SetCardSeesTile(v2hex);
+            if (board.GetTile(v2hex).HasCity())
+                board.GetTile(v2hex).GetCity().RefreshCityUICanvas();
         }
     }
 
@@ -171,9 +174,12 @@ public class FOWManager : MonoBehaviour
         }
         foreach (Vector3Int surrounding in hexesToClean)
         {
+            Vector2Int v2hex = new(surrounding.x, surrounding.y);
             fow.SetTile(surrounding, null);
             fow.RefreshTile(surrounding);
             game.GetHumanPlayer().SetCardSeesTile(new Vector2Int(surrounding.x, surrounding.y));
+            if (board.GetTile(v2hex).HasCity())
+                board.GetTile(v2hex).GetCity().RefreshCityUICanvas();
         }
     }
 

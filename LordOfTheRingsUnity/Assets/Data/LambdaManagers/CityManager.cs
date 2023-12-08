@@ -24,7 +24,7 @@ public class CityManager
         if (owner == NationsEnum.ABANDONED)
             return null;
         List<CityUI> cities = GetCitiesOfPlayer(owner);
-        return cities.Select(x => x.GetCityId()).Union(cities.Select(x => x.GetDetails().regionId.ToString())).ToList();
+        return cities.Select(x => x.GetCityId()).Union(cities.Select(x => x.GetRegion().ToString())).ToList();
     }
 
     public List<CityUI> GetCitiesWithCharactersOfPlayer(NationsEnum owner)
@@ -39,7 +39,7 @@ public class CityManager
         if(owner == NationsEnum.ABANDONED)
             return null;
         List<CityUI> cities = GetCitiesOfPlayer(owner);
-        return cities.First(x => x.GetDetails().IsHaven());
+        return cities.First(x => x.IsHaven());
     }
     public CityUI GetCityOfPlayer(NationsEnum owner, string cityName)
     {

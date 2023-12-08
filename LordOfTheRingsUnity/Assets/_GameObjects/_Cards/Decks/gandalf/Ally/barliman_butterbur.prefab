@@ -61,7 +61,7 @@ MonoBehaviour:
   cardId: barliman_butterbur
   descForAIGeneration: The bar tender of the Prancing Pony
   cardClass: 7
-  isUnique: 0
+  isUnique: 1
   hometown: bree
   allyClass: 3
   race: 0

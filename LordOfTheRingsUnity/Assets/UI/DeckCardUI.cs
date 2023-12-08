@@ -36,6 +36,9 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         this.cardClass = cardClass;
         this.nation = owner;
         this.isHover = isHover;
+        
+        if (loaded)
+            return true;
 
         if (game.GetHumanNation() != owner)
             return true;
@@ -43,16 +46,10 @@ public class DeckCardUI : CardTemplateUI, IPointerEnterHandler, IPointerExitHand
         if (!turn.IsNewTurnLoaded())
             return false;
 
-        if (initialized)
-            return false;
-
         if (cardId == null)
             return false;
 
         if (!InitializeCard(owner, cardDetailsRepo.GetCardDetails(cardId, owner), false, isHover))
-            return false;
-
-        if (!resourcesManager.isInitialized)
             return false;
 
         if (cardDetails == null)

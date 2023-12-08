@@ -61,7 +61,7 @@ MonoBehaviour:
   cardId: treebeard
   descForAIGeneration: An ent from Fangorn forest
   cardClass: 7
-  isUnique: 0
+  isUnique: 1
   hometown: wellinghall
   allyClass: 0
   race: 16

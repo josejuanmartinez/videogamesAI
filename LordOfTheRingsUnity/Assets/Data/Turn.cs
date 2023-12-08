@@ -99,7 +99,7 @@ public class Turn : MonoBehaviour
             cameraController.LookToCard(avatar);
         
         newTurnLoaded = true;
-        //Debug.Log(string.Format("New turn: {0} at {1}", turnNumber, Time.realtimeSinceStartup));
+        Debug.Log(string.Format("New turn: {0} at {1}", turnNumber, Time.realtimeSinceStartup));
     }
 
     public bool IsNewTurnLoaded()

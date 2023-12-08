@@ -61,7 +61,7 @@ MonoBehaviour:
   cardId: goldberry
   descForAIGeneration: GoldBerry, the wife of Tom Bombadil, the lady of the Old Forest
   cardClass: 7
-  isUnique: 0
+  isUnique: 1
   hometown: old_forest
   allyClass: 1
   race: 19

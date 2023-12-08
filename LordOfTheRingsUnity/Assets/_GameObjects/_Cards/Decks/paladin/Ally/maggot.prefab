@@ -66,7 +66,7 @@ MonoBehaviour:
   allyClass: 1
   race: 3
   subRace: 0
-  abilities: 
+  abilities: 09000000
   prowess: 4
   defence: 6
   isImmovable: 0

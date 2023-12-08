@@ -213,18 +213,18 @@ public class Localization: MonoBehaviour
         return text;
     }
 
-    public string CreateDescriptionForGeneration(CityDetails details, string lan = "en-US")
+    public string CreateDescriptionForGeneration(CityUI city, string lan = "en-US")
     {
         string text = Localize("a_place_in_the_middle_earth_region_of", lan) + " ";
         if (locales.ContainsKey(lan))
         {
             text += string.Format("{0} {1} \"{2}\"",
-                Localize(details.regionId.ToString(), lan),
+                Localize(city.GetRegion().ToString(), lan),
                 Localize("called", lan),
-                Localize(details.GetCityID(), lan));
+                Localize(city.GetCityId(), lan));
 
-            if(!string.IsNullOrEmpty(details.descForAIGeneration))
-                text += string.Format(": {0}", details.descForAIGeneration);
+            if(!string.IsNullOrEmpty(city.GetDescForAI()))
+                text += string.Format(": {0}", city.GetDescForAI());
         }
         else
         {

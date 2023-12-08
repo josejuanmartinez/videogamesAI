@@ -43,7 +43,7 @@ public class SelectedItems : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Tab))
         {
-            CardUI next = board.GetNextCardUI(selection.GetMovableCardSelectedUI());
+            CardUI next = board.GetNextCardUI(selection.GetSelectedMovableCardUI());
             if (next != null)
                 SelectCardDetails(next.GetDetails(), next.GetOwner());
         }
@@ -68,7 +68,7 @@ public class SelectedItems : MonoBehaviour
                 for (int i = 0; i < children; i++)
                     DestroyImmediate(lastSelectedMovableLayout.transform.GetChild(0).gameObject);
 
-                CardUI cardUI = selection.GetMovableCardSelectedUI();
+                CardUI cardUI = selection.GetSelectedMovableCardUI();
                 if (cardUI != null)
                 {
                     if(cardUI.GetCardClass() == CardClass.Character)
@@ -85,9 +85,9 @@ public class SelectedItems : MonoBehaviour
         }
     }
 
-    public void SelectCityDetails(CityDetails city, NationsEnum owner)
+    public void SelectCityDetails(CityUI city)
     {
-        selection.Select(city, owner);
+        selection.Select(city);
         deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
         cameraController.LookToCity(city);
     }
@@ -105,7 +105,7 @@ public class SelectedItems : MonoBehaviour
         if (cardDetails == null)
             return;
 
-        if (selection.GetCardSelected() == cardDetails)
+        if (selection.GetSelectedCard() == cardDetails)
             return;
 
         if(cardDetails.IsMovableClass())
@@ -188,20 +188,20 @@ public class SelectedItems : MonoBehaviour
 
     public void SelectCityUI(CityUI cityUI)
     {
-        SelectCityDetails(cityUI.GetDetails(), cityUI.GetOwner());
+        SelectCityDetails(cityUI);
     }
 
     public CardDetails GetSelectedCardDetails()
     {
         if (selection == null)
             return null;
-        return selection.GetCardSelected();
+        return selection.GetSelectedCard();
     }
     public CardUI GetSelectedMovableCardUI()
     {
         if (selection == null)
             return null;
-        return selection.GetMovableCardSelectedUI();
+        return selection.GetSelectedMovableCardUI();
     }
     public HazardCreatureCardDetails GetHazardCreatureCardDetails()
     {
@@ -209,27 +209,27 @@ public class SelectedItems : MonoBehaviour
             return null;
         return selection.GetHazardCreatureCardDetails();
     }
-    public CityDetails GetSelectedCityDetails()
+    public CityUI GetSelectedCity()
     {
         if (selection == null)
             return null;
-        return selection.GetCitySelected();
+        return selection.GetSelectedCity();
     }
     public CardDetails GetSelectedMovableCard()
     {
         if (selection == null)
             return null;
-        return selection.GetMovableCardSelected();
+        return selection.GetSelectedMovableCard();
     }
 
     public HoveredCard GetSelectedCityDetailsAsHover()
     {
         if (selection == null)
             return new HoveredCard();
-        CityDetails cityDetails = GetSelectedCityDetails();
+        CityUI cityDetails = GetSelectedCity();
         if (cityDetails == null)
             return new HoveredCard();
-        return new HoveredCard(selection.GetOwner(), cityDetails.GetCityID(), CardClass.Place);
+        return new HoveredCard(selection.GetOwner(), cityDetails.GetCityId(), CardClass.Place);
     }
     public HoveredCard GetSelectedCardDetailsAsHover()
     {

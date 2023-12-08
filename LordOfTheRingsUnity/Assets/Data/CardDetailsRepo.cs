@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class CardDetailsRepo : MonoBehaviour
 {
-    [Header("Initial Cities")]
-    public List<GameObject> cityDetailsPrefabs;
-
     private List<InitialDeck> nationsInitialDecks;
     private List<CardDetails> allCardDetails;
     private Dictionary<NationsEnum, List<string>> cardNationDictionary;
@@ -139,25 +136,12 @@ public class CardDetailsRepo : MonoBehaviour
         return initial.cards.Find(x => x.GetComponent<CardDetails>() != null && x.GetComponent<CardDetails>().cardId == cardId);
     }
 
-    public GameObject GetCityGameObject(string cardId)
-    {
-        return cityDetailsPrefabs.Find(x => x.name == cardId);
-    }
-
     public CardDetails GetCardDetails(string cardId, NationsEnum owner)
     {
         if (GetCardGameObject(cardId, owner) == null)
             return null;
         return GetCardGameObject(cardId, owner).GetComponent<CardDetails>();
     }
-
-    public CityDetails GetCityDetails(string cardId)
-    {
-        if (GetCityGameObject(cardId) == null)
-            return null;
-        return GetCityGameObject(cardId).GetComponent<CityDetails>();
-    }
-
     public bool IsInitialized() 
     { 
         return isInitialized; 

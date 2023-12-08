@@ -22,9 +22,9 @@ public class HazardCreatureCardUI : CardUI
     [SerializeField]
     protected Image iceIcon;
 
-    public override bool Initialize(string cardId, NationsEnum owner)
+    public override bool Initialize(string cardId, NationsEnum owner, bool refresh = false)
     {
-        if (!base.Initialize(cardId, owner))
+        if (!base.Initialize(cardId, owner, refresh))
             return false;
 
         initialized = false;
@@ -46,9 +46,9 @@ public class HazardCreatureCardUI : CardUI
             CardUI existingCardUI = board.GetCardManager().GetCardUI(details);
             if (existingCardUI != null)
             {
-                if ((HazardCreatureCardUI)existingCardUI != null)
-                {   
-                    HazardCreatureCardUI existingCreatureCardUI = (HazardCreatureCardUI)existingCardUI;
+                if ((existingCardUI as HazardCreatureCardUI ) != null)
+                {
+                    HazardCreatureCardUI existingCreatureCardUI = existingCardUI as HazardCreatureCardUI;
                     hurtIcon.enabled = existingCreatureCardUI.GetHurtIcon().enabled;
                     exhaustedIcon.enabled = existingCreatureCardUI.GetExhaustedIcon().enabled;
                 }

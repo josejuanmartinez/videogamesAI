@@ -48,7 +48,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public float animationSpeed = 1f;
 
     protected CardDetails cardDetails;
-    protected CityDetails cityDetails;
+    protected CityUI city;
 
     protected List<CardCondition> conditions;
     protected Resources missingResources;
@@ -124,7 +124,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (cardClass == CardClass.Place)
         {
             if (board.GetCityManager().GetCityUI(cardId) != null)
-                return InitializeCity(owner, board.GetCityManager().GetCityUI(cardId).GetDetails(), isHover);
+                return InitializeCity(owner, board.GetCityManager().GetCityUI(cardId), isHover);
         }
         else
         {
@@ -155,7 +155,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         missingResources = new Resources(0, 0, 0, 0, 0, 0, 0, 0);
         conditionsFailed = new();
 
-        cityDetails = null;
+        city = null;
 
         if (cardDetails == null)
             return false;
@@ -360,17 +360,17 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         return true;
     }
 
-    private bool InitializeCity(NationsEnum owner, CityDetails cityDetails, bool isHover)
+    private bool InitializeCity(NationsEnum owner, CityUI city, bool isHover)
     {
         cardDetails = null;
         isInPlay = true;
         this.isHover = isHover;
-        this.cityDetails = cityDetails;
+        this.city = city;
 
         if (!isAwaken)
             Awake();
 
-        if (cityDetails == null)
+        if (this.city == null)
             return false;
 
         if (!isAwaken)
@@ -384,10 +384,6 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         missingResources = new Resources(0, 0, 0, 0, 0, 0, 0, 0);
         conditionsFailed = new();
 
-        CityUI cityUI = board.GetCityManager().GetCityUI(cityDetails.GetCityID());
-        if (cityUI == null)
-            return false;
-
         this.owner = owner;
 
         Destroy(GetComponent<AutoZoom>());
@@ -396,7 +392,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         for (int i = 0; i < children; i++)
             DestroyImmediate(descriptionLayout.transform.GetChild(0).gameObject);
 
-        quote.text = GameObject.Find("Localization").GetComponent<Localization>().LocalizeQuote(cityDetails.GetCityID());
+        quote.text = GameObject.Find("Localization").GetComponent<Localization>().LocalizeQuote(this.city.GetCityId());
 
         HideProbability();
         button.enabled = false;
@@ -406,30 +402,30 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         defenceGroup.SetActive(false);
         influenceGroup.SetActive(false);
 
-        cardName = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.GetCityID());
-        image.sprite = cityDetails.GetSprite();
+        cardName = GameObject.Find("Localization").GetComponent<Localization>().Localize(this.city.GetCityId());
+        image.sprite = this.city.GetSprite();
         animate = cardName.Length > ellipsisSize;
         if (!animate)
             title.text = cardName;
 
         hometown.enabled = true;
-        hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(cityDetails.regionId.ToString());
+        hometown.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(this.city.GetRegion().ToString());
 
 
-        if (!cityUI.IsRevealedOrHiddenVisible(turn.GetCurrentPlayer()))
+        if (!city.IsVisibleToHumanPlayer())
             return true;
 
-        if (cityUI.GetOwner() == NationsEnum.ABANDONED)
+        if (city.GetOwner() == NationsEnum.ABANDONED)
             AddDescriptionSlot("owner", "abandoned", spritesRepo.GetSprite("abandoned"));
         else
-            AddDescriptionSlot("owner", cityUI.GetOwner().ToString());
+            AddDescriptionSlot("owner", city.GetOwner().ToString());
 
-        AddDescriptionSlot("objects", cityUI.GetPlayableObjectsStrings(turn.GetCurrentPlayer()), spritesRepo.GetSprite("object"));
-        AddDescriptionSlot("rings", cityUI.GetPlayableRingsString(turn.GetCurrentPlayer()), spritesRepo.GetSprite("ring"));
-        AddDescriptionSlot("automatic_attacks", cityUI.GetAutomaticAttacks(turn.GetCurrentPlayer()), spritesRepo.GetSprite("default"));
-        if(cityDetails.isHidden)
+        AddDescriptionSlot("objects", city.GetPlayableObjectsStrings(turn.GetCurrentPlayer()), spritesRepo.GetSprite("object"));
+        AddDescriptionSlot("rings", city.GetPlayableRingsString(turn.GetCurrentPlayer()), spritesRepo.GetSprite("ring"));
+        AddDescriptionSlot("automatic_attacks", city.GetAutomaticAttacks(turn.GetCurrentPlayer()), spritesRepo.GetSprite("default"));
+        if(this.city.IsHidden())
             AddDescriptionSlot("city_visibility", "hidden");
-        if(cityDetails.hasPort)
+        if(this.city.HasPort())
             AddDescriptionSlot("port", "has_port");
 
         ClearAllRequirements();
@@ -441,17 +437,17 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             string.IsNullOrEmpty(quote.text) &&
             !contentGenerator.IsSleeping() &&
             !contentGenerator.Generating() &&
-            contentGenerator.StillNotGenerated(cityDetails.GetCityID()) &&
-            !contentGenerator.Ignored(cityDetails.GetCityID()))
+            contentGenerator.StillNotGenerated(this.city.GetCityId()) &&
+            !contentGenerator.Ignored(this.city.GetCityId()))
         {
-            if (UnityEditor.EditorUtility.DisplayDialog("Generate with AI?", cityDetails.GetCityID(), "OK", "Ignore"))
-                contentGenerator.Generate(cityDetails.GetCityID(), GameObject.Find("Localization").GetComponent<Localization>().CreateDescriptionForGeneration(cityDetails));
+            if (UnityEditor.EditorUtility.DisplayDialog("Generate with AI?", this.city.GetCityId(), "OK", "Ignore"))
+                contentGenerator.Generate(this.city.GetCityId(), GameObject.Find("Localization").GetComponent<Localization>().CreateDescriptionForGeneration(this.city));
             else
             {
-                if (UnityEditor.EditorUtility.DisplayDialog("Sleep?", cityDetails.GetCityID(), "OK", "No"))
-                    contentGenerator.AddIgnore(cityDetails.GetCityID(), true);
+                if (UnityEditor.EditorUtility.DisplayDialog("Sleep?", this.city.GetCityId(), "OK", "No"))
+                    contentGenerator.AddIgnore(this.city.GetCityId(), true);
                 else
-                    contentGenerator.AddIgnore(cityDetails.GetCityID(), false);
+                    contentGenerator.AddIgnore(this.city.GetCityId(), false);
             }
 
         }
@@ -464,9 +460,9 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void ShowProduction()
     {
-        if (cityDetails == null)
+        if (city == null)
             return;
-        Resources production = cityDetails.GetCityProduction();
+        Resources production = city.GetCityProduction();
         foreach(ResourceType resource in Enum.GetValues(typeof(ResourceType))) 
         {
             int prod = production.resources[resource];
@@ -576,12 +572,12 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             {
                 //Debug.Log("Initializing " + cardDetails.name);
                 Initialize(owner, cardDetails.cardId, cardDetails.cardClass, isHover);
-                cityDetails = null;
+                city = null;
             }                
-            else if(cityDetails != null)
+            else if(city != null)
             {
                 //Debug.Log("Initializing " + cityDetails.name);
-                Initialize(owner, cityDetails.GetCityID(), CardClass.Place, isHover);
+                Initialize(owner, city.GetCityId(), CardClass.Place, isHover);
                 cardDetails = null;
             }
             return;
@@ -702,20 +698,21 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         return cardDetails;
     }
 
-    public CityDetails GetCityDetails() 
-    { 
-        return cityDetails; 
+    public CityUI GetCity()
+    {
+        return city;
     }
 
     public void Show()
     {
         gameObject.SetActive(true);
     }
+
     public void Hide()
     {
         gameObject.SetActive(false);
         cardDetails = null;
-        cityDetails = null;
+        city = null;
     }
 
 
