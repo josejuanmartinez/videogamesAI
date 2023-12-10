@@ -25,6 +25,13 @@ public class PrefabLoader : MonoBehaviour
     {
         if(refresh)
         {
+            foreach (NationsEnum candidate in Enum.GetValues(typeof(NationsEnum)))
+            {
+                Transform t = cardDetailsRepo.transform.Find("cards_" + candidate.ToString().ToLower());
+                if(t.GetComponent<InitialDeck>() != null)
+                    t.GetComponent<InitialDeck>().cards = new();
+            }
+                
             string[] files = AssetDatabase.FindAssets("t:prefab", new string[] { folderPath });
 
             foreach (string file in files)
@@ -34,8 +41,8 @@ public class PrefabLoader : MonoBehaviour
                 string player = guidPath.Replace(path, "").Split('/')[0];
                 foreach (NationsEnum candidate in Enum.GetValues(typeof(NationsEnum)))
                     if (candidate.ToString().ToLower() == player.ToLower())
-                        if (cardDetailsRepo.transform.Find(player.ToLower()) != null)
-                            cardDetailsRepo.transform.Find(player.ToLower()).GetComponent<InitialDeck>().AddCard(AssetDatabase.LoadAssetAtPath<GameObject>(guidPath));
+                        if (cardDetailsRepo.transform.Find("cards_" + player.ToLower()) != null)
+                            cardDetailsRepo.transform.Find("cards_" + player.ToLower()).GetComponent<InitialDeck>().AddCard(AssetDatabase.LoadAssetAtPath<GameObject>(guidPath));
             }
             //Debug.Log("PrefabLoader finished loading from disk prefabs at " + Time.realtimeSinceStartup);
         }

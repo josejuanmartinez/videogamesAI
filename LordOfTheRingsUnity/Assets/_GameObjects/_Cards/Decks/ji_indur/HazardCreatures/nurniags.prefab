@@ -57,14 +57,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: a1de775cf1e292f4f9c146563d259cb0, type: 3}
+  cardSprite: {fileID: 21300000, guid: 5ba97a880e626a64d9352fd152d74fe1, type: 3}
   cardId: southrons
   descForAIGeneration: 
   cardClass: 6
   isUnique: 0
   hometown: 
+  victoryPoints: 0
+  corruption: 0
   race: 0
   subrace: 8
   prowess: 11
-  defence: 0
+  defence: 8
   hazardAbilities: 00000000

@@ -3,5 +3,9 @@ public enum StatusEffect
     NONE,
     BLEEDING,
     POISONS,
-    CURSES
+    CURSES,
+    FREEZES,
+    BURNS,
+    IMMOVABLE,
+    BLINDS
 }

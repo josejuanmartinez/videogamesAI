@@ -31,10 +31,6 @@ public class TerrainManager : MonoBehaviour
     public void Awake()
     {
         BoundsInt bounds = terrainTilemaps[0].cellBounds;
-        TileBase[][] allTiles = new TileBase[terrainTilemaps.Length][];
-
-        for (int i = 0; i < terrainTilemaps.Length; i++)
-            allTiles[i] = terrainTilemaps[i].GetTilesBlock(bounds);
 
         tiles = new TileAndMovementCost[bounds.size.x * bounds.size.y];
 
@@ -48,7 +44,8 @@ public class TerrainManager : MonoBehaviour
                 {
 
                     Vector3Int tilePosition = new(x, y, 0);
-                    Tile tile = allTiles[i][(y - bounds.yMin) * bounds.size.x + (x - bounds.xMin)] as Tile;
+                    //Tile tile = allTiles[i][(y - bounds.yMin) * bounds.size.x + (x - bounds.xMin)] as Tile;
+                    Tile tile = terrainTilemaps[i].GetTile(tilePosition) as Tile;
                     if (tile != null)
                     {
                         TerrainInfo terrainInfo = GetTerrainInfo(tile);
@@ -88,6 +85,11 @@ public class TerrainManager : MonoBehaviour
     public TileAndMovementCost GetTileAndMovementCost(Vector2Int tile)
     {
         int pos = HexTranslator.GetNormalizedCellPosInt(new Vector3Int(tile.x, tile.y, 0));
+        return GetTileAndMovementCost(pos);
+    }
+    public TileAndMovementCost GetTileAndMovementCost(Vector3Int tile)
+    {
+        int pos = HexTranslator.GetNormalizedCellPosInt(tile);
         return GetTileAndMovementCost(pos);
     }
 

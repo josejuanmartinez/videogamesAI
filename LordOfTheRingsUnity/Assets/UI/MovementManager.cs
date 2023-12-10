@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
-using System.Net;
 
 public class MovementManager : MonoBehaviour
 {
@@ -46,7 +45,8 @@ public class MovementManager : MonoBehaviour
     // ****************************************
 
     private List<Vector3> positions = new ();
-    private short totalMovement = 0;
+    private short moved = 0;
+    private int movement= 0;
 
     private Pathfinder<Vector3Int> pathfinder;
 
@@ -156,16 +156,16 @@ public class MovementManager : MonoBehaviour
                     Reset();
                     return;
                 }
-                if ((CharacterCardDetails)cardDetails != null)
+                if (cardDetails as CharacterCardDetails != null)
                 {
-                    CharacterCardDetails charDetails = (CharacterCardDetails)cardDetails;
+                    CharacterCardDetails charDetails = cardDetails as CharacterCardDetails;
                     isImmovable = charDetails.isImmovable;
                 }
                 hex = character.GetHex();
             }
             else if (cardDetails.cardClass == CardClass.HazardCreature)
             {
-                HazardCreatureCardUIBoard creature = (HazardCreatureCardUIBoard)cardUI;
+                HazardCreatureCardUIBoard creature = cardUI as HazardCreatureCardUIBoard;
                 if (creature == null)
                 {
                     Reset();
@@ -265,7 +265,8 @@ public class MovementManager : MonoBehaviour
             rightMovementCosts[i].enabled = false;
         }            
         positions.Clear();
-        totalMovement = 0;
+        moved = 0;
+        movement = MovementConstants.unitsMovement;
         lineRenderer.positionCount = positions.Count;
         lineRenderer.SetPositions(positions.ToArray());
     }
@@ -283,21 +284,29 @@ public class MovementManager : MonoBehaviour
         if (selectedCardUIForMovement != null)
         {
             int moved = -1;
+            int movement = MovementConstants.unitsMovement;
+
             if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
-                moved = ((CharacterCardUIBoard)selectedCardUIForMovement).GetMoved();
+            {
+                moved = (selectedCardUIForMovement as CharacterCardUIBoard).GetMoved();
+                movement = (selectedCardUIForMovement as CharacterCardUIBoard).GetTotalMovement();
+            }   
             else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
-                moved = ((HazardCreatureCardUIBoard)selectedCardUIForMovement).GetMoved();
+            {
+                moved = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetMoved();
+                movement = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetTotalMovement();
+            }                
             
-            if (moved == -1 || moved >= MovementConstants.characterMovement)
+            if (moved == -1 || moved >= movement)
             {
                 Reset();
                 yield return null;
             }
 
             if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
-                ((CharacterCardUIBoard)selectedCardUIForMovement).Moving();
+                (selectedCardUIForMovement as CharacterCardUIBoard).Moving();
             else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
-                ((HazardCreatureCardUIBoard)selectedCardUIForMovement).Moving();
+                (selectedCardUIForMovement as HazardCreatureCardUIBoard).Moving();
 
             int currentPointIndex = 0;
 
@@ -348,14 +357,16 @@ public class MovementManager : MonoBehaviour
                     break;
                 }
 
-                short movement = terrainManager.GetMovementCost(targetCell);
-                if (moved + movement > MovementConstants.characterMovement)
+                short movementCost = terrainManager.GetMovementCost(targetCell);
+                movementCost = CheckMountedOrBoarded(movementCost, startCell, selectedCardUIForMovement);
+
+                if (moved + movementCost > MovementConstants.unitsMovement)
                     break;
 
                 if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
-                    (selectedCardUIForMovement as CharacterCardUIBoard).AddMovement(movement);
+                    (selectedCardUIForMovement as CharacterCardUIBoard).AddMovement(movementCost);
                 else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
-                    (selectedCardUIForMovement as HazardCreatureCardUIBoard).AddMovement(movement);
+                    (selectedCardUIForMovement as HazardCreatureCardUIBoard).AddMovement(movementCost);
 
                 while (currentLerpTime < 1f)
                 {
@@ -373,7 +384,7 @@ public class MovementManager : MonoBehaviour
 
                 fow.UpdateCardFOW(targetCell, startCell);
 
-                CardInfo ci = terrainManager.GetCardInfo(cardTilemap.GetTile(targetCell)     as Tile);
+                CardInfo ci = terrainManager.GetCardInfo(cardTilemap.GetTile(targetCell) as Tile);
                 if (ci != null)
                     accumulatedMana.Add(ci.cardType);
                 else
@@ -429,9 +440,15 @@ public class MovementManager : MonoBehaviour
         }
 
         if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
-            totalMovement = ((CharacterCardUIBoard)selectedCardUIForMovement).GetMoved();
+        {
+            moved = (selectedCardUIForMovement as CharacterCardUIBoard).GetMoved();
+            movement = (selectedCardUIForMovement as CharacterCardUIBoard).GetTotalMovement();
+        }
         else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
-            totalMovement = ((HazardCreatureCardUIBoard)selectedCardUIForMovement).GetMoved();
+        {
+            moved = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetMoved();
+            movement = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetTotalMovement();
+        }
         else
         {
             Reset();
@@ -448,9 +465,10 @@ public class MovementManager : MonoBehaviour
             cardCellCenter = new Vector3(cardCellCenter.x, cardCellCenter.y, -1);
             positions.Add(cardCellCenter);
                         
-            short movement = (p != 0) ? terrainManager.GetMovementCost(cardTilePos) : (short)0;
-            
-            if (totalMovement + movement > MovementConstants.characterMovement)
+            short movementCost = (p != 0) ? terrainManager.GetMovementCost(cardTilePos) : (short)0;
+            movementCost = CheckMountedOrBoarded(movementCost, cardTilePos, selectedCardUIForMovement);
+
+            if (moved + movementCost > movement)
             {
                 StopAllCoroutines();
                 positions = positions.GetRange(0, p);
@@ -460,8 +478,8 @@ public class MovementManager : MonoBehaviour
                 break;
             }
 
-            totalMovement += movement;
-            rightMovementCosts[positions.Count - 1].text = totalMovement.ToString();
+            moved += movementCost;
+            rightMovementCosts[positions.Count - 1].text = moved.ToString();
             rightMovementCosts[positions.Count - 1].enabled = true;
 
 
@@ -489,6 +507,56 @@ public class MovementManager : MonoBehaviour
             rightMovementSprites[positions.Count - 1].enabled = true;            
         }
         yield return new WaitForSeconds(stepTime);
+    }
+
+    public short CheckMountedOrBoarded(short movementCost, Vector3Int cardTilePos, CardUI selectedCardUIForMovement)
+    {
+        short newCost = movementCost;
+        if(selectedCardUIForMovement != null)
+        {
+            bool isMounted = false;
+            bool isBoarded = false;
+            if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
+            {
+                CharacterCardDetails details = selectedCardUIForMovement.GetCharacterDetails();
+                if(details != null)
+                {
+                    isMounted = details.abilities.Contains(CharacterAbilitiesEnum.Mounted);
+                    isBoarded = details.abilities.Contains(CharacterAbilitiesEnum.Boarded);
+                }
+            }
+            else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
+            {
+                HazardCreatureCardDetails details = selectedCardUIForMovement.GetHazardCreatureDetails();
+                if (details != null)
+                {
+                    isMounted = details.hazardAbilities.Contains(HazardAbilitiesEnum.Mounted);
+                    isBoarded = details.hazardAbilities.Contains(HazardAbilitiesEnum.Boarded);
+                }
+            }
+
+            TileAndMovementCost info = terrainManager.GetTileAndMovementCost(cardTilePos);
+            switch (info.terrain.terrainType)
+            {
+                case TerrainsEnum.SEA:
+                case TerrainsEnum.COAST:
+                    if (isBoarded)
+                        newCost--;
+                    break;
+                case TerrainsEnum.WASTE:
+                case TerrainsEnum.PLAINS:
+                case TerrainsEnum.GRASS:
+                case TerrainsEnum.ASHES:
+                case TerrainsEnum.ICE:
+                case TerrainsEnum.DESERT:
+                case TerrainsEnum.FOREST:
+                    if (isMounted)
+                        newCost--;
+                    break;
+            }
+        }
+
+        return newCost;
     }
     public Vector2Int GetLastHex()
     {

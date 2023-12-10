@@ -62,10 +62,11 @@ MonoBehaviour:
   descForAIGeneration: Wights / Spirits / Undead coming from barrows / graveyards
   cardClass: 6
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 0
   race: 14
+  subrace: 0
   prowess: 10
-  defence: 0
-  cardTypes: 03000000030000000300000004000000
-  hazardAbilities: 
+  defence: 7
+  hazardAbilities: 11000000

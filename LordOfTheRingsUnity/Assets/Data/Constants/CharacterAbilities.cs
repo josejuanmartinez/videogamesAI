@@ -18,5 +18,6 @@ public enum CharacterAbilitiesEnum
     CanUseSorcery,
     Shipwright,
     Hides,
-    BonusToNazgul
+    BonusToNazgul,
+    Boarded
 }

@@ -7,7 +7,7 @@ public class BoardTile
     Vector2Int hex;
     CityUI city;
     readonly List<CardUI> cards = new();
-
+    
     public BoardTile(Vector2Int hex, CityUI city, List<CardUI> cards)
     {
         this.hex = hex;
@@ -146,5 +146,53 @@ public class BoardTile
         cards.Remove(oldFirst);
         cards.Insert(0, card);
         cards.Insert(totalCards - 1, oldFirst);
+    }
+
+    public bool IsBuffedFor(NationsEnum nation)
+    {
+        bool found = false;
+        foreach(CardUI card in cards)
+        {
+            if (card.GetOwner() != nation)
+                continue;
+            if (card as HazardCreatureCardUI != null)
+            {
+                HazardCreatureCardUI hazardUIcard = card as HazardCreatureCardUI;
+                if(hazardUIcard.GetHazardCreatureDetails() != null)
+                {
+                    HazardCreatureCardDetails details = hazardUIcard.GetHazardCreatureDetails();
+                    if (details.GetAbilities().Contains(HazardAbilitiesEnum.Buffs))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return found;
+    }
+
+    public bool IsDeBuffedFor(NationsEnum nation)
+    {
+        bool found = false;
+        foreach (CardUI card in cards)
+        {
+            if (card.GetOwner() != nation)
+                continue;
+            if (card as HazardCreatureCardUI != null)
+            {
+                HazardCreatureCardUI hazardUIcard = card as HazardCreatureCardUI;
+                if (hazardUIcard.GetHazardCreatureDetails() != null)
+                {
+                    HazardCreatureCardDetails details = hazardUIcard.GetHazardCreatureDetails();
+                    if (details.GetAbilities().Contains(HazardAbilitiesEnum.Debuffs))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return found;
     }
 }

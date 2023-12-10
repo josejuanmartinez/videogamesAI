@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8926133326434010209}
   - component: {fileID: 4792771519382075609}
   m_Layer: 0
-  m_Name: southern_assassins
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,14 +57,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: 6441ddf34e6b7fa47b90ff4f6c7f0ffc, type: 3}
-  cardId: southern_assassins
-  descForAIGeneration: Assassin elite group from South of Middle Earth
+  cardSprite: {fileID: 21300000, guid: aa7729c12e7d7bb4e92ca6edc49e8e79, type: 3}
+  cardId: light
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
   hometown: 
-  race: 0
-  subrace: 9
-  prowess: 11
+  victoryPoints: 0
+  corruption: 0
+  race: 13
+  subrace: 0
+  prowess: 5
   defence: 0
-  hazardAbilities: 050000000400000007000000
+  hazardAbilities: 120000000d000000

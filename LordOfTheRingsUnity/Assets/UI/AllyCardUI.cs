@@ -223,7 +223,7 @@ public class AllyCardUI : CardUI
 
     public int GetTotalMovement()
     {
-        int movement = MovementConstants.characterMovement;
+        int movement = MovementConstants.unitsMovement;
 
         if (morgul)
             movement -= 4;

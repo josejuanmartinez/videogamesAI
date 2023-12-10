@@ -47,6 +47,11 @@ public class CharacterManager
         List<CardUI> character = GetCharactersOfPlayer(owner);
         return character.FirstOrDefault(x => x.IsAvatar());
     }
+    public List<CardDetails> GetCharactersInCompanyOf(string leader)
+    {
+        return board.GetTiles().Values.SelectMany(x => x.GetCardsUI()).ToList().
+                FindAll(x => x.IsCharacterUI()).Select(x => (x as CharacterCardUI)).ToList().FindAll(y => y.GetInCompanyOf() == leader).Select(x => x.GetDetails()).ToList();
+    }
 
     public List<CardDetails> GetCharactersInCompanyOf(CardDetails leader)
     {

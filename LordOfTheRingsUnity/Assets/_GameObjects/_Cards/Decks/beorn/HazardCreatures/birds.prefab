@@ -62,8 +62,11 @@ MonoBehaviour:
   descForAIGeneration: Big birds coming from the woods to attack
   cardClass: 6
   isUnique: 0
+  hometown: 
+  victoryPoints: 0
+  corruption: 0
   race: 12
-  prowess: 9
-  defence: 0
-  cardTypes: 04000000040000000400000001000000
-  hazardAbilities: 0000000009000000
+  subrace: 0
+  prowess: 7
+  defence: 5
+  hazardAbilities: 1200000009000000

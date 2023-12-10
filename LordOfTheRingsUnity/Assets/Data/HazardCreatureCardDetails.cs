@@ -303,6 +303,11 @@ public class HazardCreatureCardDetails: CardDetails
         return hazardAbilities.Select(x => x.ToString()).ToList();
     }
 
+    public List<HazardAbilitiesEnum> GetAbilities()
+    {
+        return hazardAbilities;
+    }
+
     public StatusEffect GetStatusEffect()
     {
         if (hazardAbilities.Contains(HazardAbilitiesEnum.Curses))
@@ -311,6 +316,12 @@ public class HazardCreatureCardDetails: CardDetails
             return StatusEffect.POISONS;
         else if (hazardAbilities.Contains(HazardAbilitiesEnum.Bleeding))
             return StatusEffect.BLEEDING;
+        else if (hazardAbilities.Contains(HazardAbilitiesEnum.Blinds))
+            return StatusEffect.BLINDS;
+        else if (hazardAbilities.Contains(HazardAbilitiesEnum.Freezes))
+            return StatusEffect.FREEZES;
+        else if (hazardAbilities.Contains(HazardAbilitiesEnum.Traps))
+            return StatusEffect.IMMOVABLE;
         else
             return StatusEffect.NONE;
     }

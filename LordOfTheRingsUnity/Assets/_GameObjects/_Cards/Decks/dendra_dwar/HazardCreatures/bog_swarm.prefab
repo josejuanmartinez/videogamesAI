@@ -62,10 +62,11 @@ MonoBehaviour:
   descForAIGeneration: A swarm of insects coming from the Dead Marshes
   cardClass: 6
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   race: 12
+  subrace: 0
   prowess: 9
-  defence: 0
-  cardTypes: 03000000030000000400000004000000
-  hazardAbilities: 04000000
+  defence: 5
+  hazardAbilities: 1200000004000000

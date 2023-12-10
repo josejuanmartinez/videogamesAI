@@ -98,7 +98,10 @@ public static class HexTranslator
     {
         return "*" + cellPos.x + "," + cellPos.y + " * ";
     }
-
+    public static List<Vector3Int> GetSurroundings(Vector2Int cell)
+    {
+        return GetSurroundings(new Vector3Int(cell.x, cell.y, 0));
+    }
     public static List<Vector3Int> GetSurroundings(Vector3Int cell)
     {
         List<Vector3Int> result = new List<Vector3Int>() { cell };

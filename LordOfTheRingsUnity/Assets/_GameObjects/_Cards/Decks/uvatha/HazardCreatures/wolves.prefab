@@ -59,22 +59,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: cb60caa51beded64b8f943590766b9e4, type: 3}
   cardId: wolves
-  initialOwner: 1
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 0
-  requiredFood: 10
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 15
-  requiredLeather: 0
   race: 11
-  strikes: 4
+  subrace: 0
   prowess: 7
-  defence: 0
-  cardTypes: 04000000040000000400000004000000
+  defence: 6
   hazardAbilities: 00000000

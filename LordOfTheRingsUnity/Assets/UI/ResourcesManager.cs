@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using TMPro;
 using UnityEngine;
 
@@ -24,6 +27,8 @@ public class ResourcesManager : MonoBehaviour
     private readonly Dictionary<NationsEnum, Resources> productions = new ();
     private readonly Dictionary<NationsEnum, int> influences = new ();
 
+    private bool initialized;
+
     void Awake()
     {
         board = GameObject.Find("Board").GetComponent<Board>();
@@ -31,6 +36,18 @@ public class ResourcesManager : MonoBehaviour
         game = GameObject.Find("Game").GetComponent<Game>();
         deckManager = GameObject.Find("DeckManager").GetComponent<DeckManager>();
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
+        initialized = false;
+    }
+
+    IEnumerator Initialize()
+    {
+        foreach(NationsEnum nation in Enum.GetValues (typeof (NationsEnum)))
+        {
+            RecalculatePlayerCitiesProduction(nation);
+            RecalculateInfluence(nation);
+        }
+        initialized = true;
+        yield return null;
     }
 
     public void Add(CityUI city, bool recalculate = true)
@@ -48,7 +65,7 @@ public class ResourcesManager : MonoBehaviour
         if(recalculate)
         {
             RecalculatePlayerCitiesProduction(nation);
-            RecalculateInfluences(nation);
+            RecalculateInfluence(nation);
         }
         
     }
@@ -130,10 +147,10 @@ public class ResourcesManager : MonoBehaviour
         leather.text = (leatherBonus > 0 ? "+" : "<color=\"red\">") + leatherBonus.ToString() + (leatherBonus > 0 ? "" : "</color=\"red\">") + "/" + stores[nation].resources[ResourceType.LEATHER].ToString();
     }
 
-    public void RecalculateInfluences(NationsEnum nation)
+    private void Update()
     {
-        influences[nation] = GetFreeInfluence(nation, true);
-        RefreshInfluence(nation);
+        if (!initialized && board.IsAllLoaded()) 
+            StartCoroutine(Initialize());
     }
 
     public void RecalculateInfluence(NationsEnum nation)
@@ -149,9 +166,11 @@ public class ResourcesManager : MonoBehaviour
             if (boardUI == null)
                 continue;
             freeInfluence -= boardUI.GetTotalMind();
-        }            
-        
+        }
         influences[nation] = freeInfluence;
+        
+        if (nation == game.GetHumanNation())
+            RefreshInfluence(turn.GetCurrentPlayer());
     }
     public void SubtractInfluence(NationsEnum nation, int influence)
     {

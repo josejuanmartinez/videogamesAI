@@ -120,8 +120,12 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         terrainManager = GameObject.Find("TerrainManager").GetComponent<TerrainManager>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
+        
         initialized = false;
+        
         health = 100;
+
+        Hide();
     }
     public bool Initialize(bool forceRefresh = false)
     {
@@ -160,8 +164,12 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void RefreshCityUICanvas()
     {
-        displacement.GetComponent<CanvasGroup>().alpha = IsVisibleToHumanPlayer()? 1 : 0;
-        if (displacement.GetComponent<CanvasGroup>().alpha == 0)
+        if (IsVisibleToHumanPlayer())
+            Show();
+        else
+            Hide();
+        
+        if (canvasGroup.alpha == 0)
             return;
         Resources cityProduction = GetCityProduction();
         detailsGold.enabled = cityProduction.resources[ResourceType.GOLD] > 0;
@@ -200,7 +208,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (Nations.alignments[game.GetHumanNation()] == Nations.alignments[owner])
             return true;
         else
-            return isHidden;
+            return !isHidden;
     }
 
     void Update()
@@ -258,6 +266,8 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void Show()
     {
         canvasGroup.alpha = 1f;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
     }
     public void Tap()
     {
@@ -266,6 +276,8 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void Hide()
     {
         canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void Next()

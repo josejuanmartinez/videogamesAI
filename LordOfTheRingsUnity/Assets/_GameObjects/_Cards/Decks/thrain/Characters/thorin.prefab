@@ -54,7 +54,9 @@ MonoBehaviour:
   descForAIGeneration: The Dwarf king from the Blue Hills
   cardClass: 1
   isUnique: 1
-  hometown: thorin_hall
+  hometown: thorin_halls
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 1
   race: 1
   subRace: 0

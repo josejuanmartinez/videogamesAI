@@ -167,18 +167,18 @@ public static class Terrains
 
     public static Dictionary<TerrainsEnum, short> movementCost = new()
     {
-        { TerrainsEnum.SEA, 2},
-        { TerrainsEnum.COAST, 1},
+        { TerrainsEnum.SEA, 3},
+        { TerrainsEnum.COAST, 2},
         { TerrainsEnum.WASTE, 1},
         { TerrainsEnum.PLAINS, 1},
         { TerrainsEnum.GRASS, 1},
         { TerrainsEnum.ASHES, 2},
-        { TerrainsEnum.MOUNTAIN, 3},
-        { TerrainsEnum.HILLS, 2},
-        { TerrainsEnum.SNOWHILLS, 3},
+        { TerrainsEnum.MOUNTAIN, 4},
+        { TerrainsEnum.HILLS, 3},
+        { TerrainsEnum.SNOWHILLS, 4},
         { TerrainsEnum.ICE, 2},
         { TerrainsEnum.DESERT, 2},
-        { TerrainsEnum.OTHER_HILLS_MOUNTAIN, 3},
+        { TerrainsEnum.OTHER_HILLS_MOUNTAIN, 4},
         { TerrainsEnum.FOREST, 2},
         { TerrainsEnum.SWAMP, 3},
     };

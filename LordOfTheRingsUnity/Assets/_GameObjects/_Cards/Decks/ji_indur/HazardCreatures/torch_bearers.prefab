@@ -62,8 +62,11 @@ MonoBehaviour:
   descForAIGeneration: Goblins bearing burning explosive torches
   cardClass: 6
   isUnique: 0
+  hometown: 
+  victoryPoints: 0
+  corruption: 0
   race: 6
+  subrace: 0
   prowess: 10
-  defence: 0
-  cardTypes: 0200000002000000020000000200000002000000
-  hazardAbilities: 0700000008000000
+  defence: 7
+  hazardAbilities: 070000000b000000

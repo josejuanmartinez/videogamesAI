@@ -135,6 +135,8 @@ public class CombatPopupManager : Popup
     }
     public bool Initialize(CardUI leader, List<Tuple<string, NationsEnum>> attackingCards, string placeId)
     {
+        /* MOVEMENT ATTACK TO CHARACTERS OR CREATURES */
+
         if (!isAwaken)
             Awake();
 
@@ -176,6 +178,7 @@ public class CombatPopupManager : Popup
             GameObject goAttacker = Instantiate(
                 leaderCardDetails.IsClassOf(CardClass.Character) ? attackerToCompany : attackerToCreature,
                 attackersLayout.transform);
+            
             goAttacker.GetComponent<Attacker>().Initialize(
                 attack, 
                 combatCompanyManager.GetAllCombatCards(),
@@ -195,7 +198,7 @@ public class CombatPopupManager : Popup
     {
         if (diceValue == 0)
             diceValue = DiceManager.D10;
-        GameObject child = attackersLayout.transform.GetChild(attackerNum).gameObject;
+        GameObject child = attackersLayout.transform.GetChild(attackerNum).gameObject;        
         if (child.GetComponent<AttackerToCompany>() != null)
             noHurts &= child.GetComponent<AttackerToCompany>().GatherDiceResults(diceValue);
         else if(child.GetComponent<AttackerToCreature>() != null)
@@ -220,6 +223,8 @@ public class CombatPopupManager : Popup
     }
     IEnumerator ApplyResultsAutomaticAttack()
     {
+        /* RESULTS ON COMPANY RESOLVING AUTOMATIC ATTACKS TO GET OBJECTS */
+
         CardDetails item = selectedItems.GetSelectedCardDetails();
         if (item == null)
             yield return null;
@@ -252,6 +257,8 @@ public class CombatPopupManager : Popup
 
     IEnumerator ApplyResultsCreatureAttack()
     {
+        /* RESULTS ON CREATURES ATTACKING CITIES */
+
         if (city == null)
             yield return null;
         
@@ -266,9 +273,19 @@ public class CombatPopupManager : Popup
         // PLAY OBJECT
         HidePopup();
 
-        if (noHurts)
-            city.Damage((leader as HazardCreatureCardUI).GetTotalProwess());
-
+        HazardCreatureCardUI hazardCreatureCardUI = leader as HazardCreatureCardUI;
+        if (hazardCreatureCardUI != null)
+        {
+            int prowess = hazardCreatureCardUI.GetTotalProwess();
+            if (noHurts)
+                city.Damage(prowess);
+            else
+            {
+                if (hazardCreatureCardUI.GetHazardCreatureDetails() != null)
+                    if (hazardCreatureCardUI.GetHazardCreatureDetails().GetAbilities().Contains(HazardAbilitiesEnum.Sieges))
+                        city.Damage(prowess);
+            }
+        }
         yield return null;
     }
 

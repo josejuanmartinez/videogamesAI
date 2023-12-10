@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8926133326434010209}
   - component: {fileID: 4792771519382075609}
   m_Layer: 0
-  m_Name: archers
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,14 +57,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: dce8866d1cace2f459b39cc8da355a5a, type: 3}
-  cardId: archers
+  cardSprite: {fileID: 21300000, guid: aa7729c12e7d7bb4e92ca6edc49e8e79, type: 3}
+  cardId: light
   descForAIGeneration: 
   cardClass: 6
   isUnique: 0
   hometown: 
-  race: 0
-  subrace: 14
-  prowess: 10
+  victoryPoints: 0
+  corruption: 0
+  race: 13
+  subrace: 0
+  prowess: 5
   defence: 0
-  hazardAbilities: 07000000
+  hazardAbilities: 120000000d000000

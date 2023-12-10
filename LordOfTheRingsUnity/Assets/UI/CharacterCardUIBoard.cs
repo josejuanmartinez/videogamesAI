@@ -43,10 +43,8 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
             return false;
 
         initialized = false;
-
         isMoving = false;
-        Show();
-        isVisible = true;
+        isVisible = false;
         isSelected = false;
         
         hurtIcon.enabled = false;
@@ -74,8 +72,19 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     public bool IsInitialized()
     {
         return initialized;
-    } 
-        
+    }
+
+    public bool IsVisibleToHumanPlayer()
+    {
+        if (!game.GetHumanPlayer().SeesTile(hex))
+            return false;
+
+        if (Nations.alignments[game.GetHumanNation()] == Nations.alignments[owner])
+            return true;
+        else
+            return false;
+    }
+
     public void PlaceOnBoard()
     {
         Vector3 cellWorldCenter = t.GetCellCenterWorld(new Vector3Int(hex.x, hex.y, 0));
@@ -127,18 +136,33 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     public void Show()
     {
         canvasGroup.alpha = 1;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        isVisible = true;
+    }
+    public void Hide()
+    {
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        isVisible = false;
     }
 
     public void RecalculateIsVisible()
     {
-        if (game.GetHumanPlayer() == null)
+        if (!IsVisibleToHumanPlayer())
+        {
+            Hide();
             return;
+        }
 
         bool visibleBefore = isVisible;
         BoardTile t = board.GetTile(hex);
         if (t == null)
-            isVisible = false;
-
+        {
+            Hide();
+            return;
+        }
 
         isVisible = game.GetHumanPlayer().SeesTile(hex);
         isVisible &= string.IsNullOrEmpty(inCompanyOf);
@@ -148,9 +172,10 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
         if(visibleBefore != visibleAfter)
         {
-            canvasGroup.alpha = isVisible ? 1 : 0;
-            canvasGroup.interactable = isVisible;
-            canvasGroup.blocksRaycasts = isVisible;
+            if (visibleAfter)
+                Show();
+            else 
+                Hide();
         }
     }
     public bool CanJoin()

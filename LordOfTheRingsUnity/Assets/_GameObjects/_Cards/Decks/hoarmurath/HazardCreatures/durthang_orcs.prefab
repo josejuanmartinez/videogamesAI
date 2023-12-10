@@ -63,8 +63,11 @@ MonoBehaviour:
     forests
   cardClass: 6
   isUnique: 0
+  hometown: 
+  victoryPoints: 0
+  corruption: 0
   race: 6
+  subrace: 0
   prowess: 11
-  defence: 0
-  cardTypes: 0200000002000000020000000400000004000000
+  defence: 7
   hazardAbilities: 

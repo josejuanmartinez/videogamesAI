@@ -15,5 +15,8 @@ public enum HazardAbilitiesEnum
     CountersMounted,
     Blinds,
     Freezes,
-    Boarded
+    Boarded,
+    Buffs,
+    Debuffs,
+    Flies
 }

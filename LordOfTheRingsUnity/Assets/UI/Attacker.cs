@@ -19,6 +19,7 @@ public class Attacker : MonoBehaviour
     protected bool resolved = false;
     protected bool initialized = false;
     protected bool isAwaken = false;
+    protected RacesEnum race;
 
     protected DiceManager diceManager;
     protected SpritesRepo spritesRepo;
@@ -69,6 +70,7 @@ public class Attacker : MonoBehaviour
         attacker.sprite = attackerDetails.cardSprite;
         prowessText.text = attackerDetails.prowess.ToString();
         defenceText.text = attackerDetails.defence.ToString();
+        race = attackerDetails.race;
 
         initialized = true;
 

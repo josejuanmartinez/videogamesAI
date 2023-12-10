@@ -43,9 +43,21 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
 
         short diceResults = (short)diceValue;
 
-        int playerProwess = target.GetTotalProwess() + diceResults;
+        int raceEffects = 0;
+        switch (race)
+        {
+            case RacesEnum.Ringwraith:
+                if (target.GetCharacterDetails().GetAbilities().Contains(CharacterAbilitiesEnum.BonusToNazgul))
+                    raceEffects = 3;
+                break;            
+        }
+
+        int playerProwess = target.GetTotalProwess() + diceResults + raceEffects;
 
         int playerDefence = target.GetTotalDefence() + diceResults;
+
+        if (playerProwess < 1)
+            playerProwess = 1;
 
         if (playerDefence < 1)
             playerDefence = 1;
@@ -68,6 +80,31 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
                 break;
             case BattleResult.WON:
                 target.Won(attackerDetails);
+                break;
+        }
+
+        switch (combatResult.GetStatusEffect())
+        {
+            case StatusEffect.BLEEDING:
+                target.Bleeding();
+                break;
+            case StatusEffect.POISONS:
+                target.Poisoned();
+                break;
+            case StatusEffect.CURSES:
+                target.Morgul();
+                break;
+            case StatusEffect.FREEZES:
+                target.Ice();
+                break;
+            case StatusEffect.BURNS:
+                target.Fire();
+                break;
+            case StatusEffect.IMMOVABLE:
+                target.Immovable();
+                break;
+            case StatusEffect.BLINDS:
+                target.Blind();
                 break;
         }
 

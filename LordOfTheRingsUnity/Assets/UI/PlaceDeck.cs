@@ -319,8 +319,6 @@ public class PlaceDeck : MonoBehaviour
                 if (cardDetails.IsClassOf(CardClass.Character))
                 {
                     resourcesManager.RecalculateInfluence(turn.GetCurrentPlayer());
-                    resourcesManager.RefreshInfluence(turn.GetCurrentPlayer());
-
                     selectedItems.SelectCardDetails(cardDetails, cardUI.GetOwner());
                 }
                 // Update mana

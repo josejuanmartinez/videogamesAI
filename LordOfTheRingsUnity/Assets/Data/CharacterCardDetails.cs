@@ -77,6 +77,10 @@ public class CharacterCardDetails : CardDetails
     {
         return abilities.Select(x => x.ToString()).ToList();
     }
+    public List<CharacterAbilitiesEnum> GetAbilities()
+    {
+        return abilities;
+    }
 
     public short GetMind() => (short) Math.Round((decimal)(prowess + defence) / 2);
 

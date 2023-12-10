@@ -24,7 +24,6 @@ public class FOWManager : MonoBehaviour
         isInitialized = false;
     }
 
-
     public void Initialize()
     {
         isInitialized = board.IsInitialized() && game.IsInitialized() && turn.IsInitialized();
@@ -35,20 +34,6 @@ public class FOWManager : MonoBehaviour
     {
         if (!isInitialized)
             Initialize();
-    }
-
-    // Update is called once per frame
-    public void UpdateCitiesFOW()
-    {
-        if(!isInitialized)
-        {
-            Initialize();
-            return;
-        }            
-
-        List <CityUI> cities = board.GetCityManager().GetCitiesOfPlayer(turn.GetCurrentPlayer()); 
-        foreach (CityUI city in cities)
-            UpdateCityFOW(city);
     }
 
     public void UpdateCityFOW(CityUI city)
@@ -73,26 +58,15 @@ public class FOWManager : MonoBehaviour
         }
         foreach (Vector3Int surrounding in hexesToClean)
         {
+            Vector2Int v2hex = new(surrounding.x, surrounding.y);
             fow.SetTile(surrounding, null);
             fow.RefreshTile(surrounding);
             game.GetHumanPlayer().SetCitySeesTile(new Vector2Int(surrounding.x, surrounding.y));
+            if (board.GetTile(v2hex).HasCity())
+                board.GetTile(v2hex).GetCity().RefreshCityUICanvas();
         }
     }
 
-    public void UpdateCardsFOW()
-    {
-        if (!isInitialized)
-        {
-            Initialize();
-            return;
-        }
-
-        List<CardUI> cards = board.GetCardManager().GetCardsInPlayOfOwner(turn.GetCurrentPlayer());
-        foreach (CardUI card in cards)
-        {
-            UpdateCardFOW(card);
-        }
-    }
 
     public void UpdateCardFOW(CardUI card)
     {
@@ -101,25 +75,31 @@ public class FOWManager : MonoBehaviour
             Initialize();
             return;
         }
-
+        
         if (card.GetCardClass() != CardClass.Character && card.GetCardClass() != CardClass.HazardCreature)
             return;
 
         Vector2Int hex = card.GetCardClass() ==
-            CardClass.Character ? ((CharacterCardUIBoard)card).GetHex() : ((HazardCreatureCardUIBoard)card).GetHex();
+            CardClass.Character ? (card as CharacterCardUIBoard).GetHex() : (card as HazardCreatureCardUIBoard).GetHex();
+        
+        bool isBlind = card.GetCardClass() ==
+            CardClass.Character ? (card as CharacterCardUIBoard).IsBlind() : (card as HazardCreatureCardUIBoard).IsBlind();
 
         Vector3Int cardHex = new(hex.x, hex.y, 0);
         HashSet<Vector3Int> hexesToClean = new() { cardHex };
-        for (int i = 0; i < cardVisionLevel; i++)
+        if(!isBlind)
         {
-            HashSet<Vector3Int> moreHexesToClean = new();
-            foreach (Vector3Int anotherHex in hexesToClean)
+            for (int i = 0; i < cardVisionLevel; i++)
             {
-                List<Vector3Int> v3Surroundings = HexTranslator.GetSurroundings(anotherHex);
-                moreHexesToClean.UnionWith(v3Surroundings);
+                HashSet<Vector3Int> moreHexesToClean = new();
+                foreach (Vector3Int anotherHex in hexesToClean)
+                {
+                    List<Vector3Int> v3Surroundings = HexTranslator.GetSurroundings(anotherHex);
+                    moreHexesToClean.UnionWith(v3Surroundings);
+                }
+                hexesToClean.UnionWith(moreHexesToClean);
             }
-            hexesToClean.UnionWith(moreHexesToClean);
-        }
+        }        
         foreach (Vector3Int surrounding in hexesToClean)
         {
             Vector2Int v2hex = new(surrounding.x, surrounding.y);

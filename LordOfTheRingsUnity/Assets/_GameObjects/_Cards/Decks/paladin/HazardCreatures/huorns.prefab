@@ -63,8 +63,10 @@ MonoBehaviour:
   cardClass: 6
   isUnique: 0
   hometown: 
+  victoryPoints: 0
+  corruption: 0
   race: 16
+  subrace: 0
   prowess: 11
-  defence: 0
-  cardTypes: 04000000040000000400000004000000040000000400000004000000
+  defence: 8
   hazardAbilities: 05000000

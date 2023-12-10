@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class MovementConstants
 {
-    public static short characterMovement = 12;
+    public static short unitsMovement = 12;
 }

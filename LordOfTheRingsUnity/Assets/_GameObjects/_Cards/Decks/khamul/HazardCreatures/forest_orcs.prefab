@@ -59,22 +59,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 2689d2a4664c8314ca84efe7293ecf77, type: 3}
   cardId: forest_orcs
-  initialOwner: 2
+  descForAIGeneration: 
   cardClass: 6
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 0
-  requiredFood: 15
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 10
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 5
   race: 6
-  strikes: 2
+  subrace: 0
   prowess: 10
-  defence: 0
-  cardTypes: 0400000004000000020000000200000002000000
-  hazardAbilities: 01000000
+  defence: 7
+  hazardAbilities: 

@@ -35,6 +35,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected NationsEnum owner;
 
     protected string cardId;
+
     protected Board board;
     protected InputPopupManager inputPopupManager;
     protected Tilemap t;

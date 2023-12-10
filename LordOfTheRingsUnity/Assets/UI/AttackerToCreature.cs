@@ -43,9 +43,39 @@ public class AttackerToCreature: Attacker, IPointerEnterHandler, IPointerExitHan
 
         short diceResults = (short)diceValue;
 
-        int playerProwess = target.GetTotalProwess() + diceResults;
+        int raceEffects = 0;
+        switch (race)
+        {
+            case RacesEnum.Dwarf:
+                if (target.GetHazardCreatureDetails().GetAbilities().Contains(HazardAbilitiesEnum.HatesDwarves))
+                    raceEffects = 1;
+                break;
+            case RacesEnum.Elf:
+                if (target.GetHazardCreatureDetails().GetAbilities().Contains(HazardAbilitiesEnum.HatesElves))
+                    raceEffects = 1;
+                break;
+            case RacesEnum.Man:
+                if (target.GetHazardCreatureDetails().GetAbilities().Contains(HazardAbilitiesEnum.HatesElves))
+                    raceEffects = 1;
+                break;
+            case RacesEnum.Plant:
+                if (target.GetHazardCreatureDetails().GetAbilities().Contains(HazardAbilitiesEnum.Burns))
+                    raceEffects = 2;
+                break;
+        }
 
-        int playerDefence = target.GetTotalDefence() + diceResults;
+        int counterEffects = 0;
+        if (target.GetHazardCreatureDetails().GetAbilities().Contains(HazardAbilitiesEnum.CountersMounted) &&
+            attackerDetails.GetAbilities().Contains(HazardAbilitiesEnum.Mounted))
+            counterEffects += 1;
+
+
+        int playerProwess = target.GetTotalProwess() + diceResults + raceEffects;
+
+        int playerDefence = target.GetTotalDefence() + diceResults + counterEffects + raceEffects;
+        
+        if (playerProwess < 1)
+            playerProwess = 1;
 
         if (playerDefence < 1)
             playerDefence = 1;
@@ -69,6 +99,31 @@ public class AttackerToCreature: Attacker, IPointerEnterHandler, IPointerExitHan
                 break;
             case BattleResult.WON:
                 target.Won(attackerDetails);
+                break;
+        }
+
+        switch (combatResult.GetStatusEffect())
+        {
+            case StatusEffect.BLEEDING:
+                target.Bleeding();
+                break;
+            case StatusEffect.POISONS:
+                target.Poisoned();
+                break;
+            case StatusEffect.CURSES:
+                target.Morgul();
+                break;
+            case StatusEffect.FREEZES:
+                target.Ice();
+                break;
+            case StatusEffect.BURNS:
+                target.Fire();
+                break;
+            case StatusEffect.IMMOVABLE:
+                target.Immovable();
+                break;
+            case StatusEffect.BLINDS:
+                target.Blind();
                 break;
         }
 

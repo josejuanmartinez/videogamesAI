@@ -57,14 +57,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7d66e6ba72b6cc4f803f528d3ed63a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardSprite: {fileID: 21300000, guid: aee0a42b2248c2e40ad85d07014cba55, type: 3}
+  cardSprite: {fileID: 21300000, guid: d7e3117bdc6758c428058d09878f2b06, type: 3}
   cardId: dwarven_archers
   descForAIGeneration: 
   cardClass: 6
   isUnique: 0
   hometown: 
+  victoryPoints: 0
+  corruption: 0
   race: 1
+  subrace: 0
   prowess: 10
-  defence: 0
-  cardTypes: 000000000000000000000000000000000400000004000000
+  defence: 6
   hazardAbilities: 07000000

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,13 @@ public class HazardCreatureCardUI : CardUI
     protected Image fireIcon;
     [SerializeField]
     protected Image iceIcon;
+    [SerializeField]
+    protected Image buffedIcon;
+    [SerializeField]
+    protected Image debuffedIcon;
+    [SerializeField]
+    protected Image blindIcon;
+
 
     public override bool Initialize(string cardId, NationsEnum owner, bool refresh = false)
     {
@@ -37,7 +45,9 @@ public class HazardCreatureCardUI : CardUI
         immovableIcon.enabled = false;
         fireIcon.enabled = false;
         iceIcon.enabled = false;
-
+        buffedIcon.enabled = false;
+        debuffedIcon.enabled = false;
+        blindIcon.enabled = false;
 
         CheckStatusEffects();
 
@@ -69,6 +79,10 @@ public class HazardCreatureCardUI : CardUI
     {
         return bleedingIcon.enabled;
     }
+    public bool IsBlind()
+    {
+        return blindIcon.enabled;
+    }
 
     public bool IsPoisoned()
     {
@@ -93,6 +107,14 @@ public class HazardCreatureCardUI : CardUI
     {
         return hurtIcon.enabled;
     }
+    public bool IsBuffed()
+    {
+        return buffedIcon.enabled;
+    }
+    public bool IsUnbuffed()
+    {
+        return debuffedIcon.enabled;
+    }
     public bool IsExhausted()
     {
         return exhaustedIcon.enabled;
@@ -107,8 +129,8 @@ public class HazardCreatureCardUI : CardUI
             {
                 if (existingCardUI as HazardCreatureCardUI!= null)
                 {
-                    HazardCreatureCardUI existingCharacterCardUI = existingCardUI as HazardCreatureCardUI;
-                    bool value = existingCharacterCardUI.IsHurt();
+                    HazardCreatureCardUI existingHazardCreatureCardUI = existingCardUI as HazardCreatureCardUI;
+                    bool value = existingHazardCreatureCardUI.IsHurt();
                     if (hurtIcon.enabled != value)
                     {
                         hurtIcon.enabled = value;
@@ -118,7 +140,7 @@ public class HazardCreatureCardUI : CardUI
                             colorManager.GetColor(value ? "failure" : "success"));
                     }
 
-                    value = existingCharacterCardUI.IsExhausted();
+                    value = existingHazardCreatureCardUI.IsExhausted();
                     if (exhaustedIcon.enabled != value)
                     {
                         exhaustedIcon.enabled = value;
@@ -128,7 +150,7 @@ public class HazardCreatureCardUI : CardUI
                             colorManager.GetColor(value ? "failure" : "success"));
                     }
 
-                    value = existingCharacterCardUI.IsPoisoned();
+                    value = existingHazardCreatureCardUI.IsPoisoned();
                     if (poisonedIcon.enabled != value)
                     {
                         poisonedIcon.enabled = value;
@@ -138,7 +160,7 @@ public class HazardCreatureCardUI : CardUI
                             colorManager.GetColor(value ? "failure" : "success"));
                     }
 
-                    value = existingCharacterCardUI.IsMorgul();
+                    value = existingHazardCreatureCardUI.IsMorgul();
                     if (morgulIcon.enabled != value)
                     {
                         morgulIcon.enabled = value;
@@ -149,7 +171,7 @@ public class HazardCreatureCardUI : CardUI
                     }
 
 
-                    value = existingCharacterCardUI.IsBleeding();
+                    value = existingHazardCreatureCardUI.IsBleeding();
                     if (bleedingIcon.enabled != value)
                     {
                         bleedingIcon.enabled = value;
@@ -159,7 +181,7 @@ public class HazardCreatureCardUI : CardUI
                             colorManager.GetColor(value ? "failure" : "success"));
                     }
 
-                    value = existingCharacterCardUI.IsImmovable();
+                    value = existingHazardCreatureCardUI.IsImmovable();
                     if (immovableIcon.enabled != value)
                     {
                         immovableIcon.enabled = value;
@@ -168,7 +190,7 @@ public class HazardCreatureCardUI : CardUI
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
                     }
-                    value = existingCharacterCardUI.IsFire();
+                    value = existingHazardCreatureCardUI.IsFire();
                     if (fireIcon.enabled != value)
                     {
                         fireIcon.enabled = value;
@@ -177,7 +199,7 @@ public class HazardCreatureCardUI : CardUI
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
                     }
-                    value = existingCharacterCardUI.IsIce();
+                    value = existingHazardCreatureCardUI.IsIce();
                     if (iceIcon.enabled != value)
                     {
                         iceIcon.enabled = value;
@@ -186,12 +208,41 @@ public class HazardCreatureCardUI : CardUI
                             1f,
                             colorManager.GetColor(value ? "failure" : "success"));
                     }
+                    if (existingCardUI as CharacterCardUIBoard != null)
+                    {
+                        CharacterCardUIBoard existingCharacterCardUIBoard = existingCardUI as CharacterCardUIBoard;
+                        value = board.IsHexBuffed(existingCharacterCardUIBoard.GetHex(), existingCharacterCardUIBoard.GetOwner());
+                        if (buffedIcon.enabled != value)
+                        {
+                            buffedIcon.enabled = value;
+                            AddMessage(
+                                GameObject.Find("Localization").GetComponent<Localization>().Localize(value ? "buffed" : "unbuffed"),
+                                1f,
+                                colorManager.GetColor(value ? "failure" : "success"));
+                        }
+                        value = board.IsHexDebuffed(existingCharacterCardUIBoard.GetHex(), existingCharacterCardUIBoard.GetOwner());
+                        if (debuffedIcon.enabled != value)
+                        {
+                            debuffedIcon.enabled = value;
+                            AddMessage(
+                                GameObject.Find("Localization").GetComponent<Localization>().Localize(value ? "debuffed" : "undebuffed"),
+                                1f,
+                                colorManager.GetColor(value ? "failure" : "success"));
+                        }
+                    }
+                    value = existingHazardCreatureCardUI.IsBlind();
+                    if (blindIcon.enabled != value)
+                    {
+                        blindIcon.enabled = value;
+                        AddMessage(
+                            GameObject.Find("Localization").GetComponent<Localization>().Localize(value ? "blinded" : "sees"),
+                            1f,
+                            colorManager.GetColor(value ? "failure" : "success"));
+                    }
                 }
             }
         }
     }
-
-
     public Color GetTotalProwessColor()
     {
         if (GetHazardCreatureDetails() == null)
@@ -216,24 +267,58 @@ public class HazardCreatureCardUI : CardUI
 
     public int GetTotalProwess()
     {
-        HazardCreatureCardDetails hazardDetails = GetHazardCreatureDetails();
-        int prowess = hazardDetails.prowess;
+        int prowess;
+        CharacterCardDetails charDetails = GetCharacterDetails();
+        prowess = charDetails.GetProwess();
 
-        //GET SOMETHING?
+        if (IsHurt())
+            prowess--;
+        if (IsUnbuffed())
+            prowess++;
+        if (IsPoisoned())
+            prowess--;
+        if (IsFire())
+            prowess -= 3;
+        if (IsBleeding())
+            prowess -= 2;
 
-        // SUM PROWESS?
-        return prowess;
+        return Math.Max(1, prowess);
     }
 
     public int GetTotalDefence()
     {
-        HazardCreatureCardDetails hazardDetails = GetHazardCreatureDetails();
-        int defence = hazardDetails.defence;
+        int defence;
+        CharacterCardDetails charDetails = GetCharacterDetails();
+        defence = charDetails.GetDefence();
 
-        //GET SOMETHING?
+        if (IsHurt())
+            defence--;
+        if (IsUnbuffed())
+            defence++;
+        if (IsPoisoned())
+            defence--;
+        if (IsFire())
+            defence -= 3;
+        if (IsBleeding())
+            defence -= 2;
 
-        // SUM PROWESS?
-        return defence;
+        return Math.Max(1, defence);
+    }
+
+    public int GetTotalMovement()
+    {
+        if (IsImmovable())
+            return 0;
+
+        int movement;
+        movement = MovementConstants.unitsMovement;
+
+        if (IsIce())
+            movement -= 4;
+        if (IsBlind())
+            movement -= 8;
+
+        return Math.Max(MaxStats.minMovement, movement);
     }
 
     public void Hurt(HazardCreatureCardDetails cardDetails = null)
@@ -274,7 +359,7 @@ public class HazardCreatureCardUI : CardUI
             Lose(cardDetails);
     }
 
-    public void Immovable(HazardCreatureCardDetails cardDetails = null)
+    public void Immovable()
     {
         immovableIcon.enabled = true;
         AddMessage(
@@ -288,8 +373,6 @@ public class HazardCreatureCardUI : CardUI
             if (originalCharacter != null && originalCharacter != this)
                 originalCharacter.Immovable();
         }
-        if (cardDetails != null)
-            Lose(cardDetails);
     }
     public void Fire(HazardCreatureCardDetails cardDetails = null)
     {
@@ -305,10 +388,23 @@ public class HazardCreatureCardUI : CardUI
             if (originalCharacter != null && originalCharacter != this)
                 originalCharacter.Fire();
         }
-        if (cardDetails != null)
-            Lose(cardDetails);
     }
-    public void Ice(HazardCreatureCardDetails cardDetails = null)
+    public void Blind()
+    {
+        blindIcon.enabled = true;
+        AddMessage(
+            GameObject.Find("Localization").GetComponent<Localization>().Localize("blind"),
+            0.5f,
+            "blind");
+        CardUI originalCard = board.GetCardManager().GetCardUI(details);
+        if (originalCard != null)
+        {
+            HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
+            if (originalCharacter != null && originalCharacter != this)
+                originalCharacter.Blind();
+        }
+    }
+    public void Ice()
     {
         fireIcon.enabled = true;
         AddMessage(
@@ -322,10 +418,8 @@ public class HazardCreatureCardUI : CardUI
             if (originalCharacter != null && originalCharacter != this)
                 originalCharacter.Ice();
         }
-        if (cardDetails != null)
-            Lose(cardDetails);
     }
-    public void Morgul(HazardCreatureCardDetails cardDetails = null)
+    public void Morgul()
     {
         morgulIcon.enabled = true;
         AddMessage(
@@ -339,10 +433,8 @@ public class HazardCreatureCardUI : CardUI
             if (originalCharacter != null && originalCharacter != this)
                 originalCharacter.Morgul();
         }
-        if (cardDetails != null)
-            Lose(cardDetails);
     }
-    public void Poisoned(HazardCreatureCardDetails cardDetails = null)
+    public void Poisoned()
     {
         poisonedIcon.enabled = true;
         AddMessage(
@@ -356,8 +448,21 @@ public class HazardCreatureCardUI : CardUI
             if (originalCharacter != null && originalCharacter != this)
                 originalCharacter.Poisoned();
         }
-        if (cardDetails != null)
-            Lose(cardDetails);
+    }
+    public void Bleeding()
+    {
+        bleedingIcon.enabled = true;
+        AddMessage(
+            GameObject.Find("Localization").GetComponent<Localization>().Localize("bleeding"),
+            0.5f,
+            "bleeding");
+        CardUI originalCard = board.GetCardManager().GetCardUI(details);
+        if (originalCard != null)
+        {
+            HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
+            if (originalCharacter != null && originalCharacter != this)
+                originalCharacter.Bleeding();
+        }
     }
 
     public void Heal()

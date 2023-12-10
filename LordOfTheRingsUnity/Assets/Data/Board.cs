@@ -159,6 +159,20 @@ public class Board: MonoBehaviour
         return selectedHex != NULL;
     }
 
+    public bool IsHexBuffed(Vector2Int hex, NationsEnum owner)
+    {
+        if(tiles.ContainsKey(hex))
+            return tiles[hex].IsBuffedFor(owner);
+        return false;
+    }
+    public bool IsHexDebuffed(Vector2Int hex, NationsEnum owner)
+    {
+        if (tiles.ContainsKey(hex))
+            return tiles[hex].IsDeBuffedFor(owner);
+        return false;
+    }
+
+
     public CityManager GetCityManager()
     {
         return cityManager;
