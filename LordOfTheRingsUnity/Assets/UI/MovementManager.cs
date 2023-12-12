@@ -317,11 +317,12 @@ public class MovementManager : MonoBehaviour
 
             List<CardTypesEnum> accumulatedMana = new();
 
-            if(moved == 0)
+            Vector3 initialPosition = cardTilemap.CellToWorld(path[currentPointIndex]);
+            initialPosition = new Vector3(initialPosition.x, initialPosition.y, 0);
+            Vector3Int initialCell = cardTilemap.WorldToCell(initialPosition);
+
+            if (moved == 0)
             {
-                Vector3 initialPosition = cardTilemap.CellToWorld(path[currentPointIndex]);
-                initialPosition = new Vector3(initialPosition.x, initialPosition.y, 0);
-                Vector3Int initialCell = cardTilemap.WorldToCell(initialPosition);
                 CardInfo initialCardInfo = terrainManager.GetCardInfo(cardTilemap.GetTile(initialCell) as Tile);
                 if (initialCardInfo != null)
                     accumulatedMana.Add(initialCardInfo.cardType);
@@ -331,7 +332,6 @@ public class MovementManager : MonoBehaviour
                     yield return null;
                 }                    
             }
-
             while (currentPointIndex + 1 < maxPath)
             {
                 Vector3 startPosition = cardTilemap.CellToWorld(path[currentPointIndex]);
@@ -362,6 +362,8 @@ public class MovementManager : MonoBehaviour
 
                 if (moved + movementCost > MovementConstants.unitsMovement)
                     break;
+
+                lastHex = new Vector2Int(targetCell.x, targetCell.y);
 
                 if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
                     (selectedCardUIForMovement as CharacterCardUIBoard).AddMovement(movementCost);
@@ -403,6 +405,13 @@ public class MovementManager : MonoBehaviour
                 (selectedCardUIForMovement as CharacterCardUIBoard).StopMoving();
             else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
                 (selectedCardUIForMovement as HazardCreatureCardUIBoard).StopMoving();
+
+            //REFRESH STATUS EFFECTS (BUFF AND DEBUFF)
+            foreach(CardUI card in board.GetTile(initialCell).GetCardsUI())
+            {
+                if ((card as CharacterCardUI) != null)
+                    (card as CharacterCardUI).CheckStatusEffects();
+            }
 
             selectedItems.SelectCardDetails(
                 selectedCardUIForMovement.GetDetails(),

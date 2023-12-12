@@ -141,7 +141,11 @@ public class Board: MonoBehaviour
     {
         if(!tiles.ContainsKey(hex))
             tiles[hex] = new BoardTile(hex);
-        return tiles[hex];            
+        return tiles[hex];
+    }
+    public BoardTile GetTile(Vector3Int hex)
+    {
+        return GetTile(new Vector2Int(hex.x, hex.y));
     }
 
     public void SelectHex(Vector2Int hex)

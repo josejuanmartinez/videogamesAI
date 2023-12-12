@@ -71,7 +71,7 @@ public class CombatPopupManager : Popup
 
         if (city == null)
             return false;
-        city = board.GetCityManager().GetCityUI(city.GetCityId());
+        this.city = board.GetCityManager().GetCityUI(city.GetCityId());
         if (!leaderCardDetails.IsClassOf(CardClass.Character) && !leaderCardDetails.IsClassOf(CardClass.HazardCreature))
             return false;
 

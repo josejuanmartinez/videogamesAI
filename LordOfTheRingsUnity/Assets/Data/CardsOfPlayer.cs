@@ -27,6 +27,12 @@ public class CardsOfPlayer: MonoBehaviour
     private GameObject deckCardUIPrefab;
     private List<string> startsWithId;
 
+    private Board board;
+    void Awake()
+    {
+        board = GameObject.Find("Board").GetComponent<Board>();
+    }
+
     public void Initialize(
         NationsEnum nation,
         Transform handTransform,
@@ -110,10 +116,18 @@ public class CardsOfPlayer: MonoBehaviour
         if (!hasCards)
             return;
 
-        // This is the counter of cards drawn from the Deck (all cards)
-        lastCardDrawn = (lastCardDrawn + 1) % initialDeck.cards.Count;
+        CardDetails nextCard;
+        while (true)
+        {
+            // This is the counter of cards drawn from the Deck (all cards)
+            lastCardDrawn = (lastCardDrawn + 1) % initialDeck.cards.Count;
 
-        drawnCards.Add(initialDeck.cards[lastCardDrawn].GetComponent<CardDetails>());
+            nextCard = initialDeck.cards[lastCardDrawn].GetComponent<CardDetails>();
+            if (!nextCard.isUnique || board.GetCardManager().GetCardUI(nextCard.cardId) == null)
+                break;
+        }        
+
+        drawnCards.Add(nextCard);
 
         if(handTransform != null)
             CreateCard(initialDeck.cards[lastCardDrawn]);

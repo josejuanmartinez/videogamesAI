@@ -85,25 +85,25 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
 
         switch (combatResult.GetStatusEffect())
         {
-            case StatusEffect.BLEEDING:
+            case StatusEffect.BLOOD:
                 target.Bleeding();
                 break;
-            case StatusEffect.POISONS:
+            case StatusEffect.POISON:
                 target.Poisoned();
                 break;
-            case StatusEffect.CURSES:
+            case StatusEffect.MORGUL:
                 target.Morgul();
                 break;
-            case StatusEffect.FREEZES:
+            case StatusEffect.ICE:
                 target.Ice();
                 break;
-            case StatusEffect.BURNS:
+            case StatusEffect.FIRE:
                 target.Fire();
                 break;
-            case StatusEffect.IMMOVABLE:
-                target.Immovable();
+            case StatusEffect.TRAP:
+                target.Trapped();
                 break;
-            case StatusEffect.BLINDS:
+            case StatusEffect.BLIND:
                 target.Blind();
                 break;
         }

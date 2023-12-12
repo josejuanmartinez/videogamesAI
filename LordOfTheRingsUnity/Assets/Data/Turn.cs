@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -91,15 +92,37 @@ public class Turn : MonoBehaviour
         isDirty = true;
         
         RefreshTurnInfo();
+        if(turnNumber > 1)
+        {
+            RefreshStatusEffects();
+            board.GetCharacterManager().RefreshMovement(currentTurnPlayer);
+        }
 
-        board.GetCharacterManager().RefreshMovement(currentTurnPlayer);
-        
         CardUI avatar = board.GetCharacterManager().GetAvatar(currentTurnPlayer);
         if (avatar)
             cameraController.LookToCard(avatar);
         
         newTurnLoaded = true;
         Debug.Log(string.Format("New turn: {0} at {1}", turnNumber, Time.realtimeSinceStartup));
+    }
+
+    public void RefreshStatusEffects()
+    {
+        foreach(NationsEnum nation in Enum.GetValues(typeof(NationsEnum)))
+        {
+            if (nation == NationsEnum.ABANDONED)
+                return;
+            foreach (CardUI character in board.GetCharacterManager().GetCharactersOfPlayer(nation))
+            {
+                if (character as CharacterCardUI == null)
+                    (character as CharacterCardUI).SetEffects((character as CharacterCardUI).GetEffects().FindAll(x => turnNumber < (x.turn + game.GetTurnsOfStatusEffectByDifficulty(x.effect))).ToList());
+            }
+            foreach (CardUI creature in board.GetHazardCreaturesManager().GetHazardCreaturesOfPlayer(nation))
+            {
+                if (creature as HazardCreatureCardUI == null)
+                    (creature as HazardCreatureCardUI).SetEffects((creature as HazardCreatureCardUI).GetEffects().FindAll(x => turnNumber < (x.turn + game.GetTurnsOfStatusEffectByDifficulty(x.effect))).ToList());
+            }
+        }
     }
 
     public bool IsNewTurnLoaded()
@@ -134,4 +157,8 @@ public class Turn : MonoBehaviour
             PlayIATurn();
     }
 
+    public short GetTurnNumber()
+    {
+        return turnNumber;
+    }
 }

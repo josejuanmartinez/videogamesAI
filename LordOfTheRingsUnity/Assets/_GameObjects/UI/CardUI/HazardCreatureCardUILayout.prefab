@@ -1538,7 +1538,7 @@ MonoBehaviour:
   iceIcon: {fileID: 253665949447883334}
   buffedIcon: {fileID: 8828853181929745439}
   debuffedIcon: {fileID: 1794896994496342136}
-  blindIcon: {fileID: 0}
+  blindIcon: {fileID: 7187222130734721012}
   nextCanvasGroup: {fileID: 4000223843466834221}
 --- !u!1 &8241913633839253209
 GameObject:

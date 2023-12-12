@@ -311,17 +311,17 @@ public class HazardCreatureCardDetails: CardDetails
     public StatusEffect GetStatusEffect()
     {
         if (hazardAbilities.Contains(HazardAbilitiesEnum.Curses))
-            return StatusEffect.CURSES;
+            return StatusEffect.MORGUL;
         else if (hazardAbilities.Contains(HazardAbilitiesEnum.Poisons))
-            return StatusEffect.POISONS;
+            return StatusEffect.POISON;
         else if (hazardAbilities.Contains(HazardAbilitiesEnum.Bleeding))
-            return StatusEffect.BLEEDING;
+            return StatusEffect.BLOOD;
         else if (hazardAbilities.Contains(HazardAbilitiesEnum.Blinds))
-            return StatusEffect.BLINDS;
+            return StatusEffect.BLIND;
         else if (hazardAbilities.Contains(HazardAbilitiesEnum.Freezes))
-            return StatusEffect.FREEZES;
+            return StatusEffect.ICE;
         else if (hazardAbilities.Contains(HazardAbilitiesEnum.Traps))
-            return StatusEffect.IMMOVABLE;
+            return StatusEffect.IMMOVIBILITY;
         else
             return StatusEffect.NONE;
     }

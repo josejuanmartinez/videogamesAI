@@ -16,6 +16,15 @@ public class Game : MonoBehaviour
     public List<CardClass> difficultyClasses;
     public List<int> baseDifficulty;
 
+    public List<StatusEffect> statusEffects;
+    public List<int> turnsForStatusEffects;
+
+    public int poisonedTurns;
+    public int burnTurns;
+    public int freezesTurns;
+    public int blindTurns;
+    public int trappedTurns;
+
     private List<Player> players;
 
     private DeckManager deckManager;
@@ -71,6 +80,25 @@ public class Game : MonoBehaviour
     public short RequiredDice(CardClass cardClass)
     {
         short res = (short)baseDifficulty[(int)cardClass];
+        switch (settings.GetDifficulty())
+        {
+            case DifficultiesEnum.Medium:
+                res += 1;
+                break;
+            case DifficultiesEnum.Hard:
+                res += 2;
+                break;
+        }
+        return res;
+    }
+    public int GetTurnsOfStatusEffectByDifficulty(StatusEffect status)
+    {
+        int index = statusEffects.IndexOf(status);
+        if (index == -1)
+            return 0;
+
+        int res = turnsForStatusEffects[index];
+
         switch (settings.GetDifficulty())
         {
             case DifficultiesEnum.Medium:
