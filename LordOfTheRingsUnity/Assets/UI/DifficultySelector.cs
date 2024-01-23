@@ -3,9 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class DifficultySelector : MonoBehaviour
 {
-    public Canvas canvas;
-   public void Easy()
-   {
+    public Canvas difficultyCanvas;
+    public LoadingCanvasManager loadingCanvasManager;
+
+    private float lastClick = 0f;
+
+    void Awake()
+    {
+        loadingCanvasManager.Hide();
+    }
+
+    public void Easy()
+    {
         GameObject.Find("Settings").GetComponent<Settings>().SetDifficulty(DifficultiesEnum.Easy);
         StartGame();
     }
@@ -22,7 +31,14 @@ public class DifficultySelector : MonoBehaviour
 
     public void StartGame()
     {
-        canvas.enabled = false;
-        SceneManager.LoadScene(2);
+        bool doubleClick = Time.time - lastClick < 0.5f;
+        lastClick = Time.time;
+
+        if (doubleClick)
+        {
+            loadingCanvasManager.Show();
+            difficultyCanvas.enabled = false;
+            SceneManager.LoadScene(2);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+
 /// <summary>
 /// Component that is responsible for spawning many GameObjects in a certain area. 
 /// Each Gameobject instaciated will be assigned a behavior to move around the area randomly.
@@ -22,9 +22,9 @@ public class MassSpawner : MonoBehaviour
     /// </summary>
     void Start()
     {
-        entities = new List<GameObject>(FindObjectsOfType(typeof(GameObject)) as GameObject[]);
+        entities = new List<GameObject>(FindObjectsByType<GameObject>(FindObjectsSortMode.None));
         entities.RemoveAll(e => e.GetComponent<BehaviorExecutor>() == null);
-        InvokeRepeating("Spawn", 0f, 1.0f / 1000.0f);
+        InvokeRepeating(nameof(Spawn), 0f, 1.0f / 1000.0f);
     }
 
     /// <summary>
@@ -53,8 +53,7 @@ public class MassSpawner : MonoBehaviour
     private Vector3 GetRandomPosition()
     {
         Vector3 randomPosition = Vector3.zero;
-        BoxCollider boxCollider = wanderArea.GetComponent<BoxCollider>();
-        if (boxCollider != null)
+        if (wanderArea.TryGetComponent<BoxCollider>(out var boxCollider))
         {
             randomPosition = new Vector3(Random.Range(wanderArea.transform.position.x - wanderArea.transform.localScale.x * boxCollider.size.x * 0.5f,
                                                                   wanderArea.transform.position.x + wanderArea.transform.localScale.x * boxCollider.size.x * 0.5f),

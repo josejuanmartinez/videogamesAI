@@ -1,17 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 [DisallowMultipleComponent]
-public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class SimpleTooltip : MonoBehaviour
 {
     public SimpleTooltipStyle simpleTooltipStyle;
-    [TextArea] public string infoLeft = "Hello";
-    [TextArea] public string infoRight = "";
+    [SerializeField, TextArea] private string infoLeft = "";
+    [SerializeField, TextArea] private string infoRight = "";
     private STController tooltipController;
     private EventSystem eventSystem;
-    private bool cursorInside = false;
     private bool isUIObject = false;
     private bool showing = false;
 
@@ -47,11 +44,6 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (Input.GetKeyUp(KeyCode.Escape))
             HideTooltip();
-        
-        if (!cursorInside)
-            return;
-
-        tooltipController.ShowTooltip();
     }
 
     public static STController AddTooltipPrefabToScene()
@@ -59,21 +51,6 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         return Instantiate(UnityEngine.Resources.Load<GameObject>("SimpleTooltip")).GetComponentInChildren<STController>();
     }
 
-    private void OnMouseOver()
-    {
-        if (isUIObject)
-            return;
-
-        if (eventSystem)
-        {
-            if (eventSystem.IsPointerOverGameObject())
-            {
-                HideTooltip();
-                return;
-            }
-        }
-        ShowTooltip();
-    }
 
     private void OnMouseExit()
     {
@@ -82,24 +59,15 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         HideTooltip();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void ShowTooltip(string leftText, string rightText)
     {
-        if (!isUIObject)
+        if (leftText == infoLeft && rightText == infoRight && showing)
             return;
-        ShowTooltip();
-    }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (!isUIObject)
-            return;
-        HideTooltip();
-    }
-
-    public void ShowTooltip()
-    {
         showing = true;
-        cursorInside = true;
+
+        infoLeft = leftText;
+        infoRight = rightText;
 
         // Update the text for both layers
         tooltipController.SetCustomStyledText(infoLeft, simpleTooltipStyle, STController.TextAlign.Left);
@@ -107,6 +75,7 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         // Then tell the controller to show it
         tooltipController.ShowTooltip();
+
     }
 
     public void HideTooltip()
@@ -114,7 +83,6 @@ public class SimpleTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!showing)
             return;
         showing = false;
-        cursorInside = false;
         tooltipController.HideTooltip();
     }
 

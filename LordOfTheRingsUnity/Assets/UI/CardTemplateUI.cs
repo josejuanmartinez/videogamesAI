@@ -82,6 +82,9 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     protected bool isInPlay;
     protected bool isHover;
 
+    private string leftTooltipInfo;
+    private string rightTooltipInfo;
+
     void Awake()
     {
         turn = GameObject.Find("Turn").GetComponent<Turn>();
@@ -538,17 +541,17 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
         int totalInfluence = characterUI.GetTotalInfluence();
         SetInfluence(totalInfluence,
-            totalInfluence > charDetails.influence ? "success" : (totalInfluence < charDetails.GetInfluence() ? "failure" : null)
+            totalInfluence > charDetails.GetInfluence() ? "success" : (totalInfluence < charDetails.GetInfluence() ? "failure" : null)
             );
 
         int totalProwess = characterUI.GetTotalProwess();
         SetProwess(totalProwess,
-            totalProwess > charDetails.prowess ? "success" : (totalProwess < charDetails.GetProwess() ? "failure" : null)
+            totalProwess > charDetails.GetProwess() ? "success" : (totalProwess < charDetails.GetProwess() ? "failure" : null)
             );
 
         int totalDefence = characterUI.GetTotalDefence();
         SetDefence(totalDefence,
-            totalDefence > charDetails.defence ? "success" : (totalDefence < charDetails.GetDefence() ? "failure" : null)
+            totalDefence > charDetails.GetDefence() ? "success" : (totalDefence < charDetails.GetDefence() ? "failure" : null)
             );
 
     }
@@ -632,9 +635,9 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         {
             string missingCondition = conditionsFailed.First().ToString();
             mouse.ChangeCursor("unclickable");
-            tooltip.ShowTooltip();
-            tooltip.infoLeft = GameObject.Find("Localization").GetComponent<Localization>().Localize("missing_conditions");
-            tooltip.infoRight = GameObject.Find("Localization").GetComponent<Localization>().Localize(missingCondition);
+            leftTooltipInfo = GameObject.Find("Localization").GetComponent<Localization>().Localize("missing_conditions");
+            rightTooltipInfo = GameObject.Find("Localization").GetComponent<Localization>().Localize(missingCondition);
+            tooltip.ShowTooltip(leftTooltipInfo, rightTooltipInfo);            
         }
     }
 
@@ -674,8 +677,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         probabilityCanvasGroup.alpha = 1;
         probability.text = requiredDice.ToString();
         probabilityTooltip.enabled = true;
-        probabilityTooltip.infoLeft = GameObject.Find("Localization").GetComponent<Localization>().Localize("probability");
-        probabilityTooltip.infoRight = probability.text;
+        leftTooltipInfo = GameObject.Find("Localization").GetComponent<Localization>().Localize("probability");
+        rightTooltipInfo = probability.text;
         
     }
 
@@ -1027,8 +1030,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             return;
         }
         prowess.text = prowessValue.ToString();
-        prowessTooltip.infoLeft = GameObject.Find("Localization").GetComponent<Localization>().Localize("prowess");
-        prowessTooltip.infoRight = prowessValue.ToString();
+        leftTooltipInfo = GameObject.Find("Localization").GetComponent<Localization>().Localize("prowess");
+        rightTooltipInfo = prowessValue.ToString();
         prowess.color = color == null ? Color.white : colorManager.GetColor(color);
     }
 
@@ -1040,8 +1043,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             return;
         }
         defence.text = defenceValue.ToString();
-        defenceTooltip.infoLeft = GameObject.Find("Localization").GetComponent<Localization>().Localize("defence");
-        defenceTooltip.infoRight = defenceValue.ToString();
+        leftTooltipInfo = GameObject.Find("Localization").GetComponent<Localization>().Localize("defence");
+        rightTooltipInfo = defenceValue.ToString();
         defence.color = color == null ? Color.white : colorManager.GetColor(color);
     }
     public void SetMind(int mindValue, string color = null)
@@ -1052,8 +1055,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             return;
         }
         mind.text = mindValue.ToString();
-        mindTooltip.infoLeft = GameObject.Find("Localization").GetComponent<Localization>().Localize("mind");
-        mindTooltip.infoRight = mindValue.ToString();
+        leftTooltipInfo = GameObject.Find("Localization").GetComponent<Localization>().Localize("mind");
+        rightTooltipInfo = mindValue.ToString();
         mind.color = color == null ? Color.white : colorManager.GetColor(color);
     }
     public void SetInfluence(int influenceValue, string color = null)
@@ -1064,8 +1067,8 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
             return;
         }
         influence.text = influenceValue.ToString();
-        influenceTooltip.infoLeft = GameObject.Find("Localization").GetComponent<Localization>().Localize("influence");
-        influenceTooltip.infoRight = influenceValue.ToString();
+        leftTooltipInfo = GameObject.Find("Localization").GetComponent<Localization>().Localize("influence");
+        rightTooltipInfo = influenceValue.ToString();
         influence.color = color == null ? Color.white : colorManager.GetColor(color);
     }
 }

@@ -21,13 +21,12 @@ public class TextTooptip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (linkIndex != -1)
         {
             simpleTooltip.enabled = true;
-            simpleTooltip.ShowTooltip();
             TMP_LinkInfo linkInfo = text.textInfo.linkInfo[linkIndex];
             Debug.Log(linkInfo);
             simpleTooltip.simpleTooltipStyle = style;
-            simpleTooltip.infoLeft = GameObject.Find("Localization").GetComponent<Localization>().LocalizeTooltipRight(linkInfo.GetLinkID());
-            simpleTooltip.infoRight = GameObject.Find("Localization").GetComponent<Localization>().Localize(linkInfo.GetLinkID());
-            
+            simpleTooltip.ShowTooltip(
+                GameObject.Find("Localization").GetComponent<Localization>().LocalizeTooltipRight(linkInfo.GetLinkID()),
+                GameObject.Find("Localization").GetComponent<Localization>().Localize(linkInfo.GetLinkID()));
         }
         else
         {

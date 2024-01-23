@@ -449,7 +449,7 @@ public class CharacterCardUI : CardUI
                 }
             }
         }
-        return Math.Min(1, mind);
+        return Math.Max(1, mind);
     }
     public int GetTotalInfluence()
     {
@@ -486,7 +486,7 @@ public class CharacterCardUI : CardUI
                 }
             }
         }
-        return Math.Max(1, influence);
+        return Math.Max(0, influence);
     }
 
     public int GetTotalMovement()

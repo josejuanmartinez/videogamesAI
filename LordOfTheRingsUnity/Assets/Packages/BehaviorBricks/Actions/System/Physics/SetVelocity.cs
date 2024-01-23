@@ -29,7 +29,7 @@ namespace BBUnity.Actions
                 toSetVelocity = gameObject;
             if (toSetVelocity.GetComponent<Rigidbody>() == null)
                 toSetVelocity.AddComponent<Rigidbody>();
-            toSetVelocity.GetComponent<Rigidbody>().velocity = velocity;
+            toSetVelocity.GetComponent<Rigidbody>().linearVelocity = velocity;
         }
 
         /// <summary>Abort method of SetVelocity.</summary>

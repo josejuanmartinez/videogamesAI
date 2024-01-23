@@ -74,7 +74,7 @@ namespace BBSamples.PQSG // Programmers Quick Start Guide
                 // prefab to set its weight.
                 newBullet.AddComponent<Rigidbody>();
 
-            newBullet.GetComponent<Rigidbody>().velocity = velocity * shootPoint.forward;
+            newBullet.GetComponent<Rigidbody>().linearVelocity = velocity * shootPoint.forward;
             // The action is completed. We must inform the execution engine.
             return TaskStatus.COMPLETED;
         } // OnUpdate

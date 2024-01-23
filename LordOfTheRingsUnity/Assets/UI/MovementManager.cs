@@ -565,7 +565,7 @@ public class MovementManager : MonoBehaviour
             }
         }
 
-        return newCost;
+        return Math.Min(MovementConstants.unitsMovement, Math.Max((short)1, newCost));
     }
     public Vector2Int GetLastHex()
     {

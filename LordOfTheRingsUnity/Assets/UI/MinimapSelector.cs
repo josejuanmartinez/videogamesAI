@@ -1,48 +1,59 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class MinimapSelector : MonoBehaviour
 {
-    public GameObject minimap;
-    public Tilemap worldTilemap;
-    public Vector2 decayPercentage;
-
     private TilemapSelector tilemapSelector;
     private EventSystem eventSystem;
     private CameraController cameraController;
 
-    private Vector3[] corners;
-    private Vector3 firstCornerWorldPosition;
-    private Vector3 tilemapSize;
-    private Vector2 minimapSpriteSize;
-
+    public Vector3 tilemapSize;
     
+    public Vector2 minimapSpriteSize;
+
+    public Vector3 relativeDistanceToCorner0;
+
+    public Vector3[] corners;
+    public int minX, minY, maxX, maxY, sizeX, sizeY;
+
+    public Vector3 lastClickedPoint;
+    public Vector3 distanceToCorner0;
+
+    public Vector3 targetCellDelta;
+    public Vector3Int targetCell;
+
+    /*public float correctionX = 1f;
+    public float correctionY = 1f;*/
+
+
 
     private bool isAwaken = false;
     void Awake()
     {
-        tilemapSelector = GameObject.Find("TilemapSelector").GetComponent<TilemapSelector>();
-        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         cameraController = GameObject.Find("CameraController").GetComponent<CameraController>();
-        corners = new Vector3[4];
-        minimap.GetComponent<RectTransform>().GetWorldCorners(corners);
-        //for (int i = 0; i < corners.Length; i++)
-        //    Debug.Log(corners[i]);
-        
-        BoundsInt worldTilemapBounds = worldTilemap.cellBounds;
-        //Debug.Log(string.Format("Tilemap bounds: {0}", worldTilemapBounds));
-        firstCornerWorldPosition = worldTilemap.CellToWorld(worldTilemapBounds.position);
-        Vector3 lastCornerWorldPosition = worldTilemap.CellToWorld(worldTilemapBounds.size);
-        tilemapSize = lastCornerWorldPosition - firstCornerWorldPosition;
-        //Debug.Log(string.Format("World bounds : from {0} to {1}", firstCornerWorldPosition, lastCornerWorldPosition));
-        //Debug.Log(string.Format("Total tilemap size: {0}", tilemapSize));
-        minimapSpriteSize = minimap.GetComponent<RectTransform>().rect.size;
-        //Debug.Log(string.Format("Total image sprite size: {0}", minimapSpriteSize));
 
-        isAwaken = true;
+        Tilemap tilemap = GameObject.Find("CardTypeTilemap").GetComponent<Tilemap>();
+        tilemapSize = tilemap.size;
+
+        tilemapSelector = GameObject.Find("TilemapSelector").GetComponent<TilemapSelector>();
+
+        minimapSpriteSize = GetComponent<RectTransform>().sizeDelta;
+
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+
+        corners = new Vector3[4];
+        GetComponent<RectTransform>().GetWorldCorners(corners);
+     
+        minX = tilemap.cellBounds.xMin;
+        minY = tilemap.cellBounds.yMin;
+        maxX = tilemap.cellBounds.xMax;
+        maxY = tilemap.cellBounds.yMax;
+
+        sizeX = tilemap.cellBounds.size.x;
+        sizeY = tilemap.cellBounds.size.y;
     }
 
     // Update is called once per frame
@@ -56,30 +67,35 @@ public class MinimapSelector : MonoBehaviour
                     Awake();
 
                 Vector2 clickPosition = GetRaycastResultByTag("Minimap")[0].screenPosition;
-                Vector3 clickPosition3D = new (clickPosition.x, clickPosition.y, 0);
-                //Debug.Log(clickPosition3D);
+                lastClickedPoint = new (clickPosition.x, clickPosition.y, 0);
 
-                Vector3 distanceToCorner0 = new (clickPosition3D.x - corners[0].x, clickPosition3D.y - corners[0].y, 0);
+                distanceToCorner0 = new (lastClickedPoint.x - corners[0].x, lastClickedPoint.y - corners[0].y, 0);
 
-                //Debug.Log(string.Format("Distance to corner in sprite is {0}", distanceToCorner0));
-                Vector2 relativeDistanceToCorner0 = new Vector2(
-                    distanceToCorner0.x / minimapSpriteSize.x,
-                    distanceToCorner0.y / minimapSpriteSize.y);
-                //Debug.Log(string.Format("That means a percentage offset of {0}", relativeDistanceToCorner0));
+                relativeDistanceToCorner0 = new (
+                    (distanceToCorner0.x / minimapSpriteSize.x),
+                    (distanceToCorner0.y / minimapSpriteSize.y),
+                    0f);
 
-                Vector2 pixelsInWorld = new (
+                targetCellDelta = new Vector3(relativeDistanceToCorner0.x * sizeX, relativeDistanceToCorner0.y * sizeY, 0);
+
+                /*Vector2 pixelsInWorld = new (
                     relativeDistanceToCorner0.x * tilemapSize.x,
                     relativeDistanceToCorner0.y * tilemapSize.y);
 
                 Vector2 target = new(
                     firstCornerWorldPosition.x + pixelsInWorld.x,
-                    firstCornerWorldPosition.y + pixelsInWorld.y);
+                    firstCornerWorldPosition.y + pixelsInWorld.y);*/
 
-                target.x += distanceToCorner0.x * decayPercentage.x;
-                target.y += distanceToCorner0.y * decayPercentage.y;
+                //target.x += distanceToCorner0.x * decayPercentage.x;
+                //target.y += distanceToCorner0.y * decayPercentage.y;
 
-                cameraController.LookToImmediate(target);
+                //target.x += distanceToCorner0.x;
+                //target.y += distanceToCorner0.y;
 
+                //cameraController.LookToImmediate(target);
+
+                targetCell = new Vector3Int(minX + (int)targetCellDelta.x, minY + (int)targetCellDelta.y, 0);
+                cameraController.LookToCell(targetCell);
             }
         }
     }

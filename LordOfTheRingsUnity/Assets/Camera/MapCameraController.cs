@@ -173,6 +173,14 @@ public class CameraController : MonoBehaviour
         return isPopupOpen;
     }
 
+    public void LookToCell(Vector3Int cell)
+    {
+        Vector3Int v3 = new(cell.x, cell.y, 0);
+        Vector3 v3World = tilemap.CellToWorld(v3);
+        v3World = new Vector3(v3World.x, v3World.y, transform.position.z);
+        LookTo(v3World);
+    }
+
     public void LookToCard(CardUI card)
     {
         if (card == null) 

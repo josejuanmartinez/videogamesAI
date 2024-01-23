@@ -7,9 +7,6 @@ using UnityEngine.Tilemaps;
 
 public class Game : MonoBehaviour
 {
-    public GameObject loadManager;
-    public TextMeshProUGUI loadingText;
-
     public List<GameObject> toActivate;
     public List<TilemapRenderer> gridsToEnable;
 
@@ -212,16 +209,11 @@ public class Game : MonoBehaviour
         {
             Debug.Log(string.Format("Loading finished at {0}", Time.realtimeSinceStartup));
             finishedLoading = true;
-            loadManager.SetActive(false);
+            if(FindFirstObjectByType<LoadingCanvasManager>() != null)
+                FindFirstObjectByType<LoadingCanvasManager>().Hide();
         }            
         else if (!shownLoadingMessage)
-        {
-            loadingText.text = string.Format(
-                "{0}...",
-                GameObject.Find("Localization").GetComponent<Localization>().Localize("loading")
-                );
             shownLoadingMessage = true;
-        }
     }
 
     public bool FinishedLoading()

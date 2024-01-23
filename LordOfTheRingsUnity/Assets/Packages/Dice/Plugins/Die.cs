@@ -64,7 +64,7 @@ public class Die : MonoBehaviour {
     {
     get
         {
-            velocity = GetComponent<Rigidbody>().velocity.sqrMagnitude;
+            velocity = GetComponent<Rigidbody>().linearVelocity.sqrMagnitude;
             angularVelocity = GetComponent<Rigidbody>().angularVelocity.sqrMagnitude;
             if (velocity < .01F)
                 velocityRolling = false;
