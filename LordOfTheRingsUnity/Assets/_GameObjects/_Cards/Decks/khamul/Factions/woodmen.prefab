@@ -63,5 +63,7 @@ MonoBehaviour:
   cardClass: 3
   isUnique: 1
   hometown: woodmen_town
+  victoryPoints: 0
+  corruption: 0
   faction: 12
   factionAbility: 1

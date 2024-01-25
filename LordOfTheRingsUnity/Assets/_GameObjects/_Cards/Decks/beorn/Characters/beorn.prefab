@@ -54,6 +54,7 @@ MonoBehaviour:
   descForAIGeneration: Skin-changer chieftain of the Beornings
   cardClass: 1
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 0
   isAvatar: 1
@@ -62,7 +63,6 @@ MonoBehaviour:
   classes: 0000000001000000
   abilities: 
   isImmovable: 1
-  homeTown: beorn_house
   prowess: 6
   defence: 9
   influence: 1

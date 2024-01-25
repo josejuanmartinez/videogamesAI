@@ -63,6 +63,8 @@ MonoBehaviour:
   cardClass: 4
   isUnique: 0
   hometown: 
+  victoryPoints: 0
+  corruption: 0
   abilities: 03000000
   eventType: 1
   playableAtCity: lugarlur

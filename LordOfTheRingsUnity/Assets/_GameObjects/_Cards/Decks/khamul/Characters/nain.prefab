@@ -56,6 +56,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: dol_guldur
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 0
   race: 1
   subRace: 0

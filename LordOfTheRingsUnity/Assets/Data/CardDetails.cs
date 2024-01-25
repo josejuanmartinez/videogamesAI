@@ -1,6 +1,7 @@
 using System.IO;
 using System;
 using UnityEngine;
+using System.Security.Cryptography;
 
 public class CardDetails : MonoBehaviour
 {
@@ -34,12 +35,12 @@ public class CardDetails : MonoBehaviour
     {
         Awake();
 
-        if (!game.IsInitialized())
-            return false;
+        //if (!game.IsInitialized())
+        //    return false;
 
         this.resourcesRequired = resourcesRequired;
         this.cardClass = cardClass;
-        isInitialized = true;
+
         switch (cardClass)
         {
             case CardClass.Place:
@@ -77,13 +78,6 @@ public class CardDetails : MonoBehaviour
         CalculateCorruption();
         CalculateVictoryPoints();
         isInitialized = true;
-        //Debug.Log(string.Format("{0} initialized at {1}", cardId, Time.realtimeSinceStartup));
-        // Set a variable to the Documents path.
-        // string filePath = "images_used.txt";
-
-        // Write the string array to a new file named "WriteLines.txt".
-        //using (StreamWriter outputFile = File.AppendText(filePath))
-        //    outputFile.WriteLine(string.Format("{0}-{1}", cardSprite.name, cardId));
         return isInitialized;
     }
 
@@ -116,7 +110,7 @@ public class CardDetails : MonoBehaviour
         };
     }
 
-    public int CalculateCorruption()
+    private void CalculateCorruption()
     {
         int res = 0;
         switch (cardClass)
@@ -204,12 +198,15 @@ public class CardDetails : MonoBehaviour
                 break;
         }
 
-        res += game.GetCorruptionBaseByDifficulty();
-
-        return res;
+        corruption = (short) res;
     }
 
-    public int CalculateVictoryPoints()
+    public int GetCorruption()
+    {
+        return corruption + game.GetCorruptionBaseByDifficulty();
+    }
+
+    private void CalculateVictoryPoints()
     {
         int res = 0;
         switch (cardClass)
@@ -218,7 +215,13 @@ public class CardDetails : MonoBehaviour
                 res = 0;
                 break;
             case CardClass.Character:
-                res = 0;
+                CharacterCardDetails characterDetails = this as CharacterCardDetails;
+                res = characterDetails.GetMind() +
+                    characterDetails.GetInfluence() +
+                    characterDetails.GetProwess() +
+                    characterDetails.GetDefence() +
+                    characterDetails.GetAbilities().Count;
+                res = (int) Math.Ceiling((decimal) res / 5);
                 break;
             case CardClass.Object:
                 ObjectCardDetails objectDetails = this as ObjectCardDetails;
@@ -267,7 +270,9 @@ public class CardDetails : MonoBehaviour
                 res = 0;
                 break;
             case CardClass.HazardCreature:
-                res = 0;
+                HazardCreatureCardDetails creatureDetails = this as HazardCreatureCardDetails;
+                res = creatureDetails.GetProwess() + creatureDetails.GetDefence() + creatureDetails.GetAbilities().Count;
+                res = (int)Math.Ceiling((decimal)res / 3);
                 break;
             case CardClass.Ally:
                 res = 1;
@@ -303,17 +308,15 @@ public class CardDetails : MonoBehaviour
                 break;
         }
 
-        return res;
-    }
-
-    public int GetCorruption()
-    {
-        return corruption;
+        victoryPoints = (short) res;
     }
 
     public int GetVictoryPoints()
     {
-        return victoryPoints;
+        int vp = victoryPoints - game.GetVictoryPointsBaseByDifficulty();
+        if (victoryPoints > 0)
+            vp = Math.Max(1, vp);
+        return vp;
     }
 
 

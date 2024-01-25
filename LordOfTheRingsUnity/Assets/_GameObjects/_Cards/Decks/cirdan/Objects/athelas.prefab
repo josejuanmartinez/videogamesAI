@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 25c67c10d843ff94c8e86040b104ae18, type: 3}
   cardId: athelas
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   objectSlot: 6

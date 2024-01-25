@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: Giant rabbits from Rhosgobel, the house of Radagast
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 70
   factionAbility: 4
-  homeTown: rhosgobel

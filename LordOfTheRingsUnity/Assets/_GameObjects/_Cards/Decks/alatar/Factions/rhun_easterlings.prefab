@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: A series of Easterling clans from Rhun
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 5
   factionAbility: 7
-  homeTown: easterling_camp

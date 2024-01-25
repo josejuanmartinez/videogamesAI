@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: Attempt to sabotage the production of a settlement
   cardClass: 5
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   abilities: 00000000
   eventType: 0
-  playableAtCity: []

@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 78b9ed10649d9c24fa809b56bcd52fb4, type: 3}
   cardId: elven_armour
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 3

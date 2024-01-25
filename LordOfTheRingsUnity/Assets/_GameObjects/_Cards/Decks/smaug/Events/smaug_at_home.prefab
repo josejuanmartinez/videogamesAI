@@ -63,6 +63,7 @@ MonoBehaviour:
     the Lonely Mountain
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 00000000

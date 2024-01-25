@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: Radagast protects all the beasts from Mirkwood
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 02000000

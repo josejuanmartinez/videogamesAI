@@ -4,10 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(AnimationActivator))]
 public class AnimationActivationCondition : MonoBehaviour
 {
+    [SerializeField]
+    private bool isPlaying;
+
     AnimationActivator animationActivator;
     Func<bool> condition;
 
-    bool isPlaying;
+    
 
     private bool isInitialized = false;
     void Awake()
@@ -31,7 +34,7 @@ public class AnimationActivationCondition : MonoBehaviour
         if (condition() && !isPlaying)
         {
             isPlaying = true;
-            animationActivator.Play();
+            animationActivator.Play(WrapMode.Loop);
         }            
         else if (!condition() && isPlaying)
         {

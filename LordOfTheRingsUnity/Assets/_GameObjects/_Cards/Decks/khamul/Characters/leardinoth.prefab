@@ -54,6 +54,7 @@ MonoBehaviour:
   descForAIGeneration: An Easterling Emissary serving the nazgul Khamul in Dol Guldur
   cardClass: 1
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 0
   isAvatar: 0
@@ -62,7 +63,6 @@ MonoBehaviour:
   classes: 0000000003000000
   abilities: 
   isImmovable: 0
-  homeTown: ongushar
   prowess: 4
   defence: 8
   influence: 2

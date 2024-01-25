@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: Narrow and treacherous snowy pass over the Misty Mountains
   cardClass: 5
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 2
   abilities: 
   eventType: 0
-  playableAtCity: caradhras

@@ -59,19 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: be46248593f00654a9af3a97797fd6ff, type: 3}
   cardId: abhorred_ring
-  initialOwner: 17
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 2
-  requiredFood: 0
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 15
-  requiredGems: 15
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
   objectSlot: 0
   requiredClass: 
   abilities: 

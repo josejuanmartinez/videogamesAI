@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: An elven bow used by the guards of Lothlorien
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 0

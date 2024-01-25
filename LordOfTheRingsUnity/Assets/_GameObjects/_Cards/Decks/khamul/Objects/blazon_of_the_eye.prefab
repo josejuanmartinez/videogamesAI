@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: A Blazon with the mark of the Eye of Sauron
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 1

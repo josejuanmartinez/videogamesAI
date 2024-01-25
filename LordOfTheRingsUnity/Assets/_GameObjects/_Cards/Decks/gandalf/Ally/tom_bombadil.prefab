@@ -64,6 +64,8 @@ MonoBehaviour:
   cardClass: 7
   isUnique: 1
   hometown: old_forest
+  victoryPoints: 0
+  corruption: 0
   allyClass: 0
   race: 19
   subRace: 0

@@ -8,9 +8,11 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
     [Header("Hazard Creature Card UI Board")]
     [SerializeField]
     private Button button;
-    [SerializeField]
-    private ParticlesActivationCondition particleActivationCondition;
-    //private AnimationActivationCondition animationActivationCondition;
+    
+    //private ParticlesActivationCondition activationCondition;
+    private AnimationActivationCondition activationCondition;
+    private Image animationImage;
+
     [SerializeField]
     private CanvasGroup nextCanvasGroup;
 
@@ -24,9 +26,18 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
     private bool isMoving;
     private bool isVisible;
     private Vector3 currentPosition;
+    void Awake()
+    {
+        activationCondition = GetComponentInChildren<AnimationActivationCondition>();
+        animationImage = activationCondition.gameObject.GetComponent<Image>();
+        colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
+        //activationCondition = GetComponentInChildren<ParticlesActivationCondition>();
+    }
+
 
     public bool Initialize(Vector2Int hex, string cardId, NationsEnum owner, short moved = 0)
     {
+        animationImage.color = colorManager.GetNationColor(owner);
         this.hex = hex;
 
         if (!base.Initialize(cardId, owner))
@@ -46,7 +57,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
 
         Debug.Log(GameObject.Find("Localization").GetComponent<Localization>().Localize(details.cardId) + " registered itself in Board at " + HexTranslator.GetDebugTileInfo(hex) + " " + HexTranslator.GetNormalizedCellPosString(hex));
 
-        particleActivationCondition.Initialize(() => selectedItems != null && selectedItems.GetSelectedMovableCard() == details);
+        activationCondition.Initialize(() => selectedItems != null && selectedItems.GetSelectedMovableCard() == details);
 
         button.interactable = owner == turn.GetCurrentPlayer();
 
@@ -86,6 +97,9 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
 
         if (boardTile == null)
             return;
+
+        if (selectedItems != null && selectedItems.GetSelectedMovableCard() == details)
+            button.Select();
 
         if (Input.GetKeyUp(KeyCode.Escape))
             isSelected = false;

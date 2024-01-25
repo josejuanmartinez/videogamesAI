@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: A group of wild beasts from the woods
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 70
   factionAbility: 4
-  homeTown: buhr_widu

@@ -62,12 +62,13 @@ MonoBehaviour:
   descForAIGeneration: An apprentice of Alatar, a blue wizard
   cardClass: 7
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   allyClass: 2
   race: 0
   subRace: 8
   abilities: 
-  homeTown: riavod
   prowess: 2
   defence: 6
+  isImmovable: 0

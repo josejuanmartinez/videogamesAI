@@ -63,6 +63,7 @@ MonoBehaviour:
     the Elven King Gil-Galad
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 0
   abilities: 01000000

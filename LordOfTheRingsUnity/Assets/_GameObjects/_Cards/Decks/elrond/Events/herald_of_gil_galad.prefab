@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: Elrond was the Herald and Emissary of the Elven King Gil-Galad
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 0
   abilities: 03000000

@@ -59,19 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 46c99d89f4a927340b8f738a4c2c4dfa, type: 3}
   cardId: magic_ring_of_intuition
-  initialOwner: 17
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 2
-  requiredFood: 0
-  requiredProd: 0
-  requiredGold: 15
-  requiredMetal: 0
-  requiredGems: 15
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
   objectSlot: 2
   requiredClass: 
   abilities: 0d000000

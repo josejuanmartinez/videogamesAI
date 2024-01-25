@@ -64,6 +64,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: cirith_ungol
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 1
   race: 6
   subRace: 13

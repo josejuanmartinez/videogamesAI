@@ -63,8 +63,9 @@ MonoBehaviour:
     War of the Ring
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 04000000
   eventType: 0
-  playableAtCity: []
+  playableAtCity: 

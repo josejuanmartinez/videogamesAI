@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 0e03a3094d1388041a5da682912f6e25, type: 3}
   cardId: morningstar
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 0

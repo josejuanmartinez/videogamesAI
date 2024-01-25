@@ -59,19 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: e6d3c7d78cc549f4ab15f347bc84e75d, type: 3}
   cardId: ornamental_gold_ring
-  initialOwner: 4
+  descForAIGeneration: 
   cardClass: 8
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
-  requiredFood: 0
-  requiredProd: 0
-  requiredGold: 25
-  requiredMetal: 0
-  requiredGems: 0
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
   theOneRingMax: 12
   theOneRingMin: 11
   dwarvenRingMax: 12

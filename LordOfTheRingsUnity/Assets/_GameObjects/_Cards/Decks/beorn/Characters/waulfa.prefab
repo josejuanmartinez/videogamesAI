@@ -54,6 +54,7 @@ MonoBehaviour:
   descForAIGeneration: An old wise woodman wise man
   cardClass: 1
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 0
   isAvatar: 0
@@ -62,7 +63,6 @@ MonoBehaviour:
   classes: 0200000003000000
   abilities: 
   isImmovable: 0
-  homeTown: buhr_widu
   prowess: 3
   defence: 8
   influence: 3

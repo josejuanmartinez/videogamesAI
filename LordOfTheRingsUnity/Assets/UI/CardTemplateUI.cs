@@ -332,6 +332,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         AddDescriptionSlot("corruption", cardDetails.GetCorruption().ToString(), spritesRepo.GetSprite("corruption"));
 
         quote.text = GameObject.Find("Localization").GetComponent<Localization>().LocalizeQuote(cardDetails.cardId);
+        quote.enabled = !string.IsNullOrEmpty(quote.text);
 
         #if UNITY_EDITOR
         if (contentGenerator != null &&
@@ -593,7 +594,7 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
 
         if (button != null)
-            button.interactable = button.enabled ? conditionsFailed.Count() < 1 : true;
+            button.interactable = !button.enabled || conditionsFailed.Count() < 1;
     }
 
     public void AnimateName()
@@ -623,6 +624,9 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        if (game.IsPopup())
+            return;
+
         if (!isAwaken)
             Awake();
 

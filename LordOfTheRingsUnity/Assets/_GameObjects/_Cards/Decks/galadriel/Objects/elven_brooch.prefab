@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: c53b5f529e2007045b64f7f637658aff, type: 3}
   cardId: elven_brooch
-  initialOwner: 14
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 2

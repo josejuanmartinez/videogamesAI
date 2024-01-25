@@ -62,8 +62,9 @@ MonoBehaviour:
   descForAIGeneration: Attemp to misguide a dangerous foe to another place
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 06000000
   eventType: 0
-  playableAtCity: []
+  playableAtCity: 

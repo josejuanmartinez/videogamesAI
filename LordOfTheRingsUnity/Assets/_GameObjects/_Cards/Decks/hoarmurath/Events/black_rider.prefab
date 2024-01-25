@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: The nazgul is disguised as a black rider on a dark horse
   cardClass: 4
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 01000000

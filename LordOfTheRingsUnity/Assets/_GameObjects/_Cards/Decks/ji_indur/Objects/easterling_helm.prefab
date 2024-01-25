@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: A pointy metal helmet from Rhun
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   objectSlot: 4

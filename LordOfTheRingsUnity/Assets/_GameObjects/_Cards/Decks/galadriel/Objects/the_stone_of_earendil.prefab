@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: An Elfstone gifted by Galadriel to Aragorn
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 2
   corruption: 3
   objectSlot: 2

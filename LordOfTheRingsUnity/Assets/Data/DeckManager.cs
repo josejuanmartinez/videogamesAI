@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,13 +59,16 @@ public class DeckManager : MonoBehaviour
             if (nation == NationsEnum.ABANDONED)
                 continue;
             loadingPlayer = nation.ToString();
+            bool human = game.GetHumanNation() == nation;
 
             GameObject go = new("deck_" + nation.ToString());
             go.transform.parent = transform;
             CardsOfPlayer cardsOfThisPlayer = go.AddComponent<CardsOfPlayer>();
             cardsOfThisPlayer.Initialize(nation,
                     game.GetHumanNation() == nation ? deckTransform : null,
-                    deckCardUIPrefab);
+                    deckCardUIPrefab,
+                    5,
+                    human? startWithId : new List<string>());
             cardsOfPlayer.Add(cardsOfThisPlayer);
         }
         //Debug.Log(string.Format("DeckManager loaded at {0}", Time.realtimeSinceStartup));
@@ -92,8 +96,10 @@ public class DeckManager : MonoBehaviour
 
     void Update()
     {
-        deckCanvasGroup.alpha = cameraController.IsPreventedDrag()? 0 : 1;
-        deckCanvasGroup.interactable = !cameraController.IsPreventedDrag();
+        bool visible = !game.IsPopup() && !cameraController.IsPreventedDrag();
+
+        deckCanvasGroup.alpha = visible? 1 : 0;
+        deckCanvasGroup.interactable = visible;
 
         if (!isInitialized)
         {

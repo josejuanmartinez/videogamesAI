@@ -63,6 +63,8 @@ MonoBehaviour:
   cardClass: 7
   isUnique: 1
   hometown: dunharrow
+  victoryPoints: 0
+  corruption: 0
   allyClass: 0
   race: 0
   subRace: 9

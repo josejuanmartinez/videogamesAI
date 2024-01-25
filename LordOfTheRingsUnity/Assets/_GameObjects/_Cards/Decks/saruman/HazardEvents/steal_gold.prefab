@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: Attempt to steal gold from a settlement
   cardClass: 5
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   abilities: 01000000
   eventType: 0
-  playableAtCity: []

@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: Chariot-riding easterlings from Rhun
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 2
   factionAbility: 4
-  homeTown: wainrider_camp

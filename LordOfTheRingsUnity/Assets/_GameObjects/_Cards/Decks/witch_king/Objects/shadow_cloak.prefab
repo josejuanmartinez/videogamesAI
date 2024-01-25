@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 19aeb2bb56abbb745859012f0f2f0d05, type: 3}
   cardId: shadow_cloak
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 2
   objectSlot: 2

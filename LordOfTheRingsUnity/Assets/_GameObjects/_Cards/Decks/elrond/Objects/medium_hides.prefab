@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: f6f8bb114063ec740885b97177bf32bc, type: 3}
   cardId: medium_hides
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 3

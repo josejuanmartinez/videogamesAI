@@ -62,8 +62,9 @@ MonoBehaviour:
   descForAIGeneration: The Blue Wizards becomes and Emissary to the other Wizards
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 03000000
   eventType: 1
-  playableAtCity: []
+  playableAtCity: 

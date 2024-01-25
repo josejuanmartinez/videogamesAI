@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 18e81f9dee99c2b4697f2a4be7b03bba, type: 3}
   cardId: anduril_sword
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 4
   corruption: 3
   objectSlot: 0

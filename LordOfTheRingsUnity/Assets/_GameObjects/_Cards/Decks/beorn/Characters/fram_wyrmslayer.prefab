@@ -54,13 +54,15 @@ MonoBehaviour:
   descForAIGeneration: An lumberman warrior slayer of wyrms in the mountains of Framsburg
   cardClass: 1
   isUnique: 1
+  hometown: 
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 0
   race: 0
   subRace: 12
   classes: 00000000
   abilities: 00000000
   isImmovable: 0
-  homeTown: framsburg
   prowess: 5
   defence: 8
   influence: 0

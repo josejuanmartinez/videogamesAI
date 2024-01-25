@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: dd7c1cf0036790f47be9d1f12de9239a, type: 3}
   cardId: dwarven_ring_of_the_blue_mountains
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 2
   objectSlot: 1

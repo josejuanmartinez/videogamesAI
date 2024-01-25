@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d66c4b95519080e418525b4951b46bea, type: 3}
   cardId: throwing_axes
-  initialOwner: 4
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   objectSlot: 0

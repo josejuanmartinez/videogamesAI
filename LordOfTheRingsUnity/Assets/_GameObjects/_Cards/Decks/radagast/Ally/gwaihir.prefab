@@ -63,6 +63,8 @@ MonoBehaviour:
   cardClass: 7
   isUnique: 1
   hometown: eagles_eyrie
+  victoryPoints: 0
+  corruption: 0
   allyClass: 0
   race: 12
   subRace: 0

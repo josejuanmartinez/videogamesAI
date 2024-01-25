@@ -23,6 +23,7 @@ public class TilemapSelector : MonoBehaviour
     private DiceManager diceManager;
     private SelectedItems selectedItems;
     private Game game;
+    private Board board;
 
     private float tileSelectedAt;
 
@@ -36,6 +37,7 @@ public class TilemapSelector : MonoBehaviour
         diceManager = GameObject.Find("DiceManager").GetComponent<DiceManager>();
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
         game = GameObject.Find("Game").GetComponent<Game>();
+        board = GameObject.Find("Board").GetComponent<Board>();
         tileSelectedAt = float.MaxValue;
     }
 
@@ -65,19 +67,11 @@ public class TilemapSelector : MonoBehaviour
             Reset();
 
 
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            tooltip.SetActive(false);
-            selectedItems.UnselectAll();
-            return;
-        }*/
-
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int cardTilePos = selectionTilemap.WorldToCell(mouseWorldPos);
         Vector3 cardCellCenter = selectionTilemap.CellToWorld(cardTilePos);
         cardCellCenter = new Vector3(cardCellCenter.x, cardCellCenter.y, 0);
             
-        //cardTilePos = new Vector3Int(cardTilePos.x, cardTilePos.y, 0);
         cardTilePos = selectionTilemap.WorldToCell(cardCellCenter);
         
         if (hoverPos == null)
@@ -108,20 +102,25 @@ public class TilemapSelector : MonoBehaviour
                 )
             {
                 if (Time.realtimeSinceStartup - tileSelectedAt > tooltipBoardSecs)
-                {
-                    if(!tooltip.activeSelf)
-                    {
-                        tooltip.SetActive(true);
-                        tooltip.GetComponent<MapTooltip>().Initialize(hoverPos);
-                        tooltip.transform.position = selectionTilemap.GetCellCenterWorld(cardTilePos);
-                    }                    
-                } 
+                    ShowTooltipAt(hoverPos, MapTooltipEnum.DEFAULT);       
                 else
-                {
-                    tooltip.SetActive(false);
-                }
+                    HideTooltip();
             }
         }
+    }
+    public void ShowTooltipAt(Vector3Int cell, MapTooltipEnum mapTooltipEnum)
+    {
+        if (!tooltip.activeSelf)
+        {
+            tooltip.SetActive(true);
+            tooltip.GetComponent<MapTooltip>().Initialize(hoverPos, mapTooltipEnum);
+            tooltip.transform.position = selectionTilemap.GetCellCenterWorld(cell);
+        }
+    }
+
+    public void HideTooltip()
+    {
+        tooltip.SetActive(false);
     }
 
     public void Reset()

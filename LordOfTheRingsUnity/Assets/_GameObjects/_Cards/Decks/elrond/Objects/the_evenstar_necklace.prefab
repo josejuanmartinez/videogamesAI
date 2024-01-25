@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: a32004d7d09b582439a95d81de8dd64e, type: 3}
   cardId: the_evenstar_necklace
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 2
   corruption: 2
   objectSlot: 2

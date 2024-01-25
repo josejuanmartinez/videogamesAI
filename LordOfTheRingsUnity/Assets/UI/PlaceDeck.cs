@@ -324,13 +324,14 @@ public class PlaceDeck : MonoBehaviour
                 // Update mana
                 if (cardDetails.IsClassOf(CardClass.HazardCreature))
                 {
-                    HazardCreatureCardDetails hazard = (HazardCreatureCardDetails) cardDetails;
+                    HazardCreatureCardDetails hazard = cardDetails as HazardCreatureCardDetails;
                     foreach (CardTypesEnum cardType in hazard.GetCardTypes())
                     {
                         int newRes = manaManager.mana[turn.GetCurrentPlayer()][cardType] > 0 ? manaManager.mana[turn.GetCurrentPlayer()][cardType] - 1 : 0;
                         manaManager.mana[turn.GetCurrentPlayer()][cardType] = (short)newRes;
                     }
                     manaManager.Dirty();
+                    selectedItems.SelectCardDetails(cardDetails, cardUI.GetOwner());
                 }
             }
             deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), cardDetails, false);
@@ -641,6 +642,10 @@ public class PlaceDeck : MonoBehaviour
     public HoveredCard GetCardToShow()
     {
         return cardToShow;
+    }
+    public void RemoveCardToShow()
+    {
+        RemoveCardToShow(GetCardToShow());
     }
 
     public void RemoveCardToShow(HoveredCard cardToHide)

@@ -63,6 +63,7 @@ MonoBehaviour:
     flying beast
   cardClass: 4
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 2
   abilities: 02000000

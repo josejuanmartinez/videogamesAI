@@ -63,6 +63,8 @@ MonoBehaviour:
   cardClass: 2
   isUnique: 0
   hometown: 
+  victoryPoints: 0
+  corruption: 0
   objectSlot: 5
   materials: 060000000600000006000000
   requiredClass: 

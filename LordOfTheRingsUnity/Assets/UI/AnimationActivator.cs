@@ -3,22 +3,26 @@ using UnityEngine;
 [RequireComponent(typeof(Animation))]
 public class AnimationActivator : MonoBehaviour
 {
+    [SerializeField]
     private bool animate;
-    private Animation anim;
-
+    [SerializeField]
     WrapMode wrapMode;
+
+    private Animation anim;
+    
     private void Awake()
     {
         anim = GetComponent<Animation>();
         wrapMode = anim.wrapMode;
         animate = false;
     }
-    public void Play()
+    public void Play(WrapMode wrapMode)
     {
-        if(!animate)
+        this.wrapMode = wrapMode;
+        if(!animate || !anim.isPlaying || anim.wrapMode != wrapMode)
         {
-            animate = true;
             anim.wrapMode = wrapMode;
+            animate = true;
             anim.Play();
         }        
     }
@@ -27,9 +31,9 @@ public class AnimationActivator : MonoBehaviour
     {
         if(animate)
         {
-            anim.wrapMode = WrapMode.Clamp;
             //animation.Rewind();
             animate = false;
+            anim.wrapMode = WrapMode.Clamp;
         }        
     }
 

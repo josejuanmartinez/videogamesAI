@@ -62,8 +62,9 @@ MonoBehaviour:
   descForAIGeneration: Attempt to influence a foreign faction
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 05000000
   eventType: 0
-  playableAtCity: []
+  playableAtCity: 

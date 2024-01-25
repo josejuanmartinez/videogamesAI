@@ -63,6 +63,7 @@ MonoBehaviour:
     Erebor for the Elven-queen of Mirkwood
   cardClass: 2
   isUnique: 1
+  hometown: 
   victoryPoints: 4
   corruption: 3
   objectSlot: 2

@@ -55,6 +55,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: iron_hills
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 1
   race: 1
   subRace: 0

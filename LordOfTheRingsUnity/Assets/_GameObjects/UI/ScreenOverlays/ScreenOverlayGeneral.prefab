@@ -1164,7 +1164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3865f2d7f978d945899fc6343425f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayPercentage: {x: -0.4, y: -0.4}
+  tilemapSize: {x: 0, y: 0, z: 0}
+  minimapSpriteSize: {x: 0, y: 0}
+  relativeDistanceToCorner0: {x: 0, y: 0, z: 0}
   corners: []
   minX: 0
   minY: 0
@@ -1172,6 +1174,10 @@ MonoBehaviour:
   maxY: 0
   sizeX: 0
   sizeY: 0
+  lastClickedPoint: {x: 0, y: 0, z: 0}
+  distanceToCorner0: {x: 0, y: 0, z: 0}
+  targetCellDelta: {x: 0, y: 0, z: 0}
+  targetCell: {x: 0, y: 0, z: 0}
 --- !u!1 &791248079174241264
 GameObject:
   m_ObjectHideFlags: 0
@@ -11566,7 +11572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -12172,10 +12178,7 @@ PrefabInstance:
       addedObject: {fileID: 8545681169639444966}
     - targetCorrespondingSourceObject: {fileID: 861110157977805307, guid: d200c26658bba57449ab906c7ea162de, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4979028602868201969}
-    - targetCorrespondingSourceObject: {fileID: 861110157977805307, guid: d200c26658bba57449ab906c7ea162de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6090577412565187892}
+      addedObject: {fileID: 1747348316737919049}
   m_SourcePrefab: {fileID: 100100000, guid: d200c26658bba57449ab906c7ea162de, type: 3}
 --- !u!1 &785097074041530073 stripped
 GameObject:
@@ -12255,7 +12258,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &4979028602868201969
+--- !u!114 &1747348316737919049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12268,24 +12271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &6090577412565187892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175666723113425500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_BlockingObjects: 3
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295

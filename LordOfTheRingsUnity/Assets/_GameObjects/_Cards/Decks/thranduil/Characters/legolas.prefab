@@ -55,6 +55,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: thranduil_halls
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 0
   race: 2
   subRace: 11

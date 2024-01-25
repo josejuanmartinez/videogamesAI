@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CharacterCardUIPopup : CharacterCardUI
 {
     [Header("Character Card UI Popup")]
-    public GridLayoutGroup targettedGrid;
     public TextMeshProUGUI prowessText;
     public TextMeshProUGUI defenceText;
     public GameObject targetedPrefab;
@@ -30,12 +29,10 @@ public class CharacterCardUIPopup : CharacterCardUI
 
     public void UndrawTargetted()
     {
-        int children = targettedGrid.transform.childCount;
-        for (int i = 0; i < children; i++)
-            DestroyImmediate(targettedGrid.transform.GetChild(0).gameObject);
+        targetedPrefab.SetActive(false);
     }
     public void DrawTargetted()
     {
-        Instantiate(targetedPrefab, targettedGrid.transform);
+        targetedPrefab.SetActive(true);
     }
 }

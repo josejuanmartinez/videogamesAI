@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   objectSlot: 0

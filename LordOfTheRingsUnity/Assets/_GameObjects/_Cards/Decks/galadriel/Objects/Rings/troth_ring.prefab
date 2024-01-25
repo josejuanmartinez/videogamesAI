@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 01adea99094266c49ad7b5d343718868, type: 3}
   cardId: troth_ring
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 2
   objectSlot: 0

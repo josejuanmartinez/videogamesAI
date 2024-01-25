@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: A group of men living in the boundaries of Mirkwood Forest
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 12
   factionAbility: 1
-  homeTown: woodmen_town

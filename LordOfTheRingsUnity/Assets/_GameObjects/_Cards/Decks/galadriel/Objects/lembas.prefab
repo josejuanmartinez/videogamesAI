@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 4c23cb268ca62e8468215c66aaa81bf0, type: 3}
   cardId: lembas
-  initialOwner: 14
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 0
   objectSlot: 6

@@ -30,6 +30,8 @@ public class Game : MonoBehaviour
     private bool isInitialized;
     private bool finishedLoading;
     private bool shownLoadingMessage;
+
+    private bool isPopup;
     void Awake()
     {
         players = new();
@@ -38,6 +40,7 @@ public class Game : MonoBehaviour
         isInitialized = false;
         finishedLoading = false;
         shownLoadingMessage = false;
+        isPopup = false;
     }
 
     public void Initialize()
@@ -58,6 +61,17 @@ public class Game : MonoBehaviour
         isInitialized = true;
         //Debug.Log("Game initialized at " + Time.realtimeSinceStartup);
     }
+
+    public void SetIsPopup(bool isPopup)
+    {
+        this.isPopup = isPopup;
+    }
+
+    public bool IsPopup()
+    {
+        return this.isPopup;
+    }
+
     public Player GetHumanPlayer()
     {
         if (players == null || players.Count < 1)
@@ -184,6 +198,19 @@ public class Game : MonoBehaviour
     {
         if (!IsInitialized())
             throw new Exception("Trying to get Corruption of card but it's not initialized!");
+
+        return settings.GetDifficulty() switch
+        {
+            DifficultiesEnum.Medium => 1,
+            DifficultiesEnum.Hard => 2,
+            _ => 0,
+        };
+    }
+
+    public int GetVictoryPointsBaseByDifficulty()
+    {
+        if (!IsInitialized())
+            throw new Exception("Trying to get Victory Points of card but it's not initialized!");
 
         return settings.GetDifficulty() switch
         {

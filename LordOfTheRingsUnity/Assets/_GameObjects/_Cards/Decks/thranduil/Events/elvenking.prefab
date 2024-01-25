@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: Thranduil the "Elvenking" of Thranduil Halls in Mirkwood
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 0
   abilities: 00000000

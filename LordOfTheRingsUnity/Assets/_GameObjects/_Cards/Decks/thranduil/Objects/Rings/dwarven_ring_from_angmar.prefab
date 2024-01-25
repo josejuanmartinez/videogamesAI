@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 4b176216e99b96d48a276cffae514b2b, type: 3}
   cardId: dwarven_ring_from_angmar
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 2
   objectSlot: 1

@@ -63,6 +63,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: pellardur
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 1
   race: 0
   subRace: 9

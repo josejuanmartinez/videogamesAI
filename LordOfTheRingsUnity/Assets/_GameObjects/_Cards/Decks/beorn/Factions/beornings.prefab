@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: A group of skin-changer Beornings
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 4
   factionAbility: 0
-  homeTown: beorn_house

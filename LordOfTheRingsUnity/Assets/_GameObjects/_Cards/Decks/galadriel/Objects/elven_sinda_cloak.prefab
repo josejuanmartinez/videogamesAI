@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: A Sinda Elf green cloack from Lothlorien
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 9

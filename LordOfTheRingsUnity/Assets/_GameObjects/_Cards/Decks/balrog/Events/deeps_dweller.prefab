@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: The Balrog moves using the undergrounds of the Middle Earth
   cardClass: 4
   isUnique: 1
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 01000000

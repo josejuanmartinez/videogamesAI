@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -25,12 +24,7 @@ public class MinimapSelector : MonoBehaviour
     public Vector3 targetCellDelta;
     public Vector3Int targetCell;
 
-    /*public float correctionX = 1f;
-    public float correctionY = 1f;*/
-
-
-
-    private bool isAwaken = false;
+    private readonly bool isAwaken = false;
     void Awake()
     {
         cameraController = GameObject.Find("CameraController").GetComponent<CameraController>();
@@ -77,22 +71,6 @@ public class MinimapSelector : MonoBehaviour
                     0f);
 
                 targetCellDelta = new Vector3(relativeDistanceToCorner0.x * sizeX, relativeDistanceToCorner0.y * sizeY, 0);
-
-                /*Vector2 pixelsInWorld = new (
-                    relativeDistanceToCorner0.x * tilemapSize.x,
-                    relativeDistanceToCorner0.y * tilemapSize.y);
-
-                Vector2 target = new(
-                    firstCornerWorldPosition.x + pixelsInWorld.x,
-                    firstCornerWorldPosition.y + pixelsInWorld.y);*/
-
-                //target.x += distanceToCorner0.x * decayPercentage.x;
-                //target.y += distanceToCorner0.y * decayPercentage.y;
-
-                //target.x += distanceToCorner0.x;
-                //target.y += distanceToCorner0.y;
-
-                //cameraController.LookToImmediate(target);
 
                 targetCell = new Vector3Int(minX + (int)targetCellDelta.x, minY + (int)targetCellDelta.y, 0);
                 cameraController.LookToCell(targetCell);

@@ -64,6 +64,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: lag_scara
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 1
   race: 7
   subRace: 0

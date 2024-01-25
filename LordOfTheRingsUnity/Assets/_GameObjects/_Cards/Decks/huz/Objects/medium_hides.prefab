@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: Medium heavy leather armour
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 3

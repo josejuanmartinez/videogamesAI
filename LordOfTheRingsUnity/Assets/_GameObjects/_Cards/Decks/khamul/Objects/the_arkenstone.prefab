@@ -63,6 +63,7 @@ MonoBehaviour:
     gem sought by Thorin Oakenshield
   cardClass: 2
   isUnique: 1
+  hometown: 
   victoryPoints: 3
   corruption: 3
   objectSlot: 2

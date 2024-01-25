@@ -350,183 +350,192 @@ public class HazardCreatureCardUI : CardUI
         return Math.Max(MaxStats.minMovement, movement);
     }
 
-    public void Hurt(HazardCreatureCardDetails cardDetails = null)
+    public void Hurt(HazardCreatureCardDetails attackerDetails, bool cascaded = false)
     {
         bool die = IsHurt();
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.WOUND, turn.GetTurnNumber(), true));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("hurt"),
-            0.5f,
-            "hurt");
+        if(cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("hurt"),
+                0.5f,
+                "hurt");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if(originalCharacter != null && originalCharacter != this)
-                originalCharacter.Hurt();
+                originalCharacter.Hurt(attackerDetails, true);
         }
         CheckStatusEffects();
-        if (cardDetails != null)
-            Lose(cardDetails);
+        if (!cascaded)
+            Lose(attackerDetails);
         if (die)
             Dies();
     }
-    public void Exhausted(HazardCreatureCardDetails cardDetails = null)
+    public void Exhausted(HazardCreatureCardDetails attackerDetails, bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.EXHAUSTATION, turn.GetTurnNumber(), true));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("exhausted"),
-            0.5f,
-            "exhausted");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("exhausted"),
+                0.5f,
+                "exhausted");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Exhausted();
+                originalCharacter.Exhausted(attackerDetails, true);
         }
         CheckStatusEffects();
-        if (cardDetails != null)
-            Lose(cardDetails);
+        if (!cascaded)
+            Lose(attackerDetails);
     }
 
-    public void Trapped()
+    public void Trapped(bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.TRAP, turn.GetTurnNumber(), true));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("trapped"),
-            0.5f,
-            "trapped");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("trapped"),
+                0.5f,
+                "trapped");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Trapped();
+                originalCharacter.Trapped(true);
         }
         CheckStatusEffects();
     }
-    public void Fire()
+    public void Fire(bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.FIRE, turn.GetTurnNumber(), true));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("fire"),
-            0.5f,
-            "fire");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("fire"),
+                0.5f,
+                "fire");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Fire();
+                originalCharacter.Fire(true);
         }
         CheckStatusEffects();
     }
-    public void Blind()
+    public void Blind(bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.BLIND, turn.GetTurnNumber(), true));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("blind"),
-            0.5f,
-            "blind");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("blind"),
+                0.5f,
+                "blind");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Blind();
+                originalCharacter.Blind(true);
         }
         CheckStatusEffects();
     }
-    public void Ice()
+    public void Ice(bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.ICE, turn.GetTurnNumber(), true));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("ice"),
-            0.5f,
-            "ice");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("ice"),
+                0.5f,
+                "ice");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Ice();
+                originalCharacter.Ice(true);
         }
         CheckStatusEffects();
     }
-    public void Morgul()
+    public void Morgul(bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.MORGUL, turn.GetTurnNumber(), false));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("morgul"),
-            0.5f,
-            "morgul");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("morgul"),
+                0.5f,
+                "morgul");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Morgul();
+                originalCharacter.Morgul(true);
         }
         CheckStatusEffects();
     }
-    public void Poisoned()
+    public void Poisoned(bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.POISON, turn.GetTurnNumber(), true));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("poisoned"),
-            0.5f,
-            "poisoned");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("poisoned"),
+                0.5f,
+                "poisoned");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Poisoned();
+                originalCharacter.Poisoned(true);
         }
         CheckStatusEffects();
     }
-    public void Bleeding()
+    public void Bleeding(bool cascaded = false)
     {
         effectsApplied.Add(new StatusEffectsApplied(StatusEffect.BLOOD, turn.GetTurnNumber(), false));
-        AddMessage(
-            GameObject.Find("Localization").GetComponent<Localization>().Localize("bleeding"),
-            0.5f,
-            "bleeding");
+        if(!cascaded)
+            AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("bleeding"),
+                0.5f,
+                "bleeding");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = originalCard as HazardCreatureCardUI;
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Bleeding();
+                originalCharacter.Bleeding(true);
         }
         CheckStatusEffects();
     }
 
-    public void Heal()
+    public void Heal(bool cascaded = false)
     {
         effectsApplied = effectsApplied.FindAll(x => !x.healable).ToList();
-
-        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("healed"), 0.5f, "healed");
+        if(!cascaded)
+            AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("healed"), 0.5f, "healed");
         CardUI originalCard = board.GetCardManager().GetCardUI(details);
         if (originalCard != null)
         {
             HazardCreatureCardUI originalCharacter = ((HazardCreatureCardUI)originalCard);
             if (originalCharacter != null && originalCharacter != this)
-                originalCharacter.Heal();
+                originalCharacter.Heal(true);
         }
         CheckStatusEffects();
     }
 
-    public void Won(HazardCreatureCardDetails details)
+    public void Won(HazardCreatureCardDetails attackerDetails)
     {
         AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("won"), 1, "success");
-        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("VP+")+ details.GetVictoryPoints(), 1, "success");
-        deckManager.AddToWonPile(owner, details);
+        AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("VP+")+ attackerDetails.GetVictoryPoints(), 1, "success");
+        deckManager.AddToWonPile(owner, attackerDetails);
     }
-    public void Lose(HazardCreatureCardDetails details)
+    public void Lose(HazardCreatureCardDetails attackerDetails)
     {
-        deckManager.AddToDiscardPile(owner, details);
+        deckManager.AddToDiscardPile(owner, attackerDetails);
     }
     public List<StatusEffectsApplied> GetEffects()
     {

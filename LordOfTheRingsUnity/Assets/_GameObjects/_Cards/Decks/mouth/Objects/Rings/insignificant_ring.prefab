@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: bf948ed2636ddc547be51067ffcb8eb7, type: 3}
   cardId: insignificant_ring
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 3

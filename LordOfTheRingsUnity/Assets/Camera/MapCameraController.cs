@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] Vector2 zoomDecay;
 
     private bool preventDrag = false;
-    private bool isPopupOpen = false;
 
     private Vector3 NONE = Vector3.one * int.MinValue;
 
@@ -50,7 +49,7 @@ public class CameraController : MonoBehaviour
         if (!game.FinishedLoading())
             return;
 
-        if (diceManager.IsDicing() || isPopupOpen || preventDrag)
+        if (diceManager.IsDicing() || game.IsPopup() || preventDrag)
             return;
 
         // Zoom in and out with the scroll wheel
@@ -130,7 +129,10 @@ public class CameraController : MonoBehaviour
             lookToPosition = NONE;
 
         //LOOK TO
-        if (lookToPosition != NONE && lookToPosition != transform.position)
+        if (lookToPosition == transform.position)
+            lookToPosition = NONE;
+
+        if (lookToPosition != NONE)
         {
             Vector3 newPosition = Vector3.Lerp(transform.position, lookToPosition, Time.deltaTime * moveSpeed);
             transform.position = newPosition;
@@ -154,23 +156,9 @@ public class CameraController : MonoBehaviour
     {
         preventDrag = false;
     }
-    public void SetPopupOpen()
-    {
-        isPopupOpen = true;
-    }
-
-    public void RemovePopupOpen()
-    {
-        isPopupOpen = false;
-    }
-
     public bool IsDragging()
     {
         return isDragging;
-    }
-    public bool IsPopupOpen()
-    {
-        return isPopupOpen;
     }
 
     public void LookToCell(Vector3Int cell)

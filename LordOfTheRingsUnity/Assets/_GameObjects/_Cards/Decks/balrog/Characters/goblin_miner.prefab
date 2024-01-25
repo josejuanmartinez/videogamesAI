@@ -55,6 +55,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 0
   hometown: khazad_dum
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 0
   race: 6
   subRace: 0

@@ -60,12 +60,15 @@ MonoBehaviour:
   cardSprite: {fileID: 21300000, guid: 9a38166e909d6c442ab9c6cd3c047a69, type: 3}
   cardId: scout_from_the_east
   descForAIGeneration: An scout exploring East of Middle Earth
-  cardClass: 1
+  cardClass: 7
   isUnique: 0
   hometown: mistrand
+  victoryPoints: 0
+  corruption: 0
   allyClass: 1
   race: 0
   subRace: 8
   abilities: 
   prowess: 3
   defence: 7
+  isImmovable: 0

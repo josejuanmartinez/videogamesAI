@@ -118,7 +118,7 @@ public class MovementManager : MonoBehaviour
     {
         if (!game.FinishedLoading())
             return;
-        if (cameraController.IsPopupOpen()   || 
+        if (game.IsPopup()   || 
             tilemapSelector.IsOverUI()     || 
             Input.GetKeyUp(KeyCode.Escape) ||
             (Input.GetMouseButton(0) && (Input.GetMouseButton(1) || Input.GetMouseButton(2))))
@@ -126,6 +126,14 @@ public class MovementManager : MonoBehaviour
             Reset();
             return;
         }
+
+        if (Input.mousePosition.x < 0 || Input.mousePosition.y < 0 || Input.mousePosition.x > Screen.width || Input.mousePosition.y > Screen.height)
+        {
+            StopAllCoroutines();
+            Reset();
+            cameraController.RemovePreventDrag();
+        }
+
         bool movableCard = selectedItems.IsMovableSelected() || selectedItems.IsHazardCreatureSelected();
 
         if (movableCard)
@@ -150,7 +158,7 @@ public class MovementManager : MonoBehaviour
 
             if (cardDetails.cardClass == CardClass.Character)
             {
-                CharacterCardUIBoard character = (CharacterCardUIBoard)cardUI;
+                CharacterCardUIBoard character = cardUI as CharacterCardUIBoard;
                 if (character == null)
                 {
                     Reset();
@@ -425,6 +433,7 @@ public class MovementManager : MonoBehaviour
 
             cameraController.RemovePreventDrag();
             cameraController.LookToCard(selectedCardUIForMovement);
+            Reset();
         }
         else
             Reset();
@@ -432,7 +441,14 @@ public class MovementManager : MonoBehaviour
 
     IEnumerator RenderPath()
     {
-        if(Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2))
+        if (Input.mousePosition.x < 0 || Input.mousePosition.y < 0 || Input.mousePosition.x > Screen.width || Input.mousePosition.y > Screen.height)
+        {
+            StopAllCoroutines();
+            Reset();
+            yield return null;
+        }
+
+        if (Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2))
         {
             Reset();
             StopAllCoroutines();
@@ -479,6 +495,7 @@ public class MovementManager : MonoBehaviour
 
             if (moved + movementCost > movement)
             {
+                mouse.ChangeCursor("immovable");
                 StopAllCoroutines();
                 positions = positions.GetRange(0, p);
                 path = path.GetRange(0, p);
@@ -486,14 +503,17 @@ public class MovementManager : MonoBehaviour
                 lineRenderer.SetPositions(positions.ToArray());
                 break;
             }
+            else
+                mouse.RemoveCursor();
 
             moved += movementCost;
             rightMovementCosts[positions.Count - 1].text = moved.ToString();
             rightMovementCosts[positions.Count - 1].enabled = true;
 
-
-            Sprite spriteMovement = terrainManager.GetSpriteMovement(cardTilePos);
+            ShowPOI(cardTilePos);
             
+            Sprite spriteMovement = terrainManager.GetSpriteMovement(cardTilePos);
+
             if (spriteMovement == null)
             {
                 Reset();
@@ -503,7 +523,7 @@ public class MovementManager : MonoBehaviour
             if (rightMovementSprites.Length < positions.Count)
             {
                 Reset();
-                StopAllCoroutines(); 
+                StopAllCoroutines();
                 break;
             }
 
@@ -513,10 +533,31 @@ public class MovementManager : MonoBehaviour
             rightMovementSprites[positions.Count - 1].type = Image.Type.Simple;
             rightMovementSprites[positions.Count - 1].preserveAspect = true;
             rightMovementSprites[positions.Count - 1].sprite = spriteMovement;
-            rightMovementSprites[positions.Count - 1].enabled = true;            
+            rightMovementSprites[positions.Count - 1].enabled = true;
+            
         }
         yield return new WaitForSeconds(stepTime);
     }
+
+    public bool ShowPOI(Vector3Int cardTilePos)
+    {
+        bool poi = false;
+        BoardTile boardTile = board.GetTile(cardTilePos);
+        
+        // CASE 1: Point of Interest if foreign City
+        if (boardTile.HasCity() && Nations.alignments[boardTile.GetCity().GetOwner()] != game.GetHumanPlayer().GetAlignment())
+        {
+            MapTooltipEnum mapTooltip = selectedItems.IsHazardCreatureSelected() ? MapTooltipEnum.CITY_ATTACK : MapTooltipEnum.CITY_ENTER;
+            tilemapSelector.ShowTooltipAt(cardTilePos, mapTooltip);
+            poi = true;
+        }
+        // OTHER CASES SOON
+
+        if (!poi)
+            tilemapSelector.HideTooltip();
+        return poi;
+    }
+
 
     public short CheckMountedOrBoarded(short movementCost, Vector3Int cardTilePos, CardUI selectedCardUIForMovement)
     {

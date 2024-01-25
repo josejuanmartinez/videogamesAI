@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: A fierce group of Easterlings who served Dol Guldur
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 22
   factionAbility: 0
-  homeTown: balchoth_camp

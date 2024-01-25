@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: Galadriel patrols the woods of Lorien
   cardClass: 4
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 01000000

@@ -54,6 +54,7 @@ MonoBehaviour:
   descForAIGeneration: A Beorning from of the Anduin Vales
   cardClass: 1
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 0
   isAvatar: 0
@@ -62,7 +63,6 @@ MonoBehaviour:
   classes: 0400000001000000
   abilities: 
   isImmovable: 0
-  homeTown: beorn_house
   prowess: 4
   defence: 8
   influence: 0

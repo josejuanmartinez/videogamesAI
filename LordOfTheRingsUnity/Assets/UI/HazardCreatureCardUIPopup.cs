@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class HazardCreatureCardUIPopup : HazardCreatureCardUI
 {
     [Header("Hazard Card UI Popup")]
-    public GridLayoutGroup targettedGrid;
     public TextMeshProUGUI prowessText;
     public TextMeshProUGUI defenceText;
     public GameObject targetedPrefab;
@@ -29,12 +28,10 @@ public class HazardCreatureCardUIPopup : HazardCreatureCardUI
 
     public void UndrawTargetted()
     {
-        int children = targettedGrid.transform.childCount;
-        for (int i = 0; i < children; i++)
-            DestroyImmediate(targettedGrid.transform.GetChild(0).gameObject);
+        targetedPrefab.SetActive(false);
     }
     public void DrawTargetted()
     {
-        Instantiate(targetedPrefab, targettedGrid.transform);
+        targetedPrefab.SetActive(true);
     }
 }

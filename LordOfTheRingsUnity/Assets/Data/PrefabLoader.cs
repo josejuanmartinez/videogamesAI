@@ -1,7 +1,5 @@
 #if UNITY_EDITOR
-using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 using UnityEditor;
 using System;
 
@@ -40,9 +38,58 @@ public class PrefabLoader : MonoBehaviour
                 string guidPath = AssetDatabase.GUIDToAssetPath(file);
                 string player = guidPath.Replace(path, "").Split('/')[0];
                 foreach (NationsEnum candidate in Enum.GetValues(typeof(NationsEnum)))
+                {
                     if (candidate.ToString().ToLower() == player.ToLower())
+                    {
                         if (cardDetailsRepo.transform.Find("cards_" + player.ToLower()) != null)
-                            cardDetailsRepo.transform.Find("cards_" + player.ToLower()).GetComponent<InitialDeck>().AddCard(AssetDatabase.LoadAssetAtPath<GameObject>(guidPath));
+                        {
+                            GameObject cardPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(guidPath);
+                            CardDetails cardDetails = cardPrefab.GetComponent<CardDetails>();
+                            switch (cardDetails.cardClass)
+                            {
+                                case CardClass.Place:
+                                    break;
+                                case CardClass.Character:
+                                    (cardDetails as CharacterCardDetails).Initialize();
+                                    break;
+                                case CardClass.Object:
+                                    (cardDetails as ObjectCardDetails).Initialize();
+                                    break;
+                                case CardClass.Faction:
+                                    (cardDetails as FactionCardDetails).Initialize();
+                                    break;
+                                case CardClass.Event:
+                                    (cardDetails as EventCardDetails).Initialize();
+                                    break;
+                                case CardClass.HazardEvent:
+                                    (cardDetails as HazardEventCardDetails).Initialize();
+                                    break;
+                                case CardClass.HazardCreature:
+                                    (cardDetails as HazardCreatureCardDetails).Initialize();
+                                    break;
+                                case CardClass.Ally:
+                                    (cardDetails as AllyCardDetails).Initialize();
+                                    break;
+                                case CardClass.GoldRing:
+                                    (cardDetails as GoldRingDetails).Initialize();
+                                    break;
+                                case CardClass.Ring:
+                                    (cardDetails as RingCardDetails).Initialize();
+                                    break;
+                                case CardClass.NONE:
+                                    break;
+                            }
+                            //PrefabUtility.SavePrefabAsset(cardPrefab);
+                            cardDetailsRepo.transform.Find("cards_" + player.ToLower()).GetComponent<InitialDeck>().AddCard(cardPrefab);
+                        }
+                            
+                    }
+                        
+                    
+                }
+                    
+            
+                
             }
             //Debug.Log("PrefabLoader finished loading from disk prefabs at " + Time.realtimeSinceStartup);
         }

@@ -59,20 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: 42a46184048d3bf4faaaad40aff71508, type: 3}
   cardId: the_gift_of_foreseeing
-  initialOwner: 20
+  descForAIGeneration: 
   cardClass: 4
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 2
-  requiredFood: 10
-  requiredProd: 0
-  requiredGold: 10
-  requiredMetal: 10
-  requiredGems: 10
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
   abilities: 07000000
   eventType: 0
-  playableAtCity:
-  - lorien
+  playableAtCity: 

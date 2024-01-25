@@ -2,11 +2,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CardDescriptionSlot : MonoBehaviour
+public class CardDescriptionSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image imageIcon;
     public SimpleTooltip tooltip;
 
+    private Game game;
     private SpritesRepo spritesRepo;
     private TooltipRepo tooltipRepo;
 
@@ -16,6 +17,7 @@ public class CardDescriptionSlot : MonoBehaviour
     private bool awaken = false;
     void Awake()
     {
+        game = GameObject.Find("Game").GetComponent<Game>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         tooltipRepo = GameObject.Find("TooltipRepo").GetComponent<TooltipRepo>();
         awaken = true;
@@ -39,6 +41,9 @@ public class CardDescriptionSlot : MonoBehaviour
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (game.IsPopup())
+            return;
+
         if (tooltip != null)
             tooltip.ShowTooltip(leftTooltipInfo, rightTooltipInfo);
     }    

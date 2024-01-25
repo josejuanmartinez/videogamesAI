@@ -62,12 +62,13 @@ MonoBehaviour:
   descForAIGeneration: An apprentice of Pallando, a blue wizard
   cardClass: 7
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   allyClass: 1
   race: 0
   subRace: 10
   abilities: 
-  homeTown: 
   prowess: 0
   defence: 0
+  isImmovable: 0

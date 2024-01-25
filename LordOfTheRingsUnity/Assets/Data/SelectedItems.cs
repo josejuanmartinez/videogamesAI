@@ -105,6 +105,8 @@ public class SelectedItems : MonoBehaviour
         if (cardDetails == null)
             return;
 
+        cameraController.LookToCard(cardDetails);
+
         if (selection.GetSelectedCard() == cardDetails)
             return;
 
@@ -113,12 +115,12 @@ public class SelectedItems : MonoBehaviour
 
         selection.Select(cardDetails, owner);
 
+        placeDeckManager.RemoveCardToShow(placeDeckManager.GetCardToShow());
+
         if (board.GetCardManager().GetCardUI(cardDetails) == null)
             return;
 
         companyManagerLayout.Initialize(turn.GetCurrentPlayer());
-
-        cameraController.LookToCard(cardDetails);
     }
 
     public void UnselectCardDetails()

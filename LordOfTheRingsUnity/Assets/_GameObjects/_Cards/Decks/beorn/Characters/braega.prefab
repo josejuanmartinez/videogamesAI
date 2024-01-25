@@ -54,6 +54,7 @@ MonoBehaviour:
   descForAIGeneration: A River man living on the shores of the Anduin
   cardClass: 1
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 0
   isAvatar: 0
@@ -62,7 +63,6 @@ MonoBehaviour:
   classes: 01000000
   abilities: 08000000
   isImmovable: 0
-  homeTown: mathlaburg
   prowess: 3
   defence: 7
   influence: 0

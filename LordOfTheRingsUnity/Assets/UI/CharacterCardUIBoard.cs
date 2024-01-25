@@ -9,10 +9,11 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     [SerializeField]
     private Button button;
     [SerializeField]
-    //private AnimationActivationCondition activationCondition;
-    private ParticlesActivationCondition activationCondition;
-    [SerializeField]
     private CanvasGroup nextCanvasGroup;
+
+    private AnimationActivationCondition activationCondition;
+    private Image animationImage;
+    //private ParticlesActivationCondition activationCondition;
 
     [Header("Initialization")]
     [SerializeField]
@@ -27,6 +28,13 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     private bool isVisible;
     private Vector3 currentPosition;
 
+    void Awake()
+    {
+        activationCondition = GetComponentInChildren<AnimationActivationCondition>();
+        animationImage = activationCondition.gameObject.GetComponent<Image>();
+        colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
+        //activationCondition = GetComponentInChildren<ParticlesActivationCondition>();
+    }
 
     public bool Initialize()
     {
@@ -35,6 +43,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
 
     public bool Initialize(Vector2Int hex, string cardId, NationsEnum owner, short moved = 0)
     {
+        animationImage.color = colorManager.GetNationColor(owner);
         this.hex = hex;
         if (string.IsNullOrEmpty(cardId))
             cardId = gameObject.name;
@@ -109,9 +118,12 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
             return;
 
         boardTile = board.GetTile(hex);
-
+        
         if (boardTile == null)
             return;
+
+        if (selectedItems != null && selectedItems.GetSelectedMovableCard() == details)
+            button.Select();
 
         if (Input.GetKeyUp(KeyCode.Escape))
             isSelected = false;

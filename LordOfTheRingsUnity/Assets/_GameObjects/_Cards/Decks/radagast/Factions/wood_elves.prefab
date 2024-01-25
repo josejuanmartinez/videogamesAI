@@ -62,8 +62,8 @@ MonoBehaviour:
   descForAIGeneration: Elves of Mirkwood serving Thranduil
   cardClass: 3
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 0
   faction: 12
   factionAbility: 6
-  homeTown: caras_amarth

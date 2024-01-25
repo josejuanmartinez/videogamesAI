@@ -62,6 +62,9 @@ MonoBehaviour:
   descForAIGeneration: 
   cardClass: 8
   isUnique: 0
+  hometown: 
+  victoryPoints: 0
+  corruption: 0
   theOneRingMax: 12
   theOneRingMin: 12
   dwarvenRingMax: 12

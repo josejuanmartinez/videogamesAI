@@ -63,5 +63,7 @@ MonoBehaviour:
   cardClass: 3
   isUnique: 1
   hometown: dol_guldur
+  victoryPoints: 0
+  corruption: 0
   faction: 0
   factionAbility: 0

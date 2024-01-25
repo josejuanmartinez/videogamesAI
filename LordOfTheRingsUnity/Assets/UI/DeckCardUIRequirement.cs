@@ -11,6 +11,7 @@ public class DeckCardUIRequirement : MonoBehaviour, IPointerEnterHandler, IPoint
     public string requirementName;
     
     private SpritesRepo spritesRepo;
+    private Game game;
 
     private string leftTooltipInfo;
     private string rightTooltipInfo;
@@ -18,6 +19,7 @@ public class DeckCardUIRequirement : MonoBehaviour, IPointerEnterHandler, IPoint
     void Awake()
     {
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
+        game = GameObject.Find("Game").GetComponent<Game>();
     }
     public void Initialize(string stringId, int value)
     {
@@ -35,6 +37,8 @@ public class DeckCardUIRequirement : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (game.IsPopup())
+            return;
         tooltip.ShowTooltip(leftTooltipInfo, rightTooltipInfo);
     }
 }

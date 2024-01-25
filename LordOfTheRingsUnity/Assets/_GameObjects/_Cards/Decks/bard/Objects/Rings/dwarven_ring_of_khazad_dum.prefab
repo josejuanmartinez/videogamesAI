@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: a0ed6527afd21c94297ea2d44000cd59, type: 3}
   cardId: dwarven_ring_of_khazad_dum
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 1
+  hometown: 
   victoryPoints: 2
   corruption: 2
   objectSlot: 1

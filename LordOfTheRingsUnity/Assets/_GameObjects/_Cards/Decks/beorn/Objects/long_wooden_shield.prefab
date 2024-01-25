@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: c69dae2192debb843bf2446390c9f02c, type: 3}
   cardId: long_wooden_shield
-  initialOwner: 4
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 2
   objectSlot: 1

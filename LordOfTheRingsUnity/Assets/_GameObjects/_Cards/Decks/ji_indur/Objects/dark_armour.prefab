@@ -59,9 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: d2c519978a5bd50438d7c4a7844d098d, type: 3}
   cardId: dark_armour
-  initialOwner: 2
+  descForAIGeneration: 
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 0
   objectSlot: 3

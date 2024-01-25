@@ -1,11 +1,9 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AllyCardUIPopup : AllyCardUI
 {
     [Header("Character Card UI Popup")]
-    public GridLayoutGroup targettedGrid;
     public TextMeshProUGUI prowessText;
     public TextMeshProUGUI defenceText;
     public GameObject targetedPrefab;
@@ -27,12 +25,10 @@ public class AllyCardUIPopup : AllyCardUI
 
     public void UndrawTargetted()
     {
-        int children = targettedGrid.transform.childCount;
-        for (int i = 0; i < children; i++)
-            DestroyImmediate(targettedGrid.transform.GetChild(0).gameObject);
+        targetedPrefab.SetActive(false);
     }
     public void DrawTargetted()
     {
-        Instantiate(targetedPrefab, targettedGrid.transform);
+        targetedPrefab.SetActive(true);
     }
 }

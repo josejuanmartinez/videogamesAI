@@ -57,7 +57,11 @@ public class STController : MonoBehaviour
     private void UpdateShow()
     {
         if (showNow)
+        {
+            toolTipTextLeft.enabled = !string.IsNullOrEmpty(toolTipTextLeft.text);
+            toolTipTextRight.enabled = !string.IsNullOrEmpty(toolTipTextRight.text);
             rect.anchoredPosition = Input.mousePosition;
+        }            
         else
             rect.anchoredPosition = new Vector2(Screen.currentResolution.width * 1000, Screen.currentResolution.height * 1000);
     }

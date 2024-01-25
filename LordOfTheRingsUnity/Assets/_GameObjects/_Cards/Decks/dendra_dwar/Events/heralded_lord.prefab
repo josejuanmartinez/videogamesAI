@@ -62,6 +62,7 @@ MonoBehaviour:
   descForAIGeneration: The Nazgul is disguised as an emissary / Herald Lord of Men
   cardClass: 4
   isUnique: 0
+  hometown: 
   victoryPoints: 0
   corruption: 1
   abilities: 03000000

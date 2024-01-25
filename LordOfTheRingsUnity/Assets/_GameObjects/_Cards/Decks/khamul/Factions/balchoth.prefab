@@ -63,5 +63,7 @@ MonoBehaviour:
   cardClass: 3
   isUnique: 1
   hometown: balchoth_camp
+  victoryPoints: 0
+  corruption: 0
   faction: 22
   factionAbility: 0

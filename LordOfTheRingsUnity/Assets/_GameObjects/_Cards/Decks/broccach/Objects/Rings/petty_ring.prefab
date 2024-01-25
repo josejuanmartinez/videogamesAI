@@ -59,8 +59,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: a4e799c01d6ede74fa73a3fcadbba0df, type: 3}
   cardId: petty_ring
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 0
+  hometown: 
   victoryPoints: 1
   corruption: 1
   objectSlot: 3

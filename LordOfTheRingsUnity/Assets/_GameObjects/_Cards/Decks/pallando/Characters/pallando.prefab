@@ -55,6 +55,8 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: mithlond
+  victoryPoints: 0
+  corruption: 0
   isAvatar: 1
   race: 9
   subRace: 0

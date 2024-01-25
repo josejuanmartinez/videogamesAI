@@ -63,6 +63,7 @@ MonoBehaviour:
     Saruman in Isengard
   cardClass: 2
   isUnique: 0
+  hometown: 
   victoryPoints: 4
   corruption: 4
   objectSlot: 5

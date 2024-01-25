@@ -59,19 +59,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardSprite: {fileID: 21300000, guid: b03c5bb45eea789469786d02760413aa, type: 3}
   cardId: binding_ring
-  initialOwner: 17
+  descForAIGeneration: 
   cardClass: 9
   isUnique: 1
+  hometown: 
   victoryPoints: 1
   corruption: 2
-  requiredFood: 0
-  requiredProd: 0
-  requiredGold: 0
-  requiredMetal: 15
-  requiredGems: 15
-  requiredWood: 0
-  requiredHorses: 0
-  requiredLeather: 0
   objectSlot: 0
   requiredClass: 
   abilities: 
