@@ -260,4 +260,26 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         messageBeingShowing = false;
         yield return null;
     }
+
+    public void MoveToTopBoard()
+    {
+        if(IsCharacterCardUIBoard())
+        {
+            CharacterCardUIBoard cardUI = this as CharacterCardUIBoard;
+            if(cardUI != null)
+            {
+                BoardTile boardTile = board.GetTile(cardUI.GetHex());
+                boardTile?.SetFirstAtHex(this);
+            }
+        }
+        else if (IsHazardCreatureCardUIBoard())
+        {
+            HazardCreatureCardUIBoard cardUI = this as HazardCreatureCardUIBoard;
+            if (cardUI != null)
+            {
+                BoardTile boardTile = board.GetTile(cardUI.GetHex());
+                boardTile?.SetFirstAtHex(this);
+            }
+        }
+    }
 }

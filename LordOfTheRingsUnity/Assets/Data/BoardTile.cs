@@ -136,7 +136,7 @@ public class BoardTile
             return;
 
         int pos = totalUnits.IndexOf(card);
-        if (pos == -1)
+        if (pos < 1)
             return;
 
         int totalCards = cards.Count;

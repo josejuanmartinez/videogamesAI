@@ -27,10 +27,9 @@ public class HazardCreatureCardDetails: CardDetails
 
     public bool Initialize()
     {
-        if (!isAwaken)
-            Awake();
+        Awake();
         Resources requirements = new(0, 0, 0, 0, 0, 0, 0, 0);
-        requirements.resources[ResourceType.FOOD] += (prowess + defence) * 5;
+        requirements.resources[ResourceType.FOOD] += prowess + defence;
         switch (race)
         {
             case RacesEnum.Man:
@@ -271,7 +270,7 @@ public class HazardCreatureCardDetails: CardDetails
                 break;
         }
 
-        int totalCards = (int) Math.Ceiling((prowess + defence + hazardAbilities.Count() * 3) / 3f);
+        int totalCards = (int) Math.Ceiling((prowess + defence + (hazardAbilities.Count()*3)) / 3f);
         for(int i=0;i<totalCards;i++)
             cardTypes.Add(requiredCards.ToList()[UnityEngine.Random.Range(0, requiredCards.Count())]);
 

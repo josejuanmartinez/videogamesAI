@@ -33,6 +33,7 @@ public class SelectedCard
             {
                 movableCardSelected = details;
                 secondaryCardSelected = null;
+                movableCardUI.MoveToTopBoard();
             }
             else
             {
