@@ -6,18 +6,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public struct HUDMessage {
-    public string text;
-    public Color color;
-    public float delay;
-
-    public HUDMessage(string text, float delay, Color color)
-    {
-        this.text = text;
-        this.delay = delay;
-        this.color = color;
-    }
-}
 
 public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -55,7 +43,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         
     protected bool isAwaken = false;
     protected bool initialized;
-    protected bool messageBeingShowing;
+    protected bool messagesBeingShowed;
+    protected bool messageBeingShowed;
     protected List<HUDMessage> hudMessages;
 
     void Awake()
@@ -78,7 +67,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         isAwaken = true;
         hudMessages = new();
         initialized = false;
-        messageBeingShowing = false;
+        messagesBeingShowed = false;
     }
 
     public virtual bool Initialize(string cardId, NationsEnum owner, bool refresh = false)
@@ -129,12 +118,20 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Update()
     {
-        if (hudMessages.Count > 0 && !messageBeingShowing)
+        if (hudMessages.Count > 0 && !messagesBeingShowed)
+            StartCoroutine(ShowHUD());
+    }
+
+    IEnumerator ShowHUD()
+    {
+        messagesBeingShowed = true;
+        for (int i = 0; i<hudMessages.Count; i++)
         {
-            messageBeingShowing = true;
-            ShowMessage(hudMessages[0]);
-            hudMessages.RemoveAt(0);
+            ShowMessage(hudMessages[i]);
+            hudMessages.RemoveAt(i);
+            yield return new WaitUntil(() => !messageBeingShowed);
         }
+        messagesBeingShowed = false;
     }
 
     public bool IsCharacterCardUIBoard()
@@ -237,14 +234,17 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void AddMessage(string text, float delay, string color)
     {
         hudMessages.Add(new HUDMessage(text, delay, colorManager.GetColor(color)));
+        StartCoroutine(ShowHUD());
     }
     public void AddMessage(string text, float delay, Color color)
     {
         hudMessages.Add(new HUDMessage(text, delay, color));
+        StartCoroutine(ShowHUD());
     }
 
     public void ShowMessage(HUDMessage hudMessage)
     {
+        messageBeingShowed = true;
         message.SetActive(true);
         message.GetComponentInChildren<TextMeshProUGUI>().text = hudMessage.text;
         message.GetComponentInChildren<TextMeshProUGUI>().color = hudMessage.color;
@@ -257,7 +257,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         yield return new WaitForSeconds(hideMessageSeconds);
         message.GetComponent<Animation>().Rewind();
         message.SetActive(false);
-        messageBeingShowing = false;
+        messageBeingShowed = false;
         yield return null;
     }
 

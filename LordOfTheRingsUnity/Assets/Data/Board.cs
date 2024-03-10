@@ -197,12 +197,23 @@ public class Board: MonoBehaviour
     }
     public CardUI CreateCardUI(CardDetails cardDetails, SpawnCardLocation spawnCardLocation)
     {
+        CardUI card = null;
         if (cardDetails.cardClass == CardClass.Character)
-            return CreateCardUICharacter(cardDetails, spawnCardLocation);
+            card = CreateCardUICharacter(cardDetails, spawnCardLocation);
         else if (cardDetails.cardClass == CardClass.HazardCreature)
-            return CreateCardUIHazardCreature(cardDetails, spawnCardLocation);
-        else
+            card = CreateCardUIHazardCreature(cardDetails, spawnCardLocation);
+        
+        if (card == null)
             return null;
+        else
+        {
+            card.AddMessage(
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("spawned"),
+                1,
+                "success"
+            );
+            return card;
+        }
     }
 
     public CardUI CreateCardUICharacter(CardDetails cardDetails, SpawnCardLocation spawnCardLocation)

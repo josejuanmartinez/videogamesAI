@@ -364,6 +364,6 @@ public static class Nations
         },
     };
 
-    public static short INFLUENCE = 20;
+    public static short INFLUENCE = 40;
 
 }

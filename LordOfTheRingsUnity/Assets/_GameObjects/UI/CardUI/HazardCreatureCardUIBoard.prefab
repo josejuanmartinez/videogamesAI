@@ -6270,9 +6270,9 @@ Animation:
   m_GameObject: {fileID: 5554749376030701236}
   m_Enabled: 1
   serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: a2e8b1633a6a33e47ac43ed2d97d4be7, type: 2}
+  m_Animation: {fileID: 7400000, guid: 536c5f5295c9dbc48a79bad9c2d8f727, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: a2e8b1633a6a33e47ac43ed2d97d4be7, type: 2}
+  - {fileID: 7400000, guid: 536c5f5295c9dbc48a79bad9c2d8f727, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -6750,7 +6750,6 @@ MonoBehaviour:
   debuffedIcon: {fileID: 2730611239789892342}
   blindIcon: {fileID: 5681954041262423577}
   button: {fileID: 9127929393278098527}
-  particleActivationCondition: {fileID: 4112834195909289749}
   nextCanvasGroup: {fileID: 4000223843466834221}
   hex: {x: 0, y: 0}
 --- !u!111 &2207900405448582074

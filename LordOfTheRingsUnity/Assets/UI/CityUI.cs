@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -27,6 +27,8 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private NationRegionsEnum regionId;
     [SerializeField]
     private bool isHaven;
+    
+    public GameObject message;
 
     [Header("Automatically Generated")]
     [SerializeField] 
@@ -102,6 +104,12 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private PlaceDeck placeDeckManager;
     private FOWManager fowManager;
 
+    protected bool messagesBeingShowed;
+    protected bool messageBeingShowed;
+    private HUDMessageManager hudMessageManager;
+    protected List<HUDMessage> hudMessages;
+    protected ColorManager colorManager;
+
     private bool initialized = false;
     
 
@@ -120,10 +128,13 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         terrainManager = GameObject.Find("TerrainManager").GetComponent<TerrainManager>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
-        
+        hudMessageManager = GameObject.Find("HUDMessageManager").GetComponent<HUDMessageManager>();
+        colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
+
+        hudMessages = new List<HUDMessage>();
         initialized = false;
         
-        health = 100;
+        health = 50;
 
         Hide();
     }
@@ -213,6 +224,9 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void Update()
     {
+        if (hudMessages.Count > 0 && !messagesBeingShowed)
+            StartCoroutine(ShowHUD());
+
         if (!initialized || refresh)
         {
             Initialize(refresh);
@@ -231,6 +245,18 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             isClicked = false;
 
         displacement.transform.localPosition = new Vector3(0, DisplacementPixels.down, 0);
+    }
+
+    IEnumerator ShowHUD()
+    {
+        messagesBeingShowed = true;
+        for (int i = 0; i < hudMessages.Count; i++)
+        {
+            ShowMessage(hudMessages[i]);
+            hudMessages.RemoveAt(i);
+            yield return new WaitUntil(() => !messageBeingShowed);
+        }
+        messagesBeingShowed = false;
     }
 
     public bool IsInitialized()
@@ -323,6 +349,13 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void Damage(int damage)
     {
         health -= damage;
+
+        hudMessageManager.ShowMessage(
+            this,
+            string.Format("-{0}", damage.ToString()),
+            false
+        );
+
     }
 
     public List<string> GetAutomaticAttacks(NationsEnum nation)
@@ -574,5 +607,34 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public bool HasPort()
     {
         return hasPort;
+    }
+
+
+    public void AddMessage(string text, float delay, string color)
+    {
+        hudMessages.Add(new HUDMessage(text, delay, colorManager.GetColor(color)));
+    }
+    public void AddMessage(string text, float delay, Color color)
+    {
+        hudMessages.Add(new HUDMessage(text, delay, color));
+    }
+
+    public void ShowMessage(HUDMessage hudMessage)
+    {
+        messageBeingShowed = true;
+        message.SetActive(true);
+        message.GetComponentInChildren<TextMeshProUGUI>().text = hudMessage.text;
+        message.GetComponentInChildren<TextMeshProUGUI>().color = hudMessage.color;
+        message.GetComponent<Animation>().Play();
+        StartCoroutine(HideMessage(hudMessage.delay));
+    }
+
+    IEnumerator HideMessage(float hideMessageSeconds)
+    {
+        yield return new WaitForSeconds(hideMessageSeconds);
+        message.GetComponent<Animation>().Rewind();
+        message.SetActive(false);
+        messageBeingShowed = false;
+        yield return null;
     }
 }

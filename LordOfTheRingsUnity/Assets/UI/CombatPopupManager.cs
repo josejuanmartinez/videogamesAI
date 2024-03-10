@@ -264,12 +264,6 @@ public class CombatPopupManager : Popup
         
         yield return new WaitForSeconds(secondsToResult);
 
-        hudMessageManager.ShowMessage(
-            leader,
-            noHurts ? GameObject.Find("Localization").GetComponent<Localization>().Localize("city_damaged") : GameObject.Find("Localization").GetComponent<Localization>().Localize("city_defended"),
-            noHurts
-        );
-
         // PLAY OBJECT
         HidePopup();
 
@@ -278,7 +272,9 @@ public class CombatPopupManager : Popup
         {
             int prowess = hazardCreatureCardUI.GetTotalProwess();
             if (noHurts)
+            {
                 city.Damage(prowess);
+            }                
             else
             {
                 if (hazardCreatureCardUI.GetHazardCreatureDetails() != null)
@@ -286,6 +282,16 @@ public class CombatPopupManager : Popup
                         city.Damage(prowess);
             }
         }
+        if (leader != null)
+        {
+            leader.AddMessage(
+                noHurts ? GameObject.Find("Localization").GetComponent<Localization>().Localize("city_damaged") : GameObject.Find("Localization").GetComponent<Localization>().Localize("city_defended"),
+                1,
+                "success"
+            );
+        }
+        
+
         yield return null;
     }
 
