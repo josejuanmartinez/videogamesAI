@@ -55,14 +55,14 @@ MonoBehaviour:
   cardClass: 1
   isUnique: 1
   hometown: riavod
-  victoryPoints: 0
+  victoryPoints: 5
   corruption: 0
   isAvatar: 1
   race: 0
   subRace: 8
   classes: 00000000
   abilities: 00000000
-  isImmovable: 1
+  isImmovable: 0
   prowess: 5
   defence: 9
   influence: 3

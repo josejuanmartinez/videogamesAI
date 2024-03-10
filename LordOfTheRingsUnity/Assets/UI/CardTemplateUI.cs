@@ -72,7 +72,6 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     protected DeckManager deck;
     protected Game game;
     protected ManaManager manaManager;
-    protected ContentGenerator contentGenerator;
 
     protected bool initialized;
     protected bool isAwaken = false;
@@ -99,8 +98,6 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         deck = GameObject.Find("DeckManager").GetComponent<DeckManager>();
         game = GameObject.Find("Game").GetComponent<Game>();
         manaManager = GameObject.Find("ManaManager").GetComponent<ManaManager>();
-        if (GameObject.Find("ContentGenerator")!= null)
-            contentGenerator = GameObject.Find("ContentGenerator").GetComponent<ContentGenerator>();
 
         initialized = false;
         animate = false;
@@ -334,27 +331,6 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         quote.text = GameObject.Find("Localization").GetComponent<Localization>().LocalizeQuote(cardDetails.cardId);
         quote.enabled = !string.IsNullOrEmpty(quote.text);
 
-        #if UNITY_EDITOR
-        if (contentGenerator != null &&
-            string.IsNullOrEmpty(quote.text) &&
-            !contentGenerator.IsSleeping() &&
-            !contentGenerator.Generating() &&
-            contentGenerator.StillNotGenerated(cardDetails.cardId) && 
-            !contentGenerator.Ignored(cardDetails.cardId))
-        {
-            if (UnityEditor.EditorUtility.DisplayDialog("Generate with AI?", cardDetails.cardId, "OK", "Ignore"))
-                contentGenerator.Generate(cardDetails.cardId, GameObject.Find("Localization").GetComponent<Localization>().CreateDescriptionForGeneration(cardDetails));
-            else
-            {
-                if (UnityEditor.EditorUtility.DisplayDialog("Sleep?", cardDetails.cardId, "OK", "No"))
-                    contentGenerator.AddIgnore(cardDetails.cardId, true);
-                else
-                    contentGenerator.AddIgnore(cardDetails.cardId, false);
-            }
-                
-        }
-        #endif
-
         ClearAllRequirements();
         if(!isHover)
             CreateConditions();
@@ -435,28 +411,6 @@ public class CardTemplateUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         ClearAllRequirements();
         if(!isHover)
             ShowProduction();
-
-        #if UNITY_EDITOR
-        if (contentGenerator != null &&
-            string.IsNullOrEmpty(quote.text) &&
-            !contentGenerator.IsSleeping() &&
-            !contentGenerator.Generating() &&
-            contentGenerator.StillNotGenerated(this.city.GetCityId()) &&
-            !contentGenerator.Ignored(this.city.GetCityId()))
-        {
-            if (UnityEditor.EditorUtility.DisplayDialog("Generate with AI?", this.city.GetCityId(), "OK", "Ignore"))
-                contentGenerator.Generate(this.city.GetCityId(), GameObject.Find("Localization").GetComponent<Localization>().CreateDescriptionForGeneration(this.city));
-            else
-            {
-                if (UnityEditor.EditorUtility.DisplayDialog("Sleep?", this.city.GetCityId(), "OK", "No"))
-                    contentGenerator.AddIgnore(this.city.GetCityId(), true);
-                else
-                    contentGenerator.AddIgnore(this.city.GetCityId(), false);
-            }
-
-        }
-        #endif
-
 
         initialized = true;
         return true;

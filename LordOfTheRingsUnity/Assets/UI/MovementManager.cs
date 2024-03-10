@@ -25,7 +25,13 @@ public class MovementManager : MonoBehaviour
 
     public static Vector3Int[] directionsUnevenY = new Vector3Int[6] {Vector3Int.left, Vector3Int.up, Vector3Int.right + Vector3Int.up,
                                                  Vector3Int.right,Vector3Int.right + Vector3Int.down, Vector3Int.down};
-    
+
+    public static short LEFT = 0;
+    public static short UP_LEFT = 1;
+    public static short UP_RIGHT = 2;
+    public static short RIGHT = 3;
+    public static short DOWN_RIGHT = 4;
+    public static short DOWN_LEFT = 5;
 
     // **** REFERENCES TO STATIC OBJECTS *****
     private CellHover cellHover;
@@ -209,7 +215,7 @@ public class MovementManager : MonoBehaviour
                 return;
             }
 
-            mouse.RemoveCursor();
+            //mouse.RemoveCursor();
 
             Vector2Int hexSelected = hex;
             Vector3Int currentCellPos = new(hexSelected.x, hexSelected.y, 0);
@@ -277,6 +283,13 @@ public class MovementManager : MonoBehaviour
         movement = MovementConstants.unitsMovement;
         lineRenderer.positionCount = positions.Count;
         lineRenderer.SetPositions(positions.ToArray());
+        mouse.RemoveCursor();
+    }
+
+    public void Move(List<Vector3Int> path)
+    {
+        this.path = path;
+        StartCoroutine(MovePath());
     }
 
     IEnumerator MovePath()
@@ -318,7 +331,8 @@ public class MovementManager : MonoBehaviour
 
             int currentPointIndex = 0;
 
-            int maxPath = positions.Count;
+            //int maxPath = positions.Count;
+            int maxPath = path.Count;
 
             if (maxPath < 2)
                 yield return null;
@@ -504,7 +518,11 @@ public class MovementManager : MonoBehaviour
                 break;
             }
             else
-                mouse.RemoveCursor();
+            {
+                mouse.ChangeCursor("movement");
+                //mouse.RemoveCursor();
+            }
+                
 
             moved += movementCost;
             rightMovementCosts[positions.Count - 1].text = moved.ToString();

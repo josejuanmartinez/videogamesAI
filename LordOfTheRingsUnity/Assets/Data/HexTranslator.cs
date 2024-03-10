@@ -104,7 +104,7 @@ public static class HexTranslator
     }
     public static List<Vector3Int> GetSurroundings(Vector3Int cell)
     {
-        List<Vector3Int> result = new List<Vector3Int>() { cell };
+        List<Vector3Int> result = new () { cell };
         bool even = (cell.y % 2 == 0);
         Vector3Int[] directions = even ? MovementManager.directionsEvenY : MovementManager.directionsUnevenY;
         foreach(Vector3Int direction in directions)
@@ -114,5 +114,11 @@ public static class HexTranslator
             result.Add(res);
         }
         return result;
+    }
+    public static List<Vector3Int> GetSurroundingsWithoutSelf(Vector2Int cell)
+    {
+        List<Vector3Int> allCells = GetSurroundings(new Vector3Int(cell.x, cell.y, 0));
+        allCells.RemoveAt(0);
+        return allCells;
     }
 }

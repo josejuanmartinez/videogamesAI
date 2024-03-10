@@ -171,7 +171,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      elven_queen_0: 5532053773884298967
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
