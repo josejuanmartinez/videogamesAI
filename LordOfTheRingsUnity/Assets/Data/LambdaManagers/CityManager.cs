@@ -139,4 +139,10 @@ public class CityManager
         IEnumerable<CityUI> cities = board.GetTiles().Values.Where(x => x.HasCity()).Select(x => x.GetCity()).Where(x => x.GetCityId() == cityId);
         return cities.Count() > 0 ? cities.First() : null;
     }
+
+    public Vector2Int GetCityHex(string cityId)
+    {
+        CityUI city = GetCityUI(cityId);
+        return board.GetTiles().Where(x => x.Value.GetCity() == city).DefaultIfEmpty(new KeyValuePair<Vector2Int, BoardTile>(new Vector2Int(-1, -1), null)).FirstOrDefault().Key;
+    }
 }

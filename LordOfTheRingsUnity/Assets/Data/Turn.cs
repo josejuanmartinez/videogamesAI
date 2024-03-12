@@ -23,6 +23,7 @@ public class Turn : MonoBehaviour
     
     private CameraController cameraController;
     private SpritesRepo spritesRepo;
+    private LookDropdown lookDropdown;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class Turn : MonoBehaviour
         game = GameObject.Find("Game").GetComponent<Game>();
         cameraController = Camera.main.GetComponent<CameraController>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
+        lookDropdown = GameObject.Find("LookDropdown").GetComponent<LookDropdown>();
         isInitialized = false;
         newTurnLoaded = false;
         turnNumber = -1;

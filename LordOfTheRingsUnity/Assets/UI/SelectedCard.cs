@@ -20,6 +20,12 @@ public class SelectedCard
         owner = NationsEnum.ABANDONED;
         board = GameObject.Find("Board").GetComponent<Board>();
     }
+
+    public void Select(CardUI cardUI)
+    {
+        Select(cardUI.GetDetails(), cardUI.GetOwner());
+    }
+
     public void Select(CardDetails details, NationsEnum owner)
     {
         if (details == null)

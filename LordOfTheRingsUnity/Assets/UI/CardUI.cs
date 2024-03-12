@@ -40,6 +40,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected ColorManager colorManager;
     protected DeckManager deckManager;
     protected FOWManager fowManager;
+    protected LookDropdown lookDropdown;
         
     protected bool isAwaken = false;
     protected bool initialized;
@@ -64,6 +65,7 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
         deckManager = GameObject.Find("DeckManager").GetComponent<DeckManager>();
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
+        lookDropdown = GameObject.Find("LookDropdown").GetComponent<LookDropdown>();
         isAwaken = true;
         hudMessages = new();
         initialized = false;

@@ -6,7 +6,18 @@ public class Mouse : MonoBehaviour
     public List<string> mouseSpritesNames;
     public List<Texture2D> mouseSpritesSprites;
 
-    bool defaultCursor = true;
+    bool defaultCursor;
+    string currentCursor;
+
+    public void Awake()
+    {
+        currentCursor = string.Empty;
+    }
+
+    public void Update()
+    {
+        defaultCursor = currentCursor == string.Empty;
+    }
 
     public void ChangeCursor(string spriteId)
     {
@@ -22,13 +33,13 @@ public class Mouse : MonoBehaviour
             RemoveCursor();
             return;
         }
-
+        currentCursor = spriteId;
         Cursor.SetCursor(
             mouseSpritesSprites[index], 
             new Vector2(mouseSpritesSprites[index].width / 2, mouseSpritesSprites[index].height / 2), 
             CursorMode.ForceSoftware
         );
-        defaultCursor = false;
+        
     }
 
     public void RemoveCursor()
@@ -36,7 +47,16 @@ public class Mouse : MonoBehaviour
         if(!defaultCursor)
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
-            defaultCursor = true;
+            currentCursor = string.Empty;
+        }
+    }
+
+    public void RemoveCursor(string spriteId)
+    {
+        if(spriteId == currentCursor)
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+            currentCursor= string.Empty;
         }
     }
 

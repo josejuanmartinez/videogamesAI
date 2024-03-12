@@ -66,16 +66,25 @@ public class TilemapSelector : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape))
             Reset();
 
+        if (hoverPos == null)
+            tooltip.SetActive(false);
 
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseWorldPos;
+        try
+        {
+            mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+        catch
+        {
+            Debug.Log("Mouse outside screen. Tilemapselector prevented from continuing...");
+            return;
+        }
+        
         Vector3Int cardTilePos = selectionTilemap.WorldToCell(mouseWorldPos);
         Vector3 cardCellCenter = selectionTilemap.CellToWorld(cardTilePos);
         cardCellCenter = new Vector3(cardCellCenter.x, cardCellCenter.y, 0);
             
         cardTilePos = selectionTilemap.WorldToCell(cardCellCenter);
-        
-        if (hoverPos == null)
-            tooltip.SetActive(false);
 
         if (cardTilePos != hoverPos)
         {

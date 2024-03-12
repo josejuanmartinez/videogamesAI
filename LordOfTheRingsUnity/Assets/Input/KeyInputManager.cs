@@ -1,18 +1,43 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyInputManager : MonoBehaviour
 {
-    SelectedItems selectedItems;
-    MovementManager movementManager;
+    private SelectedItems selectedItems;
+    private MovementManager movementManager;
+    private Game game;
+    private Board board;
+    private ResourcesManager resourcesManager;
+    private Turn turn;
+    private ManaManager manaManager;
+
+    private readonly short addition = 100;
     void Awake()
     {
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
         movementManager = GameObject.Find("MovementManager").GetComponent<MovementManager>();
+        game = GameObject.Find("Game").GetComponent<Game>();
+        board = GameObject.Find("Board").GetComponent<Board>();
+        resourcesManager = GameObject.Find("ResourcesManager").GetComponent<ResourcesManager>();
+        turn = GameObject.Find("Turn").GetComponent<Turn>();
+        manaManager = GameObject.Find("ManaManager").GetComponent<ManaManager>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        if (!game.FinishedLoading())
+            return;
+
+        MovementKeys();
+        SelectionKeys();
+        LookDropdownKeys();
+        CheatKeys();
+    }
+
+    void MovementKeys()
     {
         short direction = -1;
         if (Input.GetKeyUp(KeyCode.A))
@@ -27,7 +52,7 @@ public class KeyInputManager : MonoBehaviour
             direction = MovementManager.DOWN_RIGHT;
         else if (Input.GetKeyUp(KeyCode.Z))
             direction = MovementManager.DOWN_LEFT;
-        
+
         if (direction == -1)
             return;
 
@@ -84,10 +109,59 @@ public class KeyInputManager : MonoBehaviour
                 direction = MovementManager.DOWN_LEFT;
             if (direction != -1)
             {
-                Vector3Int hex3D = new (hex.x, hex.y, 0);
+                Vector3Int hex3D = new(hex.x, hex.y, 0);
                 Vector3Int newHex = surroundings[direction];
                 movementManager.Move(new List<Vector3Int>() { hex3D, newHex });
-            }            
+            }
+        }
+    }
+
+    void SelectionKeys()
+    {
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            selectedItems.UnselectAll();
+            GameObject.Find("LookDropdown").GetComponent<LookDropdown>().Hide();
+            return;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            CardUI next = board.GetNextCardUI(selectedItems.GetSelection().GetSelectedMovableCardUI());
+            if (next != null)
+                selectedItems.SelectCardDetails(next.GetDetails(), next.GetOwner());
+        }
+        selectedItems.CheckIfShowLastChar();
+    }
+
+    void LookDropdownKeys()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKeyUp(KeyCode.L))
+                GameObject.Find("LookDropdown").GetComponent<LookDropdown>().Toggle();
+    }
+
+    void CheatKeys()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                resourcesManager.AddToStores(turn.GetCurrentPlayer(),
+                    new(addition, addition, addition, addition, addition, addition, addition, addition));
+
+                board.GetCharacterManager().RefreshMovement(turn.GetCurrentPlayer());
+                board.GetHazardCreaturesManager().RefreshMovement(turn.GetCurrentPlayer());
+
+                List<CardTypesEnum> accumulatedMana = new();
+                foreach (CardTypesEnum cardType in Enum.GetValues(typeof(CardTypesEnum)))
+                    for (int i = 0; i < addition; i++)
+                        accumulatedMana.Add(cardType);
+
+                manaManager.AddMana(turn.GetCurrentPlayer(), accumulatedMana);
+                return;
+            }
         }
     }
 }

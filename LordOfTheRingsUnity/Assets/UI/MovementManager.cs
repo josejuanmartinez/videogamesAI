@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
+using System.Dynamic;
 
 public class MovementManager : MonoBehaviour
 {
@@ -283,7 +284,8 @@ public class MovementManager : MonoBehaviour
         movement = MovementConstants.unitsMovement;
         lineRenderer.positionCount = positions.Count;
         lineRenderer.SetPositions(positions.ToArray());
-        mouse.RemoveCursor();
+        mouse.RemoveCursor("immovable");
+        mouse.RemoveCursor("movement");
     }
 
     public void Move(List<Vector3Int> path)
@@ -388,9 +390,20 @@ public class MovementManager : MonoBehaviour
                 lastHex = new Vector2Int(targetCell.x, targetCell.y);
 
                 if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
+                {
+                    if ((selectedCardUIForMovement as CharacterCardUIBoard).GetTotalMovement() < moved + movementCost)
+                        break;
                     (selectedCardUIForMovement as CharacterCardUIBoard).AddMovement(movementCost);
+                    moved = (selectedCardUIForMovement as CharacterCardUIBoard).GetMoved();
+                }
                 else if (selectedCardUIForMovement.GetCardClass() == CardClass.HazardCreature)
+                {
+                    if ((selectedCardUIForMovement as HazardCreatureCardUIBoard).GetTotalMovement() < moved + movementCost)
+                        break;
                     (selectedCardUIForMovement as HazardCreatureCardUIBoard).AddMovement(movementCost);
+                    moved = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetMoved();
+                }
+                
 
                 while (currentLerpTime < 1f)
                 {
@@ -447,6 +460,9 @@ public class MovementManager : MonoBehaviour
 
             cameraController.RemovePreventDrag();
             cameraController.LookToCard(selectedCardUIForMovement);
+
+            selectedCardUIForMovement.AddMessage(string.Format("{0}/{1} moved", moved, movement), 1f, Color.white);
+
             Reset();
         }
         else
@@ -671,7 +687,7 @@ public class MovementManager : MonoBehaviour
             bool res = combatPopupManager.Initialize(
                 selectedCardUIForMovement,
                 toCombat,
-                tileInfo.terrain.terrainType.ToString()
+                tileInfo.terrain.terrainType.ToString().ToLower()
                 );
             if (res)
                 combatPopupManager.ShowPopup();

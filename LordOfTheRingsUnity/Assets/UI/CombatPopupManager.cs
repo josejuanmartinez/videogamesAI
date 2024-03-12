@@ -59,6 +59,7 @@ public class CombatPopupManager : Popup
 }
     public bool Initialize(CardUI leader, CityUI city)
     {
+        /* CITY ATTACK TO CHARACTER OR CREATURES  */
         if (!isAwaken)
             Awake();
 
@@ -135,7 +136,7 @@ public class CombatPopupManager : Popup
     }
     public bool Initialize(CardUI leader, List<Tuple<string, NationsEnum>> attackingCards, string placeId)
     {
-        /* MOVEMENT ATTACK TO CHARACTERS OR CREATURES */
+        /* MOVEMENT DEFENSE FOR CHARACTERS OR ARMIES */
 
         if (!isAwaken)
             Awake();
@@ -150,8 +151,6 @@ public class CombatPopupManager : Popup
         if (attackingCards == null)
             return false;
         if (attackingCards.Count < 1)
-            return false;
-        if (!leaderCardDetails.IsClassOf(CardClass.Character))
             return false;
 
         noHurts = true;
@@ -175,16 +174,30 @@ public class CombatPopupManager : Popup
             string attack = attackTuple.Item1;
             NationsEnum attackOwner = attackTuple.Item2;
 
-            GameObject goAttacker = Instantiate(
-                leaderCardDetails.IsClassOf(CardClass.Character) ? attackerToCompany : attackerToCreature,
+            if (leaderCardDetails.IsClassOf(CardClass.Character))
+            {
+                GameObject goAttacker = Instantiate(
+                attackerToCompany,
                 attackersLayout.transform);
-            
-            goAttacker.GetComponent<Attacker>().Initialize(
-                attack, 
-                combatCompanyManager.GetAllCombatCards(),
-                counter,
-                attackOwner
+                goAttacker.GetComponent<AttackerToCompany>().Initialize(
+                    attack,
+                    combatCompanyManager.GetAllCombatCards(),
+                    counter,
+                    attackOwner
                 );
+            }
+            else if (leaderCardDetails.IsClassOf(CardClass.HazardCreature))
+            {
+                GameObject goAttacker = Instantiate(
+                attackerToCreature,
+                attackersLayout.transform);
+                goAttacker.GetComponent<AttackerToCreature>().Initialize(
+                    attack,
+                    combatCompanyManager.GetAllCombatCards(),
+                    counter,
+                    attackOwner
+                );
+            }
             counter++;
             if (counter >= maxAttacks)
                 break;
@@ -206,7 +219,7 @@ public class CombatPopupManager : Popup
         
         processedAttacks++;
 
-        if(processedAttacks == attackersNum)
+        if(processedAttacks >= attackersNum)
         {
             switch (combatPopupType)
             {
@@ -214,6 +227,7 @@ public class CombatPopupManager : Popup
                     StartCoroutine(ApplyResultsAutomaticAttack());
                     break;
                 case CombatPopupType.MovementAttack:
+                    StartCoroutine(ApplyResultsMovementAttack());
                     break;
                 case CombatPopupType.CreatureAttack:
                     StartCoroutine(ApplyResultsCreatureAttack());
@@ -291,6 +305,16 @@ public class CombatPopupManager : Popup
             );
         }
         
+
+        yield return null;
+    }
+    IEnumerator ApplyResultsMovementAttack()
+    {
+        /* RESULTS ON MOVEMENT DEFENSE*/
+
+        yield return new WaitForSeconds(secondsToResult);
+
+        HidePopup();
 
         yield return null;
     }

@@ -31,25 +31,6 @@ public class SelectedItems : MonoBehaviour
         game = GameObject.Find("Game").GetComponent<Game>();
     }
 
-    private void Update()
-    {
-        if (!game.FinishedLoading())
-            return;
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            UnselectAll();
-            return;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Tab))
-        {
-            CardUI next = board.GetNextCardUI(selection.GetSelectedMovableCardUI());
-            if (next != null)
-                SelectCardDetails(next.GetDetails(), next.GetOwner());
-        }
-        CheckIfShowLastChar();
-    }
-
     public void CheckIfShowLastChar()
     {
         if (selection == null)
@@ -90,6 +71,10 @@ public class SelectedItems : MonoBehaviour
         selection.Select(city);
         deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
         cameraController.LookToCity(city);
+    }
+    public void SelectCardDetails(CardUI card)
+    {
+        SelectCardDetails(card.GetDetails(), card.GetOwner());
     }
 
     public void UnselectCityDetails()
@@ -192,6 +177,10 @@ public class SelectedItems : MonoBehaviour
     {
         SelectCityDetails(cityUI);
     }
+    public void SelectCardUI(CardUI cardUI)
+    {
+        SelectCardDetails(cardUI);
+    }
 
     public CardDetails GetSelectedCardDetails()
     {
@@ -260,5 +249,10 @@ public class SelectedItems : MonoBehaviour
         if(selection == null)
             return new List<CardDetails>();
         return selection.GetCompany();
+    }
+
+    public SelectedCard GetSelection()
+    {
+        return selection;
     }
 }
