@@ -21,6 +21,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
     protected Vector2Int hex;
 
     private BoardTile boardTile;
+    private MovementManager movementManager;
     private bool isSelected;
     private short moved;
     private bool isMoving;
@@ -31,6 +32,7 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
         activationCondition = GetComponentInChildren<AnimationActivationCondition>();
         animationImage = activationCondition.gameObject.GetComponent<Image>();
         colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
+        movementManager = GameObject.Find("MovementManager").GetComponent<MovementManager>();
         //activationCondition = GetComponentInChildren<ParticlesActivationCondition>();
     }
 
@@ -141,6 +143,8 @@ public class HazardCreatureCardUIBoard : HazardCreatureCardUI, IPointerEnterHand
 
         isVisible = game.GetHumanPlayer().SeesTile(hex);
         isVisible &= !t.IsHiddenByOtherCharacter(this);
+        isVisible &= (!movementManager.renderingPath || selectedItems.GetSelectedMovableCardUI() == this);
+
         bool visibleAfter = isVisible;
 
         if (visibleBefore != visibleAfter)

@@ -113,7 +113,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         alignmentIcon.sprite = spritesRepo.GetSprite(Nations.alignments[owner].ToString());
 
         initialized = true;
-
         //Debug.Log(string.Format("{0} finished loading at {1}", cardObject.name, Time.realtimeSinceStartup));
         return initialized;
     }

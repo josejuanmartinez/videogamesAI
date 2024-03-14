@@ -129,10 +129,18 @@ public class DeckManager : MonoBehaviour
         return humanCards.GetHandCardGameObject(cardShown);
     }
 
-    public void DiscardAndDraw(NationsEnum nation, CardDetails card, bool discarded)
+    public void RemoveFromHandAndDraw(NationsEnum nation, CardDetails card)
     {
-        cardsOfPlayer.Find(x => x.GetNation() == nation).DiscardAndDraw(card, discarded);
+        cardsOfPlayer.Find(x => x.GetNation() == nation).RemoveFromHandAndDraw(card);
         placeDeckManager.RemoveCardToShow(new HoveredCard(nation, card.cardId, card.cardClass));
+    }
+    public void RemoveFromHandAndDraw(Tuple<string, NationsEnum> cardTuple)
+    {
+        CardDetails details = cardRepo.GetCardDetails(cardTuple.Item1, cardTuple.Item2);
+        if (details == null)
+            return;
+        cardsOfPlayer.Find(x => x.GetNation() == cardTuple.Item2).RemoveFromHandAndDraw(details);
+        placeDeckManager.RemoveCardToShow(new HoveredCard(cardTuple.Item2, details.cardId, details.cardClass));
     }
 
     public string CanSpawnCharacterAtHome(CardDetails cardDetails, NationsEnum owner)

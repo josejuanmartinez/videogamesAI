@@ -43,6 +43,10 @@ public class CombatPopupManager : Popup
 
     private CombatPopupType combatPopupType;
 
+    private List<Tuple<string, NationsEnum>> selectedCardToAttack;
+    private CardDetailsRepo cardRepo;
+
+
     void Awake()
     {
         hudMessageManager = GameObject.Find("HUDMessageManager").GetComponent<HUDMessageManager>();
@@ -51,7 +55,8 @@ public class CombatPopupManager : Popup
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         board = GameObject.Find("Board").GetComponent<Board>();
-
+        cardRepo = GameObject.Find("CardDetailsRepo").GetComponent<CardDetailsRepo>();
+        selectedCardToAttack = new();
         processedAttacks = 0;
         attackersNum = 0;
         noHurts = true;
@@ -171,6 +176,7 @@ public class CombatPopupManager : Popup
         short counter = 0;
         foreach (Tuple<string, NationsEnum> attackTuple in attackingCards)
         {
+            bool found = false;
             string attack = attackTuple.Item1;
             NationsEnum attackOwner = attackTuple.Item2;
 
@@ -185,6 +191,7 @@ public class CombatPopupManager : Popup
                     counter,
                     attackOwner
                 );
+                found = true;
             }
             else if (leaderCardDetails.IsClassOf(CardClass.HazardCreature))
             {
@@ -197,11 +204,17 @@ public class CombatPopupManager : Popup
                     counter,
                     attackOwner
                 );
+                found = true;
             }
-            counter++;
-            if (counter >= maxAttacks)
-                break;
+            if (found)
+            {
+                counter++;
+                selectedCardToAttack.Add(attackTuple);
+                if (counter >= attackersNum)
+                    break;
+            }            
         }
+        attackersNum = Math.Min(attackersNum, counter);
         ShowPopup();
 
         return true;
@@ -230,7 +243,7 @@ public class CombatPopupManager : Popup
                     StartCoroutine(ApplyResultsMovementAttack());
                     break;
                 case CombatPopupType.CreatureAttack:
-                    StartCoroutine(ApplyResultsCreatureAttack());
+                    StartCoroutine(ApplyResultsAttackToCity());
                     break;
             }
         }
@@ -262,14 +275,14 @@ public class CombatPopupManager : Popup
                 CharacterCardUIBoard original = cardUI as CharacterCardUIBoard;
                 if (original != null)
                     original.AddObject(item);
-                deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), item, false);
+                deckManager.RemoveFromHandAndDraw(turn.GetCurrentPlayer(), item);
             }
         }
 
         yield return null;
     }
 
-    IEnumerator ApplyResultsCreatureAttack()
+    IEnumerator ApplyResultsAttackToCity()
     {
         /* RESULTS ON CREATURES ATTACKING CITIES */
 
@@ -313,6 +326,9 @@ public class CombatPopupManager : Popup
         /* RESULTS ON MOVEMENT DEFENSE*/
 
         yield return new WaitForSeconds(secondsToResult);
+
+        foreach(Tuple<string, NationsEnum> attacker in selectedCardToAttack)
+            deckManager.RemoveFromHandAndDraw(attacker);
 
         HidePopup();
 

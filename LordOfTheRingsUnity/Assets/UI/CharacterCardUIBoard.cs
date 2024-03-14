@@ -22,6 +22,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     private bool refresh;
 
     private BoardTile boardTile;
+    private MovementManager movementManager;
     private bool isSelected;
     private short moved;
     private bool isMoving;
@@ -33,6 +34,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         activationCondition = GetComponentInChildren<AnimationActivationCondition>();
         animationImage = activationCondition.gameObject.GetComponent<Image>();
         colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
+        movementManager = GameObject.Find("MovementManager").GetComponent<MovementManager>();
         //activationCondition = GetComponentInChildren<ParticlesActivationCondition>();
     }
 
@@ -179,7 +181,8 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         isVisible = game.GetHumanPlayer().SeesTile(hex);
         isVisible &= string.IsNullOrEmpty(inCompanyOf);
         isVisible &= !t.IsHiddenByOtherCharacter(this);
-
+        isVisible &= (!movementManager.renderingPath || selectedItems.GetSelectedMovableCardUI() == this);
+            
         bool visibleAfter = isVisible;
 
         if(visibleBefore != visibleAfter)

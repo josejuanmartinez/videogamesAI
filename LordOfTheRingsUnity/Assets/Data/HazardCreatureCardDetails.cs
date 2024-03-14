@@ -334,4 +334,9 @@ public class HazardCreatureCardDetails: CardDetails
     {
         return defence;
     }
+
+    public bool IsSea()
+    {
+        return cardTypes.Contains(CardTypesEnum.SEA);
+    }
 }

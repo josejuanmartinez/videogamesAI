@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class KeyInputManager : MonoBehaviour
 {
@@ -40,17 +40,20 @@ public class KeyInputManager : MonoBehaviour
     void MovementKeys()
     {
         short direction = -1;
-        if (Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftControl))
+            return;
+
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.Keypad4))
             direction = MovementManager.LEFT;
-        else if (Input.GetKeyUp(KeyCode.Q))
+        else if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.Keypad7))
             direction = MovementManager.UP_LEFT;
-        else if (Input.GetKeyUp(KeyCode.E))
+        else if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.Keypad9))
             direction = MovementManager.UP_RIGHT;
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.Keypad6))
             direction = MovementManager.RIGHT;
-        else if (Input.GetKeyUp(KeyCode.C))
+        else if (Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Keypad3))
             direction = MovementManager.DOWN_RIGHT;
-        else if (Input.GetKeyUp(KeyCode.Z))
+        else if (Input.GetKeyUp(KeyCode.Z) || Input.GetKeyUp(KeyCode.Keypad1))
             direction = MovementManager.DOWN_LEFT;
 
         if (direction == -1)

@@ -140,7 +140,7 @@ public class PlaceDeck : MonoBehaviour
                     true
                 );
             }
-            deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), cardDetails, false);
+            deckManager.RemoveFromHandAndDraw(turn.GetCurrentPlayer(), cardDetails);
             RefreshStatusEffects();
         }
         else
@@ -187,7 +187,7 @@ public class PlaceDeck : MonoBehaviour
                    true
                );
             }
-            deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), cardDetails, false);
+            deckManager.RemoveFromHandAndDraw(turn.GetCurrentPlayer(), cardDetails);
 
         }
         else
@@ -233,7 +233,7 @@ public class PlaceDeck : MonoBehaviour
                 GameObject.Find("Localization").GetComponent<Localization>().Localize(cardDetails.cardId),
                 true
             );
-            deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), cardDetails, false);
+            deckManager.RemoveFromHandAndDraw(turn.GetCurrentPlayer(), cardDetails);
         }
         else
         {
@@ -289,7 +289,7 @@ public class PlaceDeck : MonoBehaviour
             string.Format("+{0}",GameObject.Find("Localization").GetComponent<Localization>().Localize(goldRingDetails.GetRevealedSlot().ToString())),
             true
         );
-        deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), cardDetails, false);
+        deckManager.RemoveFromHandAndDraw(turn.GetCurrentPlayer(), cardDetails);
         
         StartCoroutine(HideDices());
     }
@@ -334,7 +334,7 @@ public class PlaceDeck : MonoBehaviour
                     selectedItems.SelectCardDetails(cardDetails, cardUI.GetOwner());
                 }
             }
-            deckManager.DiscardAndDraw(turn.GetCurrentPlayer(), cardDetails, false);
+            deckManager.RemoveFromHandAndDraw(turn.GetCurrentPlayer(), cardDetails);
         }
         else
         {

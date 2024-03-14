@@ -72,7 +72,7 @@ public class CameraController : MonoBehaviour
         if (preventDrag || (isDragging && (Input.GetMouseButtonUp(2) || Input.GetMouseButtonUp(1))))
             isDragging = false;
 
-        if(Input.GetMouseButtonUp(1) || Input.GetMouseButtonUp(2))
+        if(Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(2))
         {
             mouse.RemoveCursor();
             isDragging = false;
@@ -81,7 +81,7 @@ public class CameraController : MonoBehaviour
 
         // Drag with the mouse
         
-        if (Input.GetMouseButtonDown(2) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(2))
         {
             if (!preventDrag)
             {
@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour
             //   Debug.Log("Drag start prevented!");
             //}
         }
-        else if (Input.GetMouseButton(2) || Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(0) || Input.GetMouseButton(2))
         {
             if (!preventDrag)
             {

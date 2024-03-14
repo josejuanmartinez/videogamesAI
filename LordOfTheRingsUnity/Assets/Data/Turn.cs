@@ -23,15 +23,14 @@ public class Turn : MonoBehaviour
     
     private CameraController cameraController;
     private SpritesRepo spritesRepo;
-    private LookDropdown lookDropdown;
-
+    private SelectedItems selectedItems;
     private void Awake()
     {
         board = GameObject.Find("Board").GetComponent<Board>();
         game = GameObject.Find("Game").GetComponent<Game>();
         cameraController = Camera.main.GetComponent<CameraController>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
-        lookDropdown = GameObject.Find("LookDropdown").GetComponent<LookDropdown>();
+        selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
         isInitialized = false;
         newTurnLoaded = false;
         turnNumber = -1;
@@ -100,9 +99,12 @@ public class Turn : MonoBehaviour
             board.GetCharacterManager().RefreshMovement(currentTurnPlayer);
         }
 
-        CardUI avatar = board.GetCharacterManager().GetAvatar(currentTurnPlayer);
-        if (avatar)
-            cameraController.LookToCard(avatar);
+        CardUI avatar = board.GetCharacterManager().GetAvatar(currentTurnPlayer) ?? board.GetCharacterManager().GetCharactersOfPlayer(currentTurnPlayer).DefaultIfEmpty(null).FirstOrDefault();
+        if (avatar != null)
+        {
+            //cameraController.LookToCard(avatar);
+            selectedItems.SelectCardUI(avatar);
+        }
         
         newTurnLoaded = true;
         Debug.Log(string.Format("New turn: {0} at {1}", turnNumber, Time.realtimeSinceStartup));

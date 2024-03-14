@@ -76,7 +76,13 @@ public class Game : MonoBehaviour
     {
         if (players == null || players.Count < 1)
             return null;
-        return players.First(x => x.isHuman);
+        return players.DefaultIfEmpty(null).First(x => x.isHuman);
+    }
+    public Player GetPlayer(NationsEnum nation)
+    {
+        if (players == null || players.Count < 1)
+            return null;
+        return players.DefaultIfEmpty(null).First(x => x.GetNation() == nation);
     }
 
     public NationsEnum GetHumanNation()

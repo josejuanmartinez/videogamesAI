@@ -28,9 +28,12 @@ public class CardsOfPlayer: MonoBehaviour
     private List<string> startsWithId;
 
     private Board board;
+    private Game game;
+
     void Awake()
     {
         board = GameObject.Find("Board").GetComponent<Board>();
+        game = GameObject.Find("Game").GetComponent<Game>();
     }
 
     public void Initialize(
@@ -161,6 +164,7 @@ public class CardsOfPlayer: MonoBehaviour
     public void AddToWonPile(CardDetails details)
     {
         wonPile.Add(details);
+        game.GetPlayer(nation).AddVictoryPoints(details.GetVictoryPoints());
     }
     public void AddToDiscardPile(CardDetails details)
     {
@@ -177,7 +181,7 @@ public class CardsOfPlayer: MonoBehaviour
         return hasCards;
     }
 
-    public void DiscardAndDraw(CardDetails card, bool discarded)
+    public void RemoveFromHandAndDraw(CardDetails card, bool addToDiscardPile = true)
     {
         if (!hasCards)
             return;
@@ -205,7 +209,7 @@ public class CardsOfPlayer: MonoBehaviour
         // Destroy the card from hand
         Destroy(GetHandCardGameObject(index));
 
-        if (discarded)
+        if (addToDiscardPile)
             AddToDiscardPile(card);
 
         //For all the cards before, I increase the counter

@@ -8,11 +8,14 @@ public class Player
     private readonly HashSet<Vector2Int> citySeesTiles = new ();
     private readonly HashSet<Vector2Int> cardSeesTiles = new ();
     public bool isHuman = false;
+    private int victoryPoints;
+
     public Player(NationsEnum nation, bool isHuman)
     {
         this.nation = nation;
         aligment = Nations.alignments[nation];
         this.isHuman = isHuman;
+        victoryPoints = 0;
     }
 
     public NationsEnum GetNation()
@@ -53,5 +56,14 @@ public class Player
     public bool SeesTile(Vector2Int tile)
     {
         return citySeesTiles.Contains(tile) || cardSeesTiles.Contains(tile);
+    }
+
+    public void AddVictoryPoints(int vp)
+    {
+        victoryPoints += vp;
+    }
+    public int GetVictoryPoints()
+    {
+        return victoryPoints;
     }
 }

@@ -142,6 +142,11 @@ public class CardDetailsRepo : MonoBehaviour
             return null;
         return GetCardGameObject(cardId, owner).GetComponent<CardDetails>();
     }
+
+    public CardDetails GetCardDetails(Tuple<string, NationsEnum> cardTuple)
+    {
+        return GetCardDetails(cardTuple.Item1, cardTuple.Item2);
+    }
     public bool IsInitialized() 
     { 
         return isInitialized; 

@@ -67,7 +67,9 @@ public class MovementManager : MonoBehaviour
 
     private CardUI lastSelected = null;
     private Vector2Int lastHex = NULL2;
-    
+
+    public bool renderingPath;
+
     [Range(0.001f,1f)]
     public float stepTime;
 
@@ -89,6 +91,7 @@ public class MovementManager : MonoBehaviour
         combatPopupManager = GameObject.Find("CombatPopupManager").GetComponent<CombatPopupManager>();
         game = GameObject.Find("Game").GetComponent<Game>();
         companyManagerLayout.Hide();
+        renderingPath = false;
     }
 
     public float DistanceFunc(Vector3Int a, Vector3Int b)
@@ -286,6 +289,7 @@ public class MovementManager : MonoBehaviour
         lineRenderer.SetPositions(positions.ToArray());
         mouse.RemoveCursor("immovable");
         mouse.RemoveCursor("movement");
+        renderingPath = false;
     }
 
     public void Move(List<Vector3Int> path)
@@ -356,6 +360,8 @@ public class MovementManager : MonoBehaviour
                     yield return null;
                 }                    
             }
+
+            CardInfo lastCardInfo = null;
             while (currentPointIndex + 1 < maxPath)
             {
                 Vector3 startPosition = cardTilemap.CellToWorld(path[currentPointIndex]);
@@ -421,9 +427,9 @@ public class MovementManager : MonoBehaviour
 
                 fow.UpdateCardFOW(targetCell, startCell);
 
-                CardInfo ci = terrainManager.GetCardInfo(cardTilemap.GetTile(targetCell) as Tile);
-                if (ci != null)
-                    accumulatedMana.Add(ci.cardType);
+                lastCardInfo = terrainManager.GetCardInfo(cardTilemap.GetTile(targetCell) as Tile);
+                if (lastCardInfo != null)
+                    accumulatedMana.Add(lastCardInfo.cardType);
                 else
                 {
                     Reset();
@@ -450,11 +456,12 @@ public class MovementManager : MonoBehaviour
 
             selectedItems.SelectCardDetails(
                 selectedCardUIForMovement.GetDetails(),
-                selectedCardUIForMovement.GetOwner());
+                selectedCardUIForMovement.GetOwner()
+            );
 
             // IF CHARACTER, ENEMIES
             if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
-                CheckEnemies(accumulatedMana, selectedCardUIForMovement);
+                CheckEnemies(lastCardInfo, selectedCardUIForMovement);
 
             deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
@@ -509,8 +516,9 @@ public class MovementManager : MonoBehaviour
             Reset();
             StopAllCoroutines();
             yield return null;
-        }            
+        }
 
+        renderingPath = true;
         for (int p=0;p<path.Count;p++)
         {
             //Movement Tilemap
@@ -647,37 +655,41 @@ public class MovementManager : MonoBehaviour
         return lastHex;
     }
 
-    public void CheckEnemies(List<CardTypesEnum> accumulatedMana, CardUI selectedCardUIForMovement)
+    public void CheckEnemies(CardInfo lastCardInfo, CardUI selectedCardUIForMovement)
     {
-        Dictionary<NationsEnum, float> distances = board.GetCityManager().GetEnemyNeighbourCities(lastHex, turn.GetCurrentPlayer());
+        if (lastCardInfo == null)
+            return;
+
+        Dictionary<NationsEnum, float> distancesToPlayers = board.GetCityManager().GetEnemyNeighbourCities(lastHex, turn.GetCurrentPlayer());
 
         List<Tuple<string, NationsEnum>> toCombat = new();
 
-        List<float> normDistancesToProbas = distances.Values.ToList();
-        normDistancesToProbas = normDistancesToProbas.Select(distance => 1 - (distance / normDistancesToProbas.Sum())).ToList();
-        normDistancesToProbas.ForEach(x => x *= game.GetMultiplierByDifficulty());
-        for (int i = 0; i < normDistancesToProbas.Count; i++)
+        List<float> normPlayerDistancesToProbas = distancesToPlayers.Values.ToList();
+        normPlayerDistancesToProbas = normPlayerDistancesToProbas.Select(distance => 1 - (distance / normPlayerDistancesToProbas.Sum())).ToList();
+        normPlayerDistancesToProbas.ForEach(x => x *= game.GetMultiplierByDifficulty());
+        for (int i = 0; i < normPlayerDistancesToProbas.Count; i++)
         {
-            List<CardTypesEnum> manaForOpponent = new();
-            foreach (CardTypesEnum cardType in accumulatedMana)
-            {
-                if (Mathf.RoundToInt(normDistancesToProbas[i]) == 1)
-                    manaForOpponent.Add(cardType);
-            }
-            NationsEnum owner = distances.Keys.ToList()[i];
-            manaManager.AddMana(owner, manaForOpponent);
-
+            NationsEnum owner = distancesToPlayers.Keys.ToList()[i];
+            if (owner == game.GetHumanNation())
+                continue;
+            
             List<CardDetails> creaturesInHand = deckManager.GetCardsInHandOfType(CardClass.HazardCreature, owner);
             creaturesInHand.Shuffle();
+                        
             foreach (CardDetails cardDetails in creaturesInHand)
             {
                 HazardCreatureCardDetails hazardCard = cardDetails as HazardCreatureCardDetails;
                 if (hazardCard == null)
                     continue;
-                if (manaManager.HasEnoughMana(owner, hazardCard.GetCardTypes()))
+                // IF THE PLAYER MOVING HAS MANA EQUAL TO THE COST OF THE ENEMY CASTING THE CARD
+                // AND LAST TILE TERRAIN IS INCLUDED IN THE 
+                if (manaManager.HasEnoughMana(turn.GetCurrentPlayer(), hazardCard.GetCardTypes()))
                 {
+                    if (hazardCard.IsSea() && lastCardInfo.cardType != CardTypesEnum.SEA)
+                        continue;
+                    if (!hazardCard.GetCardTypes().Contains(lastCardInfo.cardType))
+                        continue;
                     toCombat.Add(new Tuple<string, NationsEnum>(cardDetails.cardId, owner));
-                    manaManager.RemoveMana(owner, hazardCard.GetCardTypes());
                 }
             }
         }
