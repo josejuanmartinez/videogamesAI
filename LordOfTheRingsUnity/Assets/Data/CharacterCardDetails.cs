@@ -12,6 +12,7 @@ public class CharacterCardDetails : CardDetails
     public List<CharacterClassEnum> classes;
     public List<CharacterAbilitiesEnum> abilities;
     public bool isImmovable;
+    public bool isFemale;
 
     public short prowess;
     public short defence;

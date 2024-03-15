@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -22,6 +23,16 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField]
     protected NationsEnum owner;
 
+    [Header("Audio")]
+    [SerializeField]
+    protected string selectedAudio;
+    [SerializeField]
+    protected string movementAudio;
+    [SerializeField]
+    protected string attackAudio;
+    [SerializeField]
+    protected string hurtAudio;
+
     protected string cardId;
 
     protected Board board;
@@ -41,7 +52,9 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     protected DeckManager deckManager;
     protected FOWManager fowManager;
     protected LookDropdown lookDropdown;
-        
+    protected AudioManager audioManager;
+    protected AudioRepo audioRepo;
+
     protected bool isAwaken = false;
     protected bool initialized;
     protected bool messagesBeingShowed;
@@ -66,6 +79,8 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         deckManager = GameObject.Find("DeckManager").GetComponent<DeckManager>();
         fowManager = GameObject.Find("FOWManager").GetComponent<FOWManager>();
         lookDropdown = GameObject.Find("LookDropdown").GetComponent<LookDropdown>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
         isAwaken = true;
         hudMessages = new();
         initialized = false;
@@ -282,5 +297,11 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 boardTile?.SetFirstAtHex(this);
             }
         }
+    }
+
+    public bool IsMounted()
+    {
+        //TODO: Check if mounted, for movement purposes and also sounds
+        return false;
     }
 }

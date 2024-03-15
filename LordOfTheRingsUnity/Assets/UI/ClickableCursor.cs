@@ -3,15 +3,24 @@ using UnityEngine.EventSystems;
 
 public class ClickableCursor : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    Mouse mouse;
+    [SerializeField]
+    private string sound = "clickable";
     
+    private Mouse mouse;
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
+
+
     public void Awake()
     {
         mouse = GameObject.Find("Mouse").GetComponent<Mouse>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouse.Clickable();
+        audioManager.PlaySound(audioRepo.GetAudio(sound));
     }
 
     public void OnPointerExit(PointerEventData eventData)

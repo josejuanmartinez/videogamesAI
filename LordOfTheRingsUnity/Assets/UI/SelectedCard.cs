@@ -129,6 +129,14 @@ public class SelectedCard
             return null;
         return GetSelectedCard() as HazardCreatureCardDetails;
     }
+    public CharacterCardDetails GetCharacterCardDetails()
+    {
+        if (GetSelectedCard() == null)
+            return null;
+        if (!IsCharacterSelected())
+            return null;
+        return GetSelectedCard() as CharacterCardDetails;
+    }
 
     public CityUI GetSelectedCity()
     {

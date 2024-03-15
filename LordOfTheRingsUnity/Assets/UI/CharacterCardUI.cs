@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class CharacterCardUI : CardUI
@@ -36,6 +38,8 @@ public class CharacterCardUI : CardUI
     [SerializeField]
     protected List<CardDetails> allies;
 
+    private AudioResource voice;
+
     protected CardUI potentialLeader;
 
     protected short turnBleeding;
@@ -57,7 +61,7 @@ public class CharacterCardUI : CardUI
         hurtIcon.enabled = false;
         exhaustedIcon.enabled = false;
         immovableIcon.enabled = false;
-        bleedingIcon.enabled = false    ;
+        bleedingIcon.enabled = false;
         poisonedIcon.enabled = false;
         morgulIcon.enabled = false  ;
         fireIcon.enabled = false;
@@ -70,9 +74,16 @@ public class CharacterCardUI : CardUI
         CheckStatusEffects();
         GetObjectsAndAllies();
 
+        voice = audioRepo.GetVoice(GetCharacterDetails().race, Nations.alignments[owner], GetCharacterDetails().isFemale);
+
         initialized = true;
 
         return initialized;
+    }
+
+    public AudioResource GetVoice()
+    {
+        return voice;
     }
 
     public void GetObjectsAndAllies()

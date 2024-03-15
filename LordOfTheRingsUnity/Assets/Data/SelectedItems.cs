@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SelectedItems : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class SelectedItems : MonoBehaviour
     public GameObject CharacterCardUIPopupPrefab;
     public CompanyManager companyManagerLayout;
 
+    [Header("Audio")]
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
+
     private SelectedCard selection;
 
     private Board board;
@@ -18,7 +23,6 @@ public class SelectedItems : MonoBehaviour
     private CameraController cameraController;
     private Turn turn;
     private PlaceDeck placeDeckManager;
-    private Game game;
 
     private void Awake()
     {
@@ -28,7 +32,8 @@ public class SelectedItems : MonoBehaviour
         cameraController = Camera.main.GetComponent<CameraController>();
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
-        game = GameObject.Find("Game").GetComponent<Game>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
     }
 
     public void CheckIfShowLastChar()
@@ -95,7 +100,7 @@ public class SelectedItems : MonoBehaviour
         if (selection.GetSelectedCard() == cardDetails)
             return;
 
-        if(cardDetails.IsMovableClass())
+        if (cardDetails.IsMovableClass())
             deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
         selection.Select(cardDetails, owner);
@@ -104,6 +109,16 @@ public class SelectedItems : MonoBehaviour
 
         if (board.GetCardManager().GetCardUI(cardDetails) == null)
             return;
+
+        AudioResource audio = null;
+        CardUI card = selection.GetSelectedMovableCardUI();
+        if (card != null && card.IsCharacterUI())
+            audio = (card as CharacterCardUI).GetVoice();
+        if (card != null && card.IsHazardCreatureUI())
+            audio = (card as HazardCreatureCardUI).GetVoice();
+        
+        if(audio != null)
+            audioManager.PlaySound(audio);
 
         companyManagerLayout.Initialize(turn.GetCurrentPlayer());
     }
@@ -199,6 +214,12 @@ public class SelectedItems : MonoBehaviour
         if (selection == null)
             return null;
         return selection.GetHazardCreatureCardDetails();
+    }
+    public CharacterCardDetails GetCharacterCardDetails()
+    {
+        if (selection == null)
+            return null;
+        return selection.GetCharacterCardDetails();
     }
     public CityUI GetSelectedCity()
     {

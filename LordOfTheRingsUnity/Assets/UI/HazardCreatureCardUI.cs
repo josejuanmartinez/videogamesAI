@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class HazardCreatureCardUI : CardUI
@@ -30,6 +31,8 @@ public class HazardCreatureCardUI : CardUI
     protected Image debuffedIcon;
     [SerializeField]
     protected Image blindIcon;
+
+    private AudioResource voice;
 
     List <StatusEffectsApplied> effectsApplied;
 
@@ -69,9 +72,16 @@ public class HazardCreatureCardUI : CardUI
             }
         }
 
+        voice = audioRepo.GetVoice(GetHazardCreatureDetails().race, Nations.alignments[owner]);
+
         initialized = true;
 
         return initialized;
+    }
+
+    public AudioResource GetVoice()
+    {
+        return voice;
     }
 
     public bool IsImmovable()

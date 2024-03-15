@@ -6,15 +6,22 @@ using UnityEngine.UI;
 [RequireComponent(typeof(TMPro.TMP_Dropdown)), RequireComponent(typeof(GraphicRaycaster))]
 public class LookDropdown : MonoBehaviour
 {
+    [SerializeField]
+    private string openSound = "popup";
+    [SerializeField]
+    private string closeSound = "buttonCancel";
+
     private TMPro.TMP_Dropdown dropdown;
     private Settings settings;
     private Board board;
-    private CameraController cameraController;
 
     private Dictionary<string, string> unitsDict;
     private Dictionary<string, string> citiesDict;
     private SpritesRepo spritesRepo;
     private SelectedItems selectedItems;
+    private Game game;
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
 
     private bool hidden;
 
@@ -24,9 +31,11 @@ public class LookDropdown : MonoBehaviour
         dropdown.onValueChanged.AddListener(LookTo);
         settings = GameObject.Find("Settings").GetComponent<Settings>();
         board = GameObject.Find("Board").GetComponent<Board>();
-        cameraController = GameObject.Find("CameraController").GetComponent<CameraController>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         selectedItems = GameObject.Find("SelectedItems").GetComponent<SelectedItems>();
+        game = GameObject.Find("Game").GetComponent<Game>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
         unitsDict = new();
         citiesDict = new();
         hidden = true;
@@ -79,6 +88,8 @@ public class LookDropdown : MonoBehaviour
         GameObject.Find("LookupDropdownBackground").GetComponent<GraphicRaycaster>().enabled = true;
         GetComponent<GraphicRaycaster>().enabled = true;
         hidden = false;
+        game.SetIsPopup(true);
+        audioManager.PlaySound(audioRepo.GetAudio(openSound));
     }
 
     public void Hide()
@@ -97,6 +108,8 @@ public class LookDropdown : MonoBehaviour
         dropdown.ClearOptions();
         dropdown.options = options;
         hidden = true;
+        game.SetIsPopup(false);
+        audioManager.PlaySound(audioRepo.GetAudio(closeSound));
     }
 
     public void Toggle()

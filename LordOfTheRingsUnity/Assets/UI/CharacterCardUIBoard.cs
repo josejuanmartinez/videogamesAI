@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -68,7 +69,7 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
         CharacterCardDetails charDetails = details as CharacterCardDetails;
         if (charDetails != null)
             resourcesManager.SubtractInfluence(owner, charDetails.GetMind());
-        
+
         activationCondition.Initialize(() => selectedItems != null && selectedItems.GetSelectedMovableCard() == details);
 
         button.interactable = owner == turn.GetCurrentPlayer();
@@ -225,11 +226,13 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     public void Moving()
     {
         isMoving = true;
+        audioManager.PlaySound(audioRepo.GetAudio(movementAudio));
     }
 
     public void StopMoving()
     {
         isMoving = false;
+        audioManager.StopSound(audioRepo.GetAudio(movementAudio));
     }
     public bool IsMoving()
     {

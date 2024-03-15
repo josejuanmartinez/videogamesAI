@@ -49,6 +49,8 @@ public class MovementManager : MonoBehaviour
     private DeckManager deckManager;
     private CombatPopupManager combatPopupManager;
     private Game game;
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
     // ****************************************
 
     private List<Vector3> positions = new ();
@@ -90,6 +92,8 @@ public class MovementManager : MonoBehaviour
         board = GameObject.Find("Board").GetComponent<Board>();
         combatPopupManager = GameObject.Find("CombatPopupManager").GetComponent<CombatPopupManager>();
         game = GameObject.Find("Game").GetComponent<Game>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
         companyManagerLayout.Hide();
         renderingPath = false;
     }
@@ -429,7 +433,16 @@ public class MovementManager : MonoBehaviour
 
                 lastCardInfo = terrainManager.GetCardInfo(cardTilemap.GetTile(targetCell) as Tile);
                 if (lastCardInfo != null)
+                {
+                    string audioId = "movement";
+                    if (lastCardInfo.cardType == CardTypesEnum.SEA)
+                        audioId = "movementSea";
+                    else if (selectedCardUIForMovement.IsMounted())
+                        audioId = "movementMounted";
+                    audioManager.PlaySound(audioRepo.GetAudio(audioId));
+
                     accumulatedMana.Add(lastCardInfo.cardType);
+                }                    
                 else
                 {
                     Reset();

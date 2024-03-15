@@ -77,6 +77,13 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public GameObject nextGameObject;
     public CanvasGroup canvasGroup;
 
+    [Header("Audio")]
+    [SerializeField]
+    protected AudioSource normalAudio;
+    [SerializeField]
+    protected AudioSource attackedAudio;
+
+
     [Header("Initialization")]
     [SerializeField]
     private bool refresh;
