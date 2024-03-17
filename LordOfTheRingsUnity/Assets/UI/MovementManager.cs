@@ -15,6 +15,7 @@ public class MovementManager : MonoBehaviour
     public LineRenderer lineRenderer;
     public Tilemap cardTilemap;
     public Tilemap movementTilemap;
+    public List<Tilemap> terrainTilemaps;
     public Image[] rightMovementSprites;
     public TextMeshProUGUI[] rightMovementCosts;
     public CompanyManager companyManagerLayout;
@@ -365,6 +366,7 @@ public class MovementManager : MonoBehaviour
                 }                    
             }
 
+            TerrainInfo lastTerrainInfo = null;
             CardInfo lastCardInfo = null;
             while (currentPointIndex + 1 < maxPath)
             {
@@ -413,8 +415,28 @@ public class MovementManager : MonoBehaviour
                     (selectedCardUIForMovement as HazardCreatureCardUIBoard).AddMovement(movementCost);
                     moved = (selectedCardUIForMovement as HazardCreatureCardUIBoard).GetMoved();
                 }
-                
 
+                // SOUND
+
+                Tile cardTile = cardTilemap.GetTile(targetCell) as Tile;
+                if (cardTile != null)
+                {
+                    lastCardInfo = terrainManager.GetCardInfo(cardTile);
+                    if (lastCardInfo != null)
+                        accumulatedMana.Add(lastCardInfo.cardType);
+                }
+                foreach(Tilemap terrainTilemap in terrainTilemaps)
+                {
+                    Tile terrainTile = terrainTilemap.GetTile(targetCell) as Tile;
+                    if (terrainTile != null)
+                    {
+                        lastTerrainInfo = terrainManager.GetTerrainInfo(terrainTile);
+                        if (lastTerrainInfo != null)
+                            audioManager.PlaySound(audioRepo.GetAudio(lastTerrainInfo.terrainType));
+                    }
+                }
+
+                // ANIMATION
                 while (currentLerpTime < 1f)
                 {
                     currentLerpTime += Time.deltaTime * speed;
@@ -431,24 +453,6 @@ public class MovementManager : MonoBehaviour
 
                 fow.UpdateCardFOW(targetCell, startCell);
 
-                lastCardInfo = terrainManager.GetCardInfo(cardTilemap.GetTile(targetCell) as Tile);
-                if (lastCardInfo != null)
-                {
-                    string audioId = "movement";
-                    if (lastCardInfo.cardType == CardTypesEnum.SEA)
-                        audioId = "movementSea";
-                    else if (selectedCardUIForMovement.IsMounted())
-                        audioId = "movementMounted";
-                    audioManager.PlaySound(audioRepo.GetAudio(audioId));
-
-                    accumulatedMana.Add(lastCardInfo.cardType);
-                }                    
-                else
-                {
-                    Reset();
-                    yield return null;
-                }
-                    
             }
             // UPDATE MANA FOR PLAYER
             if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)

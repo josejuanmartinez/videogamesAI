@@ -5,13 +5,11 @@ public class RegionCardUI : MonoBehaviour
 {
     protected SpritesRepo spritesRepo;
 
-    private GalleryLevelSelectionManager gallery;
     private RegionSelectionBehaviour selectionBehaviour;    
     protected bool isAwaken = false;
 
     protected virtual void Awake()
     {
-        gallery = GameObject.Find("RegionSelection").GetComponent<GalleryLevelSelectionManager>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         selectionBehaviour = GetComponentInChildren<RegionSelectionBehaviour>();
         isAwaken = true;

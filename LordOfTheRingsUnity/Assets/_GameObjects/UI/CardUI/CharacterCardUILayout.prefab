@@ -1516,6 +1516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &5451287555902232342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,6 +1603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6032457910399372463}
   - component: {fileID: 7033017612754755555}
+  - component: {fileID: -884253342877070169}
   m_Layer: 5
   m_Name: CharacterCardUILayout
   m_TagString: Untagged
@@ -1648,6 +1650,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 4982285335266908331}
   message: {fileID: 301398683979128600}
   owner: 0
+  selectedAudio: 
+  attackAudio: 
+  hurtAudio: 
   hurtIcon: {fileID: 3974734233631636754}
   exhaustedIcon: {fileID: 2752978258123224593}
   immovableIcon: {fileID: 6200439606295143979}
@@ -1662,6 +1667,19 @@ MonoBehaviour:
   goldRings: []
   allies: []
   nextCanvasGroup: {fileID: 4000223843466834221}
+--- !u!114 &-884253342877070169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735845551989982089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &8543735383503211062
 GameObject:
   m_ObjectHideFlags: 0

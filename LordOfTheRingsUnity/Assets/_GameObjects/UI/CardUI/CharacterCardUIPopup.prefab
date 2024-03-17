@@ -1654,6 +1654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6032457910399372463}
   - component: {fileID: 7819447296657106061}
+  - component: {fileID: -3010951648437923210}
   m_Layer: 5
   m_Name: CharacterCardUIPopup
   m_TagString: Untagged
@@ -1700,6 +1701,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 4982285335266908331}
   message: {fileID: 7932728751987953003}
   owner: 0
+  selectedAudio: 
+  attackAudio: 
+  hurtAudio: 
   hurtIcon: {fileID: 7007349339927888319}
   exhaustedIcon: {fileID: 6882500964429830353}
   immovableIcon: {fileID: 8688357102950285675}
@@ -1716,6 +1720,19 @@ MonoBehaviour:
   prowessText: {fileID: 5597503629256364070}
   defenceText: {fileID: 7115147890397001237}
   targetedPrefab: {fileID: 7052589479961128862}
+--- !u!114 &-3010951648437923210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735845551989982089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &6811617984771388298
 GameObject:
   m_ObjectHideFlags: 0

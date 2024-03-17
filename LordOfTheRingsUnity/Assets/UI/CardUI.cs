@@ -27,8 +27,6 @@ public class CardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField]
     protected string selectedAudio;
     [SerializeField]
-    protected string movementAudio;
-    [SerializeField]
     protected string attackAudio;
     [SerializeField]
     protected string hurtAudio;

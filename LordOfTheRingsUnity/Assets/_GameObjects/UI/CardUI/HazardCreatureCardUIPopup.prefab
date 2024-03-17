@@ -1656,6 +1656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6032457910399372463}
   - component: {fileID: 7871184048218755381}
+  - component: {fileID: -6146662108686954338}
   m_Layer: 5
   m_Name: HazardCreatureCardUIPopup
   m_TagString: Untagged
@@ -1702,6 +1703,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 4982285335266908331}
   message: {fileID: 7932728751987953003}
   owner: 0
+  selectedAudio: 
+  attackAudio: 
+  hurtAudio: 
   hurtIcon: {fileID: 2540281857833666961}
   exhaustedIcon: {fileID: 8902654027394500020}
   immovableIcon: {fileID: 6401491899189197020}
@@ -1716,6 +1720,19 @@ MonoBehaviour:
   prowessText: {fileID: 724346976993060578}
   defenceText: {fileID: 4137406817003358402}
   targetedPrefab: {fileID: 6752800362402835311}
+--- !u!114 &-6146662108686954338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735845551989982089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &6752800362402835311
 GameObject:
   m_ObjectHideFlags: 0

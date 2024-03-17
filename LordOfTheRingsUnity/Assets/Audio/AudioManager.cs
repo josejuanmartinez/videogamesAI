@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -56,8 +57,10 @@ public class AudioManager : MonoBehaviour
     {
         if (audio == null)
             return;
-        soundSource.resource = audio;
-        soundSource.Play();
+        if(soundSource.resource != audio)
+            soundSource.resource = audio;
+        if (!soundSource.isPlaying)
+            soundSource.Play();
     }
 
     public void StopSound(AudioResource audio)
@@ -65,10 +68,15 @@ public class AudioManager : MonoBehaviour
         if (audio == null)
             return;
 
-        if (soundSource.resource == audio)
-        {
-            soundSource.Stop();
-            soundSource.resource = null;
-        }
+        //if (soundSource.resource == audio)
+        //    StartCoroutine(StopSoundCoroutine());
     }
+
+    IEnumerator StopSoundCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        soundSource.Stop();
+        soundSource.resource = null;
+    }
+
 }

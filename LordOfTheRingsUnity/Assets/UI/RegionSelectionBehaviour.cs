@@ -59,6 +59,7 @@ public class RegionSelectionBehaviour : MonoBehaviour
 
         if(doubleClick)
         {
+            audio
             isCharactersShown = true;
             characterSelector.gameObject.SetActive(isCharactersShown);
 

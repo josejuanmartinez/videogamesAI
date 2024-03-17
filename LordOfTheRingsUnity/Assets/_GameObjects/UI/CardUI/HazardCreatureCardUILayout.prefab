@@ -1368,6 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &5451287555902232342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1529,6 +1530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6032457910399372463}
   - component: {fileID: 2936071954644455051}
+  - component: {fileID: 1599517395169157209}
   m_Layer: 5
   m_Name: HazardCreatureCardUILayout
   m_TagString: Untagged
@@ -1575,6 +1577,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 4982285335266908331}
   message: {fileID: 301398683979128600}
   owner: 0
+  selectedAudio: 
+  attackAudio: 
+  hurtAudio: 
   hurtIcon: {fileID: 8825514567659224230}
   exhaustedIcon: {fileID: 6474442795927292760}
   immovableIcon: {fileID: 5151199441704417755}
@@ -1587,6 +1592,19 @@ MonoBehaviour:
   debuffedIcon: {fileID: 1794896994496342136}
   blindIcon: {fileID: 7187222130734721012}
   nextCanvasGroup: {fileID: 4000223843466834221}
+--- !u!114 &1599517395169157209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735845551989982089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &8241913633839253209
 GameObject:
   m_ObjectHideFlags: 0

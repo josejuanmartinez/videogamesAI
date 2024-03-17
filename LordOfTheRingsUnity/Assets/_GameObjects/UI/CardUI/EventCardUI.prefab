@@ -874,6 +874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6032457910399372463}
   - component: {fileID: 3797515856456212814}
+  - component: {fileID: -1975738466739207276}
   m_Layer: 5
   m_Name: EventCardUI
   m_TagString: Untagged
@@ -920,4 +921,20 @@ MonoBehaviour:
   canvasGroup: {fileID: 4982285335266908331}
   message: {fileID: 1378344562852579367}
   owner: 0
+  selectedAudio: 
+  attackAudio: 
+  hurtAudio: 
   eventTypeIcon: {fileID: 9005684656819902520}
+--- !u!114 &-1975738466739207276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735845551989982089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: clickable

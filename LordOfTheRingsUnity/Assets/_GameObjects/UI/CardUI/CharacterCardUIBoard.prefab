@@ -6344,6 +6344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &5451287555902232342
 GameObject:
   m_ObjectHideFlags: 0
@@ -6432,6 +6433,7 @@ GameObject:
   - component: {fileID: 6513911828858273021}
   - component: {fileID: 2207900405448582074}
   - component: {fileID: 1488703859730738175}
+  - component: {fileID: 6515403432475906178}
   m_Layer: 5
   m_Name: CharacterCardUIBoard
   m_TagString: CardBoard
@@ -6478,6 +6480,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 4982285335266908331}
   message: {fileID: 7735153819546640}
   owner: 0
+  selectedAudio: 
+  attackAudio: 
+  hurtAudio: 
   hurtIcon: {fileID: 1938980419841213465}
   exhaustedIcon: {fileID: 8902654027394500020}
   immovableIcon: {fileID: 1566223134113292341}
@@ -6524,6 +6529,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d4fa2f606be8449802c6946b2519ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6515403432475906178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735845551989982089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: clickable
 --- !u!1 &7159957528900033153
 GameObject:
   m_ObjectHideFlags: 0

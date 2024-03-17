@@ -4,10 +4,18 @@ using UnityEngine.Audio;
 
 public class AudioRepo : MonoBehaviour
 {
+    [Header("Audios By String")]
     [SerializeField]
     private List<string> audioIds;
     [SerializeField]
     private List<AudioResource> audioResources;
+    [Header("Audios by Terrain")]
+    [SerializeField]
+    private List<TerrainsEnum> terrains;
+    [SerializeField]
+    private List<AudioResource> terrainAudioResources;
+
+    [Header("Voices")]
     [SerializeField]
     private List<AudioResource> freeMaleVoices;
     [SerializeField]
@@ -48,6 +56,16 @@ public class AudioRepo : MonoBehaviour
         int index = audioIds.IndexOf(id);
         if (index != -1)
             return audioResources[index];
+        else
+            return null;
+    }
+
+
+    public AudioResource GetAudio(TerrainsEnum terrain)
+    {
+        int index = terrains.IndexOf(terrain);
+        if (index != -1)
+            return terrainAudioResources[index];
         else
             return null;
     }

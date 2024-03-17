@@ -8,9 +8,10 @@ public class Popup : MonoBehaviour
     [SerializeField]
     private string closeSound = "buttonCancel";
 
-    private Game game;
-    private AudioManager audioManager;
-    private AudioRepo audioRepo;
+    protected Game game;
+    protected AudioManager audioManager;
+    protected AudioRepo audioRepo;
+
     private bool isInitialized = false;
     void Awake()
     {

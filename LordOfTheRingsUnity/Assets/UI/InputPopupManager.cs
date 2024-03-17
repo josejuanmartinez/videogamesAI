@@ -38,7 +38,9 @@ public class InputPopupManager : Popup
             TextMeshProUGUI text = goButton.GetComponentInChildren<TextMeshProUGUI>();
             text.text = options[i].text;
             Button button = goButton.GetComponentInChildren<Button>();
+            button.onClick.AddListener(Ok);
             button.onClick.AddListener(options[i].cardBoolFunc);
+        
         }
 
         GameObject goCancelButton = Instantiate(cancelButton, buttonsLayout.transform);
@@ -50,8 +52,13 @@ public class InputPopupManager : Popup
         Initialize(title, description, imageLeft, options, Cancel);
     }
 
+    public void Ok()
+    {
+        audioManager.PlaySound(audioRepo.GetAudio("buttonOk"));
+    }
     public void Cancel()
     {
         HidePopup();
+        audioManager.PlaySound(audioRepo.GetAudio("buttonCancel"));
     }
 }

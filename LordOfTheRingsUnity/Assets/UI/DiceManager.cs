@@ -22,6 +22,8 @@ public class DiceManager : MonoBehaviour
     private PlaceDeck placeDeckManager;
     private CombatPopupManager combatPopupManager;
     private ColorManager colorManager;
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
     private bool dicing = false;
 
     void Awake()
@@ -29,6 +31,8 @@ public class DiceManager : MonoBehaviour
         placeDeckManager = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>(); 
         combatPopupManager = GameObject.Find("CombatPopupManager").GetComponent<CombatPopupManager>();
         colorManager = GameObject.Find("ColorManager").GetComponent<ColorManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
     }
 
     public IEnumerator RollToSpawnCard(SpawnCardLocation spawnCardLocation, CardDetails cardDetails)
@@ -72,7 +76,8 @@ public class DiceManager : MonoBehaviour
         Die_d10 d10 = instantiatedDice.GetComponentInChildren<Die_d10>();
         
         d10.GetComponent<MeshRenderer>().material.color = colorManager.GetColor(cardClass.ToString());
-        
+
+        audioManager.PlaySound(audioRepo.GetAudio("dices"));
         for (int i = 0; i < maxTime; i++)
         {
             yield return new WaitForSeconds(1);

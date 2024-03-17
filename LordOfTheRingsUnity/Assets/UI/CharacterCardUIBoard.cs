@@ -226,13 +226,14 @@ public class CharacterCardUIBoard : CharacterCardUI, IPointerEnterHandler, IPoin
     public void Moving()
     {
         isMoving = true;
-        audioManager.PlaySound(audioRepo.GetAudio(movementAudio));
     }
 
     public void StopMoving()
     {
         isMoving = false;
-        audioManager.StopSound(audioRepo.GetAudio(movementAudio));
+        audioManager.StopSound(audioRepo.GetAudio("movement"));
+        audioManager.StopSound(audioRepo.GetAudio("movementSea"));
+        audioManager.StopSound(audioRepo.GetAudio("movementMounted"));
     }
     public bool IsMoving()
     {
