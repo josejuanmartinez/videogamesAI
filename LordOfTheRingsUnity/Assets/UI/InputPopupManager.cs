@@ -21,7 +21,7 @@ public class InputPopupManager : Popup
 
     public void Initialize(string title, string description, Sprite imageLeft, List<OkOption> options, UnityAction cancel)
     {
-        ShowPopup();
+        ShowPopup(false);
         this.description.text = description;
         this.title.text = title;
 

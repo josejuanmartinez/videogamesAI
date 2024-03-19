@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c6efa50870164184d88db53c40578140
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 92430
+  packageName: Image Effects & Filters
+  packageVersion: 1.0
+  assetPath: Assets/ImageEffectFilters/Shaders/ImageEffectFilter.shader
+  uploadId: 434659

@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: clickable
+  sound: card
 --- !u!1 &3643389354838945672
 GameObject:
   m_ObjectHideFlags: 0

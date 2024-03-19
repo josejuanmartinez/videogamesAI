@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,44 +8,29 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    private List<AudioResource> freeMusic;
-    [SerializeField]
-    private List<AudioResource> evilMusic;
-    [SerializeField]
-    private List<AudioResource> neutralMusic;
-    [SerializeField]
-    private List<AudioResource> chaoticMusic;
-    [SerializeField]
     private AudioSource musicSource;
     [SerializeField]
     private AudioSource soundSource;
+    [SerializeField]
+    private AudioSource terrainMusicSource;
 
     private Game game;
+    private AudioRepo audioRepo;
     void Awake()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
     }
 
-    void RandomizeMusic()
+    public void RandomizeMusic()
     {
-        switch (Nations.alignments[game.GetHumanNation()])
+        AudioResource music = audioRepo.GetMusic(Nations.alignments[game.GetHumanNation()]);
+        if (music != null)
         {
-            case AlignmentsEnum.FREE_PEOPLE:
-                musicSource.resource = freeMusic[Random.Range(0, freeMusic.Count)];
-                break;
-            case AlignmentsEnum.DARK_SERVANTS:
-                musicSource.resource = evilMusic[Random.Range(0, evilMusic.Count)];
-                break;
-            case AlignmentsEnum.RENEGADE:
-            case AlignmentsEnum.NEUTRAL:
-                musicSource.resource = neutralMusic[Random.Range(0, neutralMusic.Count)];
-                break;
-            case AlignmentsEnum.CHAOTIC:
-                musicSource.resource = chaoticMusic[Random.Range(0, chaoticMusic.Count)];
-                break;
+            musicSource.resource = music;
+            musicSource.Play();
         }
-        
-        musicSource.Play();
+            
     }
 
     void Update()
@@ -57,26 +43,36 @@ public class AudioManager : MonoBehaviour
     {
         if (audio == null)
             return;
-        if(soundSource.resource != audio)
+        if(soundSource.resource != audio) 
             soundSource.resource = audio;
-        if (!soundSource.isPlaying)
-            soundSource.Play();
+        //if (!soundSource.isPlaying)
+        soundSource.Play();
     }
 
     public void StopSound(AudioResource audio)
     {
-        if (audio == null)
-            return;
-
-        //if (soundSource.resource == audio)
-        //    StartCoroutine(StopSoundCoroutine());
+       if (audio == soundSource.resource)
+            soundSource.Stop();
     }
 
-    IEnumerator StopSoundCoroutine()
+    public void PlayEventMusic(bool isCombat)
     {
-        yield return new WaitForSecondsRealtime(1.5f);
-        soundSource.Stop();
-        soundSource.resource = null;
+        AudioResource eventMusic = audioRepo.GetEventMusic(Nations.alignments[game.GetHumanNation()], isCombat);
+        if (eventMusic != null)
+        {
+            musicSource.resource = eventMusic;
+            //if(!musicSource.isPlaying)
+                musicSource.Play();
+        }
     }
 
+    public void PlayTerrainMusic(AudioResource audio)
+    {
+        if(audio != null)
+        {
+            terrainMusicSource.resource = audio;
+            //if (!terrainMusicSource.isPlaying)
+                terrainMusicSource.Play();
+        }
+    }
 }

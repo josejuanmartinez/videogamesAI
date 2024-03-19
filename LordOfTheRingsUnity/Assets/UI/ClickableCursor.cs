@@ -5,7 +5,9 @@ public class ClickableCursor : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     [SerializeField]
     private string sound = "clickable";
-    
+    [SerializeField]
+    private string cursor = "clickable";
+
     private Mouse mouse;
     private AudioManager audioManager;
     private AudioRepo audioRepo;
@@ -19,7 +21,7 @@ public class ClickableCursor : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        mouse.Clickable();
+        mouse.ChangeCursor(cursor);
         audioManager.PlaySound(audioRepo.GetAudio(sound));
     }
 

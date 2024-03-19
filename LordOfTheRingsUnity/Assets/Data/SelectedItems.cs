@@ -109,7 +109,7 @@ public class SelectedItems : MonoBehaviour
 
         if (board.GetCardManager().GetCardUI(cardDetails) == null)
             return;
-
+            
         AudioResource audio = null;
         CardUI card = selection.GetSelectedMovableCardUI();
         if (card != null && card.IsCharacterUI())

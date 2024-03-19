@@ -250,7 +250,8 @@ public class MovementManager : MonoBehaviour
                         Reset();
                         StopAllCoroutines();
                         StartCoroutine(RenderPath());
-                        showingPathDestination = path[^1];
+                        if(path.Count > 0)
+                            showingPathDestination = path[^1];
                     }
                 }
                 else
@@ -258,7 +259,8 @@ public class MovementManager : MonoBehaviour
                     Reset();
                     StopAllCoroutines();
                     StartCoroutine(RenderPath());
-                    showingPathDestination = path[^1];
+                    if (path.Count > 0)
+                        showingPathDestination = path[^1];
                     return;
                 }
                     
@@ -719,7 +721,7 @@ public class MovementManager : MonoBehaviour
                 tileInfo.terrain.terrainType.ToString().ToLower()
                 );
             if (res)
-                combatPopupManager.ShowPopup();
+                combatPopupManager.ShowPopup(true);
         }
     }
 }

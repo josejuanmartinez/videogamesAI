@@ -21,13 +21,14 @@ public class Popup : MonoBehaviour
         isInitialized = true;
     }
 
-    public virtual void ShowPopup()
+    public virtual void ShowPopup(bool isCombat)
     {   
         if (!isInitialized)
             Awake();
         popup.SetActive(true);
         game.SetIsPopup(true);
         audioManager.PlaySound(audioRepo.GetAudio(openSound));
+        audioManager.PlayEventMusic(isCombat);
     }
 
     public virtual void HidePopup()
@@ -37,6 +38,7 @@ public class Popup : MonoBehaviour
         popup.SetActive(false);
         game.SetIsPopup(false);
         audioManager.PlaySound(audioRepo.GetAudio(closeSound));
+        audioManager.RandomizeMusic();
     }
 
     public bool IsShown()

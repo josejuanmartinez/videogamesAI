@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class CameraController : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class CameraController : MonoBehaviour
     private DiceManager diceManager;
     private Board board;
     private Game game;
+    private TerrainManager terrainManager;
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
 
     private float zoomLevel = 5f; // The current zoom level
     private Vector3 dragOrigin; // The starting point of a drag gesture
@@ -42,6 +46,9 @@ public class CameraController : MonoBehaviour
         tilemap = GameObject.Find("CardTypeTilemap").GetComponent<Tilemap>();
         board = GameObject.Find("Board").GetComponent<Board>();
         game = GameObject.Find("Game").GetComponent<Game>();
+        terrainManager = GameObject.Find("TerrainManager").GetComponent<TerrainManager>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
     }
 
     private void Update()
@@ -207,6 +214,7 @@ public class CameraController : MonoBehaviour
             return;
 
         Vector2Int hex = cardDetails.cardClass == CardClass.Character ? (card as CharacterCardUIBoard).GetHex() : (card as HazardCreatureCardUIBoard).GetHex();
+        PlayTerrainSound(hex);
         Vector3Int v3 = new(hex.x, hex.y, 0);
         Vector3 v3World = tilemap.CellToWorld(v3);
         v3World = new Vector3(v3World.x, v3World.y, transform.position.z);
@@ -218,7 +226,9 @@ public class CameraController : MonoBehaviour
         if (city == null)
             return;
 
-        Vector3Int v3 = new (city.GetHex().x, city.GetHex().y, 0);
+        Vector2Int hex = city.GetHex();
+        PlayTerrainSound(hex);
+        Vector3Int v3 = new (hex.x, hex.y, 0);
         Vector3 v3World = tilemap.CellToWorld(v3);
         v3World = new Vector3(v3World.x, v3World.y, transform.position.z);
         LookTo(v3World);
@@ -226,15 +236,18 @@ public class CameraController : MonoBehaviour
 
     public void LookTo(Vector3 position)
     {
-        // Calculate the new position and rotation of the camera
         lookToPosition = position;
     }
-    public void LookToImmediate(Vector3 newPosition)
+    public void LookToImmediate(Vector3 position)
     {
-        // Calculate the new position and rotation of the camera
-        transform.position = newPosition;
+        transform.position = position;
     }
 
+    public void PlayTerrainSound(Vector2Int position)
+    {
+        TileAndMovementCost info = terrainManager.GetTileAndMovementCost(position);
+        audioManager.PlayTerrainMusic(audioRepo.GetTerrainMusic(info.terrain.terrainType));
+    }
     public void IsMouseAtBorder()
     {
         Vector3 mousePosition = Input.mousePosition;

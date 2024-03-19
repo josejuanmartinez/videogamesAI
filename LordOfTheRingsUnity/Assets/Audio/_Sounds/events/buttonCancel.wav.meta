@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dd509af2d03b44549ba78ed7dd5ce42f
+guid: 2cddecd0cfbb27043ad72a2835f4413f
 AudioImporter:
   externalObjects: {}
   serializedVersion: 7
@@ -26,5 +26,5 @@ AssetOrigin:
   productId: 269513
   packageName: Universal UI SFX
   packageVersion: 1.0
-  assetPath: Assets/Universal UI SFX/Basic Menu Navigation/Menu_Navigation01_Close.wav
+  assetPath: Assets/Universal UI SFX/Extra/UIMvmt_PopUp System Appear.wav
   uploadId: 625210

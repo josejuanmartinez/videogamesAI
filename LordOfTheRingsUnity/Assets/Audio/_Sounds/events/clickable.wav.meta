@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 9af449f2f04f5ce4ba5f120b3a4f44b1
+guid: 179e9576f8fff35479e955f1ff275fd2
+AssetOrigin:
+  serializedVersion: 1
+  productId: 197054
+  packageName: FREE CASUAL PACK SFX
+  packageVersion: 2.0
+  assetPath: Assets/1.1 - FREE CASUAL PACK SFX/WEAPONS/AXE SWING.wav
+  uploadId: 550051
 AudioImporter:
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 8
   defaultSettings:
     serializedVersion: 2
     loadType: 0
@@ -11,7 +18,7 @@ AudioImporter:
     compressionFormat: 1
     quality: 1
     conversionMode: 0
-    preloadAudioData: 0
+    preloadAudioData: 1
   platformSettingOverrides: {}
   forceToMono: 0
   normalize: 1
@@ -21,10 +28,3 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 269513
-  packageName: Universal UI SFX
-  packageVersion: 1.0
-  assetPath: Assets/Universal UI SFX/Clicks/UIClick_Menu Navigation Short 04.wav
-  uploadId: 625210

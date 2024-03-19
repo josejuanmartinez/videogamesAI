@@ -23,9 +23,15 @@ public class CardsOfPlayer: MonoBehaviour
     private int lastCardDrawn;
     [SerializeField]
     private bool hasCards;
+    [SerializeField]
+    private string cardSound = "card";
+    [SerializeField]
+    private string cardsSound = "cards";
 
     private GameObject deckCardUIPrefab;
     private List<string> startsWithId;
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
 
     private Board board;
     private Game game;
@@ -34,6 +40,8 @@ public class CardsOfPlayer: MonoBehaviour
     {
         board = GameObject.Find("Board").GetComponent<Board>();
         game = GameObject.Find("Game").GetComponent<Game>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
     }
 
     public void Initialize(
@@ -63,6 +71,7 @@ public class CardsOfPlayer: MonoBehaviour
         if (!hasCards)
             return;
 
+        audioManager.PlaySound(audioRepo.GetAudio(cardsSound));
         for (int i = 0; i < initialDeck.cards.Count; i++)
         {
             int rnd = UnityEngine.Random.Range(0, initialDeck.cards.Count);
@@ -134,6 +143,8 @@ public class CardsOfPlayer: MonoBehaviour
 
         if(handTransform != null)
             CreateCard(initialDeck.cards[lastCardDrawn]);
+
+        audioManager.PlaySound(audioRepo.GetAudio(cardSound));
 
         for (int i = handSize - 1; i > 0; i--)
         {

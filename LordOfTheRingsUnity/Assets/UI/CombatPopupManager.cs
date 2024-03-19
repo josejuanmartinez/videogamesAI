@@ -135,7 +135,8 @@ public class CombatPopupManager : Popup
                 break;
         }
 
-        ShowPopup();
+
+        ShowPopup(true);
 
         return true;
     }
@@ -215,7 +216,8 @@ public class CombatPopupManager : Popup
             }            
         }
         attackersNum = Math.Min(attackersNum, counter);
-        ShowPopup();
+
+        ShowPopup(true);
 
         return true;
     }
