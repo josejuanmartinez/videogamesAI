@@ -90,6 +90,7 @@ public class MinimapSelector : MonoBehaviour
             foreach (RaycastResult r in results)
                 if (r.gameObject.CompareTag("Minimap"))
                     return true;
+            
         return false;
     }
 

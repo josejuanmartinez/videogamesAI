@@ -31,6 +31,7 @@ public class Attacker : MonoBehaviour
     protected Dictionary<string, CardUI> company;
     protected HazardCreatureCardDetails attackerDetails;
 
+    private bool clicked;
 
     void Awake()
     {
@@ -40,6 +41,7 @@ public class Attacker : MonoBehaviour
         placeDeck = GameObject.Find("PlaceDeckManager").GetComponent<PlaceDeck>();
         game = GameObject.Find("Game").GetComponent<Game>();
         isAwaken = true;
+        clicked = false;
     }
 
     public virtual bool Initialize(string cardId, Dictionary<string, CardUI> company, int attackerNum, NationsEnum owner)
@@ -86,6 +88,10 @@ public class Attacker : MonoBehaviour
     {
         if (!initialized)
             return;
-        StartCoroutine(diceManager.RollForCombat(attackerNum));
+        if (!clicked)
+        {
+            clicked = true;
+            StartCoroutine(diceManager.RollForCombat(attackerNum));
+        }
     }
 }

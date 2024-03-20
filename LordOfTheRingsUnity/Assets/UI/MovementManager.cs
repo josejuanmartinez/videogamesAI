@@ -352,7 +352,22 @@ public class MovementManager : MonoBehaviour
 
             List<CardTypesEnum> accumulatedMana = new();
 
-            Vector3 initialPosition = cardTilemap.CellToWorld(path[currentPointIndex]);
+            if (currentPointIndex >= path.Count)
+            {
+                Reset();
+                yield return null;
+            }
+
+            Vector3 initialPosition = NULL;
+            try { initialPosition = cardTilemap.CellToWorld(path[currentPointIndex]); }
+            catch { }
+
+            if (initialPosition == NULL)
+            {
+                Reset();
+                yield return null;
+            }
+
             initialPosition = new Vector3(initialPosition.x, initialPosition.y, 0);
             Vector3Int initialCell = cardTilemap.WorldToCell(initialPosition);
 
@@ -368,7 +383,7 @@ public class MovementManager : MonoBehaviour
                 }                    
             }
 
-            TerrainInfo lastTerrainInfo = null;
+            bool outOfMovement = false;
             CardInfo lastCardInfo = null;
             while (currentPointIndex + 1 < maxPath)
             {
@@ -399,7 +414,10 @@ public class MovementManager : MonoBehaviour
                 movementCost = CheckMountedOrBoarded(movementCost, startCell, selectedCardUIForMovement);
 
                 if (moved + movementCost > MovementConstants.unitsMovement)
+                {
+                    outOfMovement = true;
                     break;
+                }                    
 
                 lastHex = new Vector2Int(targetCell.x, targetCell.y);
 
@@ -432,7 +450,7 @@ public class MovementManager : MonoBehaviour
                     Tile terrainTile = terrainTilemap.GetTile(targetCell) as Tile;
                     if (terrainTile != null)
                     {
-                        lastTerrainInfo = terrainManager.GetTerrainInfo(terrainTile);
+                        TerrainInfo lastTerrainInfo = terrainManager.GetTerrainInfo(terrainTile);
                         if (lastTerrainInfo != null)
                             audioManager.PlaySound(audioRepo.GetAudio(lastTerrainInfo.terrainType));
                     }
@@ -487,8 +505,11 @@ public class MovementManager : MonoBehaviour
             cameraController.RemovePreventDrag();
             cameraController.LookToCard(selectedCardUIForMovement);
 
-            selectedCardUIForMovement.AddMessage(string.Format("{0}/{1} moved", moved, movement), 1f, Color.white);
-
+            if (moved == movement || outOfMovement)
+                selectedCardUIForMovement.AddMessage(GameObject.Find("Localization").GetComponent<Localization>().Localize("out_of_movement"), 1f, Color.red);
+            else
+                selectedCardUIForMovement.AddMessage(string.Format("{0}/{1} {2}", moved, movement, GameObject.Find("Localization").GetComponent<Localization>().Localize("moved")), 1f, Color.white);
+                
             Reset();
         }
         else

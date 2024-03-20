@@ -102,6 +102,8 @@ public class CombatPopupManager : Popup
 
         NationsEnum ownerOfCity = board.GetCityManager().GetCityOwner(city.GetCityId());
 
+        ShowPopup(true);
+
         short counter = 0;
         foreach (string attack in attacks)
         {
@@ -134,9 +136,7 @@ public class CombatPopupManager : Popup
             if (counter >= maxAttacks)
                 break;
         }
-
-
-        ShowPopup(true);
+        attackersLayout.GetComponent<HorizontalLayoutGroup>().enabled = false;
 
         return true;
     }
@@ -173,6 +173,8 @@ public class CombatPopupManager : Popup
         citySprite.sprite = spritesRepo.GetSprite(placeId);
 
         attackersNum = Math.Min(attackingCards.Count, maxAttacks);
+
+        ShowPopup(true);
 
         short counter = 0;
         foreach (Tuple<string, NationsEnum> attackTuple in attackingCards)
@@ -216,8 +218,6 @@ public class CombatPopupManager : Popup
             }            
         }
         attackersNum = Math.Min(attackersNum, counter);
-
-        ShowPopup(true);
 
         return true;
     }

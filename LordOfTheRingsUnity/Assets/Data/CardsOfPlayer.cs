@@ -213,7 +213,7 @@ public class CardsOfPlayer: MonoBehaviour
         }
         if (index == -1 || handPos == -1)
         {
-            Debug.LogError("Unable to discard card " + card.cardId);
+            Debug.Log("Not discarding, probably because it is spawn on the fly: " + card.cardId);
             return;
         }
 

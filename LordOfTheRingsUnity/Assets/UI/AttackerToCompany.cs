@@ -1,16 +1,31 @@
+using NUnit.Framework.Constraints;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
+    private float waitForAnimationBase = 4f;
+    [SerializeField]
+    private float moveSpeed = 2f;
+
     private CharacterCardUIPopup target;
     private NationsEnum attackerNation;
+    private float waitForAnimation;
+    
+    private Vector3 NONE = Vector3.one * int.MinValue;
+    private Vector3 lookToPosition = Vector3.one * int.MinValue;
+
     public override bool Initialize(string cardId, Dictionary<string, CardUI> company, int attackerNum, NationsEnum owner)
     {
         if (!base.Initialize(cardId, company, attackerNum, owner))
             return false;
-
+        
+        waitForAnimation = waitForAnimationBase * (attackerNum + 1);
+        
         int target_num = UnityEngine.Random.Range(0, this.company.Count);
         target = this.company[this.company.Keys.ToList()[target_num]] as CharacterCardUIPopup;
         if (target == null)
@@ -19,8 +34,35 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
         attackerNation = owner;
         initialized = true;
 
+        StartCoroutine(AttackMovement());
+
         return true;
     }
+    IEnumerator AttackMovement()
+    {
+        yield return new WaitForSecondsRealtime(waitForAnimation);
+        yield return new WaitWhile(() => diceManager.IsDicing());
+        lookToPosition = target.gameObject.transform.position;
+        StartCoroutine(ThrowDices());
+    }
+
+    void Update()
+    {
+        if (lookToPosition != NONE)
+        {
+            Vector3 newPosition = Vector3.Lerp(transform.position, lookToPosition, Time.deltaTime * moveSpeed);
+            transform.position = newPosition;
+            if (transform.position == lookToPosition)
+                lookToPosition = NONE;
+        }
+    }
+
+    IEnumerator ThrowDices()
+    {
+        yield return new WaitForSeconds(moveSpeed / 2);
+        OnClick();
+    }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         target.UndrawTargetted();

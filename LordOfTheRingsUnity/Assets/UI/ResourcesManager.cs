@@ -84,7 +84,6 @@ public class ResourcesManager : MonoBehaviour
         {
             RefreshCityProductionStats(nation);
             deckManager.Dirty(DirtyReasonEnum.NEW_RESOURCES);
-            selectedItems.UnselectAll();
         }        
     }
 

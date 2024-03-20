@@ -84,6 +84,7 @@ public class DiceManager : MonoBehaviour
             if (d10.value != 0)
             {
                 diceValue = d10.value;
+                DestroyImmediate(instantiatedDice);
                 break;
             }
         }

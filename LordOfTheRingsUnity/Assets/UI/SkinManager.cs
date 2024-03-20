@@ -11,14 +11,8 @@ public class SkinManager : MonoBehaviour
     public Image topBackground;
     public Image bottomBackground;
 
-    //public Image topBackgroundBar;
-    //public Image bottomBackgroundBar;
-
     public Image rightTrack;
-    //public Image mapFrame;
-    //public Image cardFrame;
-
-    // public Image nationIconOrnament;
+    public Image nextTurn;
 
     ColorManager colorManager;
     Settings settings;
@@ -54,14 +48,8 @@ public class SkinManager : MonoBehaviour
                 topBackground.sprite = playerSkin;
                 bottomBackground.sprite = playerSkin;
 
-                //topBackgroundBar.color = playerColor;
-                //bottomBackgroundBar.color = playerColor;
-
                 rightTrack.color = playerColor;
-                //mapFrame.color = playerColor;
-                //cardFrame.color = playerColor;
-
-                // nationIconOrnament.color = playerColor;
+                nextTurn.color = playerColor;
                 break;
             }
             catch
