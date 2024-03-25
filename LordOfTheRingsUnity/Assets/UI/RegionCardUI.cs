@@ -1,17 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class RegionCardUI : MonoBehaviour
+public class RegionCardUI : MonoBehaviour, IPointerEnterHandler
 {
     protected SpritesRepo spritesRepo;
 
-    private RegionSelectionBehaviour selectionBehaviour;    
+    private RegionSelectionBehaviour selectionBehaviour;
+    protected AudioManager audioManager;
+    protected AudioRepo audioRepo;
     protected bool isAwaken = false;
 
     protected virtual void Awake()
     {
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         selectionBehaviour = GetComponentInChildren<RegionSelectionBehaviour>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
         isAwaken = true;
     }
     public void Initialize(NationRegionsEnum region, GalleryLevelSelectionManager gallery)
@@ -36,5 +41,10 @@ public class RegionCardUI : MonoBehaviour
         };
         galleryView.manager.items = listOfRegions.ToArray();
         selectionBehaviour.Initialize(gallery);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        audioManager.PlaySound(audioRepo.GetAudio("card"));
     }
 }

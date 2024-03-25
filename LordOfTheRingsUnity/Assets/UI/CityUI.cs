@@ -10,6 +10,10 @@ using UnityEngine.UI;
 
 public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [Header("Max Health")]
+    [SerializeField]
+    private int MAX_HEALTH = 50;
+
     [Header("City Details")]
     [SerializeField, PreviewSprite]
     private Sprite sprite;
@@ -141,7 +145,7 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         hudMessages = new List<HUDMessage>();
         initialized = false;
         
-        health = 50;
+        health = MAX_HEALTH;
 
         Hide();
     }
@@ -331,10 +335,33 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return hex;
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public float GetHealthPercentage()
+    {
+        return health / MAX_HEALTH;
+    }
+
+    public void ReduceHealthBy(int reduction)
+    {
+        this.health -= reduction;
+        RefreshHealthUI();
+    }
+
     public void SetHealth(int health)
     {
-        imgHealth.fillAmount = health / 100;
+        this.health = health;
+        RefreshHealthUI();
     }
+
+    public void RefreshHealthUI()
+    {
+        imgHealth.fillAmount = GetHealthPercentage();
+    }
+
     public void SetHoverCity()
     {
         if (button.interactable)

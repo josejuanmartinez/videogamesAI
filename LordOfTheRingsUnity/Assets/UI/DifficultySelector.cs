@@ -5,12 +5,17 @@ public class DifficultySelector : MonoBehaviour
 {
     public Canvas difficultyCanvas;
     public LoadingCanvasManager loadingCanvasManager;
+    public AudioManager audioManager;
+    public AudioRepo audioRepo;
 
     private float lastClick = 0f;
 
     void Awake()
     {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
         loadingCanvasManager.Hide();
+        // audioManager.PlaySound(audioRepo.GetAudio("cards"));
     }
 
     public void Easy()
@@ -38,7 +43,7 @@ public class DifficultySelector : MonoBehaviour
         {
             loadingCanvasManager.Show();
             difficultyCanvas.enabled = false;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

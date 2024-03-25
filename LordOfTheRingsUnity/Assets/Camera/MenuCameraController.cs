@@ -8,6 +8,15 @@ public class MenuCameraController : MonoBehaviour
 
     private Transform target;
     private Vector3 targetPosition;
+    private AudioManager audioManager;
+    private AudioRepo audioRepo;
+
+    void Awake()
+    {
+
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
+    }
 
     void Start()
     {
@@ -22,7 +31,7 @@ public class MenuCameraController : MonoBehaviour
         // Calculate the new position and rotation of the camera
         targetPosition = target.position;
 
-        Vector3 v3targetPosition = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
+        Vector3 v3targetPosition = new (targetPosition.x, targetPosition.y, transform.position.z);
         Vector3 newPosition = Vector3.Lerp(transform.position, v3targetPosition, Time.deltaTime * moveSpeed);
 
         // Move the camera to the new position and rotation
@@ -36,11 +45,13 @@ public class MenuCameraController : MonoBehaviour
     }
     public void LookToCharacters()
     {
+        audioManager.PlaySound(audioRepo.GetAudio("cards"));
         LookTo(charactersCanvas.transform);
     }
 
     public void LookToRegions()
     {
+        audioManager.PlaySound(audioRepo.GetAudio("cards"));
         LookTo(regionsCanvas.transform);
     }
 }

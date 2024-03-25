@@ -47,6 +47,7 @@ public class RegionSelectionBehaviour : MonoBehaviour
         if (st)
             st.HideTooltip();
 
+        regionSelector.enabled = true;
         caRegionsCamera.LookToRegions();
     }
 

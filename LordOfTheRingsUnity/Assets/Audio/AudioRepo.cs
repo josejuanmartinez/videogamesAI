@@ -55,8 +55,8 @@ public class AudioRepo : MonoBehaviour
     private List<AudioResource> evilMusic;
     [SerializeField]
     private List<AudioResource> neutralMusic;
-    [Header("Event Music")]
 
+    [Header("Event Music")]
     [SerializeField]
     private List<AudioResource> freeCombatMusic;
     [SerializeField]

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public enum BattleResult
 {
     WON,
@@ -39,7 +41,14 @@ public static class CombatCalculator
         if (enemyProwess > playerDefence)
         {
             if (enemyStatusEffect != StatusEffect.NONE && enemyProwess > playerProwess && UnityEngine.Random.Range(0f,1f) >= critical)
+            {
+                string statusEffect = enemyStatusEffect.ToString().ToLower();
+                GameObject.Find("HUDMessageManager").GetComponent<HUDMessageManager>().ShowGlobalHUDMessage(
+                    GameObject.Find("Localization").GetComponent<Localization>().Localize(statusEffect),
+                    statusEffect
+                );
                 return new CombatResult(BattleResult.HURT, enemyStatusEffect);
+            }                
             else
                 return new CombatResult(BattleResult.HURT, StatusEffect.NONE);        
         }

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using System;
-using System.Dynamic;
 
 public class MovementManager : MonoBehaviour
 {
@@ -498,7 +497,7 @@ public class MovementManager : MonoBehaviour
 
             // IF CHARACTER, ENEMIES
             if (selectedCardUIForMovement.GetCardClass() == CardClass.Character)
-                CheckEnemies(lastCardInfo, selectedCardUIForMovement);
+                CheckAmbushWhileMoving(lastCardInfo, selectedCardUIForMovement);
 
             deckManager.Dirty(DirtyReasonEnum.CHAR_SELECTED);
 
@@ -695,7 +694,7 @@ public class MovementManager : MonoBehaviour
         return lastHex;
     }
 
-    public void CheckEnemies(CardInfo lastCardInfo, CardUI selectedCardUIForMovement)
+    public void CheckAmbushWhileMoving(CardInfo lastCardInfo, CardUI selectedCardUIForMovement)
     {
         if (lastCardInfo == null)
             return;
@@ -713,7 +712,7 @@ public class MovementManager : MonoBehaviour
             if (owner == game.GetHumanNation())
                 continue;
             
-            List<CardDetails> creaturesInHand = deckManager.GetCardsInHandOfType(CardClass.HazardCreature, owner);
+            List<CardDetails> creaturesInHand = deckManager.GetCardsInHandOfTypeNotExhausted(CardClass.HazardCreature, owner);
             creaturesInHand.Shuffle();
                         
             foreach (CardDetails cardDetails in creaturesInHand)

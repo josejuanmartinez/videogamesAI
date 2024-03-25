@@ -2,6 +2,7 @@ using System.IO;
 using System;
 using UnityEngine;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 
 public class CardDetails : MonoBehaviour
 {
@@ -23,11 +24,14 @@ public class CardDetails : MonoBehaviour
     private Resources resourcesRequired;
 
     private Game game;
+    private Turn turn;
     private bool isInitialized;
+    private List<short> passivelyUsedinTurns;
 
     void Awake()
     {
         game = GameObject.Find("Game").GetComponent<Game>();
+        turn = GameObject.Find("Turn").GetComponent<Turn>();
         isInitialized = false;
     }
 
@@ -35,8 +39,7 @@ public class CardDetails : MonoBehaviour
     {
         Awake();
 
-        //if (!game.IsInitialized())
-        //    return false;
+        passivelyUsedinTurns = new();
 
         this.resourcesRequired = resourcesRequired;
         this.cardClass = cardClass;
@@ -79,6 +82,15 @@ public class CardDetails : MonoBehaviour
         CalculateVictoryPoints();
         isInitialized = true;
         return isInitialized;
+    }
+
+    public void UsePassively()
+    {
+        passivelyUsedinTurns.Add(turn.GetTurnNumber());
+    }
+    public bool IsNotExhausted()
+    {
+        return passivelyUsedinTurns.Contains(turn.GetTurnNumber());
     }
 
     public Resources GetResourcesRequired()

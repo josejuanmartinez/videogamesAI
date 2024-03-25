@@ -64,7 +64,7 @@ public class CombatPopupManager : Popup
 }
     public bool Initialize(CardUI leader, CityUI city)
     {
-        /* CITY ATTACK TO CHARACTER OR CREATURES  */
+        /* GARRISON CITY ATTACK TO CHARACTER OR CREATURES  */
         if (!isAwaken)
             Awake();
 
@@ -94,18 +94,26 @@ public class CombatPopupManager : Popup
         title.text = GameObject.Find("Localization").GetComponent<Localization>().Localize(city.GetCityId());
         citySprite.sprite = city.GetSprite();
 
-        List<string> attacks = board.GetCityManager().GetCityUI(city.GetCityId()).GetAutomaticAttacks(leader.GetOwner());
-        if(attacks.Count < 1)
+        List<string> garrison = board.GetCityManager().GetCityUI(city.GetCityId()).GetAutomaticAttacks(leader.GetOwner());
+        if(garrison.Count < 1)
             return false;
 
-        attackersNum = attacks.Count;
+        attackersNum = garrison.Count;
+
+        // I reduce the number of garrison but always at least 1
+        float cityHealthPercentage = city.GetHealthPercentage();
+        attackersNum = Math.Max(1, (int)Math.Floor(attackersNum * cityHealthPercentage));
 
         NationsEnum ownerOfCity = board.GetCityManager().GetCityOwner(city.GetCityId());
+        GameObject.Find("HUDMessageManager").GetComponent<HUDMessageManager>().ShowGlobalHUDMessage(
+            GameObject.Find("Localization").GetComponent<Localization>().Localize("you_were_detected"),
+            spritesRepo.GetSprite("combat")
+        );
 
         ShowPopup(true);
 
         short counter = 0;
-        foreach (string attack in attacks)
+        foreach (string attack in garrison)
         {
             if(leaderCardDetails.IsClassOf(CardClass.Character))
             {
@@ -142,7 +150,7 @@ public class CombatPopupManager : Popup
     }
     public bool Initialize(CardUI leader, List<Tuple<string, NationsEnum>> attackingCards, string placeId)
     {
-        /* MOVEMENT DEFENSE FOR CHARACTERS OR ARMIES */
+        /* AMBUSH: MOVEMENT DEFENSE FOR CHARACTERS OR ARMIES */
 
         if (!isAwaken)
             Awake();
@@ -173,6 +181,11 @@ public class CombatPopupManager : Popup
         citySprite.sprite = spritesRepo.GetSprite(placeId);
 
         attackersNum = Math.Min(attackingCards.Count, maxAttacks);
+
+        GameObject.Find("HUDMessageManager").GetComponent<HUDMessageManager>().ShowGlobalHUDMessage(
+            GameObject.Find("Localization").GetComponent<Localization>().Localize("ambush"),
+            spritesRepo.GetSprite("combat")
+        );
 
         ShowPopup(true);
 

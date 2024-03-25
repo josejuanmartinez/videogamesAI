@@ -237,4 +237,8 @@ public class CardsOfPlayer: MonoBehaviour
     {
         return drawnCards.FindAll(x => x.cardClass == cardClass);
     }
+    public List<CardDetails> GetCardsInHandOfTypeNotExhausted(CardClass cardClass)
+    {
+        return drawnCards.FindAll(x => x.cardClass == cardClass && !x.IsNotExhausted());
+    }
 }

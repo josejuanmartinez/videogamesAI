@@ -570,6 +570,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: card
+  cursor: clickable
 --- !u!1 &162025386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: card
+  cursor: clickable
 --- !u!1 &536141097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9110192946824d246b540562546721e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: card
+  cursor: clickable
 --- !u!1 &1635789246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,6 +1888,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultyCanvas: {fileID: 781215315}
   loadingCanvasManager: {fileID: 49243442}
+  audioManager: {fileID: 0}
+  audioRepo: {fileID: 0}
 --- !u!4 &1682764505
 Transform:
   m_ObjectHideFlags: 0

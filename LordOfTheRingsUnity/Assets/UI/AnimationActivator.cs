@@ -27,14 +27,29 @@ public class AnimationActivator : MonoBehaviour
         }        
     }
 
-    public void Stop()
+    public void Stop(bool rewind=false)
     {
         if(animate)
         {
-            //animation.Rewind();
+            if (rewind)
+                GetComponent<Animation>().Rewind();
             animate = false;
             anim.wrapMode = WrapMode.Clamp;
         }        
+    }
+
+    public bool IsPlaying()
+    {
+        return anim.isPlaying;
+    }
+
+    public void Update()
+    {
+        if (animate)
+        {
+            Play(wrapMode);
+            animate = false;
+        }
     }
 
 }

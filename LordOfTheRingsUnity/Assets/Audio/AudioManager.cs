@@ -16,26 +16,59 @@ public class AudioManager : MonoBehaviour
 
     private Game game;
     private AudioRepo audioRepo;
+
+    private bool isInGame;
     void Awake()
     {
-        game = GameObject.Find("Game").GetComponent<Game>();
+        isInGame = false;
+        if (GameObject.Find("Game"))
+        {
+            game = GameObject.Find("Game").GetComponent<Game>();
+            isInGame = true;
+        }
+            
         audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
     }
 
     public void RandomizeMusic()
     {
-        AudioResource music = audioRepo.GetMusic(Nations.alignments[game.GetHumanNation()]);
+        if(isInGame)
+        {
+            // GAME
+            if (!game.FinishedLoading())
+                return;
+            
+            AudioResource music = audioRepo.GetMusic(Nations.alignments[game.GetHumanNation()]);
+            if (music != null)
+            {
+                musicSource.resource = music;
+                musicSource.Play();
+            }
+        }
+        else
+        {
+            // MENU
+            AudioResource music = audioRepo.GetMusic(AlignmentsEnum.NEUTRAL);
+            if (music != null)
+            {
+                musicSource.resource = music;
+                musicSource.Play();
+            }
+        }            
+    }
+
+    public void PlayMusic(AudioResource music)
+    {
         if (music != null)
         {
             musicSource.resource = music;
             musicSource.Play();
         }
-            
     }
 
     void Update()
     {
-        if (game.FinishedLoading() && !musicSource.isPlaying)
+        if (!musicSource.isPlaying)
             RandomizeMusic();
     }
 

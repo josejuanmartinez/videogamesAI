@@ -253,4 +253,9 @@ public class DeckManager : MonoBehaviour
         CardsOfPlayer cards = cardsOfPlayer.Find(x => x.GetNation() == owner);
         return cards.GetCardsInHandOfType(cardClass);
     }
+    public List<CardDetails> GetCardsInHandOfTypeNotExhausted(CardClass cardClass, NationsEnum owner)
+    {
+        CardsOfPlayer cards = cardsOfPlayer.Find(x => x.GetNation() == owner);
+        return cards.GetCardsInHandOfTypeNotExhausted(cardClass);
+    }
 }

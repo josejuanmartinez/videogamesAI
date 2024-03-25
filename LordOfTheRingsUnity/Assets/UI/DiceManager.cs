@@ -75,7 +75,7 @@ public class DiceManager : MonoBehaviour
         diceValue = 0;
         Die_d10 d10 = instantiatedDice.GetComponentInChildren<Die_d10>();
         
-        d10.GetComponent<MeshRenderer>().material.color = colorManager.GetColor(cardClass.ToString());
+        // d10.GetComponent<MeshRenderer>().material.color = colorManager.GetColor(cardClass.ToString());
 
         audioManager.PlaySound(audioRepo.GetAudio("dices"));
         for (int i = 0; i < maxTime; i++)

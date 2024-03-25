@@ -7,14 +7,14 @@ public class RegionCharacterSelectionBehaviour : MonoBehaviour
     private Button button;
 
     private Settings settings;
-    private StartManager startManager;
+    private StartGameManager startGameManager;
 
     private float lastClick = 0f;
 
     void Awake()
     {
         settings = GameObject.Find("Settings").GetComponent<Settings>();
-        startManager = GameObject.Find("StartManager").GetComponent<StartManager>();
+        startGameManager = GameObject.Find("StartGameManager").GetComponent<StartGameManager>();
         button = GetComponent<Button>();
         button.onClick.AddListener(Click);
     }
@@ -32,7 +32,7 @@ public class RegionCharacterSelectionBehaviour : MonoBehaviour
         {
             settings.SetHumanPlayer(nation);
             Debug.Log(string.Format("Starting the game with {0}", nation.ToString()));
-            startManager.StartGame();
+            startGameManager.StartGame();
         }
     }
 }

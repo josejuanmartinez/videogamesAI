@@ -107,6 +107,12 @@ public class Turn : MonoBehaviour
         }
         
         newTurnLoaded = true;
+        GameObject.Find("HUDMessageManager").GetComponent<HUDMessageManager>().ShowGlobalHUDMessage(
+            string.Format(
+                "{0}: {1}",
+                GameObject.Find("Localization").GetComponent<Localization>().Localize("new_turn"),
+                turnNumber.ToString())
+        );
         Debug.Log(string.Format("New turn: {0} at {1}", turnNumber, Time.realtimeSinceStartup));
     }
 
