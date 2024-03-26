@@ -36,7 +36,6 @@ public class CombatPopupManager : Popup
     private SpritesRepo spritesRepo;
     private Board board;
 
-    private int processedAttacks;
     private int attackersNum;
     private bool noHurts;
     private bool isAwaken = false;
@@ -44,7 +43,7 @@ public class CombatPopupManager : Popup
     private CombatPopupType combatPopupType;
 
     private List<Tuple<string, NationsEnum>> selectedCardToAttack;
-    private CardDetailsRepo cardRepo;
+    private DiceManager diceManager;
 
 
     void Awake()
@@ -55,9 +54,8 @@ public class CombatPopupManager : Popup
         turn = GameObject.Find("Turn").GetComponent<Turn>();
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
         board = GameObject.Find("Board").GetComponent<Board>();
-        cardRepo = GameObject.Find("CardDetailsRepo").GetComponent<CardDetailsRepo>();
+        diceManager = GameObject.Find("DiceManager").GetComponent<DiceManager>();
         selectedCardToAttack = new();
-        processedAttacks = 0;
         attackersNum = 0;
         noHurts = true;
         isAwaken = true;
@@ -82,7 +80,6 @@ public class CombatPopupManager : Popup
             return false;
 
         noHurts = true;
-        processedAttacks = 0;
 
         if(!combatCompanyManager.Initialize(leader.GetOwner()))
             return false;
@@ -144,6 +141,7 @@ public class CombatPopupManager : Popup
             if (counter >= maxAttacks)
                 break;
         }
+        diceManager.RollForCombat(garrison.Count);
         attackersLayout.GetComponent<HorizontalLayoutGroup>().enabled = false;
 
         return true;
@@ -168,7 +166,6 @@ public class CombatPopupManager : Popup
             return false;
 
         noHurts = true;
-        processedAttacks = 0;        
 
         if (!combatCompanyManager.Initialize(leader.GetOwner()))
             return false;
@@ -231,36 +228,35 @@ public class CombatPopupManager : Popup
             }            
         }
         attackersNum = Math.Min(attackersNum, counter);
+        diceManager.RollForCombat(attackersNum);
 
         return true;
     }
 
-    public void GatherDiceResults(int diceValue, int attackerNum)
+    public void GatherDiceResults(List<int> diceResults)
     {
-        if (diceValue == 0)
-            diceValue = DiceManager.D10;
-        GameObject child = attackersLayout.transform.GetChild(attackerNum).gameObject;        
-        if (child.GetComponent<AttackerToCompany>() != null)
-            noHurts &= child.GetComponent<AttackerToCompany>().GatherDiceResults(diceValue);
-        else if(child.GetComponent<AttackerToCreature>() != null)
-            noHurts &= child.GetComponent<AttackerToCreature>().GatherDiceResults(diceValue);
-        
-        processedAttacks++;
-
-        if(processedAttacks >= attackersNum)
+        for(int i=0; i<diceResults.Count; i++)
         {
-            switch (combatPopupType)
-            {
-                case CombatPopupType.AutomaticAttack:
-                    StartCoroutine(ApplyResultsAutomaticAttack());
-                    break;
-                case CombatPopupType.MovementAttack:
-                    StartCoroutine(ApplyResultsMovementAttack());
-                    break;
-                case CombatPopupType.CreatureAttack:
-                    StartCoroutine(ApplyResultsAttackToCity());
-                    break;
-            }
+            if (diceResults[i] < 0)
+                diceResults[i] = DiceManager.D10;
+            GameObject child = attackersLayout.transform.GetChild(i).gameObject;
+            if (child.GetComponent<AttackerToCompany>() != null)
+                noHurts &= child.GetComponent<AttackerToCompany>().GatherDiceResults(diceResults[i]);
+            else if (child.GetComponent<AttackerToCreature>() != null)
+                noHurts &= child.GetComponent<AttackerToCreature>().GatherDiceResults(diceResults[i]);
+        }
+
+        switch (combatPopupType)
+        {
+            case CombatPopupType.AutomaticAttack:
+                StartCoroutine(ApplyResultsAutomaticAttack());
+                break;
+            case CombatPopupType.MovementAttack:
+                StartCoroutine(ApplyResultsMovementAttack());
+                break;
+            case CombatPopupType.CreatureAttack:
+                StartCoroutine(ApplyResultsAttackToCity());
+                break;
         }
     }
     IEnumerator ApplyResultsAutomaticAttack()

@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
-    private float waitForAnimationBase = 4f;
+    private float waitForAnimationBase = 2f;
     [SerializeField]
     private float moveSpeed = 2f;
 
@@ -17,7 +17,7 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
     private float waitForAnimation;
     
     private Vector3 NONE = Vector3.one * int.MinValue;
-    private Vector3 lookToPosition = Vector3.one * int.MinValue;
+    private Vector3 moveTo = Vector3.one * int.MinValue;
 
     public override bool Initialize(string cardId, Dictionary<string, CardUI> company, int attackerNum, NationsEnum owner)
     {
@@ -34,33 +34,26 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
         attackerNation = owner;
         initialized = true;
 
-        StartCoroutine(AttackMovement());
+        StartCoroutine(AttackAnimation());
 
         return true;
     }
-    IEnumerator AttackMovement()
+    IEnumerator AttackAnimation()
     {
         yield return new WaitForSecondsRealtime(waitForAnimation);
         yield return new WaitWhile(() => diceManager.IsDicing());
-        lookToPosition = target.gameObject.transform.position;
-        StartCoroutine(ThrowDices());
+        moveTo = target.gameObject.transform.position;
     }
 
     void Update()
     {
-        if (lookToPosition != NONE)
+        if (moveTo != NONE)
         {
-            Vector3 newPosition = Vector3.Lerp(transform.position, lookToPosition, Time.deltaTime * moveSpeed);
+            Vector3 newPosition = Vector3.Lerp(transform.position, moveTo, Time.deltaTime * moveSpeed);
             transform.position = newPosition;
-            if (transform.position == lookToPosition)
-                lookToPosition = NONE;
+            if (transform.position == moveTo)
+                moveTo = NONE;
         }
-    }
-
-    IEnumerator ThrowDices()
-    {
-        yield return new WaitForSeconds(moveSpeed / 2);
-        OnClick();
     }
 
     public void OnPointerExit(PointerEventData eventData)

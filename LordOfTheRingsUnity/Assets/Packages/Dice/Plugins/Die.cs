@@ -15,6 +15,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 /// <summary>
 /// Die base class to determine if a die is rolling and to calculate it's current value
@@ -26,7 +27,7 @@ public class Die : MonoBehaviour {
 	//------------------------------------------------------------------------------------------------------------------------------
 	
 	// current value, 0 is undetermined (die is rolling) or invalid.
-	public int value = 0;	
+	public int value = 0;
 
 	//------------------------------------------------------------------------------------------------------------------------------
 	// protected and private attributes
@@ -87,17 +88,16 @@ public class Die : MonoBehaviour {
         get
         {
 			// create a Ray from straight above this Die , moving downwards
-            Ray ray = new Ray(transform.position + (new Vector3(0, 2, 0) * transform.localScale.magnitude), Vector3.up * -1);
-            RaycastHit hit = new RaycastHit();
-			// cast the ray and validate it against this die's collider
-            if (GetComponent<Collider>().Raycast(ray, out hit, 3 * transform.localScale.magnitude))
+            Ray ray = new (transform.position + (new Vector3(0, 2, 0) * transform.localScale.magnitude), Vector3.up * -1);
+            // cast the ray and validate it against this die's collider
+            if (GetComponent<Collider>().Raycast(ray, out RaycastHit hit, 3 * transform.localScale.magnitude))
             {
-				// we got a hit so we determine the local normalized vector from the die center to the face that was hit.
-				// because we are using local space, each die side will have its own local hit vector coordinates that will always be the same.
+                // we got a hit so we determine the local normalized vector from the die center to the face that was hit.
+                // because we are using local space, each die side will have its own local hit vector coordinates that will always be the same.
                 localHitNormalized = transform.InverseTransformPoint(hit.point.x, hit.point.y, hit.point.z).normalized;
                 return true;
             }
-			// in theory we should not get at this position!
+            // in theory we should not get at this position!
             return false;
         }
     }
@@ -106,7 +106,7 @@ public class Die : MonoBehaviour {
     void GetValue()
     {
 		// value = 0 -> undetermined or invalid
-        value = 0;
+        value = -1;
         float delta = 1;
 		// start with side 1 going up.
         int side = 1;
@@ -131,14 +131,15 @@ public class Die : MonoBehaviour {
                     {
                         value = side;
                         delta = nDelta;
+                        GetComponent<Rigidbody>().isKinematic = true;
                     }
                 }
             }
 			// increment side
             side++;
 			// if we got a Vector.zero as the testHitVector we have checked all sides of this die
-        } while (testHitVector != Vector3.zero);
-        //GetComponent<Rigidbody>().isKinematic = true;
+        } while (testHitVector != Vector3.zero && value < 0);
+        
     }
 
     void ApplyDownwardForce()
@@ -182,9 +183,8 @@ public class Die : MonoBehaviour {
         }
 
         // determine the value is the die is not rolling
-        if (!rolling && localHit)
+        if (!rolling && localHit && value == 0)
             GetValue();
-            
     }
 
 	// validate a test value against a value within a specific margin.
