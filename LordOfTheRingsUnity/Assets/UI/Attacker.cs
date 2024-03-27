@@ -1,8 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Attacker : MonoBehaviour
 {
@@ -14,11 +18,20 @@ public class Attacker : MonoBehaviour
 
     public TextMeshProUGUI prowessText;
     public TextMeshProUGUI defenceText;
+    
+    public float waitForAnimationBase = 2f; 
+    public float moveSpeed = 2f;
 
+    protected float waitForAnimation;
+
+    protected CardUI target;
+    protected NationsEnum attackerNation;
     protected int attackerNum;
+
     protected bool resolved = false;
     protected bool initialized = false;
     protected bool isAwaken = false;
+    protected bool isAnimating = false;
     protected RacesEnum race;
 
     protected DiceManager diceManager;
@@ -31,6 +44,8 @@ public class Attacker : MonoBehaviour
     protected Dictionary<string, CardUI> company;
     protected HazardCreatureCardDetails attackerDetails;
 
+    private Vector3 NONE = Vector3.one * int.MinValue;
+    private Vector3 moveTo = Vector3.one * int.MinValue;
     void Awake()
     {
         spritesRepo = GameObject.Find("SpritesRepo").GetComponent<SpritesRepo>();
@@ -47,8 +62,15 @@ public class Attacker : MonoBehaviour
             Awake();
 
         this.company = new Dictionary<string, CardUI>(company);
+        int target_num = UnityEngine.Random.Range(0, this.company.Count);
+        target = this.company[this.company.Keys.ToList()[target_num]];
+        attackerNation = owner;
 
         this.attackerNum = attackerNum;
+
+        //  waitForAnimation = waitForAnimationBase * (attackerNum + 1);
+        waitForAnimation = waitForAnimationBase;
+
         result.enabled = false;
         canvasGroup.alpha = 1;
 
@@ -79,5 +101,33 @@ public class Attacker : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    public IEnumerator AttackAnimation()
+    {
+        isAnimating = true;
+        yield return new WaitForSecondsRealtime(waitForAnimation);
+        moveTo = target.gameObject.transform.position;
+    }
+
+    public bool IsAnimating()
+    {
+        return isAnimating;
+    }
+
+    void Update()
+    {
+        if (moveTo != NONE)
+        {
+            Vector3 newPosition = Vector3.Lerp(transform.position, moveTo, Time.deltaTime * moveSpeed);
+            transform.position = newPosition;
+            float distanceToDestination = Vector3.Distance(transform.position, target.transform.position);
+            if (distanceToDestination < 2f)
+            {
+                transform.position = moveTo;
+                moveTo = NONE;
+                isAnimating = false;
+            }   
+        }
     }
 }

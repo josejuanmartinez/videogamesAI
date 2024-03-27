@@ -21,7 +21,7 @@ public class HazardEventCardUI : CardUI
         else
             return false;
 
-        eventTypeIcon.enabled = (details as EventCardDetails).eventType == EventType.Immediate;
+        eventTypeIcon.enabled = (details as HazardEventCardDetails).eventType == EventType.Immediate;
 
         initialized = true;
         return initialized;

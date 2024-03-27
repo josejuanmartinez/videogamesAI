@@ -382,7 +382,7 @@ public class MovementManager : MonoBehaviour
                 }                    
             }
 
-            bool outOfMovement = false;
+            bool outOfMovement = (movement == 0);
             CardInfo lastCardInfo = null;
             while (currentPointIndex + 1 < maxPath)
             {
@@ -566,9 +566,13 @@ public class MovementManager : MonoBehaviour
             Vector3 cardCellCenter = cardTilemap.CellToWorld(cardTilePos);
             cardCellCenter = new Vector3(cardCellCenter.x, cardCellCenter.y, -1);
             positions.Add(cardCellCenter);
-                        
-            short movementCost = (p != 0) ? terrainManager.GetMovementCost(cardTilePos) : (short)0;
-            movementCost = CheckMountedOrBoarded(movementCost, cardTilePos, selectedCardUIForMovement);
+
+            short movementCost = 0;
+            if( p != 0)
+            {
+                movementCost = terrainManager.GetMovementCost(cardTilePos);
+                movementCost = CheckMountedOrBoarded(movementCost, cardTilePos, selectedCardUIForMovement);
+            }
 
             if (moved + movementCost > movement)
             {
@@ -701,7 +705,7 @@ public class MovementManager : MonoBehaviour
 
         Dictionary<NationsEnum, float> distancesToPlayers = board.GetCityManager().GetEnemyNeighbourCities(lastHex, turn.GetCurrentPlayer());
 
-        List<Tuple<string, NationsEnum>> toCombat = new();
+        List<Tuple<HazardCreatureCardDetails, NationsEnum>> toCombat = new();
 
         List<float> normPlayerDistancesToProbas = distancesToPlayers.Values.ToList();
         normPlayerDistancesToProbas = normPlayerDistancesToProbas.Select(distance => 1 - (distance / normPlayerDistancesToProbas.Sum())).ToList();
@@ -728,7 +732,7 @@ public class MovementManager : MonoBehaviour
                         continue;
                     if (!hazardCard.GetCardTypes().Contains(lastCardInfo.cardType))
                         continue;
-                    toCombat.Add(new Tuple<string, NationsEnum>(cardDetails.cardId, owner));
+                    toCombat.Add(new Tuple<HazardCreatureCardDetails, NationsEnum>(hazardCard, owner));
                 }
             }
         }

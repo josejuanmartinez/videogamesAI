@@ -134,7 +134,7 @@ public class DeckManager : MonoBehaviour
         cardsOfPlayer.Find(x => x.GetNation() == nation).RemoveFromHandAndDraw(card);
         placeDeckManager.RemoveCardToShow(new HoveredCard(nation, card.cardId, card.cardClass));
     }
-    public void RemoveFromHandAndDraw(Tuple<string, NationsEnum> cardTuple)
+    public void Exhaust(Tuple<string, NationsEnum> cardTuple)
     {
         CardDetails details = cardRepo.GetCardDetails(cardTuple.Item1, cardTuple.Item2);
         if (details == null)

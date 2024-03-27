@@ -42,7 +42,8 @@ public class CombatPopupManager : Popup
 
     private CombatPopupType combatPopupType;
 
-    private List<Tuple<string, NationsEnum>> selectedCardToAttack;
+    private List<Tuple<HazardCreatureCardDetails, NationsEnum>> selectedCardToAttack;
+    public List<GameObject> attackerObjects;
     private DiceManager diceManager;
 
 
@@ -56,6 +57,7 @@ public class CombatPopupManager : Popup
         board = GameObject.Find("Board").GetComponent<Board>();
         diceManager = GameObject.Find("DiceManager").GetComponent<DiceManager>();
         selectedCardToAttack = new();
+        attackerObjects = new();
         attackersNum = 0;
         noHurts = true;
         isAwaken = true;
@@ -110,9 +112,12 @@ public class CombatPopupManager : Popup
         ShowPopup(true);
 
         short counter = 0;
+        attackerObjects = new();
+        bool found = false;
         foreach (string attack in garrison)
         {
-            if(leaderCardDetails.IsClassOf(CardClass.Character))
+            
+            if (leaderCardDetails.IsClassOf(CardClass.Character))
             {
                 GameObject goAttacker = Instantiate(
                 attackerToCompany,
@@ -123,6 +128,8 @@ public class CombatPopupManager : Popup
                     counter,
                     ownerOfCity
                 );
+                attackerObjects.Add(goAttacker);
+                found = true;
             }
             else if (leaderCardDetails.IsClassOf(CardClass.HazardCreature))
             {
@@ -135,18 +142,25 @@ public class CombatPopupManager : Popup
                     counter,
                     ownerOfCity
                 );
+                attackerObjects.Add(goAttacker);
+                found = true;
             }
-            
-            counter++;
-            if (counter >= maxAttacks)
-                break;
+
+            if (found)
+            {
+                counter++;
+                if (counter >= maxAttacks)
+                    break;
+            }
         }
-        diceManager.RollForCombat(garrison.Count);
-        attackersLayout.GetComponent<HorizontalLayoutGroup>().enabled = false;
+        attackersNum = Math.Min(attackersNum, counter);
+        // attackersLayout.GetComponent<HorizontalLayoutGroup>().enabled = false;
+
+        StartCoroutine(LaunchAnimationAndDices());
 
         return true;
     }
-    public bool Initialize(CardUI leader, List<Tuple<string, NationsEnum>> attackingCards, string placeId)
+    public bool Initialize(CardUI leader, List<Tuple<HazardCreatureCardDetails, NationsEnum>> attackingCards, string placeId)
     {
         /* AMBUSH: MOVEMENT DEFENSE FOR CHARACTERS OR ARMIES */
 
@@ -187,10 +201,11 @@ public class CombatPopupManager : Popup
         ShowPopup(true);
 
         short counter = 0;
-        foreach (Tuple<string, NationsEnum> attackTuple in attackingCards)
+        attackerObjects = new ();
+        foreach (Tuple<HazardCreatureCardDetails, NationsEnum> attackTuple in attackingCards)
         {
             bool found = false;
-            string attack = attackTuple.Item1;
+            HazardCreatureCardDetails details = attackTuple.Item1;
             NationsEnum attackOwner = attackTuple.Item2;
 
             if (leaderCardDetails.IsClassOf(CardClass.Character))
@@ -199,11 +214,12 @@ public class CombatPopupManager : Popup
                 attackerToCompany,
                 attackersLayout.transform);
                 goAttacker.GetComponent<AttackerToCompany>().Initialize(
-                    attack,
+                    details.cardId,
                     combatCompanyManager.GetAllCombatCards(),
                     counter,
                     attackOwner
                 );
+                attackerObjects.Add( goAttacker );
                 found = true;
             }
             else if (leaderCardDetails.IsClassOf(CardClass.HazardCreature))
@@ -212,11 +228,12 @@ public class CombatPopupManager : Popup
                 attackerToCreature,
                 attackersLayout.transform);
                 goAttacker.GetComponent<AttackerToCreature>().Initialize(
-                    attack,
+                    details.cardId,
                     combatCompanyManager.GetAllCombatCards(),
                     counter,
                     attackOwner
                 );
+                attackerObjects.Add(goAttacker);
                 found = true;
             }
             if (found)
@@ -228,9 +245,22 @@ public class CombatPopupManager : Popup
             }            
         }
         attackersNum = Math.Min(attackersNum, counter);
-        diceManager.RollForCombat(attackersNum);
+
+        StartCoroutine(LaunchAnimationAndDices());
 
         return true;
+    }
+
+    public IEnumerator LaunchAnimationAndDices()
+    {
+        foreach(GameObject goAttacker in attackerObjects)
+        {
+            Attacker attacker = goAttacker.GetComponent<Attacker>();
+            if (attacker != null)
+                StartCoroutine(attacker.AttackAnimation());
+        }
+        yield return new WaitUntil(() => attackerObjects.Find(x => x.GetComponent<Attacker>() != null && x.GetComponent<Attacker>().IsAnimating()) == null);
+        StartCoroutine(diceManager.RollForCombatCoroutine(attackersNum));
     }
 
     public void GatherDiceResults(List<int> diceResults)
@@ -335,12 +365,9 @@ public class CombatPopupManager : Popup
     IEnumerator ApplyResultsMovementAttack()
     {
         /* RESULTS ON MOVEMENT DEFENSE*/
-
-        yield return new WaitForSeconds(secondsToResult);
-
-        foreach(Tuple<string, NationsEnum> attacker in selectedCardToAttack)
-            deckManager.RemoveFromHandAndDraw(attacker);
-
+        foreach(Tuple<HazardCreatureCardDetails, NationsEnum> t in selectedCardToAttack)
+            t.Item1.UsePassively();
+        
         HidePopup();
 
         yield return null;

@@ -1,4 +1,3 @@
-using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,58 +6,25 @@ using UnityEngine.EventSystems;
 
 public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
-    private float waitForAnimationBase = 2f;
-    [SerializeField]
-    private float moveSpeed = 2f;
-
-    private CharacterCardUIPopup target;
-    private NationsEnum attackerNation;
-    private float waitForAnimation;
-    
-    private Vector3 NONE = Vector3.one * int.MinValue;
-    private Vector3 moveTo = Vector3.one * int.MinValue;
+    private CharacterCardUIPopup characterTarget;
 
     public override bool Initialize(string cardId, Dictionary<string, CardUI> company, int attackerNum, NationsEnum owner)
     {
         if (!base.Initialize(cardId, company, attackerNum, owner))
             return false;
         
-        waitForAnimation = waitForAnimationBase * (attackerNum + 1);
-        
-        int target_num = UnityEngine.Random.Range(0, this.company.Count);
-        target = this.company[this.company.Keys.ToList()[target_num]] as CharacterCardUIPopup;
-        if (target == null)
+        characterTarget = target as CharacterCardUIPopup;
+        if (characterTarget == null)
             return false;
 
-        attackerNation = owner;
         initialized = true;
 
-        StartCoroutine(AttackAnimation());
-
         return true;
-    }
-    IEnumerator AttackAnimation()
-    {
-        yield return new WaitForSecondsRealtime(waitForAnimation);
-        yield return new WaitWhile(() => diceManager.IsDicing());
-        moveTo = target.gameObject.transform.position;
-    }
-
-    void Update()
-    {
-        if (moveTo != NONE)
-        {
-            Vector3 newPosition = Vector3.Lerp(transform.position, moveTo, Time.deltaTime * moveSpeed);
-            transform.position = newPosition;
-            if (transform.position == moveTo)
-                moveTo = NONE;
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        target.UndrawTargetted();
+        characterTarget.UndrawTargetted();
         if (attackerDetails != null)
             placeDeck.RemoveCardToShow(new HoveredCard(attackerNation, attackerDetails.cardId, attackerDetails.cardClass));
     }
@@ -67,7 +33,7 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
     {
         if (!initialized || resolved)
             return;
-        target.DrawTargetted();
+        characterTarget.DrawTargetted();
         if (attackerDetails != null)
             placeDeck.SetCardToShow(new HoveredCard(attackerNation, attackerDetails.cardId, attackerDetails.cardClass));
     }
@@ -82,14 +48,14 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
         switch (race)
         {
             case RacesEnum.Ringwraith:
-                if (target.GetCharacterDetails().GetAbilities().Contains(CharacterAbilitiesEnum.BonusToNazgul))
+                if (characterTarget.GetCharacterDetails().GetAbilities().Contains(CharacterAbilitiesEnum.BonusToNazgul))
                     raceEffects = 3;
                 break;            
         }
 
-        int playerProwess = target.GetTotalProwess() + diceResults + raceEffects;
+        int playerProwess = characterTarget.GetTotalProwess() + diceResults + raceEffects;
 
-        int playerDefence = target.GetTotalDefence() + diceResults;
+        int playerDefence = characterTarget.GetTotalDefence() + diceResults;
 
         if (playerProwess < 1)
             playerProwess = 1;
@@ -108,38 +74,38 @@ public class AttackerToCompany: Attacker, IPointerEnterHandler, IPointerExitHand
         switch (combatResult.GetBattleResult())
         {
             case BattleResult.EXHAUSTED:
-                target.Exhausted(attackerDetails);
+                characterTarget.Exhausted(attackerDetails);
                 break;
             case BattleResult.HURT:
-                target.Hurt(attackerDetails);
+                characterTarget.Hurt(attackerDetails);
                 break;
             case BattleResult.WON:
-                target.Won(attackerDetails);
+                characterTarget.Won(attackerDetails);
                 break;
         }
 
         switch (combatResult.GetStatusEffect())
         {
             case StatusEffect.BLOOD:
-                target.Bleeding();
+                characterTarget.Bleeding();
                 break;
             case StatusEffect.POISON:
-                target.Poisoned();
+                characterTarget.Poisoned();
                 break;
             case StatusEffect.MORGUL:
-                target.Morgul();
+                characterTarget.Morgul();
                 break;
             case StatusEffect.ICE:
-                target.Ice();
+                characterTarget.Ice();
                 break;
             case StatusEffect.FIRE:
-                target.Fire();
+                characterTarget.Fire();
                 break;
             case StatusEffect.TRAP:
-                target.Trapped();
+                characterTarget.Trapped();
                 break;
             case StatusEffect.BLIND:
-                target.Blind();
+                characterTarget.Blind();
                 break;
         }
 

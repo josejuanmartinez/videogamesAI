@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public enum DiceRollEnum
@@ -12,20 +14,19 @@ public enum DiceRollEnum
 public class DiceManager : MonoBehaviour
 {
     [SerializeField]
-    public static int D10 = 10;
-    [SerializeField]
-    private short maxTime = 4;
+    private float showDiceResultsTime = 3f;
     [SerializeField]
     private DiceInstantiator diceInstantiator;
     [SerializeField]
     private GameObject diceCanvas;
-
+    
+    public static int D10 = 10;
     private PlaceDeck placeDeckManager;
     private CombatPopupManager combatPopupManager;
     private AudioManager audioManager;
     private AudioRepo audioRepo;
     private List<int> dicesResults;
-    private bool dicing = false;
+    private bool dicing;
 
     void Awake()
     {
@@ -33,6 +34,7 @@ public class DiceManager : MonoBehaviour
         combatPopupManager = GameObject.Find("CombatPopupManager").GetComponent<CombatPopupManager>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioRepo = GameObject.Find("AudioRepo").GetComponent<AudioRepo>();
+        dicing = false;
     }
 
     public IEnumerator RollToSpawnCard(SpawnCardLocation spawnCardLocation, CardDetails cardDetails)
@@ -72,21 +74,33 @@ public class DiceManager : MonoBehaviour
         CheckResultRollToCombat();
     }
 
-    public void RollForCombat(int attackers)
-    {
-        StartCoroutine(RollForCombatCoroutine(attackers));
-    }
-
     public IEnumerator RollDice(int numOfDices)
     {
         dicing = true;
         diceCanvas.SetActive(true);
 
-        diceInstantiator.Initialize(numOfDices);
+        bool results = false;
+        int tries = 2;
+        while(!results)
+        {
+            diceInstantiator.Initialize(numOfDices);
 
-        audioManager.PlaySound(audioRepo.GetAudio("dices"));
-        yield return new WaitUntil(()=>!diceInstantiator.IsDicing());
-        dicesResults = diceInstantiator.GetDicesResults();
+            audioManager.PlaySound(audioRepo.GetAudio("dices"));
+            yield return new WaitUntil(() => !diceInstantiator.IsDicing());
+            yield return new WaitForSecondsRealtime(showDiceResultsTime);
+            dicesResults = diceInstantiator.GetDicesResults();
+            results = (dicesResults.Count > 0);
+            if (!results)
+            {
+                tries--;
+                if(tries < 0)
+                {
+                    dicesResults = new List<int>();
+                    for(int i = 0; i < numOfDices; i++)
+                        dicesResults.Add(Random.Range(1, D10));
+                }
+            }
+        }
         diceCanvas.SetActive(false);
         dicing = false;
     }

@@ -91,7 +91,7 @@ public class DiceInstantiator : MonoBehaviour
 
     public List<int> GetDicesResults()
     {
-        if (!isDicing)
+        if (isDicing)
             return new List<int>();
         
         return new List<int>(dicesResults);
