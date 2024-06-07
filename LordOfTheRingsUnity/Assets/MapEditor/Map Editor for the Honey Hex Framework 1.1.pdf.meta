@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5680b16d6e511ce4fb1fda43d78c227f
+timeCreated: 1434844185
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 29724
+  packageName: HexMap Editor for the Honey Hex Framework
+  packageVersion: 1.1.1
+  assetPath: Assets/MapEditor/Map Editor for the Honey Hex Framework 1.1.pdf
+  uploadId: 73545

@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: f593c473b407a0240920a1b07f5c5feb
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 29724
+  packageName: HexMap Editor for the Honey Hex Framework
+  packageVersion: 1.1.1
+  assetPath: Assets/MapEditor/Materials/TerrainMarkerMaterial.mat
+  uploadId: 73545

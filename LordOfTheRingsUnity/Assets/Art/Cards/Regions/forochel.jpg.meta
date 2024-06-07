@@ -171,7 +171,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      forochel_0: 4501967278365146903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

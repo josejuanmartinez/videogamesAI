@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: bc7bd7a0014999740939ea77aaee7bfe
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 29724
+  packageName: HexMap Editor for the Honey Hex Framework
+  packageVersion: 1.1.1
+  assetPath: Assets/MapEditor/Prefabs/Cylinder.prefab
+  uploadId: 73545

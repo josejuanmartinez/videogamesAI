@@ -14,7 +14,6 @@ public class HazardCreatureCardDetails: CardDetails
         
     public List<HazardAbilitiesEnum> hazardAbilities;
 
-    private bool isAwaken = false;
     private bool isLoaded;
     private List<CardTypesEnum> cardTypes;
 
@@ -22,7 +21,6 @@ public class HazardCreatureCardDetails: CardDetails
     {
         cardTypes = new();
         isLoaded = false;
-        isAwaken = true;
     }
 
     public bool Initialize()

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 738511793426be94baff161b9589a6bd
+timeCreated: 1427495145
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 29724
+  packageName: HexMap Editor for the Honey Hex Framework
+  packageVersion: 1.1.1
+  assetPath: Assets/MapEditor/Images/Thumbs.db
+  uploadId: 73545

@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e1c84ae59d946a4944ca444426297b, type: 3}
+  m_Name: Foreground
+  m_EditorClassIdentifier: 
+  entries:
+  - _name: tree14
+    _assetPath: Assets/HoneyFramework/Foreground/tree14.psd
+    _pixelRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 128
+      height: 64
+    _uvRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.75
+      width: 0.5
+      height: 0.25
+    _pivot: {x: 88, y: 58}
+    _isTrimmed: 0
+  - _name: deadtree07
+    _assetPath: Assets/HoneyFramework/Foreground/deadtree07.psd
+    _pixelRect:
+      serializedVersion: 2
+      x: 130
+      y: 0
+      width: 64
+      height: 64
+    _uvRect:
+      serializedVersion: 2
+      x: 0.5078125
+      y: 0.75
+      width: 0.25
+      height: 0.25
+    _pivot: {x: 48, y: 58}
+    _isTrimmed: 0
+  - _name: tree04
+    _assetPath: Assets/HoneyFramework/Foreground/tree04.psd
+    _pixelRect:
+      serializedVersion: 2
+      x: 0
+      y: 198
+      width: 64
+      height: 32
+    _uvRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.1015625
+      width: 0.25
+      height: 0.125
+    _pivot: {x: 41, y: 28}
+    _isTrimmed: 0
+  - _name: deadtree02
+    _assetPath: Assets/HoneyFramework/Foreground/deadtree02.psd
+    _pixelRect:
+      serializedVersion: 2
+      x: 0
+      y: 66
+      width: 64
+      height: 64
+    _uvRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.4921875
+      width: 0.25
+      height: 0.25
+    _pivot: {x: 45, y: 62}
+    _isTrimmed: 0
+  - _name: tree07
+    _assetPath: Assets/HoneyFramework/Foreground/tree07.psd
+    _pixelRect:
+      serializedVersion: 2
+      x: 0
+      y: 132
+      width: 64
+      height: 64
+    _uvRect:
+      serializedVersion: 2
+      x: 0
+      y: 0.234375
+      width: 0.25
+      height: 0.25
+    _pivot: {x: 46, y: 62}
+    _isTrimmed: 0
+  texture: {fileID: 2800000, guid: e07ff7a0fa125f74cb5e0ccdc1435db4, type: 3}
+  atlasName: Foreground

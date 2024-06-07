@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a1670f1776279e0478eb7e1327ba5f24
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 29724
+  packageName: HexMap Editor for the Honey Hex Framework
+  packageVersion: 1.1.1
+  assetPath: Assets/MapEditor/Scripts/MapEditor.cs
+  uploadId: 73545

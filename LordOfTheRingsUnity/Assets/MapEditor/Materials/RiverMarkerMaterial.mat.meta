@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 5154588ca29b78847883deb2b7907aa3
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 29724
+  packageName: HexMap Editor for the Honey Hex Framework
+  packageVersion: 1.1.1
+  assetPath: Assets/MapEditor/Materials/RiverMarkerMaterial.mat
+  uploadId: 73545

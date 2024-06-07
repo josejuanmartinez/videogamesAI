@@ -171,7 +171,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      lindon2_0: 8809807992529489493
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
