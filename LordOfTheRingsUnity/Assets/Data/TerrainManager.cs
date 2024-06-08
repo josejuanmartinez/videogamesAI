@@ -28,6 +28,8 @@ public class TerrainManager : MonoBehaviour
     public GameObject[] tileGameObjects;
 
     private TileAndMovementCost[] tiles;
+
+    private bool isAwaken = false;
     public void Awake()
     {
         BoundsInt bounds = terrainTilemaps[0].cellBounds;
@@ -76,6 +78,12 @@ public class TerrainManager : MonoBehaviour
             }
         }
         //Debug.Log("Terrain manager finished loading at " + Time.realtimeSinceStartup);
+        isAwaken = true;
+    }
+
+    public bool IsAwaken()
+    {
+        return isAwaken;
     }
     public TileAndMovementCost GetTileAndMovementCost(int tileNum)
     {

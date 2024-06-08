@@ -184,6 +184,11 @@ public class CityUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return true;
     }
 
+    public bool IsUnderground()
+    {
+        return isUnderground;
+    }
+
     public void RefreshCityUICanvas()
     {
         if (IsVisibleToHumanPlayer())

@@ -37,11 +37,11 @@
   <MHTerrain name="FOREST" OID="3">
     <mode>normal</mode>
     <typeList />
-    <diffusePath>Terrain/Ground/Plains1_d</diffusePath>
-    <heightPath>Terrain/Ground/Plains1_h</heightPath>
+    <diffusePath>Terrain/Ground/Forest1_d</diffusePath>
+    <heightPath>Terrain/Ground/Common_h</heightPath>
     <mixerPath>Terrain/Ground/Plains1_m</mixerPath>
     <fgTypes>
-      <MHSimpleCounter name="tree07" count="15" />
+      <MHSimpleCounter name="tree07" count="35" />
     </fgTypes>
     <foregroundColor>135513</foregroundColor>
   </MHTerrain>
@@ -84,9 +84,9 @@
   <MHTerrain name="OTHER_HILLS_MOUNTAIN" OID="8">
     <mode>normal</mode>
     <typeList />
-    <diffusePath>Terrain/Ground/Mountain3_d</diffusePath>
+    <diffusePath>Terrain/Ground/Mountain1_d</diffusePath>
     <heightPath>Terrain/Ground/Mountain1_h</heightPath>
-    <mixerPath>Terrain/Ground/Hill3_m</mixerPath>
+    <mixerPath>Terrain/Ground/Mountain1_m</mixerPath>
     <fgTypes />
     <foregroundColor>883D08</foregroundColor>
   </MHTerrain>
